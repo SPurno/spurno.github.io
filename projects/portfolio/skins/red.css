@@ -1,0 +1,272 @@
+/*
+Extra Style
+=========================== */
+/*
+Color
+--------------------------- */
+.wrap-sidebar .wrap-menu > ul.menu > li > a{
+    color: #ccc;
+}
+
+/*
+Background
+--------------------------- */
+.wrapper .wrap-sidebar{
+    background-image: url(../images/bg/bright-squares.png);
+    background-color: #45484d;
+}
+
+/*
+Border
+--------------------------- */
+.fixed-widget,
+.wrap-sidebar .wrap-menu > ul.menu > li.active.dropdown.open ul.dropdown-menu,
+.wrap-sidebar .wrap-menu > ul.menu > li.active > a{
+    border-color: #45484d;
+}
+
+.demo-widget{
+    border-bottom: solid 1px #3f3f3f;
+}
+
+
+/*
+Primary color
+=========================== */
+
+/*
+Color
+--------------------------- */
+blockquote:before,
+.prev-slide:before,
+.next-slide:before,
+.sl-close,
+.sl-counter,
+.sl-prev,
+.sl-next,
+.btn-primary.btn-border,
+.error,
+.portfolio-content > .title a:hover,
+.portfolio-content > .title a:focus,
+.jssor-cap.title span,
+ul.icons li a:hover,
+ul.icons li a:focus,
+ul.icons li.boxed a,
+ul.icons li.border a,
+.accordion .panel .title .fa,
+.btn-link,
+.btn-link:hover,
+.btn-link:focus,
+ul.info li .fa,
+ol.portfolio-line li .title a:hover,
+ol.portfolio-line li .title a:focus,
+.wrap-zoom .content .error h5,
+.wrap-zoom .close-zoom a,
+.wrap-zoom .content ul.info li,
+.share ul li a:hover,
+.share ul li a:focus,
+.item-portfolio ul.action-link li a:hover,
+.item-portfolio ul.action-link li a:focus,
+ul.filters li.active a,
+.post-comment ol.list-comment li .author-name a:hover,
+.post-comment ol.list-comment li .author-name a:focus,
+.post-article ul.meta-link li a:hover,
+.post-article ul.meta-link li a:focus,
+.post-article blockquote footer a:hover,
+.post-article blockquote footer a:focus,
+.post-article .post-footer ul.post-link li a:hover,
+.post-article .post-content .title a:hover,
+ul.tags li a:hover,
+ul.tags li a:focus,
+ul.recent-post li .title a:hover,
+ul.widget-link > li.active > a,
+ul.widget-link > li.active > a:before,
+ul.widget-link > li > a:hover:before,
+ul.widget-link > li > a:hover,
+ul.link-footer li a:hover,
+ul.list-icon li a:hover,
+ul.center-link li a:hover,
+.fixed-widget .nav-fixed li.active > a,
+.fixed-widget .nav-fixed li > a:hover,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.on > a,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown ul.dropdown-menu a:hover,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown ul.dropdown-menu a:focus,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.open a,
+.wrap-sidebar .wrap-menu > ul.menu li a:hover,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown ul.dropdown-menu li.active a,
+.wrap-sidebar .wrap-menu > ul.menu li.active a,
+a:hover,
+a:focus,
+a{
+	color:#d04a49;
+}
+
+/*
+Background
+--------------------------- */
+.pagination-slide .av,
+.pagination-slide .av:hover,
+.fixed-widget .nav-fixed li > a,
+.wrap-section .title-section .title:after,
+.bg-primary,
+.item-feature.active,
+.jssor-cap.line,
+ul.icons li.border a:hover,
+ul.icons li.border a:focus,
+ol.portfolio-line li:after,
+.portfolio-content > .title:after,
+ul.control-thumb li.primary a,
+.wrap-zoom .content .error-page:before,
+.share ul li a,
+ul.filters li a,
+.item-feature .title:after,
+.item-portfolio .title:after,
+.btn.btn-primary,
+.post-author,
+#next-page,
+#infscr-loading,
+.owl-post .owl-pagination .owl-page.active,
+.post-article .post-time span.date,
+.input-group.search .btn:focus,
+.input-group.search .btn:hover,
+.loader span,
+.content-panel > .title:after,
+.post-article .post-content > .title:after,
+.widget > .title:after,
+.fixed-widget .widget > .title:after,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown ul.dropdown-menu:before,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.on > a:after,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.open > a:after,
+.wrap-sidebar .wrap-menu > ul.menu > li.active > a:after,
+.can-aya{
+	background-color:#d04a49;
+}
+
+.btn-primary.btn-border:focus,
+.btn-primary.btn-border:hover{
+    background-color:#d04a49 !important;
+}
+
+.fixed-widget .nav-fixed li > a:hover,
+ul.control-thumb li.primary a:hover,
+ul.control-thumb li.primary a:focus,
+ul.filters li a:hover,
+.btn.btn-primary:hover{
+    background-color:#b23f3e;
+}
+
+/*
+Text Selection
+--------------------------- */
+::-moz-selection {  background: #d04a49; }
+::-o-selection {  background: #d04a49; }
+::-webkit-selection {  background: #d04a49; }
+::-ms-selection {  background: #d04a49; }
+::selection      { background: #d04a49; } 
+
+/*
+Border
+--------------------------- */
+.sl-spinner,
+ul.icons li.border a,
+.tab-link ul.nav-tabs li.active a,
+.tab-content,
+.tab-border ul.nav-tabs li.active a,
+.tab-border ul.nav-tabs,
+.btn-link,
+ul.tags li a:hover,
+ul.tags li a:focus,
+.dark-sidebar .input-group.active,
+.input-group.active,
+.form-control:focus{
+	border-color:#d04a49;
+}
+
+.fixed-widget .nav-fixed li > a:hover,
+.fixed-widget .nav-fixed li > a,
+.mobile-nav,
+.btn-link:hover,
+.btn-link:focus,
+.wrap-zoom .content ul.info li,
+ul.control-thumb li.primary a,
+.wrap-loading.inner,
+.wrap-zoom .content .error-page:after,
+.wrap-zoom .close-zoom a,
+.share,
+.share ul li a,
+ul.filters li a,
+.btn.btn-primary,
+.post-author,
+#next-page,
+#infscr-loading{
+    border-color: #b23f3e;
+}
+
+/*
+Secondary color
+=========================== */
+
+/*
+Background
+--------------------------- */
+.btn-default.btn-border{
+    color: #2f3539;
+}
+
+.fixed-widget .nav-fixed li.active > a,
+.sl-overlay,
+.item-feature,
+.bg-default,
+ul.icons li.boxed a,
+.dark-sidebar,
+.demo-widget.dark .row,
+.post-article .thumbnail .overlay,
+.wrap-zoom .content ul.info li,
+ul.control-thumb li.default a,
+.wrap-zoom .overlay,
+.share ul li a:hover,
+.share ul li a:focus,
+.share ,
+.btn-default,
+ul.filters li.active a,
+.wrap-filter,
+.post-video .thumbnail a.btn-stop,
+.post-article .post-time span.month,
+.wrap-loading,
+.wrapper .wrap-content > footer.footer,
+.fixed-widget .widget,
+.wrap-sidebar .wrap-menu > ul.menu > li.active.dropdown ul.dropdown-menu,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.on > a:before,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.open > a:focus:before,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown.open > a:before,
+.wrap-sidebar .wrap-menu > ul.menu li.dropdown ul.dropdown-menu,
+.wrap-sidebar .wrap-menu > ul.menu > li.active > a,
+.mobile-nav,
+.wrapper .wrap-sidebar .logo{
+    background-color: #2f3539;
+}
+
+ul.icons li.boxed a:hover,
+ul.icons li.boxed a:focus,
+ul.control-thumb li.default a:hover,
+ul.control-thumb li.default a:focus,
+.btn-default:focus,
+.btn-default:hover{
+    background-color: #191d1f;
+}
+
+/*
+Border
+--------------------------- */
+.fixed-widget .nav-fixed li.active > a,
+ul.icons li.boxed a,
+ul.filters li.active a{
+    border-color: #2f3539;
+}
+
+ul.control-thumb li.default a,
+.btn-default:focus,
+.btn-default:hover,
+.btn-default{
+    border-color: #191d1f;
+}
