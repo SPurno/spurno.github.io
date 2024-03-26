@@ -67,7 +67,7 @@
 		resistance: true,
 		resistanceRatio: 0,
 		speed: 800,
-		autoplay: false,
+		autoplay: true,
 		mousewheel: true,
 		freeMode: true,
 		grabCursor: true,
@@ -123,8 +123,8 @@
 		$(".animsition").animsition({	  
 			inClass               :   'fade-in-down-sm',
 			outClass              :   'fade-out-down-sm',
-			inDuration            :    400,
-			outDuration           :    400,
+			inDuration            :    600,
+			outDuration           :    600,
 			linkElement           :   '.animsition-link', 
 			// e.g. linkElement   :   'a:not([target="_blank"]):not([href^=#])'
 			loading               :    true,
