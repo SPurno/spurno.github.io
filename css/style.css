@@ -982,7 +982,7 @@ body.nav-active .nav__list-item:nth-child(10) {
 	border-radius: 50%;
 	position: relative;
 	background: rgba(255, 255, 255, 1);
-	box-shadow: 0 0 0 0 rgba(255, 255, 255, 1) 
+	box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
 	left: 0;
 	top: -9px;
 	cursor: pointer;
