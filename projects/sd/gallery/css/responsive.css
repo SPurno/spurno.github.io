@@ -1,0 +1,432 @@
+/* Medium desktop :992px. */
+@media (min-width: 1200px) and (max-width: 1500px) {
+    
+    
+}
+
+/* Normal desktop :992px. */
+@media (min-width: 992px) and (max-width: 1199px) {
+.main-menu ul li a {
+  padding:16px 10px;
+}
+.hire-me-btn a {
+  padding: 9px 22px;
+}
+.benner-bg {
+  height: inherit;
+}
+.blog-info {
+  padding: 14px 8px;
+}
+.meta-info {
+  padding: 14px 6px;
+} 
+.meta-info > span {
+  font-size: 13px;
+}
+.read-more > a {
+  font-size: 12px;
+}   
+    
+    
+    
+    
+    
+    
+
+}
+ 
+/* Tablet desktop :768px. */
+@media (min-width: 768px) and (max-width: 991px) {
+.logo {
+  padding-top: 2px;
+}
+
+.hire-me-btn a {
+  font-size: 15px;
+  margin-top: 2px;
+  padding: 7px 14px;
+  font-size: 14px;
+}
+.single-slide {
+  height: 500px;
+}
+.benner-bg {
+  height: inherit;
+}   
+.slider-contand {
+  padding: 200px 0 140px;
+}
+.about-area {
+  padding: 40px 0;
+}
+.about-image {
+  margin-top: 24px;
+}
+.about-info h2 {
+  font-size: 30px;
+}    
+.about-info > p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+.about-p {
+  display: none;
+}    
+.socile-icon > a {
+  height: 36px;
+  line-height: 36px;
+  width: 36px;
+}    
+a.theme-btn-c {
+  padding: 10px 16px;
+} 
+.header-area {
+  padding: 12px 0 14px;
+}
+.contact-form {
+  margin-bottom: 30px;
+}
+.service-area {
+  padding: 40px 0;
+}
+.single-service i {
+  font-size: 36px;
+  height: 80px;
+  line-height: 80px;
+  width: 80px;
+}    
+.single-service h3 {
+  font-weight: 700;
+  font-size: 15px;
+}
+p{
+  font-size: 14px;
+  line-height: 20px;
+}     
+.portfolio-area {
+  padding: 40px 0;
+}  
+.clients-reviews-area {
+  padding: 40px 0;
+} 
+.blog-area {
+  padding: 40px 0;
+}  
+    
+.contact-area {
+  padding: 40px 0;
+}   
+.contact-text > p {
+  text-align: center;
+}
+.send-btn a {
+  letter-spacing: 2px;
+  padding: 12px 15px;
+}
+.contact-text {
+  display: block;
+}
+.contact-info {
+  margin-bottom: 40px;
+}
+.contact-icon {
+  height: 42px;
+  width: 40px;
+  margin-bottom: 10px;
+}    
+.contact-icon i {
+  font-size: 25px;
+}
+.contact-info-area {
+  margin-bottom: -101px;
+  padding: 16px 0;
+}   
+.comment-form-box {
+  margin-bottom: 20px;
+}  
+.widget-search {
+  padding: 0;
+  margin-top: 15px;
+}
+.widget-categories,.widget-recent-post {
+  padding: 0;
+}   
+.input-filed {
+  margin-bottom: 15px;
+}    
+.form-bottom > textarea {
+  margin-top: 0px;
+}     
+.recent-post-image {
+  width: 18%;
+}    
+.recent-post-item {
+  padding: 12px 0;
+}   
+ 
+    
+    
+    
+}
+
+ 
+/* small mobile :320px. */
+@media (max-width: 767px) {
+.container {width:320px}
+.logo {
+  padding-top: 0;
+}
+.mobile-menu-area {
+  top: 146%;
+}    
+.header-area{
+  background: rgba(0, 0, 0, 1) none repeat scroll 0 0;
+}
+.sticky,.header-area{
+  position: inherit;
+}
+.mean-container a.meanmenu-reveal {
+  top: -48px;
+}
+p {
+  font-size: 14px;
+  line-height: 20px;
+}
+.header-title {
+  margin-bottom: 30px;
+}
+.header-area {
+  padding: 15px 0;
+}
+.hire-me-btn {
+  display: none;
+}    
+.mean-container a.meanmenu-reveal {
+  left: 80% !important;
+}   
+.single-slide {
+  height: 200px;
+}
+.benner-bg {
+  height: inherit;
+} 
+.slider-contand {
+  padding: 70px 0;
+  text-align: center;
+}
+.home-3 .slider-contand {
+  padding: 50px 0;
+}
+.slider-list .owl-controls .owl-buttons div {
+  height: 30px;
+  line-height: 26px;
+  top: 36%;
+  width: 30px;
+}
+.slider-list .owl-controls .owl-buttons .owl-next {
+  right: 20px;
+}
+.slider-list .owl-controls .owl-buttons .owl-prev {
+  left: 20px;
+}
+.slider-area h1 {
+    display: none;
+}    
+.slider-contand > p {
+  display: none;
+}    
+.work-bnt > a {
+  font-size: 14px;
+  padding: 8px 10px;
+}   
+.about-area {
+  padding: 30px 0;
+}    
+.about-image {
+  margin-bottom: 30px;
+}   
+.about-info h2 {
+  font-size: 26px;
+} 
+.about-info > p {
+  font-size: 14px;
+}
+.socile-icon > a {
+  height: 32px;
+  line-height: 32px;
+  width: 32px;
+}  
+a.theme-btn-c {
+  padding: 10px 16px;
+}    
+.service-area {
+  padding: 30px 0;
+} 
+.col-sm-4:last-child .single-service {
+  margin: 0;
+}
+.portfolio-area {
+  padding: 30px 0;
+}
+.mixitup-menu ul li {
+  padding: 10px 10px;
+  margin-bottom: 10px;
+} 
+.single-portfolio .overlay > h2 {
+  font-size: 20px;
+}  
+.clients-reviews-area {
+  padding: 30px 0;
+}    
+.blog-area {
+  padding: 30px 0;
+}
+.blog-info {
+  padding: 8px;
+}
+.meta-info {
+  padding: 14px 8px;
+}
+.meta-info > span {
+  font-size: 13px;
+  margin-right: 7px;
+}
+.read-more > a {
+  font-size: 12px;
+}
+.single-blog {
+  margin-bottom: 35px;
+}
+.contact-info {
+  margin-bottom: 30px;
+}
+.contact-info-area {
+  margin-bottom: 0;
+}
+.contact-area {
+  padding: 30px 0;
+}    
+.contact-form {
+  margin-bottom: 30px;
+}
+.single-socal-contact {
+  border-right: 0;
+}
+.contact-text {
+  display: block;
+}
+.contact-icon {
+  margin-bottom: 10px;
+  margin-right: 0;
+}
+.single-socal-contact {
+  margin-bottom: 20px;
+}    
+.footer-area {
+  padding: 40px 0 40px;
+}
+.socail-icon {
+  margin-bottom: 10px;
+}
+.socail-icon a {
+  height: 34px;
+  line-height: 34px;
+  width: 34px;
+}   
+.contact-text > p {
+  text-align: center;
+}   
+.header-area-inner{
+    position: relative;
+}   
+.single-service {
+  margin-bottom: 45px;
+} 
+.breadcrumbs-area {
+  padding: 50px 0 ;
+} 
+.input-filed {
+  margin-bottom: 15px;
+}    
+.form-bottom > textarea {
+  margin-top: 0px;
+}    
+.widget-search {
+  padding: 0;
+  margin-top: 15px;
+}
+.widget-categories,.widget-recent-post {
+  padding: 0;
+}
+.comment-reply {
+  margin-left: 0;
+}
+.media-img {
+  float: none;
+  width: 23%;
+  margin-bottom: 10px;
+}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+}
+ 
+/* Large Mobile :480px. */
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+.container {width:450px}    
+.hire-me-btn a {
+  font-size: 14px;
+  margin-top: 0;
+  padding: 7px 14px;
+}
+.home-3 .slider-contand {
+  padding: 75px 0;
+}
+.single-slide {
+  height: 300px;
+}
+.slider-area h1 {
+  display: block;
+  font-size: 27px;
+}    
+.slider-contand > h3 {
+  margin-bottom: 10px;
+} 
+.mean-container a.meanmenu-reveal {
+  left: 50% !important;
+}
+.hire-me-btn {
+  display: block;
+}
+.slider-contand {
+  padding: 100px 0;
+}
+.blog-info {
+  padding: 14px;
+}
+.meta-info {
+  padding: 14px 15px;
+}
+.meta-info > span {
+  margin-right: 10px;
+}
+.read-more > a {
+  font-size: 13px;
+}
+.sticky{
+  position: fixed;
+}
+.mean-container a.meanmenu-reveal {
+  top: -46px;
+}    
+    
+    
+ 
+}
