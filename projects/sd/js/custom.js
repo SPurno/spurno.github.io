@@ -301,7 +301,7 @@
 				
 				setTimeout(function () { 
 					reArrangeProjects();
-				}, 300);								
+				}, 400);								
 				return false;
 			});			
 			function reArrangeProjects() { 
@@ -312,8 +312,8 @@
 				setColumnWidth();								
 				container.isotope( { 
 					itemSelector : '.portfolio-box', 
-					layoutMode : 'masonry', 
-					resizable : false 
+					layoutMode : 'fitRows', 
+					resizable : false
 				} );
 			} );													
 			$(window).on('debouncedresize', function () { 
