@@ -318,7 +318,8 @@
 			} );													
 			$(window).on('debouncedresize', function () { 
 				reArrangeProjects();				
-			} );					
+			} );			
+			setColumnWidth(); // Call setColumnWidth here
 		} )(jQuery);
 	
 					
