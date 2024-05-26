@@ -317,9 +317,9 @@
 				} );
 			} );													
 			$(window).on('debouncedresize', function () { 
-				reArrangeProjects();				
+				reArrangeProjects();
+				setColumnWidth(); // Call setColumnWidth here				
 			} );			
-			setColumnWidth(); // Call setColumnWidth here
 		} )(jQuery);
 	
 					

@@ -11,25 +11,22 @@
 /* Styling Next and Prev buttons */
 
 .owl-theme .owl-controls .owl-buttons div{
-	color: #FFF;
+	color: #fff;
 	display: inline-block;
 	zoom: 1;
 	*display: inline;/*IE7 life-saver */
 	margin: 5px;
-	padding: 3px 10px;
+	padding: 1px 10px;
 	font-size: 12px;
 	-webkit-border-radius: 30px;
 	-moz-border-radius: 30px;
 	border-radius: 30px;
 	background: #869791;
-	filter: Alpha(Opacity=50);/*IE7 fix*/
-	opacity: 0.5;
 }
 /* Clickable class fix problem with hover on touch devices */
 /* Use it for non-touch hover action */
 .owl-theme .owl-controls.clickable .owl-buttons div:hover{
-	filter: Alpha(Opacity=100);/*IE7 fix*/
-	opacity: 1;
+	color: #efefef;
 	text-decoration: none;
 }
 
@@ -75,5 +72,5 @@
 /* preloading images */
 .owl-item.loading{
 	min-height: 150px;
-	background: url(AjaxLoader.html) no-repeat center center
+	background: url(AjaxLoader.gif) no-repeat center center
 }

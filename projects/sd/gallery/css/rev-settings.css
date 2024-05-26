@@ -1,0 +1,40 @@
+@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+.big-heading{
+font-size: 40pt;
+line-height:normal;
+}
+.sub-heading{
+font-size: 30pt;
+line-height:normal;
+}
+.btn-slider { 
+  display: block;
+  width: 198px;
+  height: 40px;
+  font-size: 11pt;
+  font-weight: 300;
+  text-align: center;
+  letter-spacing:1px;
+  line-height: 36px;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(23, 36, 52, 0);
+  outline: none;
+  text-shadow: none;
+  margin: 0 auto;
+  cursor: pointer;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn-slider a:hover { 
+  color: #111111;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0);
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
