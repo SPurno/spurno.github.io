@@ -55,7 +55,7 @@
 
 /* mouse grab icon */
 .grabbing { 
-    cursor:url(grabbing.png) 8 8, move;
+    cursor:url(grabbing.html) 8 8, move;
 }
 
 /* fix */
@@ -67,9 +67,5 @@
   -webkit-transform: translate3d(0,0,0);
   -moz-transform: translate3d(0,0,0);
   -ms-transform: translate3d(0,0,0);
-}
-
-.owl-wrapper {
-    margin: 0 auto;
 }
 
