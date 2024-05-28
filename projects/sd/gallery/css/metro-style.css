@@ -44,11 +44,11 @@
 */
 
 /* font-metro */
-@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
 
 /* reset */
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, button, output, ruby, section, summary, time, mark, audio, video {
-font-family: "Montserrat", Arial, Helvetica, sans-serif;
+font-family: "Quicksand", sans-serif;
 margin: 0;
 padding: 0;
 border: 0;
@@ -59,7 +59,7 @@ list-style: none;
 
 /** general **/
 body {
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 13px;
   line-height: 1.8em;
   font-style: normal;
@@ -106,8 +106,10 @@ h6 {
   line-height: normal;
 }
 p {
-  font-size: 13px;
+  font-size: 15px;
   letter-spacing: .7px;
+  color: #000;
+  font-family: 'Quicsand' sans-serif;
 }
 em {
   font-style: italic;
@@ -283,10 +285,10 @@ button:hover {
 }
 .devider-cont {
   display: block;
-  border-top: 4px solid #13d3ec;
-  width: 240px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  border-top: 4px solid #d9dbdb;
+  width: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   text-align: left;
 }
 .devider-widget {
@@ -538,7 +540,7 @@ nav a {
   padding: 10px 0px 10px 10px;
   color: #fff;
   font-size: 13px;
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  	font-family: "Quicksand", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -666,7 +668,6 @@ li>a:only-child:after {
   height: 100%;
   top: 0px;
   left: 0px;
-  background: url('../img/pattern.png');
 }
 
 .overlay-main {
@@ -1263,8 +1264,9 @@ li>a:only-child:after {
 
 /* projects */
 #porto h3 {
-  font-size: 48pt;
+  font-size: 40pt;
   font-weight: 400;
+  color: #0c0c0c;
 }
 #porto h4 {
   font-size: 28pt;
@@ -1306,7 +1308,7 @@ li>a:only-child:after {
 }
 .projects:hover img, .projects-grid:hover img {
   width: 100%;
-  -webkit-transform: scale(1.1);
+  -webkit-transform: scale(5.5);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
   -webkit-transition: all 1s ease-in-out;
@@ -1348,10 +1350,11 @@ li>a:only-child:after {
   font-size: 9pt;
   font-weight: 400;
   letter-spacing: 4px;
-  color: #333;
+  color: #ffffff;
   padding-top: 33%;
   height: 100%;
-  background-color: rgba(255, 255, 255, .8);
+  background-color: #12A89D;
+  opacity: 0.4;
 }
 
 /* filter controls */
@@ -1361,7 +1364,7 @@ li>a:only-child:after {
 #filter-porto li.filt-projects {
   font-size: 10pt;
   font-weight: 400;
-  color: #fff;
+  color: #0e0d0d;
   letter-spacing: 1px;
   text-transform: uppercase;
   cursor: pointer;
@@ -1370,6 +1373,7 @@ li>a:only-child:after {
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
+  
 }
 #filter-porto li.filt-projects:last-child {
   float: right;
@@ -1380,13 +1384,13 @@ li>a:only-child:after {
   margin: 0 10px 0 10px;
 }
 #filter-porto li.filt-projects:hover {
-  color: #ccc;
+  color: #12A89D;
   -webkit-transition: all .3s ease-in-out;
   -moz-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
 }
 #filter-porto li.active {
-  color: #ccc;
+  color: #12A89D;
   -webkit-transition: all 0.3s ease;
   -moz-transition: all 0.3s ease;
   -o-transition: all 0.3s ease;
