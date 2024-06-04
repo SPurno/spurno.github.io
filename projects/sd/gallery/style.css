@@ -514,16 +514,16 @@ a.theme-btn-c:hover {
   background: rgba(0, 0, 0, 0.7) none repeat scroll 0 0;
 }
 .protfolio-icon > a {
-    border: 1px solid #fff;
+    border: 0px solid #fff;
     color: #fff;
     display: inline-block;
     font-size: 35px;
-    height: 50px;
+    height: 70px;
     line-height: 50px;
-    width: 50px;
+    width: 350px;
 }
 .protfolio-icon > a:hover {
-    border-color: red;
+    border-color: rgb(255, 255, 255);
     color: red;
 }
 .profolio-text > h2 {
@@ -533,6 +533,7 @@ a.theme-btn-c:hover {
     text-transform: uppercase;
 }
 .profolio-text > p {
+    margin-top: 80px;
     color: #fff;
     font-size: 16px;
 }
