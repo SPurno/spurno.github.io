@@ -84,7 +84,7 @@ p{
 }
 a {transition: all 0.3s ease 0s; text-decoration:none;font-family: "Quicksand", sans-serif;}
 a:hover {
-  color: #ec4445;
+  color: #12A89D;
   text-decoration: none;
 }
 a:active, a:hover {
@@ -101,7 +101,7 @@ body {
   font-size: 15px;
 }
 #scrollUp {
-  background: #dc143c none repeat scroll 0 0;
+  background: #12A89D none repeat scroll 0 0;
   bottom: 18px;
   color: #ffffff;
   cursor: pointer;
