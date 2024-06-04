@@ -46,6 +46,7 @@
 	<link rel="stylesheet" href="css/animsition.min.css"/>
 	<link rel="stylesheet" href="css/swiper.min.css" />
 	<link rel="stylesheet" href="css/style.css"/>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
 			
 	<!-- Favicons
 	================================================== -->
@@ -66,6 +67,15 @@
 	<meta name="msapplication-TileColor" content="#ffffff">
 	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
+
+	<script src="js/jquery-3.7.1.js"></script>
+	<script src="js/jquery-ui.js"></script>
+
+	<script>
+		$( function() {
+		  $( "#draggable" ).draggable();
+		} );
+		</script>
     
 <body>
 
@@ -114,9 +124,13 @@
 		</div>
 
 		<!-- Main content start-->	
-		<div class="draggable resize-drag">
+		<!-- <div class="draggable resize-drag">
 			<img class="draggable resize-drag" src="img/map.jpg" alt="">
-		</div>
+		</div> -->
+
+		<div id="draggable" class="ui-widget-content">
+			<img src="img/map.jpg" alt="">
+		  </div>
 		<!-- loading end  -->
 		<!-- <div class="background" >
 			<img class="home" src="img/home-back.jpg" alt="Map">
@@ -133,12 +147,9 @@
         <div class='cursor3' id="cursor3"></div>		
 		
 	</div>
-	<script src="js/interact.min.js"></script>
-	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script> 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script> 
 	<script src="js/custom.js"></script>
-	<script src="js/drag.js"></script>
 </body>
 </html>
