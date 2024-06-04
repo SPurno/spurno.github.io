@@ -325,7 +325,7 @@ a:hover {
 }
 .background-dark-3,
 .background-dark-4 {
-	background-color: #14151a;
+	background-color: #069696;
 }
 .background-black {
 	background-color: #000000;
@@ -371,7 +371,7 @@ a:hover {
 	z-index:11000;
 }
 .padding-page-top {
-	padding-top: 250px;
+	padding-top: 100px;
 }
 .padding-top-bottom {
 	padding-top: 100px;
