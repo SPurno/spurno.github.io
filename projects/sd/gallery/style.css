@@ -548,7 +548,7 @@ a.theme-btn-c:hover {
   margin-bottom: 30px;
 }
 .mixitup-menu ul li {
-  border: 1px solid #ddd;
+  border: 0px solid #ddd;
   border-radius: 2px;
   cursor: pointer;
   display: inline-block;
@@ -561,7 +561,7 @@ a.theme-btn-c:hover {
 }
 .mixitup-menu .filter.active {
   background: #fff;
-  border: 1px solid #06a3a3;
+  border: 0px solid #06a3a3;
   color: #0e0d0d;
 }
 /*-  10. clients-reviews-area css 

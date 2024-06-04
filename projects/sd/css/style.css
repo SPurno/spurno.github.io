@@ -137,7 +137,7 @@ mark{
 /* #Cursor
 ================================================== */
 
-.cursor,
+/* .cursor,
 .cursor2,
 .cursor3{
 	position: fixed;
@@ -195,7 +195,7 @@ mark{
 .video-cursor .cursor2.hover,
 .video-cursor .cursor3.hover{
 	opacity: 0;
-}
+} */
 
 
 @media screen and (max-width: 1200px){
@@ -2205,7 +2205,7 @@ figure.vimeo a img, figure.youtube a img {
 .ajax-form input:-ms-input-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgba(245, 238, 238, 0.4);
 	font-weight: 700;
 }
 .ajax-form input::-moz-placeholder  {
@@ -2256,7 +2256,7 @@ figure.vimeo a img, figure.youtube a img {
 	font-size: 15px;
 	padding: 12px 25px;
 	letter-spacing: 2px;
-	background-color: #14151a;
+	background-color: #040505;
 	border:none;
 	outline:none;
 	margin: 0 auto;
