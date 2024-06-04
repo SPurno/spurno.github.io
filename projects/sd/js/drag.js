@@ -86,4 +86,9 @@ interact('.draggable')
     target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
   });
 
+  function dragEnter(e) {
+    e.preventDefault();
+    e.target.classList.add('drag-over');
+}
+
   /* Tapping event */
