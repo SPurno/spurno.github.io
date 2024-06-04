@@ -1,36 +1,5 @@
-// const item = document.querySelector('.map');
-
-// item.addEventListener('dragstart', dragStart);
-
-// function dragStart(e){
-//     e.dataTransfer.setData("text", e.target.id);
-//     console.log('drag started');
-// }
-
-// function dragEnd(e){
-
-// }
-
-// function dragEnter(e){
-
-// }
-
-// function dragLeave(e){
-
-// }
-
-// function dragOver (e){
-
-// }
-
-// function drop(e){
-//     e.preventDefault();
-
-// }
-
-
 // target elements with the "draggable" class
-interact('.map_move')
+interact('.draggable')
   .draggable({
     // enable inertial throwing
     inertia: true,
@@ -47,14 +16,13 @@ interact('.map_move')
     onmove: dragMoveListener,
     // call this function on every dragend event
     onend: function (event) {
-      var textEl = event.target.querySelector('map');
+      var textEl = event.target.querySelector('img');
 
       textEl && (textEl.textContent =
         'moved a distance of '
         + (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
                      Math.pow(event.pageY - event.y0, 2) | 0))
             .toFixed(2) + 'px');
-        console.log("fucntion active");
     }
   });
 
@@ -73,6 +41,11 @@ interact('.map_move')
     target.setAttribute('data-x', x);
     target.setAttribute('data-y', y);
   }
+
+  // this is used later in the resizing and gesture demos
+  // window.dragMoveListener = dragMoveListener;
+
+  /* Resize the box */
 
   interact('.draggable')
   .resizable({
@@ -112,3 +85,5 @@ interact('.map_move')
     target.setAttribute('data-y', y);
     target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
   });
+
+  /* Tapping event */
