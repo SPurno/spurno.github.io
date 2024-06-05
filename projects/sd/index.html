@@ -46,6 +46,11 @@
 	<!-- <link rel="stylesheet" href="css/animsition.min.css"/> -->
 	<link rel="stylesheet" href="css/style.css"/>
 	<link rel="stylesheet" href="css/jquery-ui.css">
+
+	<!-- script  -->
+	<script src="js/jquery-3.7.1.js"></script>
+	<script src="js/jquery-ui.js"></script> 
+	<!-- script end  -->
 			
 	<!-- Favicons
 	================================================== -->
@@ -67,20 +72,9 @@
 	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
 	<meta name="theme-color" content="#ffffff">
 
-	<script src="js/jquery-3.7.1.js"></script>
-	<script src="js/jquery-ui.js"></script>
-
     
 <body>
-
-	<!-- Page preloader wrap
-	================================================== -->
-
 	<div class="">	
-		
-		<!-- Nav and Logo
-		================================================== -->
-
 		<header class="cd-header ">
 			<div class="header-wrapper">
 				<div class="nav-but-wrap">
@@ -92,52 +86,61 @@
 				</div>					
 			</div>				
 		</header>
-
 		<div class="nav">
 			<div class="nav__content">
-				<!-- <div class="curent-page-name-shadow">S D</div> -->
 				<ul class="nav__list">
 					<li class="nav__list-item"><a href="index.html" class="hover-target">Home</a></li>
-					<li class="nav__list-item"><a data-toggle="collapse" href="#collapseSub" class="hover-target" role="button" aria-expanded="false" aria-controls="collapseSub">Projects</a>
-                        <ul class="sub-links collapse" id="collapseSub">
-							<li><a href="project-single.html" class="hover-target">Architectural</a></li>
-							<li><a href="#" class="hover-target">Interior Design</a></li>
-							<li><a href="#" class="hover-target">Structural Solution</a></li>
-							<li><a href="#" class="hover-target">Industrial</a></li>
-							<li><a href="#" class="hover-target">Hotel/Restuarant</a></li>
-						</ul>
-                    </li>
-							<li class="nav__list-item"><a href="gallery.html" class="hover-target">Gallery</a></li>
-							<li class="nav__list-item"><a href="services.html" class="hover-target">Services</a></li>
-							<li class="nav__list-item"><a href="about-us.html" class="hover-target">About us</a></li>
-							<li class="nav__list-item"><a href="contact-us.html" class="hover-target">Contact us</a></li>
-							<li class="nav__list-item"><a href="privacy.html" class="hover-target">Privacy Policy</a></li>
-							<li class="nav__list-item"><a href="terms-and-condition.html" class="hover-target">Terms & Condition</a></li>
+					<li class="nav__list-item"><a href="gallery.html" class="hover-target">Projects</a></li>
+					<li class="nav__list-item"><a href="services.html" class="hover-target">Services</a></li>
+					<li class="nav__list-item"><a href="about-us.html" class="hover-target">About us</a></li>
+					<li class="nav__list-item"><a href="contact-us.html" class="hover-target">Contact us</a></li>
 				</ul>
 			</div>
 		</div>
 
-		<!-- Main content start-->	
-		<!-- <div class="draggable resize-drag">
-			<img class="draggable resize-drag" src="img/map.jpg" alt="">
-		</div> -->
-		<div id="draggable" class="ui-widget-content">
-			<img src="img/map.jpg" alt="">
-		  </div>
-		<!-- loading end  -->
-		<!-- <div class="background" >
-			<img class="home" src="img/home-back.jpg" alt="Map">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<div class="section">
 
-			</div> -->
+					</div>
+					<div class="section2" id="section2">
+					<!-- map drag and drop features  -->		
+					<div class="">
+						<div id="draggable" class="ui-widget-content">
+							<img src="img/map_1920x1080-01.jpg" alt="">
+						</div>
+					</div>
+					<!-- map end  -->
+					</div>
+					<div class="section"></div>
+				</div>
+			</div>
+			<div class="logo-container">
+				<img src="img/logo-01.png" alt="Logo" width="210" height="210" style="z-index: 20000;">
+				<br>
+				<a href="#section2" class="scroll-to-section"><img src="img/arrow.png" alt="Scroll Down" style="height: 12px; width: 27px; margin-bottom: 60px;"></a>
+			</div>
+		</div>
+	
+		<script>
+			document.querySelector('.scroll-to-section').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#section2').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+
+
 			
 		<div class="copyr">
 			2015-2024 © <a href="https://studiodhakaltd.com" class="hover-target">Studio Dhaka Ltd. Dev: <a href="https://spurno.github.io">SPurno</a> </a>
 		</div>
 
 		<div class="scroll-to-top hover-target"></div>
-        <div class='cursor' id="cursor"></div>
+		<div class='cursor' id="cursor"></div>
         <div class='cursor2' id="cursor2"></div>
-        <div class='cursor3' id="cursor3"></div>		
+        <div class='cursor3' id="cursor3"></div>	
 		
 	</div>
 
