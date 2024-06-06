@@ -1,0 +1,29 @@
+body {
+    background-color: rgb(255, 255, 255);
+    width: 1920 px;
+    height: 100%;
+    display: grid;
+    place-content: center;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+svg {
+    padding-top: 20vw;
+    width: 20vw;
+    overflow: visible;
+}
+
+g {
+    overflow: hidden;
+    visibility: hidden;
+}
+
+.reveal {
+    position: absolute;
+    height: 30vh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background: #fffdfd;
+}
