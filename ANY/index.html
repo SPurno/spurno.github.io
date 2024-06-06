@@ -24,8 +24,14 @@
                 <div class="reveal">
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+                <!-- gsap animation implementation  -->
                 <script type="text/javascript">
-                    const timeline = gsap.timeline({defaults: { ease: 'power4.out', duration: .3}})
+
+                    const timeline = gsap.timeline({
+                        defaults: { 
+                        ease: 'power2.inOut', 
+                        duration: .3
+                    }})
 
                     gsap.set( 'g' ,   {
                         autoAlpha: 1
@@ -37,17 +43,21 @@
 
                     gsap.to('svg' , {
                         scale: 1.1,
-                        duration: 3
+                        duration: 3,
+                        repeat: -1,
+                        yoyo: true
                     })
  
-                    timeline.from('#Layer_1-2 .cls-3', {
+                    timeline.from('#Layer_1-2 .d', {
                         yPercent: -200,
                         duration: 3,
-                        stagger: 0.03
+                        stagger: 0.03,
+                        repeat: -1,
+                        yoyo: true
                     })
-
-
                 </script>
+
+        <!-- gsap animation implementation end  -->
             </div>
 
 </body>
