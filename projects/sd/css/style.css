@@ -17,6 +17,35 @@
 /* #Primary
 ================================================== */
 
+/* service section  */
+h2.text-center, h5.card-title {
+	font-family: "Quicksand", sans-serif;
+    margin-top: 0px;
+    margin-bottom: 40px;
+	color: #000;
+}
+.card-img-top {
+    height: 200px;
+    object-fit: cover;
+}
+
+.card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card-body {
+    text-align: center;
+}
+
+
+/* service card end  */
+
 .section {
 	height: 1080px;
 	width: 100% ;
