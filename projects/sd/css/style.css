@@ -18,12 +18,19 @@
 ================================================== */
 
 /* service section  */
-h2.text-center, h5.card-title {
-	font-family: "Quicksand", sans-serif;
-    margin-top: px;
-    margin-bottom: 30px;
+h3.text-center {
+	font-family: 'Quicksand', sans-serif;
+    margin-top: 00px;
+    margin-bottom: 00px;
+	color: #525353;
+	font-size: 30px;
+	text-transform: uppercase;
+}
+h5.card-title {
+	font-family: 'Quicksand', sans-serif;
+    margin-top: 00px;
+    margin-bottom: 00px;
 	color: #000;
-	font-style: normal;
 }
 .card-img-top {
     height: 200px;
@@ -72,7 +79,7 @@ h2.text-center, h5.card-title {
 }
 
 .quicksand {
-	font-family: "Quicksand", sans-serif;
+	font-family: 'Quicksand', sans-serif;
 	font-optical-sizing: auto;
 	font-weight: 300;
 	font-style: normal;
