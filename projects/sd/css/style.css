@@ -53,7 +53,14 @@ h5.card-title {
 
 
 /* service card end  */
-
+.section-contact {
+	height: 750px;
+	width: 100% ;
+	background-color: #ffffff;
+	border: 0px solid #ddd;
+	padding: 20px;
+	display: inline-block;
+}
 .section {
 	height: 1080px;
 	width: 100% ;
