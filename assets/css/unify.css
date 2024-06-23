@@ -2,6 +2,7 @@
 /*------------------------------------
   Default Styles
 ------------------------------------*/
+
 html {
   font-size: 14px;
   overflow-x: hidden;
@@ -19,6 +20,47 @@ body {
   text-rendering: optimizelegibility;
   background-color: #fff;
 }
+
+/* google ads section  */
+
+.ad-section {
+  margin: 20px 0;
+  padding: 10px;
+  background-color: #f0f0f0;
+  text-align: center;
+}
+
+.ad-container {
+  width: 100%;
+  height: auto;
+  background-color: #e0e0e0;
+  padding: 10px;
+}
+
+.header-banner, .footer-banner {
+  height: 90px; /* Adjust height as needed */
+}
+
+.sidebar-ad {
+  float: right;
+  width: 300px; /* Adjust width as needed */
+  height: 600px; /* Adjust height as needed */
+  margin-left: 20px;
+}
+
+.in-content-ad {
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .sidebar-ad {
+      float: none;
+      width: 100%;
+      height: auto;
+  }
+}
+
+/* google ads end  */
 
 a {
   color: #72c02c;
