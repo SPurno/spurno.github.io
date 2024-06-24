@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8]><html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]>
 <!--><html class="no-js" lang="en"><!--<![endif]-->
@@ -101,49 +101,38 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-12">
-				<!-- section 1 1920 x 1080 part  -->
-				<div class="section1">
+					<div class="section">
 
-				</div>
-				<!-- section 1 1920 x 1080 part  -->
-				<div class="section2" id="section2">
-				<!-- map drag and drop features  -->		
-				<div class="">
-					<div id="draggable" class="ui-widget-content">
-						<img src="img/map_1920x1080-01.jpg" alt="">
 					</div>
-				</div>
-				<!-- map end  -->
-				</div>
-
-			<!-- section 3 1920 x 1080 part  -->
-					<div class="section3">
-						<nav id="navbar_top" class="navbar_1 navbar-expand-lg navbar-dark bg-dark">
-							<div class="container">
-							 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main_nav"  aria-expanded="false" aria-label="Toggle navigation">
-								 <span class="navbar-toggler-icon"></span>
-							   </button>
-								<div class="collapse navbar-collapse" id="main_nav">
-									<ul class="navbar-nav me-auto align-center">
-										<li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
-										<li class="nav-item"><a class="nav-link" href="#">PROJECTS</a></li>
-										<li class="nav-item"><a class="nav-link" href="#">CONTACT US</a></li>
-									</ul>
-								</div>
-							</div> 
-						</nav>
+					<div class="section2" id="section2">
+					<!-- map drag and drop features  -->		
+					<div class="">
+						<div id="draggable" class="ui-widget-content">
+							<img src="img/map_1920x1080-01.jpg" alt="">
+						</div>
 					</div>
-					<!-- section 3 end 1920 x 1080 part  -->
+					<!-- map end  -->
+					</div>
+					<div class="section"></div>
 				</div>
 			</div>
 			<div class="logo-container">
 				<img src="img/logo-01.png" alt="Logo" width="210" height="210" style="z-index: 20000;">
 				<br>
-				<a href="#section2" class="scroll-to-section">
-					<img src="img/arrow.png" alt="Scroll Down" 
-					style="height: 12px; width: 27px; margin-bottom: 60px;"></a>
+				<a href="#section2" class="scroll-to-section"><img src="img/arrow.png" alt="Scroll Down" style="height: 12px; width: 27px; margin-bottom: 60px;"></a>
 			</div>
 		</div>
+	
+		<script>
+			document.querySelector('.scroll-to-section').addEventListener('click', function(e) {
+				e.preventDefault();
+				document.querySelector('#section2').scrollIntoView({ behavior: 'smooth' });
+			});
+		</script>
+
+
+
+			
 		<div class="copyr">
 			2015-2024 © <a href="https://studiodhakaltd.com" class="hover-target">Studio Dhaka Ltd. Dev: <a href="https://spurno.github.io">SPurno</a> </a>
 		</div>
@@ -155,19 +144,11 @@
 		
 	</div>
 
-		<script>
-			$( function() {
-			$( "#draggable" ).draggable();
-			} );
-		</script>
-		
-		<script>
-			// scrool to 2nd section
-			document.querySelector('.scroll-to-section').addEventListener('click', function(e) {
-			e.preventDefault();
-			document.querySelector('#section2').scrollIntoView({ behavior: 'smooth' });
-		});
-		</script>
+	<script>
+		$( function() {
+		  $( "#draggable" ).draggable();
+		} );
+	</script>
 	<script src="js/popper.min.js"></script> 
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/plugins.js"></script> 

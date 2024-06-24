@@ -17,6 +17,13 @@
 /* #Primary
 ================================================== */
 
+.navbar1 {
+	flex-direction: row;
+	justify-content: center;
+	width: 100%;
+}
+
+  
 /* service section  */
 h3.text-center {
 	font-family: 'Quicksand', sans-serif;
@@ -61,7 +68,7 @@ h5.card-title {
 	padding: 20px;
 	display: inline-block;
 }
-.section {
+.section1 {
 	height: 1080px;
 	width: 100% ;
 	background-color: #ffffff;
@@ -70,6 +77,14 @@ h5.card-title {
 	display: inline-block;
 }
 .section2 {
+	height: 1080px;
+	width: 100% ;
+	background-color: #ffffff;
+	border: 0px solid #ddd;
+	padding: 20px;
+	display: inline-block;
+}
+.section3 {
 	height: 1080px;
 	width: 100% ;
 	background-color: #ffffff;
@@ -544,6 +559,8 @@ a:hover {
 	z-index:100;
 } 
 .header-wrapper{
+	display: flex;
+	justify-content: flex-end;
     position: relative;
 	width: calc(100% - 100px);
 	margin-left: 50px;
@@ -611,7 +628,7 @@ a:hover {
 .nav-but-wrap{ 
 	position: relative;
 	display: inline-block;
-	float: right;
+	float: none;
 	padding-left: 15px;
 	padding-top: 15px;
 	margin-top: 26px;
@@ -681,7 +698,7 @@ a:hover {
           transform: translateX(0%) translateY(-100%);
 }
 .nav:after {
-	background: rgba(9,9,12,1);
+	background: rgb(75, 74, 74);
 	-webkit-transition-delay: 0s;
           transition-delay: 0s;
 }
