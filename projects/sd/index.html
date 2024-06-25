@@ -138,11 +138,11 @@
 				</div>
 			</div>
 			<div class="logo-container">
-				<img id="logo" src="images/sdlogo.svg" width="120px" height="120px" style="z-index: 20000;">
+				<img id="logo" src="images/sdlogo.svg"  style="z-index: 20000;" width = 120px; height=120px;>
 				<br>
 				<a href="#section2" class="scroll-to-section">
-					<img src="img/arrow.png" alt="Scroll Down" 
-					style="height: 12px; width: 27px; margin-bottom: 60px;"></a>
+					<img id="arrow" src="images/arrow.svg" alt="Scroll Down" 
+					style="height: 10px; width: 22px; margin-bottom: 60px;"></a>
 			</div>
 		</div>
 		<div class="copyr">
@@ -176,7 +176,16 @@
 				duration: 2,
 				repeat: false, // Infinite loop
 				ease: "power3.Out"
+        	});
+
+			gsap.to("#arrow", {
+            y: -20, // Move up by 50px
+            duration: 1,
+            repeat: -1, // Infinite loop
+            yoyo: true, // Reverse the animation
+            ease: "power1.inOut" // Easing function for smooth motion
         });
+
 		</script>
 		<script src="js/popper.min.js"></script> 
 		<script src="js/bootstrap.min.js"></script>
