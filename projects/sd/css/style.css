@@ -17,6 +17,12 @@
 /* #Primary
 ================================================== */
 
+
+svg {
+	width: 200px; /* Adjust size as needed */
+	height: auto;
+}
+
 .navbar1 {
 	flex-direction: row;
 	justify-content: center;

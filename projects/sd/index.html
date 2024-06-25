@@ -50,6 +50,7 @@
 	<!-- script  -->
 	<script src="js/jquery-3.7.1.js"></script>
 	<script src="js/jquery-ui.js"></script> 
+	<script src="js/gsap.min.js"></script>
 	<!-- script end  -->
 			
 	<!-- Favicons
@@ -137,7 +138,7 @@
 				</div>
 			</div>
 			<div class="logo-container">
-				<img src="img/logo-01.png" alt="Logo" width="210" height="210" style="z-index: 20000;">
+				<img id="logo" src="images/sdlogo.svg" width="120px" height="120px" style="z-index: 20000;">
 				<br>
 				<a href="#section2" class="scroll-to-section">
 					<img src="img/arrow.png" alt="Scroll Down" 
@@ -168,9 +169,18 @@
 			document.querySelector('#section2').scrollIntoView({ behavior: 'smooth' });
 		});
 		</script>
-	<script src="js/popper.min.js"></script> 
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/plugins.js"></script> 
-	<script src="js/custom.js"></script>
+		<script type="text/javascript">
+			// Animate the logo
+			gsap.to("#logo", {
+				rotationY: 360,
+				duration: 2,
+				repeat: false, // Infinite loop
+				ease: "power3.Out"
+        });
+		</script>
+		<script src="js/popper.min.js"></script> 
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/plugins.js"></script> 
+		<script src="js/custom.js"></script>
 </body>
 </html>
