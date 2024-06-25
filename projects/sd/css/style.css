@@ -615,7 +615,7 @@ a:hover {
 .cd-header.is-fixed {
 	position: fixed;
 	top: -100px;
-	background-color: rgba(20, 21, 26, 0.96);
+	background-color: rgba(255, 255, 255, 0.96);
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s;
@@ -695,7 +695,7 @@ a:hover {
 	position: fixed;
 	width: 100vw;
 	height: 100vh;
-	background: rgba(20, 21, 26,0.6);
+	background: #198780;
 	z-index: -1;
 	-webkit-transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.8s;
 	transition: -webkit-transform cubic-bezier(0.77, 0, 0.175, 1) 0.8s;
@@ -705,7 +705,7 @@ a:hover {
           transform: translateX(0%) translateY(-100%);
 }
 .nav:after {
-	background: rgb(75, 74, 74);
+	background: rgb(255, 255, 255);
 	-webkit-transition-delay: 0s;
           transition-delay: 0s;
 }
@@ -757,7 +757,7 @@ a:hover {
 	color: #fff;
 	overflow: hidden; 
 	font-family: 'Quicksand', sans-serif;
-	font-size: 3vh;
+	font-size: 2.3vh;
 	font-weight: 300;
 	line-height: 1.05;
 	letter-spacing: 2px;
@@ -773,9 +773,10 @@ a:hover {
 .nav__list-item a{ 
 	position: relative;
 	text-decoration: none;
-	color: rgba(255, 255, 255, 0.6);
+	color: rgb(10, 148, 136);
 	overflow: hidden; 
 	cursor: pointer;
+	padding-top: 10px;
 	padding-left: 5px;
 	padding-right: 5px;
 	z-index: 2;
@@ -792,7 +793,7 @@ a:hover {
 	height: 0;
 	opacity: 0;
 	margin-top: 3px;
-	background-color: rgba(8, 194, 201, 0.2);
+	/* background-color: rgb(4, 149, 160); */
 	z-index: 1;
     -webkit-transition: all 200ms linear;
     transition: all 200ms linear; 
@@ -802,7 +803,7 @@ a:hover {
 	opacity: 1;
 }
 .nav__list-item a:hover{
-	color: rgb(4, 149, 160);
+	color: rgb(10, 10, 10);
 }
 .nav__list-item.active-nav a{
 	color: rgba(255,255,255,1);
@@ -824,7 +825,7 @@ body.nav-active .cd-header.is-fixed {
 body.nav-active .cd-header.is-visible {
 }
 body.nav-active .menu-icon__line {
-	background-color: #fff;
+	background-color: #070202;
 	-webkit-transform: translate(0px, 0px) rotate(-45deg);
           transform: translate(0px, 0px) rotate(-45deg);
 }
