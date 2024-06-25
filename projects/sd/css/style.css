@@ -105,6 +105,7 @@ h5.card-title {
 	left: 50%;
 	transform: translateX(-50%);
 	text-align: center;
+	perspective: 1000px;
 }
 
 .quicksand {
