@@ -41,6 +41,7 @@ h3.text-center {
 }
 h5.card-title {
 	font-family: 'Quicksand', sans-serif;
+	font-weight: bold;
     margin-top: 00px;
     margin-bottom: 00px;
 	color: #000;
