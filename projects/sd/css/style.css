@@ -1,7 +1,7 @@
 /*
  * Table of contents:
  * 
- * from line 14 - Primary
+ * from line  - Primary
  * from line 87 - Preloader style
  * from line 116 - Cursor
  * from line 223 - Primary style
@@ -16,7 +16,32 @@
 
 /* #Primary
 ================================================== */
+/* logo svg customization  */
 
+/* footer  */
+.footer {
+	height: 20px;
+	width: 100%;
+	position: absolute;
+	bottom: 0;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 10px;
+	opacity: .5;
+
+}
+
+.footer li{
+	display: inline-block;
+	list-style-type: none;
+	justify-content: center;
+	text-align: center;
+	
+}
+
+/* footer end  */
 
 svg {
 	width: 200px; /* Adjust size as needed */
@@ -140,7 +165,7 @@ h1, h2, h3, h4, h5, h6,
 	font-weight: 300;
 	margin-bottom: 0;
 	line-height: 1.35;
-	color: #fff;
+	color: #080505;
 }
 h1, .h1 {
 	font-size: 3.2rem;
