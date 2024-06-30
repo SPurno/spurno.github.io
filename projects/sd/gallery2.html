@@ -1,74 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!-- Basic Page Needs
-	================================================== -->
-	<meta charset="utf-8">
-	<title> Home | Studio Dhaka Ltd. - Architectural Engineering | Interior Design - Constaltant Firm</title>
-	<meta name="description"  content="" />
-	<meta name="author" content="Studio Dhaka Ltd.">
-	<meta name="keywords"  content="" />
-	<meta property="og:title" content="" />
-	<meta property="og:type" content="website" />
-	<meta property="og:url" content="" />
-	<meta property="og:image" content="" />
-	<meta property="og:image:width" content="470" />
-	<meta property="og:image:height" content="246" />
-	<meta property="og:site_name" content="" />
-	<meta property="og:description" content="" />
-	<meta name="twitter:card" content="" />
-	<meta name="twitter:site" content="" />
-	<meta name="twitter:domain" content="" />
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:description" content="" />
-	<meta name="twitter:image" content=""/>
-
-	<!-- Mobile Specific Metas
-	================================================== -->
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<meta name="theme-color" content="#212121"/>
-    <meta name="msapplication-navbutton-color" content="#212121"/>
-    <meta name="apple-mobile-web-app-status-bar-style" content="#212121"/>
-
-	<!-- Web Fonts 
-	================================================== -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
-	
-	<!-- CSS
-	================================================== -->
-	<link rel="stylesheet" href="css/bootstrap.min.css"/>
-	<link rel="stylesheet" href="css/font-awesome.min.css"/>
-	<link rel="stylesheet" href="css/style.css"/>
-	<link rel="stylesheet" href="css/jquery-ui.css">
-
-	<!-- script  -->
-	<script src="js/jquery-3.7.1.js"></script>
-	<script src="js/jquery-ui.js"></script> 
-	<script src="js/gsap.min.js"></script>
-	<!-- script end  -->
-			
-	<!-- Favicons
-	================================================== -->
-	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
-	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
-	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
-	<link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png">
-	<link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png">
-	<link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png">
-	<link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png">
-	<link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png">
-	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png">
-	<link rel="icon" type="image/png" sizes="192x192"  href="favicon/android-icon-192x192.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="manifest" href="favicon/manifest.json">
-	<meta name="msapplication-TileColor" content="#ffffff">
-	<meta name="msapplication-TileImage" content="favicon/ms-icon-144x144.png">
-	<meta name="theme-color" content="#ffffff">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-Column Grid Gallery with Magnific Popup</title>
     <!-- Bootstrap CSS -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -82,41 +16,94 @@
             width: 100%;
             height: auto;
         }
+        .gallery-item h2 {
+            position: absolute;
+            top: 85%;
+            left: 50%;
+            background-color: rgb(43, 192, 192);
+            transform: translate(-50%, -50%);
+            color: rgb(17, 15, 15);
+            font-size: 13px;
+            padding: 10px 20px;
+            border-radius: 10px solid rgb(255, 255, 255);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none; /* Prevent interaction with the title */
+        }
+        .gallery-item:hover h2 {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
+    <br><br>
     <div class="container">
-        <div class="row popup-gallery">
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 1">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 1">
-                </a>
-            </div>
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 2">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 2">
-                </a>
-            </div>
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 3">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 3">
-                </a>
-            </div>
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 4">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 4">
-                </a>
-            </div>
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 5">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 5">
-                </a>
-            </div>
-            <div class="col-md-4 gallery-item">
-                <a href="https://via.placeholder.com/1920x1080" title="Image 6">
-                    <img src="https://via.placeholder.com/1920x1080" alt="Image 6">
-                </a>
-            </div>
+        <div class="row">
+                <div class="row popup-gallery">
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 1">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 1">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 2">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 2">
+                            <h2>Project 2</h2>
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 3">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 3">
+                            <h2>Project 3</h2>
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 4">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 4">
+                            <h2>Project 4</h2>
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 5">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 5">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 6">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 6">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 7">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 1">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 8">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 2">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 9">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 3">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 10">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 4">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 11">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 5">
+                        </a>
+                    </div>
+                    <div class="col-md-4 gallery-item">
+                        <a href="https://via.placeholder.com/1920x1080" title="Image 12">
+                            <img src="https://via.placeholder.com/1920x1080" alt="Image 6">
+                        </a>
+                    </div>
+                </div>
         </div>
     </div>
 
