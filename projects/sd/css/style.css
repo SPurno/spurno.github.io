@@ -26,12 +26,13 @@
 	font-family: 'Quicksand', sans-serif;
 	padding: 20px 20px;
 	margin-top: 50px;
+	font-size: 13px;
 }
 
 .footer-distributed .footer-left p{
 	color:  #303233;
-	font-size: 14px;
 	margin: 0;
+	font-size: 13px;
 }
 
 /* Footer links */
@@ -49,6 +50,7 @@
 	line-height: 1.8;
 	text-decoration: none;
 	color:  inherit;
+	font-size: 18px;
 }
 
 .footer-distributed .footer-right{
@@ -63,7 +65,7 @@
 	height: 35px;
 	background-color:  #33383b;
 	border-radius: 2px;
-	font-size: 20px;
+	font-size: 18px;
 	color: #ffffff;
 	text-align: center;
 	line-height: 35px;
