@@ -466,13 +466,15 @@ a.theme-btn-c:hover {
 /*- 09. portfolio-area css 
 ----------------------------------------*/
 .portfolio-area {
-  padding: 64px 0 38px;
+  padding: 00px 0 00px;
 }
 .single-portfolio {
   overflow: hidden;
   position: relative;
   margin-bottom: 30px;
   cursor: pointer;
+  height: 250px;
+  width: 250px;
 }
 .single-portfolio {
     overflow: hidden;
@@ -488,7 +490,7 @@ a.theme-btn-c:hover {
   width: 100%;
 }
 .protfolio-icon {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
 }
 .profolio-text,.protfolio-icon {
     transform: translateY(50px);
@@ -524,7 +526,7 @@ a.theme-btn-c:hover {
 }
 .protfolio-icon > a:hover {
     border-color: rgb(255, 255, 255);
-    color: red;
+    color: #198780;
 }
 .profolio-text > h2 {
     font-size: 24px;
