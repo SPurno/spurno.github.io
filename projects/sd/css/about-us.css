@@ -26,6 +26,7 @@ body {
 }
 /* image below text  */
 .text-center {
+	font-size: 15px;
     margin-top: 10px;
 }
 .modal-dialog {
