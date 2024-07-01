@@ -1,0 +1,38 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+}
+
+.profile-img {
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(75, 73, 73, 0.19);
+}
+
+.profile-box {
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.designation {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* pop up window modal box title css  */
+.modal-title {
+    width: 100%;
+    text-align: center;
+}
+/* image below text  */
+.text-center {
+    margin-top: 10px;
+}
+.modal-dialog {
+    max-width: 500px;
+    width: 500px;
+    height: 780px;
+}
+.modal-content {
+    height: 100%;
+}
