@@ -19,7 +19,7 @@
 /* distributed footer  */
 .footer-distributed{
 	background-color: #ffffff;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 2px 2px 0 rgba(3, 3, 3, 0.12);
 	box-sizing: border-box;
 	width: 100%;
 	text-align: left;
@@ -29,7 +29,7 @@
 	font-size: 13px;
 }
 
-.footer-distributed .footer-left p{
+.footer-distributed .footer-left p {
 	color:  #303233;
 	margin: 0;
 	font-size: 13px;
@@ -37,7 +37,7 @@
 
 /* Footer links */
 
-.footer-distributed p.footer-links{
+.footer-distributed p.footer-links {
 	font-size:18px;
 	font-weight: bold;
 	color:  #141212;
@@ -63,7 +63,7 @@
 	display: inline-block;
 	width: 35px;
 	height: 35px;
-	background-color:  #33383b;
+	background-color:  #2da399;
 	border-radius: 2px;
 	font-size: 18px;
 	color: #ffffff;
