@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LightGallery with Thumbnails and Bootstrap Grid</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lightgallery.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lg-thumbnail.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .lg-custom-thumbnails {
+            &.lg-outer {
+                width: auto;
+                /* // Set space for the container to occupy thumbnails */
+                right: 225px;
+
+                /* // Add some spacing on the left to match with the right hand side spacing */
+                left: 10px;
+
+                .lg-thumb-outer {
+                    /* // Set the position of the thumbnails */
+                    left: auto;
+                    top: 0;
+                    width: 225px;
+                    bottom: 0;
+                    position: fixed;
+                    right: 0;
+
+                    /* // Reset max height */
+                    max-height: none;
+
+                    /* // Customize the layout (Optional) */
+                    background-color: #999;
+                    padding-left: 5px;
+                    padding-right: 5px;
+                    margin: 0 -10px;
+                    overflow-y: auto;
+
+                    /* // Update transition values */
+                    /* // By default thumbnails animates from bottom to top */
+                    /* // Change that from right to left. */
+                    /* // Also, add a tiny opacity transition to look better */
+                    transform: translate3d(30%, 0, 0);
+                    opacity: 0;
+                    will-change: transform opacity;
+                    transition: transform 0.15s cubic-bezier(0, 0, 0.25, 1) 0s, cubic-bezier(
+                                0,
+                                0,
+                                0.25,
+                                1
+                            ) 0.15s;
+                }
+
+                &.lg-thumb-open {
+                    .lg-thumb-outer {
+                        transform: translate3d(0, 0, 0);
+                        opacity: 1;
+                    }
+                }
+
+                /* // Add hove effect (Optional) */
+                .lg-thumb-item {
+                    filter: grayscale(100%);
+                    will-change: filter;
+                    transition: filter 0.12s ease-in, border-color 0.12s ease;
+                    &:hover,
+                    &.active {
+                        filter: grayscale(0);
+                        border-color: #545454;
+                    }
+                }
+
+                .lg-thumb {
+                    padding: 5px 0;
+                }
+            }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+    <div class="row">
+        <div id="customize-thumbnails-gallery">
+            <a href="img/portfolio/apartment/1.jpg">
+                <img src="img/portfolio/apartment/1.jpg" />
+            </a>
+            <a href="img/portfolio/apartment/1.jpg">
+                <img src="img/portfolio/apartment/1.jpg" />
+            </a>
+        </div>
+    </div>
+    </div>
+    
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/plugins/thumbnail/lg-thumbnail.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        lightGallery(document.getElementById('customize-thumbnails-gallery'), {
+        // Add a custom class to apply style only for the particular gallery
+        addClass: 'lg-custom-thumbnails',
+
+        // Remove the starting animations.
+        // This can be done by overriding CSS as well
+        appendThumbnailsTo: '.lg-outer',
+
+        animateThumb: false,
+        allowMediaOverlap: true,
+
+        });
+
+    </script>
+</body>
+</html>
