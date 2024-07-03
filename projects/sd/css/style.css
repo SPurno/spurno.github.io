@@ -490,10 +490,10 @@ a:hover {
 }
 .background-dark-3,
 .background-dark-4 {
-	background-color: #000000;
+	background-color: #0c7c75;
 }
 .background-black {
-	background-color: #000000;
+	background-color: #264653;
 }
 .color-black {
 	color: #000000;
@@ -2347,7 +2347,7 @@ figure.vimeo a img, figure.youtube a img {
 	letter-spacing: 1px;
 	font-size: 15px;
 	line-height: 1.7;
-	background-color: #14151a;
+	background-color: #19837c;
 	color: #fff;
 	border:none;
 	text-align: left;
@@ -2373,58 +2373,58 @@ figure.vimeo a img, figure.youtube a img {
 .ajax-form input:-ms-input-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba(245, 238, 238, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form input::-moz-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form input:-moz-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form input::-webkit-input-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form textarea:-ms-input-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form textarea::-moz-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form textarea:-moz-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form textarea::-webkit-input-placeholder  {
 	font-size: 15px;
 	letter-spacing:1px;
-	color: rgba( 255,255,255, 0.4);
+	color: rgb(255, 255, 255);
 	font-weight: 700;
 }
 .ajax-form button {
-	color: rgba(255,255,255,.5);
+	color: rgb(255, 255, 255);
 	cursor: pointer;
 	font-size: 15px;
 	padding: 12px 25px;
 	letter-spacing: 2px;
-	background-color: #040505;
+	background-color: #12A89D;
 	border:none;
 	outline:none;
 	margin: 0 auto;
@@ -2445,7 +2445,7 @@ figure.vimeo a img, figure.youtube a img {
     transition: all 250ms linear;
 }
 .ajax-form button:hover{
-	background-color: #090909;
+	background-color: #098f99;
 }
 
 .filter-select .nice-select {
@@ -2474,13 +2474,13 @@ figure.vimeo a img, figure.youtube a img {
 } 
 .nice-select {
 	-webkit-tap-highlight-color: transparent;
-	background-color: #14151a;
+	background-color: #12A89D;
 	border: none;
 	box-sizing: border-box;
 	clear: both;
 	cursor: pointer;
 	display: block;
-	color: rgba( 255,255,255, 0.4);
+	color: rgba(219, 219, 219, 0.87);
 	float: left;
 	overflow: hidden;
 	font-family: inherit;
@@ -2579,7 +2579,7 @@ figure.vimeo a img, figure.youtube a img {
     min-height: 34px; 
 }
 .nice-select .list {
-	background-color: #09090c;
+	background-color: #264653;
     border-radius: 0;
     box-sizing: border-box;
     margin-top: 1px;
@@ -2621,11 +2621,11 @@ figure.vimeo a img, figure.youtube a img {
     transition: all 0.2s; 
 } 
 .nice-select .option.focus, .nice-select .option.selected.focus {
-    background-color: #2a2c37;
+    background-color: #05787c;
 }
 .nice-select .option:hover {
     color: #fff;
-    background-color: #353746;
+    background-color: #118ed6;
 }
 .nice-select .option.selected {
     font-weight: 400 !important;
