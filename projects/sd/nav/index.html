@@ -1,164 +1,17 @@
-body {
-    font-family: 'Quicksand', sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Only Navigation Button</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="../css/font-awesome.min.css"/>
 
-.profile-img {
-    width: 230px;
-    height: 230px;
-    object-fit: cover;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(75, 73, 73, 0.19);
-}
-
-.profile-box {
-    cursor: pointer;
-    margin-bottom: 20px;
-}
-
-.designation {
-    font-size: 0.9rem;
-    color: #777;
-}
-
-/* pop up window modal box title css  */
-.modal-title {
-    width: 100%;
-    text-align: center;
-}
-/* image below text  */
-.text-center {
-	font-size: 15px;
-    margin-top: 10px;
-}
-.modal-dialog {
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: calc(100% - 1rem);
-}
-.modal-content {
-    height: 100%;
-}
-.modal-dialog-centered {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	min-height: calc(100% - 1rem);
-}
-
-.modal-header .close {
-	font-size: 1.5rem;
-	padding: 0.8rem;
-	background-color: #12A89D;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-	.profile-box {
-		text-align: center;
-	}
-	.profile-box img {
-		margin: 0 auto;
-	}
-}
-
-@media (max-width: 576px) {
-	.modal-dialog {
-		max-width: 90%;
-		width: 90%;
-		height: auto;
-	}
-	.modal-content {
-		height: auto;
-	}
-	.modal-dialog-centered {
-		min-height: calc(100% - 1rem);
-	}
-}
-/* pop up modal end  */
-
-/* distributed footer  */
-.footer-distributed{
-	background-color: #ffffff;
-	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
-	box-sizing: border-box;
-	width: 100%;
-	text-align: left;
-	font-family: 'Quicksand', sans-serif;
-	padding: 20px 20px;
-	margin-top: 50px;
-	font-size: 13px;
-}
-
-.footer-distributed .footer-left p{
-	color:  #303233;
-	margin: 0;
-	font-size: 13px;
-}
-
-/* Footer links */
-
-.footer-distributed p.footer-links{
-	font-size:18px;
-	font-weight: bold;
-	color:  #141212;
-	margin: 0 0 0px;
-	padding: 0;
-}
-
-.footer-distributed p.footer-links a{
-	display:inline-block;
-	line-height: 1.8;
-	text-decoration: none;
-	color:  inherit;
-	font-size: 18px;
-}
-
-.footer-distributed .footer-right{
-	float: right;
-	margin-top: 6px;
-	max-width: 180px;
-}
-
-.footer-distributed .footer-right a{
-	display: inline-block;
-	width: 35px;
-	height: 35px;
-	background-color:  #33383b;
-	border-radius: 2px;
-	font-size: 18px;
-	color: #ffffff;
-	text-align: center;
-	line-height: 35px;
-	margin-left: 3px;
-}
-
-/* If you don't want the footer to be responsive, remove these media queries */
-
-@media (max-width: 600px) {
-
-	.footer-distributed .footer-left,
-	.footer-distributed .footer-right{
-		text-align: center;
-	}
-
-	.footer-distributed .footer-right{
-		float: none;
-		margin: 0 auto 20px;
-	}
-
-	.footer-distributed .footer-left p.footer-links{
-		line-height: 1.8;
-	}
-}
-
-
-/* distributed footer end  */
-
-
-/* #Navigation
-================================================== */
- 
-.header{
+    <style>
+        .header{
     position: fixed;
 	width:100%;
 	top:0;
@@ -213,7 +66,7 @@ body {
 	backface-visibility: hidden;
 }
 .cd-header.is-fixed {
-	position: static;
+	position: fixed;
 	top: -100px;
 	background-color: rgba(255, 255, 255, 0.96);
 	-webkit-transition: -webkit-transform 0.3s;
@@ -422,7 +275,8 @@ body.nav-active .cd-header.is-fixed {
 	-o-transform: translate3d(0, 100%, 0);
 	transform: translate3d(0, 100%, 0);
 }
-
+body.nav-active .cd-header.is-visible {
+}
 body.nav-active .menu-icon__line {
 	background-color: #070202;
 	-webkit-transform: translate(0px, 0px) rotate(-45deg);
@@ -561,3 +415,41 @@ body.nav-active .nav__list-item:nth-child(10) {
 .nav__list .sub-links li.active-nav a{ 
 	color: rgba(255,255,255,1);
 }
+    </style>
+</head>
+<body>
+
+    <header class="cd-header ">
+        <div class="header-wrapper">
+            <div class="nav-but-wrap">
+                <div class="menu-icon hover-target">
+                    <span class="menu-icon__line menu-icon__line-left"></span>
+                    <span class="menu-icon__line"></span>
+                    <span class="menu-icon__line menu-icon__line-right"></span>
+                </div>					
+            </div>					
+        </div>				
+    </header>
+    <div class="nav">
+        <div class="nav__content">
+            <ul class="nav__list">
+                <li class="nav__list-item"><a href="index.html" class="hover-target">Home</a></li>
+                <li class="nav__list-item"><a href="gallery.html" class="hover-target">Projects</a></li>
+                <li class="nav__list-item"><a href="services.html" class="hover-target">Services</a></li>
+                <li class="nav__list-item"><a href="about-us.html" class="hover-target">About us</a></li>
+                <li class="nav__list-item"><a href="contact-us.html" class="hover-target">Contact us</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="scroll-to-top hover-target"></div>
+    <div class='cursor' id="cursor"></div>
+    <div class='cursor2' id="cursor2"></div>
+    <div class='cursor3' id="cursor3"></div>	
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="navigation.js"></script>
+    <!-- script end  -->
+</body>
+</html>

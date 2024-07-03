@@ -33,10 +33,7 @@
         'images/team/32.jpg',
         'images/team/33.jpg',
         'images/team/34.jpg',
-        'images/team/35.jpg',
-
-
-
+        'images/team/35.jpg'
     ];
 
     const names = [
@@ -44,40 +41,7 @@
         'Dulal Hossain',
         'Imran Ahmed',
         'Faruk Ahmed',
-        'Bipul Hossain',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-        '',
-
+        'Bipul Hossain'
     ];
 
     const designations = [
