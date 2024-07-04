@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Profile</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .profile-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        .profile-box {
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        .designation {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        .modal-title {
+            width: 100%;
+            text-align: center;
+        }
+        .modal-dialog {
+            max-width: 500px;
+            width: 500px;
+            height: 780px;
+        }
+        .modal-content {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 profile-box" data-toggle="modal" data-target="#imageModal" data-index="0">
+            <img src="demo.jpg" alt="Team Member 1" class="img-fluid profile-img">
+            <h5 class="text-center">Team Member 1</h5>
+            
+        </div>
+        <div class="col-md-3 col-sm-6 profile-box" data-toggle="modal" data-target="#imageModal" data-index="1">
+            <img src="demo2.jpg" alt="Team Member 2" class="img-fluid profile-img">
+            <h5 class="text-center">Team Member 2</h5>
+            
+        </div>
+        <div class="col-md-3 col-sm-6 profile-box" data-toggle="modal" data-target="#imageModal" data-index="2">
+            <img src="demo.jpg" alt="Team Member 3" class="img-fluid profile-img">
+            <h5 class="text-center">Team Member 3</h5>
+            
+        </div>
+        <div class="col-md-3 col-sm-6 profile-box" data-toggle="modal" data-target="#imageModal" data-index="3">
+            <img src="demo2.jpg" alt="Team Member 4" class="img-fluid profile-img">
+            <h5 class="text-center">Team Member 4</h5>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <img src="" alt="Team Member" id="modalImage" class="img-fluid">
+                <h5 id="modalTitle" class="mt-3"></h5>
+                <p id="modalDesignation" class="designation"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="prevImage">Previous</button>
+                <button type="button" class="btn btn-secondary" id="nextImage">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    const images = [
+        'demo.jpg',
+        'demo2.jpg',
+        'path/to/image3.jpg',
+        'path/to/image4.jpg'
+    ];
+
+    const names = [
+        'Team Member 1',
+        'Team Member 2',
+        'Team Member 3',
+        'Team Member 4'
+    ];
+
+    const designations = [
+        'Designation 1',
+        'Designation 2',
+        'Designation 3',
+        'Designation 4'
+    ];
+
+    let currentIndex = 0;
+
+    $('#imageModal').on('show.bs.modal', function (event) {
+        const button = $(event.relatedTarget);
+        currentIndex = button.data('index');
+        const modal = $(this);
+        modal.find('#modalTitle').text(names[currentIndex]);
+        modal.find('#modalImage').attr('src', images[currentIndex]);
+        modal.find('#modalDesignation').text(designations[currentIndex]);
+    });
+
+    $('#prevImage').click(function () {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        $('#modalTitle').text(names[currentIndex]);
+        $('#modalImage').attr('src', images[currentIndex]);
+        $('#modalDesignation').text(designations[currentIndex]);
+    });
+
+    $('#nextImage').click(function () {
+        currentIndex = (currentIndex + 1) % images.length;
+        $('#modalTitle').text(names[currentIndex]);
+        $('#modalImage').attr('src', images[currentIndex]);
+        $('#modalDesignation').text(designations[currentIndex]);
+    });
+</script>
+</body>
+</html>
