@@ -2,6 +2,9 @@
 /*------------------------------------
   Globals
 ------------------------------------*/
+body {
+  font-family: 'Quicksand', sans-serif;
+}
 /* Text */
 .g-word-break {
   word-wrap: break-word;
@@ -3701,15 +3704,15 @@
   Typography Font Family
 ------------------------------------*/
 .g-font-secondary {
-  font-family: "Roboto Slab", Helvetica, Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .g-font-code {
-  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .g-font-niconne {
-  font-family: "Niconne", cursive;
+  font-family: 'Quicksand', sans-serif;
 }
 
 /*------------------------------------
@@ -6166,7 +6169,7 @@
 }
 
 .g-color-gray-dark-v4 {
-  color: #777 !important;
+  color: #1d253c !important;
 }
 
 .g-color-gray-dark-v4--hover:hover {
