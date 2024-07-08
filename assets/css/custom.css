@@ -1,4 +1,19 @@
 /* Add here all your css styles (customizations) */
+.project-heading{
+	/* margin-top: 130px; */
+	/* margin-right: 300px; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.project-heading h2 {
+	margin-top: 120px;
+	font-size: 25px;
+	font-family: 'Quicksand', sans-serif;
+}
+
 .contact-us {
 	margin-top: 120px;
 }
