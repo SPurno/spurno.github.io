@@ -2668,12 +2668,12 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 /* Button Primary */
 .u-btn-primary {
   color: #fff;
-  background-color: #72c02c;
+  background-color: #2da399;
 }
 
 .u-btn-primary:hover, .u-btn-primary.active {
-  border-color: #8cd54a;
-  background-color: #8cd54a;
+  border-color: #2da399;
+  background-color: #0ac0b1;
 }
 
 .u-btn-primary:hover, .u-btn-primary:focus, .u-btn-primary.active {
@@ -6707,6 +6707,23 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 .u-btn-outline-twitter:hover {
   color: #fff;
   background-color: #00acee;
+}
+
+/* Button Instagram */
+.u-btn-outline-instagram {
+  color:  #833AB4;
+  border-color: #C13584;
+  background-color: transparent;
+}
+
+.u-btn-outline-instagram:focus, .u-btn-outline-instagram.active {
+  color: #fff;
+  background-color: #833AB4;
+}
+
+.u-btn-outline-instagram:hover {
+  color: #fff;
+  background-color: #E1306C;
 }
 
 /* Button Dribbble */
