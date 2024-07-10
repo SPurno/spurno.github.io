@@ -1,0 +1,102 @@
+.msp-preset-21 {
+    background-color: #a9a8a8;
+    font-weight: normal;
+    line-height: normal;
+}
+
+.msp-preset-22 {
+    font-family: "Oswald";
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    color: #ffffff;
+}
+
+.msp-preset-23 {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: normal;
+    color: #c0c0c0;
+}
+
+.msp-preset-25 {
+    padding-top: 10px;
+    padding-right: 24px;
+    padding-bottom: 10px;
+    padding-left: 24px;
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 10px;
+    text-align: center;
+    letter-spacing: 2px;
+    line-height: normal;
+    text-transform: uppercase;
+}
+
+.msp-preset-26 {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 16px;
+    line-height: normal;
+    color: #ffffff;
+}
+
+.msp-preset-27 {
+    background-color: #ffffff;
+    font-weight: normal;
+    line-height: normal;
+}
+
+.msp-preset-btn-187 {
+    background-color: #ebebeb;
+    color: #282828
+}
+
+.msp-preset-btn-187:hover {
+    background-color: #e6e6e6;
+    color: #666
+}
+
+.msp-preset-btn-187:active {
+    left: 2px
+}
+
+.msp-cn-155-11 {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+.msp-cn-155-21 {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #ffffff;
+}
+
+.msp-cn-155-46 {
+    font-family: "Lato";
+    font-weight: normal;
+    font-size: 12px;
+    letter-spacing: 2px;
+    line-height: normal;
+    white-space: nowrap;
+    color: #a9a8a8;
+}
+
+.msp-cn-155-48 {
+    font-family: "Oswald";
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    white-space: nowrap;
+    color: #ffffff;
+}

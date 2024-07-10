@@ -491,7 +491,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../../assets/vendor/jquery/jquery.min.js"></script>
   <script src="../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
-  <script src="../../assets/vendor/popper.js/popper.min.js"></script>
   <script src="../../assets/vendor/bootstrap/bootstrap.min.js"></script>
 
 
@@ -543,15 +542,6 @@
   <script src="../../assets/js/components/hs.markup-copy.js"></script>
   <script src="../../assets/js/components/hs.tabs.js"></script>
 
-  <script>
-    $(document).on('ready', function () {
-      $.HSCore.helpers.HSModalMarkup.init('.js-modal-markup');
-  
-      $.HSCore.components.HSMarkupCopy.init('.js-copy');
-    });
-  </script>
-
-
   <!-- JS Customization -->
   <script src="../../assets/js/custom.js"></script>
 
@@ -560,6 +550,11 @@
     $(document).on('ready', function () {
       // initialization of go to
       $.HSCore.components.HSGoTo.init('.js-go-to');
+
+      $.HSCore.helpers.HSModalMarkup.init('.js-modal-markup');
+  
+     $.HSCore.components.HSMarkupCopy.init('.js-copy');
+
     });
 
     $(window).on('load', function () {
