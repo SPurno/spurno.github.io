@@ -22,13 +22,13 @@ body {
 }
 
 a {
-  color: #72c02c;
+  color: #097275;
   outline: none;
 }
 
 a:focus,
 a:hover {
-  color: #66ab27;
+  color: #085c55;
 }
 
 .nav-link {
