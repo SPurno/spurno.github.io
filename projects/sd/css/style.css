@@ -658,22 +658,6 @@ a:hover {
 	width: calc(100% - 100px);
 	margin-left: 50px;
 } 
-.logo-wrap {
-	position: absolute;
-	display:block;
-	left:0;
-	top: 44px;
-	cursor: pointer;
-}
-.logo-wrap a {
-	cursor: pointer;
-}
-.logo-wrap img{
-	height: 55px;
-	width:auto;
-	display:block;
-	cursor: pointer;
-}
 .cd-header {
 	position: absolute;
 	top: 0;
