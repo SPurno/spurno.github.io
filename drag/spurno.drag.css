@@ -1,0 +1,12 @@
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+img {
+    width: 5000px; /* Initial size */
+    height: 5000px;
+    cursor: grab; /* Change cursor to indicate draggable element */
+    transition: transform 0.2s; /* Smooth zoom transition */
+}
