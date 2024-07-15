@@ -81,7 +81,7 @@
 	height: 2px;
 	width: 30px;
 	display: block;
-	background-color: #198780;
+	background-color: #12A89D;
 	margin-bottom: 7px;
 	cursor: pointer;
 	-webkit-transition: background-color .5s ease, -webkit-transform .2s ease;
@@ -90,7 +90,7 @@
 	transition: transform .2s ease, background-color .5s ease, -webkit-transform .2s ease;
 }
 .menu-icon__line-left {
-	width: 16.5px;
+	width: 16px;
 	-webkit-transition: all 200ms linear;
 	-moz-transition: all 200ms linear;
 	-o-transition: all 200ms linear;
@@ -98,7 +98,7 @@
 	transition: all 200ms linear;
 }
 .menu-icon__line-right {
-	width: 16.5px;
+	width: 16px;
 	float: right;
 	-webkit-transition: all 200ms linear;
 	-moz-transition: all 200ms linear;

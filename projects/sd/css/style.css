@@ -3,6 +3,16 @@
  * HomePage CSS for Studio Dhaka Ltd.
  * color code for theme #12A89D;
  */
+/* link style  */
+a {
+	color: #855104;
+	text-decoration: none;
+}
+a:hover {
+	color: #12A89D;
+}/* 
+/* link style end  */
+
 /* Footer */
 .footer-distributed{
 	background-color: #ffffff;
@@ -600,7 +610,7 @@ a:hover {
 	height: 2px;
 	width: 30px;
 	display: block;
-	background-color: #198780;
+	background-color: #12A89D;
 	margin-bottom: 7px;
 	cursor: pointer;
 	-webkit-transition: background-color .5s ease, -webkit-transform .2s ease;
@@ -747,7 +757,7 @@ a:hover {
 	opacity: 1;
 }
 .nav__list-item a:hover{
-	color: rgb(10, 10, 10);
+	color: rgb(3, 3, 3);
 }
 .nav__list-item.active-nav a{
 	color: rgba(255,255,255,1);

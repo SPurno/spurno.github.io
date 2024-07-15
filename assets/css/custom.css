@@ -1,4 +1,10 @@
-/* Add here all your css styles (customizations) */
+a {
+	color: #855104;
+	text-decoration: none;
+}
+a:hover {
+	color: #12A89D;
+}/* Add here all your css styles (customizations) */
 .project-heading {
 	display: flex;
 	justify-content: center;
