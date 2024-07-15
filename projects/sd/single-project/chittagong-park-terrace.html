@@ -511,6 +511,20 @@
 
     var slider = new MasterSlider();
 
+    slider.control('arrows', {
+      autohide: true,
+      overVideo: true,
+    });
+
+    slider.control('bullets', {
+      autohide: true,
+      overVideo: true,
+      dir: 'h',
+      align: 'bottom',
+      space: 8,
+      margin: 10
+    });
+
     slider.setup("masterslider", {
       width: 1366,
       height: 768,
