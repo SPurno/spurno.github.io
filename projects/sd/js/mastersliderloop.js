@@ -32,7 +32,7 @@ $(document).on('ready', function () {
     'masterslider7', 'masterslider8', 
     'masterslider9', 'masterslider10'
   ];
-  
+
 // Define a function to setup a MasterSlider
 function setupMasterSlider(sliderId) {
   var slider = new MasterSlider();
@@ -83,6 +83,16 @@ function setupMasterSlider(sliderId) {
     view: "focus" // or "wave" for the second slider, etc.
   });
 }
-    for (var i = 0; i < sliderIds.length; i++) {
-        setupMasterSlider(sliderIds[i]);
-    }
+// lopping the image to setup every slides 
+  for (var i = 0; i < sliderIds.length; i++) {
+      setupMasterSlider(sliderIds[i]);
+  }
+  
+// Disabling the user interaction on image 
+document.addEventListener('contextmenu', function(event) {
+  event.preventDefault();
+});
+
+document.addEventListener('dragstart', function(event) {
+  event.preventDefault();
+});
