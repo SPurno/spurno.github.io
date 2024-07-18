@@ -25,7 +25,14 @@ $(document).on('ready', function () {
     });
   });
 
-  var sliderIds = ['masterslider', 'masterslider2', 'masterslider3', 'masterslider4', 'masterslider5', 'masterslider6']; // add more IDs as needed
+  var sliderIds = [
+    'masterslider', 'masterslider2', 
+    'masterslider3', 'masterslider4', 
+    'masterslider5', 'masterslider6', 
+    'masterslider7', 'masterslider8', 
+    'masterslider9', 'masterslider10'
+  ];
+  
 // Define a function to setup a MasterSlider
 function setupMasterSlider(sliderId) {
   var slider = new MasterSlider();
