@@ -33,66 +33,70 @@ $(document).on('ready', function () {
     'masterslider9', 'masterslider10'
   ];
 
-// Define a function to setup a MasterSlider
-function setupMasterSlider(sliderId) {
-  var slider = new MasterSlider();
-  slider.control('arrows', {
-    autohide: true,
-    overVideo: true
-  });
-  slider.control('slideinfo', {
-    autohide: false,
-    overVideo: true,
-    dir: 'h',
-    align: 'bottom',
-    inset: false,
-    margin: 10
-  });
-  slider.setup(sliderId, {
-    width: 240,
-    height: 240,
-    minHeight: 0,
-    space: 0,
-    start: 1,
-    grabCursor: true,
-    swipe: true,
-    mouse: true,
-    keyboard: false,
-    layout: "partialview",
-    wheel: true,
-    autoplay: false,
-    instantStartLayers: false,
-    loop: true,
-    shuffle: false,
-    preload: 4,
-    heightLimit: true,
-    autoHeight: false,
-    smoothHeight: true,
-    endPause: false,
-    overPause: true,
-    fillMode: "fill",
-    centerControls: true,
-    startOnAppear: false,
-    layersMode: "center",
-    autofillTarget: "",
-    hideLayers: false,
-    fullscreenMargin: 0,
-    speed: 20,
-    dir: "h",
-    parallaxMode: 'swipe',
-    view: "focus" // or "wave" for the second slider, etc.
-  });
-}
-// lopping the image to setup every slides 
-  for (var i = 0; i < sliderIds.length; i++) {
-      setupMasterSlider(sliderIds[i]);
-  }
-  
-// Disabling the user interaction on image 
-document.addEventListener('contextmenu', function(event) {
-  event.preventDefault();
-});
+  // Define a function to setup a MasterSlider
+  function setupMasterSlider(sliderId) {
+    var slider = new MasterSlider();
+    slider.control('arrows', {
+      autohide: true,
+      overVideo: true
+    });
 
-document.addEventListener('dragstart', function(event) {
-  event.preventDefault();
-});
+    slider.control('slideinfo', {
+      autohide: false,
+      overVideo: true,
+      dir: 'h',
+      align: 'bottom',
+      inset: false,
+      margin: 10
+    });
+
+    slider.setup(sliderId, {
+      width: 240,
+      height: 240,
+      minHeight: 0,
+      space: 0,
+      start: 1,
+      grabCursor: true,
+      swipe: true,
+      mouse: true,
+      keyboard: false,
+      layout: "partialview",
+      wheel: true,
+      autoplay: false,
+      instantStartLayers: false,
+      loop: true,
+      shuffle: false,
+      preload: 4,
+      heightLimit: true,
+      autoHeight: false,
+      smoothHeight: true,
+      endPause: false,
+      overPause: true,
+      fillMode: "fill",
+      centerControls: true,
+      startOnAppear: false,
+      layersMode: "center",
+      autofillTarget: "",
+      hideLayers: false,
+      fullscreenMargin: 0,
+      speed: 20,
+      dir: "h",
+      parallaxMode: 'swipe',
+      view: "focus" // or "wave" for the second slider, etc.
+    });
+  }
+  // lopping the image to setup every slides 
+    for (var i = 0; i < sliderIds.length; i++) {
+        setupMasterSlider(sliderIds[i]);
+    }
+    
+  // Disabling the user interaction on image 
+  document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+  });
+
+  document.addEventListener('dragstart', function(event) {
+    event.preventDefault();
+  });
+
+  

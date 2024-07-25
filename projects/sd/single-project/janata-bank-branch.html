@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" class="font-primary">
 <head>
-    <title>Janata Bank Ltd. Branch Interior Design Project | Single Project Overview</title>
+    <title>Janata Bank PLC Branch Interior Design Project | Single Project Overview</title>
     <!-- Required Meta Tags Always Come First -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -474,92 +474,20 @@
   <script src="../../../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js" integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="../../../assets/vendor/bootstrap/bootstrap.min.js"></script>
-
   <!-- JS Implementing Plugins -->
   <script src="../../../assets/vendor/masonry/dist/masonry.pkgd.min.js"></script>
   <script src="../../../assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="../../../assets/vendor/slick-carousel/slick/slick.js"></script>
   <script src="../../../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
-
   <!-- JS Unify -->
   <script src="../../../assets/js/hs.core.js"></script>
   <script src="../../../assets/js/components/hs.header.js"></script>
   <script src="../../../assets/js/helpers/hs.hamburgers.js"></script>
   <script src="../../../assets/js/components/hs.scroll-nav.js"></script>
   <script src="../../../assets/js/components/hs.carousel.js"></script>
-
   <!-- JS Master Slider -->
   <script src="../../../assets/vendor/master-slider/source/assets/js/masterslider.min.js"></script>
   <script src="../js/navigation.js"></script>
+  <script src="../js/masterslide.js"></script>
   <!-- JS Plugins Init. -->
-  <script>
-    $(document).on('ready', function () {
-      // initialization of carousel
-      $.HSCore.components.HSCarousel.init('.js-carousel');
-    });
-
-    $(window).on('load', function() {
-      // initialization of header
-
-      // initialization of masonry
-      $('.masonry-grid').imagesLoaded().then(function () {
-        $('.masonry-grid').masonry({
-          columnWidth: '.masonry-grid-sizer',
-          itemSelector: '.masonry-grid-item',
-          percentPosition: true
-        });
-      });
-    });
-
-    var slider = new MasterSlider();
-
-    slider.control('arrows', {
-      autohide: true,
-      overVideo: true,
-    });
-
-    slider.control('bullets', {
-      autohide: true,
-      overVideo: true,
-      dir: 'h',
-      align: 'bottom',
-      space: 8,
-      margin: 10
-    });
-
-    slider.setup("masterslider", {
-      width: 1366,
-      height: 768,
-      minHeight: 0,
-      space: 0,
-      start: 1,
-      grabCursor: true,
-      swipe: true,
-      mouse: true,
-      keyboard: true,
-      layout: "fullwidth",
-      wheel: false,
-      autoplay: true,
-      instantStartLayers: true,
-      loop: true,
-      shuffle: false,
-      preload: 0,
-      heightLimit: true,
-      autoHeight: false,
-      smoothHeight: true,
-      endPause: false,
-      overPause: true,
-      fillMode: "fill",
-      centerControls: true,
-      startOnAppear: false,
-      layersMode: "center",
-      autofillTarget: "",
-      hideLayers: false,
-      fullscreenMargin: 0,
-      speed: 20,
-      dir: "h",
-      parallaxMode: 'swipe',
-      view: "wave"
-    });
-  </script>
 </html>
