@@ -1,10 +1,11 @@
 
 
 
----------------------------------------------Studio Dhaka Ltd. v1.0.0----------------------------------------------------------
+# Studio Dhaka Ltd. - Architectural Engineering Official Website V1.0.0
+#### This site is created by Faruk Ahmed - Founder, [SPurno Animation Studio](https://spurno.github.io)
 
-# This site is created by Faruk Ahmed - Founder, SPurno Animation Studio (https://spurno.github.io)
-# Read proper documentation for editing this site
+# 
+#### Read full documentation for editing this site.
 
 
 
@@ -13,7 +14,7 @@
 - Used GSAP Animation library. Read more about GSAP.
 - Used Map API to customize the location on site.
 - Used 3D JavaScript library for rendering the animation on site.
-- Used premium SliderRevolution HTML for presentation the project. Read More about SliderRevolution.
+- Used premium SliderRevolution. HTML for presentation the project. Read More about SliderRevolution.
 - Used MasterSlider HTML.
 - Used CubePortfolio Premium.
 - Used line icon premium.
@@ -27,14 +28,13 @@
 - Slider can be managed by JavaScript code.
 - Used premium Gallery to display the project information and images.
 - Initial realesed version 1.0.0
-- Git repo for collaboration https://spurno.github.io/projects/sd
-- 
+- Git repo Main  [Source](https://spurno.github.io/projects/studiodhaka)
+- Thanks for reading this doc. 
 
 #
-# Get support: 
-	# Authorized Person
-	- Faruk Ahmed (mailto : spurno@icloud.com)
-	- Tel : +880 1521211774
-	- web: https://spurno.github.io
+
+#### Get support from Authorized Person
+Faruk Ahmed -
+Email : spurno@icloud.com - 
+WP : +880 1521211774 - [SPurno Animation Studio](https://spurno.github.io)
 #
--------------------------------------------Please inform me to get updates------------------------------------------------------
