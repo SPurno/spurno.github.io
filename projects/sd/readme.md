@@ -2,10 +2,10 @@
 
 
 # Studio Dhaka Ltd. V1.0.0
+#### This site is created by Faruk Ahmed - Founder, SPurno Animation Studio https://spurno.github.io
 
-### This site is created by Faruk Ahmed - Founder, SPurno Animation Studio (https://spurno.github.io)
-
-### Read full documentation for editing this site.
+# 
+#### Read full documentation for editing this site.
 
 
 
@@ -33,9 +33,8 @@
 
 #
 
-## Get support from Authorized Person
-Faruk Ahmed
-Email : spurno@icloud.com
-Tel : +880 1521211774
-#### [SPurno Animation Studio](https://spurno.github.io)
+#### Get support from Authorized Person
+Faruk Ahmed -
+Email : spurno@icloud.com - 
+WP : +880 1521211774 - [SPurno Animation Studio](https://spurno.github.io)
 #
