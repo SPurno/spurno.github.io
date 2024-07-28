@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Cursor</title>
+    <style>
+        body {
+            cursor: none;
+        }
+       .cursor {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+        }
+       .cursor.arrow {
+            width: 50px;
+            height: 50px;
+            background-image: url('img/mouse2.svg');
+            background-size: 50px 50px;
+            background-position: center;
+        }
+       .cursor.animate {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <script>
+        const cursor = document.createElement('div');
+        cursor.className = 'cursor arrow';
+        document.body.appendChild(cursor);
+
+        let x, y;
+        document.addEventListener('mousemove', (e) => {
+            x = e.clientX;
+            y = e.clientY;
+        });
+
+        function animate() {
+            cursor.style.top = `${y}px`;
+            cursor.style.left = `${x}px`;
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>
