@@ -22,7 +22,7 @@
 - Lead generation form intregrated with host server and mail configured.
 - Bootstrap grid.
 - Responsive layout designed.
-- *Drag & Drop intregrated.
+- Drag & Drop intregrated.
 - Zooming on wheel intregrated.
 - Multiple page with dynamic slider.
 - Slider can be managed by *JavaScript* code.
