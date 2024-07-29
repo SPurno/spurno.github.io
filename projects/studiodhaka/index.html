@@ -34,6 +34,7 @@
 	<script src="js/jquery-3.7.1.js"></script>
 	<script src="js/jquery-ui.js"></script>
 	<script src="js/gsap.min.js"></script>
+	<script src="js/Draggable.min.js"></script>
 	<link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png">
 	<link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png">
 	<link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png">
@@ -153,12 +154,49 @@
 	</script>
 
 	<script>
+		// Make the image draggable
+		gsap.registerPlugin(Draggable);
+
+		Draggable.create("#draggable", {
+			type: "x,y", // Allow dragging in both x and y directions
+			edgeResistance: 0.65, // Resistance when dragging near the edges
+			bounds: "body", // Constrain dragging within the body element
+			inertia: true, // Enable inertia for a smooth, natural feel
+			onDragStart: function() {
+				this.target.style.cursor = "grabbing";
+			},
+			onDragEnd: function() {
+				this.target.style.cursor = "grab";
+			}
+		});
+
+		// Add zoom functionality
+		let scale = 1;
+
+		document.getElementById("draggable").addEventListener("wheel", function(event) {
+			event.preventDefault();
+			if (event.deltaY < 0) {
+				// Zoom in
+				scale *= 1.09;
+			} else {
+				// Zoom out
+				scale /= 1.09;
+			}
+			gsap.to(this, { 
+				scale: scale, 
+				duration: 0.2, 
+				transformOrigin: "center center" 
+			});
+		});
+	</script>
+	<script>
 		// scrool to 2nd section
 		document.querySelector('.scroll-to-section').addEventListener('click', function (e) {
 			e.preventDefault();
 			document.querySelector('#section2').scrollIntoView({ behavior: 'smooth' });
 		});
 	</script>
+
 	<script type="text/javascript">
 		// Animate the logo
 		gsap.to("#logo", {
