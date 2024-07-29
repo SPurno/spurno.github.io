@@ -1,5 +1,5 @@
 body {
-    background-color: rgba(255, 255, 255, 0.075);
+    background-color: rgb(255, 255, 255);
     width: 1920 px;
     height: 100%;
     display: grid;
@@ -8,6 +8,7 @@ body {
 }
 
 svg {
+    padding-top: 20vw;
     width: 20vw;
     overflow: visible;
 }

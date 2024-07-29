@@ -1,7 +1,7 @@
 
 
 
-# Studio Dhaka Ltd. - Architectural Engineering Official Website V1.0.0
+# Studio Dhaka Ltd. - Architectural Engineering Official Website v1.0.0
 #### This site is created by Faruk Ahmed - Founder, [SPurno Animation Studio](https://spurno.github.io)
 
 

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"/>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css' integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==' crossorigin='anonymous'/>
+    <title>Fencybox Gallery</title>
+    <style>
+        .gallery-item {
+            margin: 10px; /* Adjust this value to control the vertical gap */
+        }
+
+        .gallery-item a {
+            display: block;
+            margin: 0 7.5px; /* Adjust this value to control the horizontal gap */
+        }
+
+        @media (max-width: 767px) {
+            .gallery-item a {
+                margin: 0 0 15px 0; /* Adjust the gap for small screens if needed */
+            }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 gallery-item">
+                <a href="images/img1.jpg" data-fancybox="gallery" data-caption="This is an image with a link. <a href='https://example.com'>Click here</a>">
+                    <img src="images/img1.jpg" width="450" height="250"/> </a>
+            </div>
+            <div class="col-sm-4 gallery-item">
+                <a href="images/img2.jpg" data-fancybox="gallery-a" data-caption="Gallery A #1">
+                    <img src="images/img2.jpg" width="450" height="250" />
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 gallery-item">
+                <a href="images/img1.jpg" data-fancybox="gallery" data-caption="This is an image with a link. <a href='https://example.com'>Click here</a>">
+                    <img src="images/img1.jpg" width="450" height="250"/> </a>
+            </div>
+            <div class="col-sm-4 gallery-item">
+                <a href="images/img2.jpg" data-fancybox="gallery" data-caption="Gallery A #1">
+                    <img src="images/img2.jpg" width="450" height="250" />
+                </a>
+            </div>
+        </div>
+    </div>
+      <!-- First gallery -->
+      <script>
+        Fancybox.bind("[data-fancybox]", {
+            groupAll: true,
+            
+        });
+
+      </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</body>
+</html>
