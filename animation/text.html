@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three.js Falling Text</title>
+    <link rel="stylesheet" href="css/text.css">
+
+</head>
+<body>
+    <div class="button-container">
+        <a href="https://spurno.github.io" class="button-link"  target="_blank" >Studio Profile</a>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="button-link">Adobe Stock Profile</a>
+    </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r121/three.min.js"></script>
+
+<script>
+// Basic Three.js setup
+let scene = new THREE.Scene();
+let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+let renderer = new THREE.WebGLRenderer();
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+// Text parameters
+let fontLoader = new THREE.FontLoader();
+let textMesh;
+
+// Load a font and create the text
+fontLoader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function(font) {
+    let textGeometry = new THREE.TextGeometry('Faruk Ahmed', {
+        font: font,
+        size: 5,
+        height: 2,
+        curveSegments: 12,
+        bevelEnabled: false
+    });
+
+    let textMaterial = new THREE.MeshBasicMaterial({ color: 0xf95f });
+    textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+    // Position the text above the view and centered
+    textMesh.position.set(-15, 30, 0);
+
+    scene.add(textMesh);
+});
+
+// Camera position
+camera.position.z = 40;
+
+// Function to handle window resizing
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
+
+// Animate the text falling and interacting with the mouse
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Make the text fall from top to bottom
+    if (textMesh) {
+        textMesh.position.y -= 0.1;
+        if (textMesh.position.y < -30) {
+            textMesh.position.y = 30; // Reset position to the top
+        }
+
+        // Make the text follow the mouse horizontally
+        document.addEventListener('mousemove', (event) => {
+            let mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            textMesh.position.x = mouseX * 20; // Adjust this value to control the range
+        });
+    }
+
+    renderer.render(scene, camera);
+}
+
+animate();
+
+</script>
+
+</body>
+</html>

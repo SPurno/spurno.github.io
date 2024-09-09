@@ -1,0 +1,11 @@
+        /* Set the height of the body and make sure there's no margin */
+        body, html {
+            height: 100%;
+            margin: 0;
+        }
+
+        /* Container for the Vanta.js effect */
+        #vanta-rings {
+            height: 100%; /* Full height of the page */
+            width: 100%; /* Full width of the page */
+        }
