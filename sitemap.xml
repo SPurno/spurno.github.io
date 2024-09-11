@@ -6,7 +6,7 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
-<!-- Add more URLs below -->
+    <!-- Add more URLs below -->
     <url>
     <loc>https://spurno.github.io/about-us</loc>
     <lastmod>2024-06-13</lastmod>
@@ -48,7 +48,7 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
-    
+
     <url>
     <loc>https://spurno.github.io/digital-wallpaper</loc>
     <lastmod>2024-06-13</lastmod>
@@ -167,7 +167,7 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
-    
+
     <url>
     <loc>https://spurno.github.io/desktop-wallpaper</loc>
     <lastmod>2024-06-13</lastmod>
@@ -307,5 +307,12 @@
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
-  <!-- Continue listing all your pages -->
+    
+    <url>
+    <loc>https://spurno.github.io/animation-studio-after-effects.html</loc>
+    <lastmod>2024-06-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    </url>
+    <!-- Continue listing all your pages -->
 </urlset>
