@@ -1,0 +1,59 @@
+a {
+	color: #070707;
+	text-decoration: none;
+}
+a:hover {
+	color: #12A89D;
+}
+
+.project-heading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.project-heading h2 {
+	margin-top: 120px;
+	font-size: 25px;
+	font-family: 'Quicksand', sans-serif;
+}
+
+.contact-us {
+	margin-top: 120px;
+}
+
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 600px) {
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-right{
+		text-align: center;
+	}
+
+	.footer-distributed .footer-right{
+		float: none;
+		margin: 0 auto 20px;
+	}
+
+	.footer-distributed .footer-left p.footer-links{
+		line-height: 1.8;
+	}
+}
+
+
+
+/* Ensure the header and body elements are aligned */
+
+.u-accordion__body {
+    padding-left: 60px; /* Adjust this value to match the position of the 'Engineering' text */
+    text-align: left; /* Align text content to match */
+}
+
+/* Ensure the arrow icon aligns with the text */
+.u-accordion__header .icon-arrow-down-circle {
+    margin: 10px; /* Push the icon to the right */
+}
+/* distributed footer end  */

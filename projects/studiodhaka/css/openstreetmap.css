@@ -1,0 +1,14 @@
+body { margin: 0; padding: 0; }
+#map { 
+    position: absolute; 
+    top: 0; bottom: 0; 
+    width: 1920px; 
+    height: 1080px;
+}
+.studiodhaka {
+    height: 69px;
+    width: 47px;
+    background-image: url(https://api.geoapify.com/v1/icon/?type=awesome&scaleFactor=2&color=%2372a2d4&size=x-large&icon=plane-departure&apiKey=f6a6d966ce3f424d8929499c813a0ec3);
+    background-size: contain;
+    cursor: pointer;
+}
