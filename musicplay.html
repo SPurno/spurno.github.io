@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Music with Volume Control</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .music-control {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .volume-slider {
+            width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="music-control">
+        <button id="musicButton" onclick="toggleMusic()">Pause Music</button>
+        <br>
+        <label for="volumeControl">Volume:</label>
+        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01" value="0.5" oninput="adjustVolume(this.value)">
+    </div>
+
+    <audio id="backgroundMusic" loop autoplay>
+        <source src="music/EmotionalPiano.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        const musicButton = document.getElementById('musicButton');
+        const volumeControl = document.getElementById('volumeControl');
+        let isPlaying = true;
+
+        // Set initial volume
+        backgroundMusic.volume = 0.5;
+
+        // Toggle music play/pause
+        function toggleMusic() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicButton.textContent = 'Play Music';
+            } else {
+                backgroundMusic.play();
+                musicButton.textContent = 'Pause Music';
+            }
+            isPlaying = !isPlaying;
+        }
+
+        // Adjust volume
+        function adjustVolume(volume) {
+            backgroundMusic.volume = volume;
+        }
+    </script>
+</body>
+</html>
