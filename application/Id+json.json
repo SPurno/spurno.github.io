@@ -1,0 +1,17 @@
+{
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SPurno Animation Studio",
+    "url": "https://spurno.github.io",
+    "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png",
+    "sameAs": [
+      "https://www.linkedin.com/in/spurno",
+      "https://twitter.com/SPurnoy",
+      "https://github.com/SPurno"
+    ],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+880 1521211774",
+      "contactType": "Customer Support"
+    }
+  }
