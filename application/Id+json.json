@@ -3,12 +3,23 @@
     "@type": "Organization",
     "name": "SPurno Animation Studio",
     "url": "https://spurno.github.io",
+    "image": "https://camo.githubusercontent.com/f071d2133ed79c9bd5a57a1b52fbf4500442780b61701badbfa78a03e71fa7cb/68747470733a2f2f737075726e6f2e6769746875622e696f2f696d616765732f62696f2e6a7067",
     "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png",
+    "description": "SPurno Animation Studio is producing animated background video, infographics template, presentation template, film/theater pre production video graphics, intro outro, logo animation, Advertising Design, Green Screen Video Production. Selling product on AdobeStock Market, Shuttershotck, Freepik & Vecteegy. Browse Animation library for more products and Graphics Resources",
+    "email": "spurno@icloud.com",
     "sameAs": [
       "https://www.linkedin.com/in/spurno",
       "https://twitter.com/SPurno",
       "https://github.com/SPurno"
     ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dhanmondi 32",
+      "addressLocality": "Dhanmondi",
+      "addressCountry": "BD",
+      "addressRegion": "Dhaka Division",
+      "postalCode": "1207"
+    },
     "contactPoint": {
       "@type": "ContactPoint",
       "telephone": "+880 1521211774",
