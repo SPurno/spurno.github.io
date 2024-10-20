@@ -2191,5 +2191,15 @@
   
           gtag('config', 'G-J6N56GN0M0');
         </script>
+              <script>
+                fetch('https://spurno.github.io/application/Id+json.json')
+                  .then(response => response.text())
+                  .then(structuredDataText => {
+                    const script = document.createElement('script');
+                    script.setAttribute('type', 'application/ld+json');
+                    script.textContent = structuredDataText;
+                    document.head.appendChild(script);
+                  });
+            </script>
   </body>
 </html>
