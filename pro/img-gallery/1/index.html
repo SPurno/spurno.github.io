@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PhotoSwipe Example</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/default-skin/default-skin.min.css" rel="stylesheet">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css' integrity='sha512-jnSuA4Ss2PkkikSOLtYs8BlYIeeIK1h99ty4YfvRPAlzr377vr3CXDb7sb7eEEBYjDtcYj+AjBH3FLv5uSJuXg==' crossorigin='anonymous'/>
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/1-.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/1.png" itemprop="thumbnail" alt="Image 1">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="index.html">Clickable Link</a></figcaption>
+                </figure>
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/2-.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/2.png" itemprop="thumbnail" alt="Image 2">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="#">Clickable Link</a></figcaption>
+                </figure>
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/3-.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/3.png" itemprop="thumbnail" alt="Image 3">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="#">Clickable Link</a></figcaption>
+                </figure>
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/4-1.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/1.png" itemprop="thumbnail" alt="Image 4">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="#">Clickable Link</a></figcaption>
+                </figure>
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/4-1.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/2.png" itemprop="thumbnail" alt="Image 5">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="#">Clickable Link</a></figcaption>
+                </figure>
+                <figure itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                    <a href="images/4-1.jpg" itemprop="contentUrl" data-size="1920x1080">
+                        <img src="images/thum/3.png" itemprop="thumbnail" alt="Image 6">
+                    </a>
+                    <figcaption itemprop="caption description"><a href="#">Clickable Link</a></figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+    <script src="gallery.js"></script>
+</body>
+</html>

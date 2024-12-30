@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Rotation</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <style>
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 200px;
+        }
+        svg {
+            width: 200px; /* Adjust size as needed */
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img id="logo" src="sdlogo.svg" alt="Logo">
+    </div>
+
+    <script>
+        // Animate the logo
+        gsap.to("#logo", {
+            rotationY: 360,
+            duration: 2,
+            repeat: false, // Infinite loop
+            ease: "power3.Out"
+        });
+    </script>
+</body>
+</html>
