@@ -136,7 +136,7 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     </url>
 
     <url>
-    <loc>https://spurno.github.io/typography</loc>
+    <loc>https://spurno.github.io/typography-design</loc>
     <lastmod>2024-12-26</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
