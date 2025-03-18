@@ -281,5 +281,11 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
+        <url>
+    <loc>https://spurno.github.io/news-background-animation</loc>
+    <lastmod>2025-03-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    </url>
     <!-- Continue listing all your pages -->
 </urlset>
