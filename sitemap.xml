@@ -281,11 +281,19 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
-        <url>
+    
+    <url>
     <loc>https://spurno.github.io/news-background-animation</loc>
     <lastmod>2025-03-18</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     </url>
     <!-- Continue listing all your pages -->
+    <video:content_loc>https://spurno.github.io/videos/animated-background-stock-video-for-premium-download-5.mp4</video:content_loc>
+    <video:content_loc>https://spurno.github.io/videos/3d-infographic-video-template.mp4</video:content_loc> 
+    <video:content_loc>https://spurno.github.io/videos/3d-infographic-video-template2.mp4</video:content_loc> 
+    <video:content_loc>https://spurno.github.io/videos/animated-background-stock-video-for-premium-download-6.mp4</video:content_loc> 
+    <video:content_loc>https://spurno.github.io/videos/infographics-video-demo.mp4</video:content_loc> 
+    <video:content_loc>https://spurno.github.io/videos/news-background-animation.mov</video:content_loc> 
+    <video:content_loc>https://spurno.github.io/videos/typography-animation.mp4</video:content_loc>
 </urlset>
