@@ -3,7 +3,7 @@
   Globals
 ------------------------------------*/
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: "Jost", sans-serif;
 }
 /* Text */
 .g-word-break {
@@ -5962,7 +5962,7 @@ body {
 
 /* Primary Colors */
 .g-color-primary {
-  color: #12A89D !important;
+  color: #f3b406 !important;
 }
 
 .u-block-hover:hover .g-color-primary--hover, .g-color-primary--hover:hover {

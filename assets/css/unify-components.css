@@ -2668,12 +2668,12 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 /* Button Primary */
 .u-btn-primary {
   color: #fff;
-  background-color: #2da399;
+  background-color: #4437f0;
 }
 
 .u-btn-primary:hover, .u-btn-primary.active {
-  border-color: #2da399;
-  background-color: #0ac0b1;
+  border-color: #4437f0;
+  background-color: #4437f0;
 }
 
 .u-btn-primary:hover, .u-btn-primary:focus, .u-btn-primary.active {
