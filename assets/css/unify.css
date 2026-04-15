@@ -11,7 +11,7 @@ html {
 body {
   font-weight: 400;
   font-size: 1rem;
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   line-height: 1.6;
   color: #555;
   -webkit-font-smoothing: antialiased;
@@ -2757,7 +2757,7 @@ body[class*="u-body--header-side"].u-body--header-side-opened .u-header__overlay
 /* Button Primary */
 .u-btn-primary {
   color: #fff;
-  background-color: #12A89D;
+  background-color: #eecd11;
 }
 
 .u-btn-primary:hover, .u-btn-primary.active {
@@ -16943,7 +16943,7 @@ li:last-child .u-dot-line-v2::after, li:last-child
 }
 
 .u-searchform-v1 .form-control {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 0.85714rem;
 }
 
@@ -16960,7 +16960,7 @@ li:last-child .u-dot-line-v2::after, li:last-child
   Searchform v2
 ------------------------------------*/
 .u-searchform-v2 .form-control {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   font-weight: 600;
   font-size: 0.85714rem;
   color: rgba(255, 255, 255, 0.85);
@@ -17038,7 +17038,7 @@ li:last-child .u-dot-line-v2::after, li:last-child
 }
 
 .u-searchform-v3 .form-control {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   font-weight: 300;
   font-size: inherit;
   color: inherit;
@@ -17095,7 +17095,7 @@ li:last-child .u-dot-line-v2::after, li:last-child
   Searchform v4
 ------------------------------------*/
 .u-searchform-v4 .form-control {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 0.85714rem;
   width: 20rem;
   padding: 0.71429rem 2.85714rem 0.71429rem 0.71429rem;
@@ -17160,7 +17160,7 @@ li:last-child .u-dot-line-v2::after, li:last-child
 }
 
 .u-searchform-v5 .form-control {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
   font-size: 0.85714rem;
   text-transform: uppercase;
   color: #777;
@@ -29683,11 +29683,11 @@ pre[class*="language-"] .toolbar-item a {
   Typography Font Family
 ------------------------------------*/
 .g-font-secondary {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 .g-font-code {
-  font-family: "Quicksand", sans-serif;
+  font-family: "Jost", sans-serif;
 }
 
 .g-font-niconne {
