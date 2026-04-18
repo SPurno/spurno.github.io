@@ -59,20 +59,6 @@
     <!-- CSS Customization -->
     <link rel="stylesheet" href="assets/css/custom.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5756742830355549" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-        window.tdlcAsyncInit = function() {
-                TDLinkConverter.init({});
-            };
-            var tdlc_1d43f5s_a = new Date(); tdlc_1d43f5s_a.setMinutes(0); tdlc_1d43f5s_a.setSeconds(0);
-            var tdlc_1d43f5s_seconds = parseInt(tdlc_1d43f5s_a.getTime() / 1000);
-            (function(d, s, id){
-                var js, fjs = d.getElementsByTagName(s)[0];
-                if (d.getElementById(id)) { return; }
-                js = d.createElement(s); js.id = id;
-                js.src = "https://clk.tradedoubler.com/lc?a(3384318)rand(" + tdlc_1d43f5s_seconds + ")";
-                fjs.parentNode.insertBefore(js, fjs);
-            }(document, "script", "tdlc-jssdk")); 
-        </script>
   </head>
 
   <body>
@@ -174,7 +160,7 @@
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
                               <a class="g-color-main g-color-main--hover" href="sale-banner.html">Sale Banner</a></li>
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
-                              <a class="g-color-main g-color-main--hover" href="typography-design.html">Typography Animation</a></li>
+                              <a class="g-color-main g-color-main--hover" href="typography.html">Typography Animation</a></li>
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
                               <a class="g-color-main g-color-main--hover" href="advertisement-design.html">Advertisement Design</a></li>
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
@@ -182,7 +168,7 @@
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
                               <a class="g-color-main g-color-main--hover" href="infographic.html">Infographic Animation</a></li>
                             <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
-                              <a class="g-color-main g-color-main--hover" href="news-background-animation.html">News Background Animation</a></li>
+                              <a class="g-color-main g-color-main--hover" href="news-background-animation.html">Infographic Animation</a></li>
                             </ul>
                         </div>
                         <div class="col-lg-5">
@@ -733,6 +719,7 @@
         </div>
       </header>
       <!-- End Header -->
+
       <!-- Promo Block -->
       <section class="u-bg-overlay g-bg-size-cover g-bg-pos-center g-bg-black-opacity-0_3--after" style="background-image: url(../../assets/img-temp/1920x800/img4.jpg);">
       </div>
@@ -844,9 +831,6 @@
     <script src="assets/js/components/hs.go-to.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
 
-    <!-- JS Customization -->
-    <script src="assets/js/custom.js"></script>
-
     <!-- JS Plugins Init. -->
     <script>
       $(document).on('ready', function () {
@@ -872,55 +856,6 @@
 
         // initialization of counters
         var counters = $.HSCore.components.HSCounter.init('[class*="js-counter"]');
-
-        // initialization of carousel
-        $.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
-
-        $('#carouselCus1').slick('setOption', 'responsive', [{
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 2
-          }
-        }, {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 1
-          }
-        }, {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2
-          }
-        }, {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1
-          }
-        }], true);
-
-        $('#carouselCus2').slick('setOption', 'responsive', [{
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 4
-          }
-        }, {
-          breakpoint: 992,
-          settings: {
-            slidesToShow: 3
-          }
-        }, {
-          breakpoint: 768,
-          settings: {
-            slidesToShow: 2
-          }
-        }, {
-          breakpoint: 480,
-          settings: {
-            slidesToShow: 1
-          }
-        }], true);
-
-        // initialization of popups
         $.HSCore.components.HSPopup.init('.js-fancybox');
       });
 
