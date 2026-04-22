@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="assets/css/unify.css">
     <link rel="stylesheet" href="assets/css/unify-components.css">
     <link rel="stylesheet" href="assets/css/unify-globals.css">
+    <link rel="stylesheet" href="assets/css/spurno.css">
     <!-- Revolution Slider -->
     <link rel="stylesheet" href="assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
     <link rel="stylesheet" href="assets/vendor/revolution-slider/revolution/css/settings.css">
@@ -2531,7 +2532,19 @@
         </div>
       </footer>
       <!-- End Footer --> 
-
+      <!-- Go To -->
+      <a class="js-go-to u-go-to-v2" href="#"
+         data-type="fixed"
+         data-position='{
+           "bottom": 15,
+           "right": 15
+         }'
+         data-offset-top="400"
+         data-compensation="#js-header"
+         data-show-effect="zoomIn">
+        <i class="hs-icon hs-icon-arrow-top"></i>
+      </a>
+      <!-- End Go To -->
       <!-- content end here -->
     </main>
   </body>
@@ -2556,6 +2569,7 @@
   <script src="assets/js/helpers/hs.hamburgers.js"></script>
   <script src="assets/js/components/hs.scroll-nav.js"></script>
   <script  src="assets/js/components/hs.modal-window.js"></script>
+  <script src="assets/js/components/hs.go-to.js"></script>
 
   <!-- JS Revolution Slider -->
   <script src="assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
@@ -2599,6 +2613,9 @@
       var rtlItems = $.HSCore.components.HSChartPie.init('.js-pie-rtl', {
         rtl: true
       });
+
+      // initialization of go to
+      $.HSCore.components.HSGoTo.init('.js-go-to');
 
       // initialization of rating
       $.HSCore.components.HSRating.init($('.js-rating'), {
