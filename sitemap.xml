@@ -296,4 +296,5 @@ xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
     <video:content_loc>https://spurno.github.io/videos/infographics-video-demo.mp4</video:content_loc> 
     <video:content_loc>https://spurno.github.io/videos/news-background-animation.mov</video:content_loc> 
     <video:content_loc>https://spurno.github.io/videos/typography-animation.mp4</video:content_loc>
+    <video:content_loc>https://spurno.github.io/videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4</video:content_loc>
 </urlset>
