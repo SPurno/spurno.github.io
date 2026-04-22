@@ -1,29 +1,52 @@
 {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "SPurno Animation Studio",
-    "url": "https://spurno.github.io",
-    "image": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/bio.jpg",
-    "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png",
-    "description": "Motion graphics and stock video animation studio from Bangladesh.",
-    "email": "spurno@icloud.com",
-    "sameAs": [
-      "https://www.linkedin.com/in/spurno",
-      "https://facebook.com/iSPurno",
-      "https://x.com/iSPurno",
-      "https://github.com/SPurno"
-    ],
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "Dhanmondi 32",
-      "addressLocality": "Dhanmondi",
-      "addressCountry": "BD",
-      "addressRegion": "Dhaka Division",
-      "postalCode": "1207"
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "name": "SPurno Animation Studio",
+      "url": "https://spurno.github.io",
+      "image": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/bio.jpg",
+      "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png",
+      "description": "Motion graphics and stock video animation studio from Bangladesh.",
+      "email": "spurno@icloud.com",
+      "sameAs": [
+        "https://www.linkedin.com/in/spurno",
+        "https://facebook.com/iSPurno",
+        "https://x.com/iSPurno",
+        "https://github.com/SPurno"
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Dhanmondi 32",
+        "addressLocality": "Dhanmondi",
+        "addressCountry": "BD",
+        "addressRegion": "Dhaka Division",
+        "postalCode": "1207"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+880 1521211774",
+        "contactType": "Customer Support"
+      }
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+880 1521211774",
-      "contactType": "Customer Support"
+
+    {
+      "@type": "VideoObject",
+      "name": "SPurno Animation Studio Promo Video Animation",
+      "description": "Motion Background animtion Stock Footage for your projects. Download Premium motion graphics and stock video animation from SPurno Animation Studio.",
+      "thumbnailUrl": "https://spurno.github.io/images/spurno-promo-new-video-animation.jpg",
+      "uploadDate": "2026-04-22",
+      "duration": "PT30S",
+      "contentUrl": "https://spurno.github.io/videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4",
+      "embedUrl": "https://www.youtube.com/embed/y6OUOb4JF8s?si=qL30wpUKL3-o9ceZ",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SPurno Animation Studio",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png"
+        }
+      }
     }
-  }
+  ]
+}
