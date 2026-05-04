@@ -1,9 +1,24 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Music with Volume Control</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background Music Player | SPurno Animation Studio</title>
+    <meta name="description" content="Play background music with volume control for demos, creative previews, and media experiments from SPurno Animation Studio." />
+    <meta name="keywords" content="background music player, audio volume control, SPurno Animation Studio, motion graphics, animation studio, stock video, Adobe Stock, Shutterstock, Pond5" />
+    <meta name="author" content="SPurno Animation Studio" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://spurno.github.io/musicplay" />
+    <meta property="og:title" content="Background Music Player | SPurno Animation Studio" />
+    <meta property="og:description" content="Play background music with volume control for demos, creative previews, and media experiments from SPurno Animation Studio." />
+    <meta property="og:image" content="https://spurno.github.io/images/spurno-logo.png" />
+    <meta property="og:url" content="https://spurno.github.io/musicplay" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Background Music Player | SPurno Animation Studio" />
+    <meta name="twitter:description" content="Play background music with volume control for demos, creative previews, and media experiments from SPurno Animation Studio." />
+    <meta name="twitter:image" content="https://spurno.github.io/images/spurno-logo.png" />
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -15,38 +30,42 @@
             margin: 0;
             background-color: #f0f0f0;
         }
+
         .music-control {
             text-align: center;
             margin-bottom: 20px;
         }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
             cursor: pointer;
         }
+
         .volume-slider {
             width: 200px;
             margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
     <div class="music-control">
         <button id="musicButton" onclick="toggleMusic()">Pause Music</button>
-        <br>
+        <br />
         <label for="volumeControl">Volume:</label>
-        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01" value="0.5" oninput="adjustVolume(this.value)">
+        <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01" value="0.5" oninput="adjustVolume(this.value)" />
     </div>
 
     <audio id="backgroundMusic" loop autoplay>
-        <source src="music/EmotionalPiano.mp3" type="audio/mpeg">
+        <source src="music/EmotionalPiano.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
     </audio>
 
     <script>
-        const backgroundMusic = document.getElementById('backgroundMusic');
-        const musicButton = document.getElementById('musicButton');
-        const volumeControl = document.getElementById('volumeControl');
+        const backgroundMusic = document.getElementById("backgroundMusic");
+        const musicButton = document.getElementById("musicButton");
+        const volumeControl = document.getElementById("volumeControl");
         let isPlaying = true;
 
         // Set initial volume
@@ -56,10 +75,10 @@
         function toggleMusic() {
             if (isPlaying) {
                 backgroundMusic.pause();
-                musicButton.textContent = 'Play Music';
+                musicButton.textContent = "Play Music";
             } else {
                 backgroundMusic.play();
-                musicButton.textContent = 'Pause Music';
+                musicButton.textContent = "Pause Music";
             }
             isPlaying = !isPlaying;
         }
@@ -69,5 +88,10 @@
             backgroundMusic.volume = volume;
         }
     </script>
+    <script src="assets/vendor/jquery/jquery.min.js"></script>
+    <script src="https://unpkg.com/i18next@23.16.8/dist/umd/i18next.min.js"></script>
+    <script src="https://unpkg.com/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+    <script src="js/footer-i18n.js"></script>
 </body>
+
 </html>
