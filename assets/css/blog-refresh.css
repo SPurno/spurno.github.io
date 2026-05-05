@@ -22,6 +22,21 @@ body {
   letter-spacing: 0;
 }
 
+.site-ad-section {
+  background: #ffffff;
+  margin: 32px auto;
+  max-width: 970px;
+  min-height: 90px;
+  padding: 0 15px;
+  width: 100%;
+}
+
+.site-ad-section .adsbygoogle {
+  display: block;
+  min-height: 90px;
+  width: 100%;
+}
+
 a {
   color: var(--blog-accent);
   transition: color .18s ease, border-color .18s ease, background-color .18s ease;
