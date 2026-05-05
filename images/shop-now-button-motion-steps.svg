@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" role="img" aria-labelledby="title desc">
+  <title id="title">Shop now button animation motion steps</title>
+  <desc id="desc">A sequence showing normal, hover, click, and confirmation states for an ecommerce CTA button.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#14b8a6"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" rx="28" fill="#f8fafc"/>
+  <text x="64" y="70" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="30" font-weight="800" fill="#17242f">CTA animation states</text>
+  <text x="64" y="104" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#667085">Use motion to show intent, response, and completion without distracting from the product.</text>
+  <g transform="translate(64 150)">
+    <rect width="174" height="266" rx="18" fill="#fff" stroke="#e5eaf0"/>
+    <text x="28" y="46" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17242f">Normal</text>
+    <rect x="28" y="94" width="118" height="44" rx="22" fill="#e2e8f0"/>
+    <text x="87" y="122" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#334155">SHOP NOW</text>
+    <path d="M72 188h30M87 173v30" stroke="#0f766e" stroke-width="5" stroke-linecap="round"/>
+  </g>
+  <g transform="translate(268 150)">
+    <rect width="174" height="266" rx="18" fill="#fff" stroke="#e5eaf0"/>
+    <text x="28" y="46" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17242f">Hover</text>
+    <rect x="22" y="88" width="130" height="56" rx="28" fill="url(#accent)"/>
+    <text x="87" y="122" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#fff">SHOP NOW</text>
+    <path d="M64 190l24-36 24 36" fill="none" stroke="#f59e0b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <g transform="translate(472 150)">
+    <rect width="174" height="266" rx="18" fill="#fff" stroke="#e5eaf0"/>
+    <text x="28" y="46" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17242f">Click</text>
+    <rect x="31" y="100" width="112" height="42" rx="21" fill="#0b4f4a"/>
+    <text x="87" y="127" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#fff">ADDING</text>
+    <circle cx="87" cy="188" r="28" fill="#f59e0b" opacity=".22"/>
+    <circle cx="87" cy="188" r="12" fill="#f59e0b"/>
+  </g>
+  <g transform="translate(676 150)">
+    <rect width="174" height="266" rx="18" fill="#fff" stroke="#e5eaf0"/>
+    <text x="28" y="46" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#17242f">Confirm</text>
+    <rect x="25" y="90" width="124" height="52" rx="26" fill="#ecfdf5"/>
+    <text x="87" y="122" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="800" fill="#0f766e">ADDED</text>
+    <path d="M62 188l17 17 35-44" fill="none" stroke="#0f766e" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M238 282h30M442 282h30M646 282h30" stroke="#94a3b8" stroke-width="4" stroke-linecap="round"/>
+</svg>
