@@ -5,11 +5,6 @@
     var ADS_SLOT = '6814031410';
     var MAX_ADS_PER_PAGE = 5;
 
-    function isHomePage() {
-        var path = window.location.pathname.replace(/\/+$/, '');
-        return path === '' || path === '/index' || path === '/index.html';
-    }
-
     function addAdStyles() {
         if (document.getElementById('spurno-auto-ad-styles')) {
             return;
@@ -117,7 +112,7 @@
     }
 
     function initAds() {
-        if (isHomePage() || document.documentElement.hasAttribute('data-disable-spurno-ads')) {
+        if (document.documentElement.hasAttribute('data-disable-spurno-ads')) {
             return;
         }
 

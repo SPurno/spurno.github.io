@@ -117,16 +117,201 @@
     };
 
     var languages = ['en', 'es', 'ru', 'de'];
+    var googleLanguages = {
+        en: 'en',
+        es: 'es',
+        ru: 'ru',
+        de: 'de'
+    };
+    var googleTranslateCallbacks = [];
+    var googleTranslateReady = false;
+    var googleTranslateLoading = false;
 
     function getStoredLanguage() {
-        var stored = window.localStorage && window.localStorage.getItem('spurnoLanguage');
+        var stored;
+
+        try {
+            stored = window.localStorage && window.localStorage.getItem('spurnoLanguage');
+        } catch (error) {
+            stored = null;
+        }
+
         return languages.indexOf(stored) === -1 ? 'en' : stored;
     }
 
     function setStoredLanguage(language) {
-        if (window.localStorage) {
-            window.localStorage.setItem('spurnoLanguage', language);
+        try {
+            if (window.localStorage) {
+                window.localStorage.setItem('spurnoLanguage', language);
+            }
+        } catch (error) {
+            document.documentElement.setAttribute('data-spurno-storage-error', 'true');
         }
+    }
+
+    function ensureGoogleTranslateHost() {
+        var host = document.getElementById('spurno-google-translate');
+
+        if (host) {
+            return host;
+        }
+
+        host = document.createElement('div');
+        host.id = 'spurno-google-translate';
+        host.setAttribute('aria-hidden', 'true');
+        host.style.position = 'absolute';
+        host.style.left = '-9999px';
+        host.style.top = '0';
+        host.style.width = '1px';
+        host.style.height = '1px';
+        host.style.overflow = 'hidden';
+        document.body.appendChild(host);
+
+        return host;
+    }
+
+    function runGoogleTranslateCallbacks(success) {
+        var callbacks = googleTranslateCallbacks.slice();
+        googleTranslateCallbacks = [];
+
+        callbacks.forEach(function (callback) {
+            callback(success);
+        });
+    }
+
+    function loadGoogleTranslate(callback) {
+        if (typeof callback === 'function') {
+            googleTranslateCallbacks.push(callback);
+        }
+
+        if (googleTranslateReady) {
+            runGoogleTranslateCallbacks(true);
+            return;
+        }
+
+        if (googleTranslateLoading) {
+            return;
+        }
+
+        googleTranslateLoading = true;
+        ensureGoogleTranslateHost();
+
+        window.spurnoGoogleTranslateReady = function () {
+            if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+                new window.google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: languages.map(function (language) {
+                        return googleLanguages[language];
+                    }).join(','),
+                    autoDisplay: false
+                }, 'spurno-google-translate');
+
+                googleTranslateReady = true;
+                runGoogleTranslateCallbacks(true);
+                return;
+            }
+
+            runGoogleTranslateCallbacks(false);
+        };
+
+        if (document.getElementById('spurno-google-translate-script')) {
+            return;
+        }
+
+        var script = document.createElement('script');
+        script.id = 'spurno-google-translate-script';
+        script.async = true;
+        script.src = 'https://translate.google.com/translate_a/element.js?cb=spurnoGoogleTranslateReady';
+        script.onerror = function () {
+            googleTranslateLoading = false;
+            if (script.parentNode) {
+                script.parentNode.removeChild(script);
+            }
+            runGoogleTranslateCallbacks(false);
+        };
+        document.head.appendChild(script);
+    }
+
+    function setGoogleTranslateCookie(language) {
+        var googleLanguage = googleLanguages[language] || 'en';
+        var value = '/en/' + googleLanguage;
+        var expires = '; expires=' + new Date(Date.now() + 365 * 24 * 60 * 60 * 1000).toUTCString();
+        var cookie = 'googtrans=' + value + expires + '; path=/';
+
+        document.cookie = cookie;
+
+        if (window.location.hostname && window.location.hostname.indexOf('.') !== -1) {
+            document.cookie = cookie + '; domain=' + window.location.hostname;
+        }
+    }
+
+    function hasGoogleTranslateCookie() {
+        return /(?:^|;\s*)googtrans=/.test(document.cookie);
+    }
+
+    function triggerChange(element) {
+        var event;
+
+        if (typeof window.Event === 'function') {
+            event = new window.Event('change', {
+                bubbles: true
+            });
+        } else {
+            event = document.createEvent('HTMLEvents');
+            event.initEvent('change', true, false);
+        }
+
+        element.dispatchEvent(event);
+    }
+
+    function waitForGoogleCombo(callback, attempts) {
+        var combo = document.querySelector('.goog-te-combo');
+
+        if (combo) {
+            callback(combo);
+            return;
+        }
+
+        if (attempts <= 0) {
+            callback(null);
+            return;
+        }
+
+        window.setTimeout(function () {
+            waitForGoogleCombo(callback, attempts - 1);
+        }, 100);
+    }
+
+    function translatePage(language) {
+        var googleLanguage = googleLanguages[language];
+
+        if (!googleLanguage) {
+            return;
+        }
+
+        document.documentElement.setAttribute('lang', language);
+        setGoogleTranslateCookie(language);
+
+        loadGoogleTranslate(function (loaded) {
+            if (!loaded) {
+                document.documentElement.setAttribute('data-spurno-translate-error', 'true');
+                return;
+            }
+
+            waitForGoogleCombo(function (combo) {
+                if (!combo) {
+                    document.documentElement.setAttribute('data-spurno-translate-error', 'true');
+                    return;
+                }
+
+                if (language === 'en' && !combo.querySelector('option[value="en"]')) {
+                    googleLanguage = '';
+                }
+
+                combo.value = googleLanguage;
+                triggerChange(combo);
+            }, 80);
+        });
     }
 
     function createFallbackI18next() {
@@ -271,16 +456,24 @@
             window.i18next.changeLanguage(language, function () {
                 setStoredLanguage(language);
                 localizeFooter();
+                translatePage(language);
             });
         });
     }
 
     function initFooterTranslation() {
         var $ = window.jQuery;
+        var storedLanguage = getStoredLanguage();
 
         createFallbackI18next();
 
         if (!$ || !window.i18next) {
+            if (storedLanguage !== 'en' || hasGoogleTranslateCookie()) {
+                translatePage(storedLanguage);
+            } else {
+                document.documentElement.setAttribute('lang', storedLanguage);
+            }
+
             return;
         }
 
@@ -302,6 +495,13 @@
             }
 
             localizeFooter();
+
+            if (storedLanguage !== 'en' || hasGoogleTranslateCookie()) {
+                translatePage(storedLanguage);
+            } else {
+                document.documentElement.setAttribute('lang', storedLanguage);
+            }
+
             bindLanguageMenu();
         });
     }
