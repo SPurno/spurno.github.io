@@ -150,3 +150,32 @@
             transform: scale(0.8, 0.8);
   }
 }
+
+/* Microsoft-like circular loader */
+.ms-loader-overlay{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(255,255,255,0.92);
+  z-index:99999;
+}
+.ms-loader{
+  width:72px;
+  height:72px;
+  display:inline-block;
+  position:relative;
+}
+.ms-loader-ring{
+  box-sizing:border-box;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  border:8px solid rgba(0,0,0,0.12);
+  border-top-color:#0078D4; /* Microsoft blue */
+  animation:ms-spin 1s linear infinite;
+}
+@keyframes ms-spin{ to{ transform:rotate(360deg); } }
+.ms-loader-dot{ position:absolute; width:14px; height:14px; background:#0078D4; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0.0; }
+.ms-loader-overlay.hidden{ opacity:0; pointer-events:none; transition:opacity .4s ease; }

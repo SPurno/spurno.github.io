@@ -245,6 +245,43 @@
 
   };
 
+(function(){
+  // Insert Microsoft-like circular loader and auto-remove after 3s
+  function insertMsLoader(){
+    if(document.getElementById('ms-loader-overlay')) return;
+    var overlay = document.createElement('div');
+    overlay.id = 'ms-loader-overlay';
+    overlay.className = 'ms-loader-overlay';
+    var loader = document.createElement('div');
+    loader.className = 'ms-loader';
+    var ring = document.createElement('div');
+    ring.className = 'ms-loader-ring';
+    loader.appendChild(ring);
+    // optional center dot
+    var dot = document.createElement('div');
+    dot.className = 'ms-loader-dot';
+    loader.appendChild(dot);
+    overlay.appendChild(loader);
+    if(document.body){
+      document.body.insertAdjacentElement('afterbegin', overlay);
+    } else {
+      document.addEventListener('DOMContentLoaded', function(){ document.body.insertAdjacentElement('afterbegin', overlay); });
+    }
+  }
+  function hideMsLoader(){
+    var el = document.getElementById('ms-loader-overlay');
+    if(!el) return;
+    el.classList.add('hidden');
+    setTimeout(function(){ el.parentNode && el.parentNode.removeChild(el); }, 500);
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', insertMsLoader);
+  } else { insertMsLoader(); }
+  // Hide 3 seconds after window load; fallback at 6s
+  window.addEventListener('load', function(){ setTimeout(hideMsLoader, 3000); });
+  setTimeout(hideMsLoader, 6000);
+})();
+
   $.HSCore.init();
 
 })(jQuery);
