@@ -4,8 +4,8 @@
   --blog-muted: #667085;
   --blog-soft: #f6f8fb;
   --blog-line: #e5eaf0;
-  --blog-accent: #0f766e;
-  --blog-accent-dark: #0b4f4a;
+  --blog-accent: #f7931e;
+  --blog-accent-dark: #f7931e;
 }
 
 html {
@@ -109,9 +109,9 @@ h4,
   font-size: 1.16rem;
 }
 
-p,
+
 li {
-  color: #334155;
+  color: #ffffff;
   font-size: 1rem;
   line-height: 1.78;
 }
