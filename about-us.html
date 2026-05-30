@@ -61,10 +61,363 @@
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/css/spurno.css">
+    <style>
+        .about-page {
+            --about-ink: #142033;
+            --about-muted: #5d6878;
+            --about-line: #e6ebf2;
+            --about-soft: #f6f9fc;
+            --about-deep: #101d2f;
+            --about-accent: #f7931e;
+            color: var(--about-ink);
+            background: #ffffff;
+        }
+
+        .about-page li {
+            color: inherit;
+        }
+
+        .about-hero {
+            min-height: 680px;
+            display: flex;
+            align-items: flex-end;
+            background:
+                linear-gradient(90deg, rgba(10, 20, 36, .88), rgba(10, 20, 36, .5) 52%, rgba(10, 20, 36, .12)),
+                url("images/spurno-promo-new-video-animation.jpg") center / cover no-repeat;
+            color: #ffffff;
+            padding: 130px 0 86px;
+        }
+
+        .about-eyebrow {
+            color: var(--about-accent);
+            display: inline-block;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .about-title {
+            color: inherit;
+            font-size: clamp(2.4rem, 6vw, 5.2rem);
+            font-weight: 800;
+            letter-spacing: 0;
+            line-height: .98;
+            margin-bottom: 24px;
+            max-width: 920px;
+        }
+
+        .about-lead {
+            color: rgba(255, 255, 255, .86);
+            font-size: clamp(1.05rem, 2vw, 1.28rem);
+            line-height: 1.75;
+            max-width: 720px;
+        }
+
+        .about-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .about-btn,
+        .about-btn-outline {
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            min-height: 48px;
+            padding: 13px 22px;
+            text-transform: uppercase;
+        }
+
+        .about-btn {
+            background: var(--about-accent);
+            color: #111827;
+        }
+
+        .about-btn:hover,
+        .about-btn:focus {
+            color: #111827;
+            background: #ffad45;
+            text-decoration: none;
+        }
+
+        .about-btn-outline {
+            border: 1px solid rgba(255, 255, 255, .6);
+            color: #ffffff;
+        }
+
+        .about-btn-outline:hover,
+        .about-btn-outline:focus {
+            background: #ffffff;
+            color: var(--about-ink);
+            text-decoration: none;
+        }
+
+        .about-section {
+            padding: 92px 0;
+        }
+
+        .about-section-soft {
+            background: var(--about-soft);
+        }
+
+        .about-section-dark {
+            background: var(--about-deep);
+            color: #d8e1eb;
+        }
+
+        .about-section-dark h1,
+        .about-section-dark h2,
+        .about-section-dark h3,
+        .about-section-dark h4 {
+            color: #ffffff;
+        }
+
+        .about-kicker {
+            color: var(--about-accent);
+            font-size: .76rem;
+            font-weight: 800;
+            letter-spacing: .14em;
+            margin-bottom: 14px;
+            text-transform: uppercase;
+        }
+
+        .about-heading {
+            color: var(--about-ink);
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            font-weight: 800;
+            letter-spacing: 0;
+            line-height: 1.08;
+            margin-bottom: 22px;
+        }
+
+        .about-copy {
+            color: var(--about-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .about-section-dark .about-copy {
+            color: #b9c7d5;
+        }
+
+        .about-media {
+            border-radius: 8px;
+            box-shadow: 0 22px 55px rgba(17, 24, 39, .14);
+            height: 100%;
+            min-height: 360px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .about-stat-grid {
+            display: grid;
+            gap: 16px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            margin-top: 34px;
+        }
+
+        .about-stat,
+        .about-card,
+        .about-package {
+            background: #ffffff;
+            border: 1px solid var(--about-line);
+            border-radius: 8px;
+            box-shadow: 0 16px 42px rgba(17, 24, 39, .07);
+        }
+
+        .about-stat {
+            padding: 24px;
+        }
+
+        .about-stat strong {
+            color: var(--about-accent);
+            display: block;
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .about-stat span {
+            color: var(--about-muted);
+            font-weight: 700;
+        }
+
+        .about-card {
+            height: 100%;
+            padding: 30px;
+        }
+
+        .about-card .icon {
+            color: var(--about-accent);
+            display: block;
+            font-size: 2.3rem;
+            margin-bottom: 18px;
+        }
+
+        .about-card h3,
+        .about-package h3 {
+            color: var(--about-ink);
+            font-size: 1.18rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .about-card p,
+        .about-package p {
+            color: var(--about-muted);
+            margin-bottom: 0;
+        }
+
+        .about-list {
+            list-style: none;
+            margin: 22px 0 0;
+            padding: 0;
+        }
+
+        .about-list li {
+            border-top: 1px solid var(--about-line);
+            color: var(--about-muted);
+            padding: 11px 0;
+        }
+
+        .about-process {
+            counter-reset: process;
+            display: grid;
+            gap: 20px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 42px;
+        }
+
+        .about-step {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            padding: 28px;
+        }
+
+        .about-step::before {
+            counter-increment: process;
+            content: "0" counter(process);
+            color: var(--about-accent);
+            display: block;
+            font-size: .86rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            margin-bottom: 22px;
+        }
+
+        .about-step h3 {
+            font-size: 1.12rem;
+            margin-bottom: 12px;
+        }
+
+        .about-step p {
+            color: #b9c7d5;
+            margin-bottom: 0;
+        }
+
+        .about-package {
+            height: 100%;
+            padding: 34px;
+        }
+
+        .about-package-featured {
+            border-color: rgba(247, 147, 30, .45);
+            box-shadow: 0 22px 58px rgba(247, 147, 30, .16);
+            transform: translateY(-12px);
+        }
+
+        .about-price {
+            color: var(--about-accent);
+            font-size: 2.15rem;
+            font-weight: 900;
+            margin: 20px 0 8px;
+        }
+
+        .about-contact {
+            background: #ffffff;
+            border-top: 1px solid var(--about-line);
+        }
+
+        .about-contact-item {
+            border-left: 1px solid var(--about-line);
+            padding: 16px 28px;
+        }
+
+        .about-contact-item:first-child {
+            border-left: 0;
+        }
+
+        .about-contact-item i {
+            color: var(--about-accent);
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .about-contact-item h3 {
+            color: var(--about-muted);
+            font-size: .78rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .about-contact-item strong,
+        .about-contact-item a {
+            color: var(--about-ink);
+            font-weight: 800;
+        }
+
+        @media (max-width: 991px) {
+            .about-hero {
+                min-height: 560px;
+                padding: 96px 0 64px;
+            }
+
+            .about-stat-grid,
+            .about-process {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .about-package-featured {
+                transform: none;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .about-section {
+                padding: 64px 0;
+            }
+
+            .about-actions,
+            .about-stat-grid,
+            .about-process {
+                grid-template-columns: 1fr;
+            }
+
+            .about-actions a {
+                width: 100%;
+            }
+
+            .about-contact-item {
+                border-left: 0;
+                border-top: 1px solid var(--about-line);
+            }
+
+            .about-contact-item:first-child {
+                border-top: 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <main>
+    <main class="about-page">
         <!-- Header -->
         <header id="js-header" class="u-header u-header--static u-shadow-v19">
             <div itemscope class="u-header__section u-header__section--light g-bg-lightblue-radialgradient-circle g-transition-0_3 g-py-10">
@@ -708,596 +1061,242 @@
         </header>
         <!-- End Header -->
         <!-- Section Content -->
-        <section id="home" class="g-pos-rel">
-            <div class="js-carousel g-overflow-hidden g-max-height-100vh" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
-                <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-500--md" style="background-image: url(images/slider1.jpg);"></div>
-
-                <div class="js-slide g-bg-img-hero g-height-100vh g-min-height-500--md" style="background-image: url(images/slider3.jpg);"></div>
-            </div>
-            <div class="g-absolute-centered w-100">
-                <div class="container text-center g-width-780">
-                    <div class="info-v3-4 g-theme-bg-blue-dark-v1-opacity-0_9 g-pa-20 g-pa-60--md">
-                        <div class="g-pos-rel g-z-index-3">
-                            <h3 class="h3 text-uppercase g-letter-spacing-3 g-font-size-default g-color-white g-mb-10">We are Studio</h3>
-                            <h2 class="h2 text-uppercase g-color-white g-letter-spacing-5 g-font-weight-400 g-font-size-25 g-font-size-35--md g-mb-20">Video Animation Company</h2>
-                            <p class="g-line-height-1_8 g-letter-spacing-3 g-color-white g-mb-20">SPurno Animation Studio
-                                <br> Read more about our working process and delivery of any projects.
-                            </p>
-                            <a href="https://spurno.github.io" class="btn text-uppercase u-btn-outline-white rounded-0">Buy Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Section Content -->
-        <!-- Section Content -->
-        <section id="about" class="container-fluid px-0">
-            <div class="row no-gutters">
-                <div class="g-hidden-lg-down col-lg-4 g-bg-img-hero" style="background-image: url(assets/img-temp/1920x1080/img9.jpg);"></div>
-
-                <div class="col-md-6 col-lg-4 g-flex-centered g-theme-bg-blue-dark-v1">
-                    <div class="text-center g-color-gray-light-v2 g-pa-30">
-                        <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
-                            <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-1 g-color-primary g-mb-20">About us</h4>
-                            <h1 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">Help make
-                                <br> money
-                            </h1>
-                        </div>
-
-                        <p class="g-color-gray-light-v2 mb-0">SPurno Animation Studio is a creative video animation company dedicated to crafting visually engaging animation assets and templates for digital creators, marketers, and designers. Our portfolio includes premium animated backgrounds, infographic animations, presentation templates, advertising design elements, and motion graphics that empower storytellers and brands to make an impact.</p>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 g-theme-bg-blue-dark-v2">
-                    <div class="js-carousel g-pb-90" data-infinite="true" data-slides-show="true" data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-30">
-                        <div class="js-slide">
-                            <img class="img-fluid w-100" src="assets/img-temp/450x300/img1.jpg" alt="About SPurno Animation Studio | Motion Graphics and Stock Video motion graphics preview by SPurno Animation Studio">
-
-                            <div class="g-pa-30">
-                                <h3 class="text-uppercase g-font-weight-700 g-font-size-20 g-color-white g-mb-10">Since 2018</h3>
-                                <p class="g-color-gray-light-v2 g-mb-10">Our mission is to inspire creativity and enhance visual communication through high-quality animation content. We strive to provide tools that help professionals, educators, and enthusiasts bring ideas to life with compelling motion visuals that are both dynamic and accessible.</p>
-                            </div>
-                        </div>
-
-                        <div class="js-slide">
-                            <img class="img-fluid w-100" src="assets/img-temp/450x300/img2.jpg" alt="About SPurno Animation Studio | Motion Graphics and Stock Video motion graphics preview by SPurno Animation Studio">
-
-                            <div class="g-pa-30">
-                                <h3 class="text-uppercase g-font-weight-700 g-font-size-20 g-color-white g-mb-10">AdobeStock</h3>
-                                <p class="g-color-gray-light-v2 g-mb-10">Find Green screen projects and website background animation on stock site.</p>
-                                <p class="g-color-gray-light-v2 mb-0">More than 2000+ animations are available</p>
-                            </div>
-                        </div>
-
-                        <div class="js-slide">
-                            <img class="img-fluid w-100" src="assets2/img-temp/450x300/img3.jpg" alt="About SPurno Animation Studio | Motion Graphics and Stock Video motion graphics preview by SPurno Animation Studio">
-
-                            <div class="g-pa-30">
-                                <h3 class="text-uppercase g-font-weight-700 g-font-size-20 g-color-white g-mb-10">Shutterstock</h3>
-                                <p class="g-color-gray-light-v2 g-mb-10">Find Green screen projects and website background animation on stock site.</p>
-                                <p class="g-color-gray-light-v2 mb-0">More than 800+ animations are available</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- End Section Content -->
-
-        <!-- Section Content -->
-        <section id="services" class="g-py-80">
+        <section id="home" class="about-hero">
             <div class="container">
-                <div class="text-uppercase text-center u-heading-v2-4--bottom g-brd-primary g-mb-80">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-1 g-color-primary g-mb-20">Our services</h4>
-                    <h1 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-mb-minus-10">What we do</h1>
+                <span class="about-eyebrow">SPurno Animation Studio</span>
+                <h1 class="about-title">Motion graphics built for brands, creators, and stock marketplaces.</h1>
+                <p class="about-lead">We create animated backgrounds, After Effects templates, product mockups, infographic videos, and advertising visuals that help teams publish polished content faster.</p>
+                <div class="about-actions">
+                    <a href="contact-us.html" class="about-btn">Start a Project</a>
+                    <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="about-btn-outline">View Stock Portfolio</a>
                 </div>
-
-                <!-- Icon Blocks -->
-                <div class="row no-gutters">
-                    <div class="col-md-6 col-lg-3 g-parent g-brd-around g-brd-gray-light-v4 g-brd-bottom-primary--hover g-brd-bottom-2--hover g-mb-30 g-mb-0--lg g-transition-0_2 g-transition--ease-in">
-                        <!-- Icon Blocks -->
-                        <div class="text-center g-px-10 g-px-30--lg g-py-40 g-pt-25--parent-hover g-transition-0_2 g-transition--ease-in">
-                            <span class="d-block g-color-primary g-font-size-40 g-mb-15">
-                                <i class="icon-fire"></i>
-                            </span>
-                            <h3 class="h5 text-uppercase g-color-black g-mb-10">Motion Graphics</h3>
-                            <p class="g-color-gray-dark-v4">Find the appropriate template from stock sites and send us an order</p>
-
-                            <div class="d-inline-block g-width-40 g-brd-bottom g-brd-2 g-brd-primary g-my-15"></div>
-
-                            <ul class="list-unstyled text-uppercase g-mb-0">
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Hi-res video</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Custom design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">App &amp; Icon Design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Logo &amp; Brand Design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">After Effects Template</li>
-                                <li class="g-py-8">Branding Promo</li>
-                            </ul>
+            </div>
+        </section>
+        <!-- End Section Content -->
+        <!-- Section Content -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 g-mb-40 g-mb-0--lg">
+                        <span class="about-kicker">About us</span>
+                        <h2 class="about-heading">A focused animation studio for reusable visual content.</h2>
+                        <p class="about-copy">SPurno Animation Studio produces motion graphics assets that are practical, flexible, and ready for real campaigns. Our work supports creators, agencies, marketers, educators, and product teams with animated backgrounds, presentation visuals, device mockups, sales banners, typography animations, and infographic templates.</p>
+                        <p class="about-copy">Every asset is designed with clean composition, clear movement, and broad usability in mind, so buyers can adapt it for websites, ads, social media, YouTube, presentations, and commercial video projects.</p>
+                        <div class="about-stat-grid">
+                            <div class="about-stat">
+                                <strong>2000+</strong>
+                                <span>stock assets</span>
+                            </div>
+                            <div class="about-stat">
+                                <strong>4</strong>
+                                <span>marketplaces</span>
+                            </div>
+                            <div class="about-stat">
+                                <strong>2018</strong>
+                                <span>studio launch</span>
+                            </div>
                         </div>
-                        <!-- End Icon Blocks -->
                     </div>
-
-                    <div class="col-md-6 col-lg-3 g-parent g-brd-around g-brd-gray-light-v4 g-brd-bottom-primary--hover g-brd-bottom-2--hover g-mb-30 g-mb-0--md g-ml-minus-1 g-transition-0_2 g-transition--ease-in">
-                        <!-- Icon Blocks -->
-                        <div class="text-center g-px-10 g-px-30--lg g-py-40 g-pt-25--parent-hover g-transition-0_2 g-transition--ease-in">
-                            <span class="d-block g-color-primary g-font-size-40 g-mb-15">
-                                <i class="icon-energy"></i>
-                            </span>
-                            <h3 class="h5 text-uppercase g-color-black g-mb-10">Advertising</h3>
-                            <p class="g-color-gray-dark-v4">Design advertising project for your product or services</p>
-
-                            <div class="d-inline-block g-width-40 g-brd-bottom g-brd-2 g-brd-primary g-my-15"></div>
-
-                            <ul class="list-unstyled text-uppercase g-mb-0">
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Analysis &amp; Consulting</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Email Marketing</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">App &amp; Icon Design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Responsive Web Design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Social Networking</li>
-                                <li class="g-py-8">Documentation</li>
-                            </ul>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-
-                    <div class="col-md-6 col-lg-3 g-parent g-brd-around g-brd-gray-light-v4 g-brd-bottom-primary--hover g-brd-bottom-2--hover g-mb-30 g-mb-0--md g-ml-minus-1 g-transition-0_2 g-transition--ease-in">
-                        <!-- Icon Blocks -->
-                        <div class="text-center g-px-10 g-px-30--lg g-py-40 g-pt-25--parent-hover g-transition-0_2 g-transition--ease-in">
-                            <span class="d-block g-color-primary g-font-size-40 g-mb-15">
-                                <i class="icon-layers"></i>
-                            </span>
-                            <h3 class="h5 text-uppercase g-color-black g-mb-10">Social media</h3>
-                            <p class="g-color-gray-dark-v4">Run social media campaign, Generate sales, Make revenue</p>
-
-                            <div class="d-inline-block g-width-40 g-brd-bottom g-brd-2 g-brd-primary g-my-15"></div>
-
-                            <ul class="list-unstyled text-uppercase g-mb-0">
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Display Advertising</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">App &amp; Icon Design</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Analysis &amp; Consulting</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Google AdSense</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Social Media</li>
-                                <li class="g-py-8">Google/Bing Analysis</li>
-                            </ul>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-
-                    <div class="col-md-6 col-lg-3 g-parent g-brd-around g-brd-gray-light-v4 g-brd-bottom-primary--hover g-brd-bottom-2--hover g-mb-30 g-mb-0--md g-ml-minus-1 g-transition-0_2 g-transition--ease-in">
-                        <!-- Icon Blocks -->
-                        <div class="text-center g-px-10 g-px-30--lg g-py-40 g-pt-25--parent-hover g-transition-0_2 g-transition--ease-in">
-                            <span class="d-block g-color-primary g-font-size-40 g-mb-15">
-                                <i class="icon-social-youtube"></i>
-                            </span>
-                            <h3 class="h5 text-uppercase g-color-black g-mb-10">Marketing</h3>
-                            <p class="g-color-gray-dark-v4">Promote your goods or services on multiple platform</p>
-
-                            <div class="d-inline-block g-width-40 g-brd-bottom g-brd-2 g-brd-primary g-my-15"></div>
-
-                            <ul class="list-unstyled text-uppercase g-mb-0">
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Google AdSense</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Social Media</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Google/Bing Analysis</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Google AdSense</li>
-                                <li class="g-brd-bottom g-brd-gray-light-v3 g-py-10">Social Media</li>
-                                <li class="g-py-8">Analysis &amp; Consulting</li>
-                            </ul>
-                        </div>
-                        <!-- End Icon Blocks -->
+                    <div class="col-lg-6">
+                        <img class="about-media" src="images/spurno-promo.jpg" alt="SPurno Animation Studio motion graphics preview">
                     </div>
                 </div>
-                <!-- End Icon Blocks -->
             </div>
         </section>
         <!-- End Section Content -->
 
         <!-- Section Content -->
-        <section id="processes" class="g-theme-bg-blue-dark-v1 g-py-80">
-            <div class="container text-center g-width-780 g-color-gray-light-v2 g-mb-60">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-40">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-1 g-color-primary g-mb-20">Work process</h4>
-                    <h1 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-white g-mb-minus-10">Step by step</h1>
+        <section id="services" class="about-section about-section-soft">
+            <div class="container">
+                <div class="text-center g-mb-60">
+                    <span class="about-kicker">Our services</span>
+                    <h2 class="about-heading">Production support from concept to final render.</h2>
+                    <p class="about-copy mx-auto g-width-780">We build motion assets for people who need reliable visual systems, not one-off decoration. The goal is simple: clear communication, strong pacing, and files that can be used across multiple platforms.</p>
                 </div>
 
-                <p class="g-color-gray-light-v2 mb-0">SPurno Animation Studio is a leading animation studio specializing in creating high-quality 2D and 3D animations for a variety of industries. With a team of skilled animators, designers, and storytellers, we bring characters and concepts to life through cutting-edge technology and creative storytelling. Our services include animation for films, television, commercials, video games, and corporate projects. Whether it's character design, motion graphics, or full-length animated features, we deliver captivating visual experiences that engage audiences and elevate brands. At SPurno Animation Studio, creativity meets innovation to produce animations that inspire and entertain.</p>
-            </div>
-
-            <div class="container">
                 <div class="row">
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img-temp/80x80/img1.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                                        <i class="icon-fire"></i>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <h3 class="h5 text-uppercase g-color-gray-light-v2 g-mb-10">Step 1. Analisis</h3>
-                            <p class="g-color-gray-light-v2 mb-0">This article on About SPurno Animation Studio explains the idea with practical production context, clear use cases, and guidance for choosing assets that look polished in real projects.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="about-card">
+                            <i class="icon-fire icon"></i>
+                            <h3>Motion Graphics</h3>
+                            <p>Animated elements, title motion, abstract loops, and clean visual systems for videos and landing pages.</p>
+                            <ul class="about-list">
+                                <li>Looping backgrounds</li>
+                                <li>Typography animation</li>
+                                <li>Brand motion assets</li>
+                            </ul>
+                        </article>
                     </div>
 
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img-temp/80x80/img2.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                                        <i class="icon-energy"></i>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <h3 class="h5 text-uppercase g-color-gray-light-v2 g-mb-10">Step 2. Creative concept</h3>
-                            <p class="g-color-gray-light-v2 mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
-                    </div>
-                </div>
-                <!-- End Icon Blocks -->
-
-                <!-- Icon Blocks -->
-                <div class="row g-mb-50">
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img-temp/80x80/img3.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                                        <i class="icon-rocket"></i>
-                                    </span>
-                                </div>
-                            </div>
-
-                            <h3 class="h5 text-uppercase g-color-gray-light-v2 g-mb-10">Step 3. Production</h3>
-                            <p class="g-color-gray-light-v2 mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="about-card">
+                            <i class="icon-energy icon"></i>
+                            <h3>Advertising Assets</h3>
+                            <p>Promotional templates for product launches, sales campaigns, digital banners, and marketplace offers.</p>
+                            <ul class="about-list">
+                                <li>Sale banners</li>
+                                <li>Product promos</li>
+                                <li>Green screen layouts</li>
+                            </ul>
+                        </article>
                     </div>
 
-                    <div class="col-lg-6 g-px-30 g-mb-40">
-                        <!-- Icon Blocks -->
-                        <div class="g-pos-rel g-parent g-theme-bg-blue-dark-v2 g-py-35 g-px-25 g-pl-70--sm">
-                            <div class="g-hidden-xs-down g-absolute-centered--y g-left-0">
-                                <div class="g-pull-50x-left g-brd-around g-brd-5 g-brd-primary-dark-v3 g-rounded-50x g-overflow-hidden">
-                                    <span class="d-block g-pos-abs g-top-0 g-left-0 g-width-95 g-height-95 g-brd-around g-brd-5 g-brd-primary g-rounded-50x" style="background-image: url(assets/img-temp/80x80/img4.jpg);"></span>
-                                    <span class="u-icon-v3 u-icon-size--xl g-width-95 g-height-95 g-color-white g-bg-primary g-opacity-1 opacity-0--parent-hover g-transition-0_1 g-transition--ease-in">
-                                        <i class="icon-layers"></i>
-                                    </span>
-                                </div>
-                            </div>
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="about-card">
+                            <i class="icon-layers icon"></i>
+                            <h3>Templates</h3>
+                            <p>Reusable presentation, infographic, device mockup, and After Effects templates for fast editing.</p>
+                            <ul class="about-list">
+                                <li>Infographic videos</li>
+                                <li>Presentation slides</li>
+                                <li>Device mockups</li>
+                            </ul>
+                        </article>
+                    </div>
 
-                            <h3 class="h5 text-uppercase g-color-gray-light-v2 g-mb-10">Step 4. Happy client</h3>
-                            <p class="g-color-gray-light-v2 mb-0">We strive to embrace and drive change in our industry which allows us to keep our clients relevant.</p>
-                        </div>
-                        <!-- End Icon Blocks -->
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="about-card">
+                            <i class="icon-social-youtube icon"></i>
+                            <h3>Channel Content</h3>
+                            <p>Visual support for YouTube, social posts, explainers, tutorials, and recurring content series.</p>
+                            <ul class="about-list">
+                                <li>Openers and outros</li>
+                                <li>Background footage</li>
+                                <li>Reusable media kits</li>
+                            </ul>
+                        </article>
                     </div>
                 </div>
-                <!-- End Icon Blocks -->
+            </div>
+        </section>
+        <!-- End Section Content -->
 
-                <div class="text-center">
-                    <p class="g-color-gray-light-v2 g-mb-35">Our portfolio includes premium animated backgrounds, infographic animations, presentation templates, advertising design elements, and motion graphics that empower storytellers and brands to make an impact.</p>
-                    <a class="btn btn-md text-uppercase u-btn-primary rounded-0 g-px-15" href="#">Learn more</a>
+        <!-- Section Content -->
+        <section id="processes" class="about-section about-section-dark">
+            <div class="container">
+                <div class="text-center mx-auto g-width-780">
+                    <span class="about-kicker">Work process</span>
+                    <h2 class="about-heading">A clear workflow keeps every project usable and on brand.</h2>
+                    <p class="about-copy">Whether we are preparing stock footage or custom motion graphics, the process stays practical: define the use case, design the system, animate with restraint, and deliver files that are easy to publish.</p>
+                </div>
+
+                <div class="about-process">
+                    <article class="about-step">
+                        <h3>Creative Brief</h3>
+                        <p>We clarify the audience, platform, format, duration, and required visual direction before production begins.</p>
+                    </article>
+                    <article class="about-step">
+                        <h3>Design Direction</h3>
+                        <p>Layouts, color, hierarchy, and motion rhythm are planned so the final animation feels intentional.</p>
+                    </article>
+                    <article class="about-step">
+                        <h3>Animation Build</h3>
+                        <p>Assets are animated, rendered, checked for timing, and prepared for stock or client delivery.</p>
+                    </article>
+                    <article class="about-step">
+                        <h3>Delivery</h3>
+                        <p>Final files are exported in the requested format with practical naming and revision support when needed.</p>
+                    </article>
+                </div>
+
+                <div class="text-center g-mt-50">
+                    <a class="about-btn" href="contact-us.html">Discuss a Project</a>
                 </div>
             </div>
         </section>
         <!-- End Section Content -->
 
         <!-- Pricing Table -->
-        <section class="g-pt-100 g-pb-80">
+        <section class="about-section">
             <div class="container">
-                <div class="container text-center g-width-780 g-mb-60">
-                    <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-45">
-                        <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-1 g-color-primary g-mb-20">Our offers</h4>
-                        <h1 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-mb-minus-10">Best offers for you</h1>
-                    </div>
-
-                    <p class="mb-0">Find the suitable package and submit your information</p>
+                <div class="text-center mx-auto g-width-780 g-mb-60">
+                    <span class="about-kicker">Our offers</span>
+                    <h2 class="about-heading">Flexible packages for custom animation work.</h2>
+                    <p class="about-copy">Choose a starting point and send the project details. Final pricing depends on complexity, duration, source files, licensing, and delivery requirements.</p>
                 </div>
 
-                <div class="row no-gutters">
-                    <div class="col-md-4 g-mb-30 g-mb-0--md">
-                        <!-- Article -->
-                        <article class="text-center g-brd-around g-color-gray g-brd-gray-light-v5 g-pa-10">
-                            <div class="g-bg-gray-light-v5 g-pa-30">
-                                <!-- Article Title -->
-                                <h4 class="text-uppercase h5 g-color-gray-dark-v3 g-font-weight-500 g-mb-10">Starter</h4>
-                                <!-- End Article Title -->
-                                <em class="g-font-style-normal">Find the suitable package and submit your information</em>
-
-                                <hr class="g-brd-gray-light-v3 g-my-10">
-
-                                <div class="g-color-primary g-my-20">
-                                    <strong class="d-block g-font-size-30 g-line-height-1_2">$100.00</strong>
-                                    per video
-                                </div>
-
-                                <hr class="g-brd-gray-light-v3 g-mt-10 mb-0">
-
-                                <ul class="list-unstyled g-mb-25">
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Only video file</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Fastest delivery</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">1 time revision</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">24x7 Support</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">No extra Edit</li>
-                                </ul>
-                                <a class="btn u-btn-primary" href="#modal21" data-modal-target="#modal21" data-modal-effect="push">Order Now</a>
-                                <!-- Demo modal window -->
-                                <div id="modal21" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">
-                                    <button type="button" class="close" onclick="Custombox.modal.close();">
-                                        <i class="hs-icon hs-icon-close"></i>
-                                    </button>
-                                    <h4 class="h6 g-font-weight-700 g-mb-20">Place an order</h4>
-                                    <!-- Text Input with Right Appended Icon -->
-                                    <form action="https://formspree.io/f/mreagqoe" method="POST">
-                                        <div class="form-group g-mb-20">
-                                            <label class="g-mb-10">Name</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Full name">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-equalizer"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Service type</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Mention your wanted services">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Mobile Number</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="message" type="text" placeholder="Mobile Number with country code">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Email</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="email" type="text" placeholder="email@example.com">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <button type="submit" class="btn btn-md u-btn-primary rounded-0">Submit</button>
-                                        </div>
-                                    </form>
-                                    <!-- End Text Input with Right Appended Icon -->
-
-                                </div>
-                                <!-- End Demo modal window -->
-                            </div>
+                <div class="row align-items-stretch">
+                    <div class="col-md-4 g-mb-30">
+                        <article class="about-package">
+                            <h3>Starter</h3>
+                            <p>Best for simple edits, short video customization, or one finished motion asset.</p>
+                            <div class="about-price">$100</div>
+                            <span>starting from</span>
+                            <ul class="about-list">
+                                <li>Final video export</li>
+                                <li>Basic text and color edits</li>
+                                <li>One revision round</li>
+                                <li>Fast delivery window</li>
+                            </ul>
+                            <a class="about-btn g-mt-25" href="contact-us.html">Request Quote</a>
                         </article>
-                        <!-- End Article -->
                     </div>
 
-                    <div class="col-md-4 g-mb-30 g-mb-0--md">
-                        <!-- Article -->
-                        <article class="text-center g-brd-around g-color-gray g-brd-gray-light-v5 g-pa-10 g-mt-minus-20">
-                            <div class="g-bg-gray-light-v5 g-py-50 g-px-30">
-                                <!-- Article Title -->
-                                <h4 class="text-uppercase h5 g-color-gray-dark-v3 g-font-weight-500 g-mb-10">Advanced</h4>
-                                <!-- End Article Title -->
-                                <em class="g-font-style-normal">Find the suitable package and submit your information</em>
-
-                                <hr class="g-brd-gray-light-v3 g-my-10">
-
-                                <div class="g-color-primary g-my-20">
-                                    <strong class="d-block g-font-size-30 g-line-height-1_2">$200.00</strong>
-                                    per video
-                                </div>
-
-                                <hr class="g-brd-gray-light-v3 g-mt-10 mb-0">
-
-                                <ul class="list-unstyled g-mb-25">
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Video template file</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Fastest delivery</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">2 time revision</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">24x7 Support</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Future Edit</li>
-                                </ul>
-                                <a class="btn u-btn-primary" href="#modal20" data-modal-target="#modal20" data-modal-effect="push">Order Now</a>
-                                <!-- Demo modal window -->
-                                <div id="modal20" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">
-                                    <button type="button" class="close" onclick="Custombox.modal.close();">
-                                        <i class="hs-icon hs-icon-close"></i>
-                                    </button>
-                                    <h4 class="h6 g-font-weight-700 g-mb-20">Place an order</h4>
-                                    <!-- Text Input with Right Appended Icon -->
-                                    <form action="https://formspree.io/f/mreagqoe" method="POST">
-                                        <div class="form-group g-mb-20">
-                                            <label class="g-mb-10">Name</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Full name">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-equalizer"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Service type</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Mention your wanted services">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Mobile Number</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="message" type="text" placeholder="Mobile Number with country code">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Email</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="email" type="text" placeholder="email@example.com">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <button type="submit" class="btn btn-md u-btn-primary rounded-0">Submit</button>
-                                        </div>
-                                    </form>
-                                    <!-- End Text Input with Right Appended Icon -->
-                                </div>
+                    <div class="col-md-4 g-mb-30">
+                        <article class="about-package about-package-featured">
+                            <h3>Advanced</h3>
+                            <p>For branded templates, product promo edits, presentation motion, and campaign visuals.</p>
+                            <div class="about-price">$200</div>
+                            <span>starting from</span>
+                            <ul class="about-list">
+                                <li>Editable template support</li>
+                                <li>Custom graphic adjustments</li>
+                                <li>Two revision rounds</li>
+                                <li>Delivery guidance included</li>
+                            </ul>
+                            <a class="about-btn g-mt-25" href="contact-us.html">Request Quote</a>
                         </article>
-                        <!-- End Article -->
                     </div>
 
-                    <div class="col-md-4">
-                        <!-- Article -->
-                        <article class="text-center g-brd-around g-color-gray g-brd-gray-light-v5 g-pa-10">
-                            <div class="g-bg-gray-light-v5 g-pa-30">
-                                <!-- Article Title -->
-                                <h4 class="text-uppercase h5 g-color-gray-dark-v3 g-font-weight-500 g-mb-10">Professional</h4>
-                                <!-- End Article Title -->
-                                <em class="g-font-style-normal">Get the full package and submit your information</em>
-
-                                <hr class="g-brd-gray-light-v3 g-my-10">
-
-                                <div class="g-color-primary g-my-20">
-                                    <strong class="d-block g-font-size-30 g-line-height-1_2">$500.00</strong>
-                                    per video
-                                </div>
-
-                                <hr class="g-brd-gray-light-v3 g-mt-10 mb-0">
-
-                                <ul class="list-unstyled g-mb-25">
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Get template file</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Fastest delivery</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">3 time revision</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">24x7 Support</li>
-                                    <li class="g-brd-bottom g-brd-gray-light-v3 g-py-12">Future Edit</li>
-                                </ul>
-
-                                <a class="btn u-btn-primary" href="#modal19" data-modal-target="#modal19" data-modal-effect="push">Order Now</a>
-                                <!-- Demo modal window -->
-                                <div id="modal19" class="text-left g-max-width-600 g-bg-white g-overflow-y-auto g-pa-20" style="display: none;">
-                                    <button type="button" class="close" onclick="Custombox.modal.close();">
-                                        <i class="hs-icon hs-icon-close"></i>
-                                    </button>
-                                    <h4 class="h6 g-font-weight-700 g-mb-20">Place an order</h4>
-                                    <!-- Text Input with Right Appended Icon -->
-                                    <form action="https://formspree.io/f/mreagqoe" method="POST">
-                                        <div class="form-group g-mb-20">
-                                            <label class="g-mb-10">Name</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Full name">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-equalizer"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Service type</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" type="text" name="message" placeholder="Mention your wanted services">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Mobile Number</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="message" type="text" placeholder="Mobile Number with country code">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <label class="g-mb-10">Email</label>
-                                            <div class="input-group g-brd-primary--focus">
-                                                <div class="input-group-addon d-flex align-items-center g-bg-white g-color-gray-light-v1 rounded-0">
-                                                    <i class="icon-user-follow"></i>
-                                                </div>
-                                                <input class="form-control form-control-md rounded-0" name="email" type="text" placeholder="email@example.com">
-                                                <div class="input-group-addon rounded-0 d-flex align-items-center g-color-gray-light-v1 g-bg-white">
-                                                    <i class="icon-lock"></i>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <button type="submit" class="btn btn-md u-btn-primary rounded-0">Submit</button>
-                                        </div>
-                                    </form>
-                                    <!-- End Text Input with Right Appended Icon -->
-                                </div>
+                    <div class="col-md-4 g-mb-30">
+                        <article class="about-package">
+                            <h3>Professional</h3>
+                            <p>For full visual packages, larger animation sets, and source-file handoff.</p>
+                            <div class="about-price">$500</div>
+                            <span>starting from</span>
+                            <ul class="about-list">
+                                <li>Custom animation package</li>
+                                <li>Template/source-file delivery</li>
+                                <li>Three revision rounds</li>
+                                <li>Future edit support</li>
+                            </ul>
+                            <a class="about-btn g-mt-25" href="contact-us.html">Request Quote</a>
                         </article>
-                        <!-- End Article -->
                     </div>
                 </div>
             </div>
         </section>
         <!-- End Pricing Table -->
         <!-- contact  -->
-        <div id="contact" class="text-center g-color-gray-light-v2 g-theme-bg-blue-dark-v1 g-py-80">
-            <div class="container g-width-780 g-mb-60">
-                <div class="text-uppercase u-heading-v2-4--bottom g-brd-primary g-mb-45">
-                    <h4 class="h6 g-font-weight-800 g-font-size-12 g-letter-spacing-1 g-color-primary g-mb-20">Contact</h4>
-                    <h1 class="h1 u-heading-v2__title g-line-height-1_3 g-font-weight-600 g-font-size-40 g-color-gray-light-v2 g-mb-minus-10">Our contacts</h1>
-                </div>
-
-                <p class="g-color-gray-light-v2 mb-0">Call us for more details or add on WhatsApp </p>
+        <div id="contact" class="about-section about-contact text-center">
+            <div class="container g-width-780 g-mb-50">
+                <span class="about-kicker">Contact</span>
+                <h2 class="about-heading">Ready to plan a motion graphics project?</h2>
+                <p class="about-copy mb-0">Send the service type, target platform, preferred duration, reference style, and delivery deadline. We will review the scope and reply with the best production path.</p>
             </div>
 
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-3 g-px-15 g-py-30 g-py-0--md">
-                        <i class="icon-globe d-inline-block g-font-size-50 g-color-primary g-mb-20"></i>
-                        <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-mb-5">Address</h3>
-                        <strong class="g-font-size-default g-color-white">Dhanmondi 32, Dhaka, 1207</strong>
+                    <div class="col-sm-3 about-contact-item">
+                        <i class="icon-globe d-inline-block"></i>
+                        <h3>Address</h3>
+                        <strong>Dhanmondi 32, Dhaka, 1207</strong>
                     </div>
 
-                    <div class="col-sm-3 g-brd-top g-brd-top-none--md g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md">
-                        <i class="icon-call-in d-inline-block g-font-size-50 g-color-primary g-mb-20"></i>
-                        <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-mb-5">Phone number</h3>
-                        <strong class="g-font-size-default g-color-white">+880 1521211774</strong>
+                    <div class="col-sm-3 about-contact-item">
+                        <i class="icon-call-in d-inline-block"></i>
+                        <h3>Phone</h3>
+                        <strong>+880 1521211774</strong>
                     </div>
-                    <div class="col-sm-3 g-brd-top g-brd-top-none--md g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md">
-                        <i class="icon-envelope d-inline-block g-font-size-50 g-color-primary g-mb-20"></i>
-                        <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-mb-5">Email</h3>
-                        <a class="g-font-size-default g-color-white" href="mailto:spurno@icloud.com"><strong>spurno@icloud.com</strong></a>
+                    <div class="col-sm-3 about-contact-item">
+                        <i class="icon-envelope d-inline-block"></i>
+                        <h3>Email</h3>
+                        <a href="mailto:spurno@icloud.com"><strong>spurno@icloud.com</strong></a>
                     </div>
-                    <div class="col-sm-3 g-brd-top g-brd-top-none--md g-brd-left--md g-brd-primary g-px-15 g-py-30 g-py-0--md">
-                        <i class="icon-earphones-alt d-inline-block g-font-size-50 g-color-primary g-mb-20"></i>
-                        <h3 class="text-uppercase g-font-size-default g-color-white-opacity-0_5 g-mb-5">WhatsApp</h3>
-                        <strong class="g-font-size-default g-color-white">+880 1521211774</strong>
+                    <div class="col-sm-3 about-contact-item">
+                        <i class="icon-earphones-alt d-inline-block"></i>
+                        <h3>WhatsApp</h3>
+                        <strong>+880 1521211774</strong>
                     </div>
                 </div>
             </div>
