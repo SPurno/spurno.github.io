@@ -151,31 +151,194 @@
   }
 }
 
-/* Microsoft-like circular loader */
-.ms-loader-overlay{
-  position:fixed;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:rgba(255,255,255,0.92);
-  z-index:99999;
+/* Site loading screen */
+.ms-loader-overlay,
+.spurno-loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
 }
-.ms-loader{
-  width:72px;
-  height:72px;
-  display:inline-block;
-  position:relative;
+
+.ms-loader-overlay {
+  background: rgba(255, 255, 255, 0.96);
+  z-index: 100000;
 }
-.ms-loader-ring{
-  box-sizing:border-box;
-  width:100%;
-  height:100%;
-  border-radius:50%;
-  border:8px solid rgba(0,0,0,0.12);
-  border-top-color:#0078D4; /* Microsoft blue */
-  animation:ms-spin 1s linear infinite;
+
+.spurno-loader {
+  --spurno-loader-angle: 0deg;
+  --spurno-loader-ring-size: clamp(142px, 28vw, 242px);
+  --spurno-loader-ring-y: calc(50% - clamp(38px, 7vw, 70px));
+  flex-direction: column;
+  text-align: center;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.96) 0 58%, transparent 59%) center var(--spurno-loader-ring-y) / var(--spurno-loader-ring-size) var(--spurno-loader-ring-size) no-repeat,
+    conic-gradient(from var(--spurno-loader-angle), transparent 0 12%, #00a8ff 14% 26%, transparent 28% 48%, #ff3d71 50% 61%, transparent 63% 77%, #26c281 79% 90%, transparent 92% 100%) center var(--spurno-loader-ring-y) / var(--spurno-loader-ring-size) var(--spurno-loader-ring-size) no-repeat,
+    rgba(255, 255, 255, 0.96);
+  z-index: 99999;
+  animation: spurno-loader-ring-shift 1.2s linear infinite;
 }
-@keyframes ms-spin{ to{ transform:rotate(360deg); } }
-.ms-loader-dot{ position:absolute; width:14px; height:14px; background:#0078D4; border-radius:50%; top:50%; left:50%; transform:translate(-50%,-50%); opacity:0.0; }
-.ms-loader-overlay.hidden{ opacity:0; pointer-events:none; transition:opacity .4s ease; }
+
+.ms-loader {
+  width: min(86vw, 560px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.ms-loader-logo-wrap {
+  position: relative;
+  width: clamp(142px, 28vw, 242px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.ms-loader-logo-wrap::before,
+.ms-loader-logo-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ms-loader-logo-wrap::before {
+  background:
+    conic-gradient(from 90deg, transparent 0 12%, #00a8ff 14% 26%, transparent 28% 48%, #ff3d71 50% 61%, transparent 63% 77%, #26c281 79% 90%, transparent 92% 100%);
+  animation: spurno-loader-orbit 1.2s linear infinite;
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
+}
+
+.ms-loader-logo-wrap::after {
+  inset: 12%;
+  border: 2px solid rgba(17, 24, 39, 0.12);
+  border-top-color: #00a8ff;
+  border-right-color: #ff3d71;
+  animation: spurno-loader-counter-orbit 1.8s linear infinite;
+}
+
+.ms-loader-logo,
+.spurno-loader::before {
+  width: clamp(110px, 22vw, 190px);
+  height: auto;
+  display: block;
+}
+
+.ms-loader-logo {
+  position: relative;
+  z-index: 1;
+  animation: spurno-logo-motion 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.18));
+}
+
+.ms-loader-text,
+.spurno-loader::after {
+  max-width: min(86vw, 760px);
+  margin-top: clamp(16px, 3vw, 26px);
+  color: #111827;
+  font-size: clamp(1.35rem, 4.8vw, 3rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.spurno-loader::before {
+  content: "";
+  background: url("../../images/spurno-logo.png") center / contain no-repeat;
+  height: clamp(72px, 14vw, 122px);
+  animation: spurno-logo-motion 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.18));
+}
+
+.spurno-loader::after {
+  content: "Welcome to SPurno Animation Studio.";
+}
+
+.ms-loader-overlay.hidden,
+body.loaded .spurno-loader {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s ease;
+}
+
+@keyframes spurno-logo-motion {
+  0%, 100% {
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.05) rotate(1.5deg);
+  }
+}
+
+@keyframes spurno-loader-orbit {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spurno-loader-counter-orbit {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@property --spurno-loader-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes spurno-loader-ring-shift {
+  to {
+    --spurno-loader-angle: 360deg;
+  }
+}
+
+.spurno-seo-article {
+  padding: 24px;
+  border-left: 4px solid #f7931e;
+  background: #f8fafc;
+}
+
+.spurno-seo-article h2 {
+  margin-bottom: 12px;
+  color: #111827;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.spurno-seo-article p {
+  color: #374151;
+}
+
+.spurno-seo-article ul {
+  margin-bottom: 0;
+  padding-left: 20px;
+}
+
+.spurno-seo-article a,
+.watch-seo-links a {
+  color: #d97808;
+  font-weight: 700;
+}
+
+.watch-seo-links {
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(17, 24, 39, 0.12);
+}
+
+.watch-seo-links h2 {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.watch-seo-links a {
+  display: inline-block;
+  margin: 8px 14px 0 0;
+}

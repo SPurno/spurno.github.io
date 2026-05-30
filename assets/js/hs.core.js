@@ -246,21 +246,26 @@
   };
 
 (function(){
-  // Insert Microsoft-like circular loader and auto-remove after 3s
+  // Insert the SPurno loading screen and auto-remove after 3s.
   function insertMsLoader(){
     if(document.getElementById('ms-loader-overlay')) return;
     var overlay = document.createElement('div');
     overlay.id = 'ms-loader-overlay';
     overlay.className = 'ms-loader-overlay';
+    overlay.setAttribute('role', 'status');
+    overlay.setAttribute('aria-live', 'polite');
     var loader = document.createElement('div');
     loader.className = 'ms-loader';
-    var ring = document.createElement('div');
-    ring.className = 'ms-loader-ring';
-    loader.appendChild(ring);
-    // optional center dot
-    var dot = document.createElement('div');
-    dot.className = 'ms-loader-dot';
-    loader.appendChild(dot);
+    var logo = document.createElement('img');
+    var scriptSrc = document.currentScript && document.currentScript.src ? document.currentScript.src : 'assets/js/hs.core.js';
+    logo.className = 'ms-loader-logo';
+    logo.src = new URL('../../images/spurno-logo.png', scriptSrc).href;
+    logo.alt = 'SPurno Animation Studio';
+    loader.appendChild(logo);
+    var text = document.createElement('div');
+    text.className = 'ms-loader-text';
+    text.textContent = 'Welcome to SPurno Animation Studio.';
+    loader.appendChild(text);
     overlay.appendChild(loader);
     if(document.body){
       document.body.insertAdjacentElement('afterbegin', overlay);
@@ -277,8 +282,8 @@
   if(document.readyState === 'loading'){
     document.addEventListener('DOMContentLoaded', insertMsLoader);
   } else { insertMsLoader(); }
-  // Hide 3 seconds after window load; fallback at 6s
-  window.addEventListener('load', function(){ setTimeout(hideMsLoader, 3000); });
+  // Hide 5 seconds after window load; fallback at 6s
+  window.addEventListener('load', function(){ setTimeout(hideMsLoader, 5000); });
   setTimeout(hideMsLoader, 6000);
 })();
 

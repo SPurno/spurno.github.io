@@ -1,11 +1,11 @@
 ﻿<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
-  <title id="title">Shop Now Button Animation article hero</title>
-  <desc id="desc">Learn how to use shop now button animation in ecommerce videos, product promos, social ads, animated banners, and motion graphics templates.</desc>
+  <title id="title">Pitch Deck Templates article hero</title>
+  <desc id="desc">Guide to pitch deck templates for startup presentations, product demos, investor slides, animated explainers, and clean motion graphics layouts.</desc>
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#111827"/>
-      <stop offset="0.52" stop-color="#22c55e"/>
-      <stop offset="1" stop-color="#0ea5e9"/>
+      <stop offset="0.52" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
     </linearGradient>
     <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#ffffff" stop-opacity="0.96"/>
@@ -26,15 +26,15 @@
     <path d="M78 272 H302"/>
   </g>
   <rect x="90" y="96" width="1020" height="438" rx="34" fill="url(#panel)" filter="url(#shadow)"/>
-  <rect x="132" y="132" width="300" height="28" rx="14" fill="#22c55e" opacity="0.18"/>
+  <rect x="132" y="132" width="300" height="28" rx="14" fill="#2563eb" opacity="0.18"/>
   <rect x="132" y="178" width="420" height="34" rx="17" fill="#0f172a" opacity="0.10"/>
   <rect x="132" y="236" width="514" height="18" rx="9" fill="#475569" opacity="0.18"/>
   <rect x="132" y="268" width="468" height="18" rx="9" fill="#475569" opacity="0.14"/>
-  <text x="132" y="357" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" fill="#111827">Shop Now Button Animation</text>
-  <text x="134" y="410" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="500" fill="#475569">Animated calls to action for ecommerce video ads</text>
+  <text x="132" y="357" font-family="Inter, Arial, sans-serif" font-size="58" font-weight="800" fill="#111827">Pitch Deck Templates</text>
+  <text x="134" y="410" font-family="Inter, Arial, sans-serif" font-size="25" font-weight="500" fill="#475569">Startup slides, investor decks, and product stories</text>
   <g transform="translate(760 158)">
-    <rect x="24" y="86" width="292" height="96" rx="48" fill="#0f172a"/><rect x="42" y="104" width="256" height="60" rx="30" fill="#22c55e"/><text x="82" y="143" font-family="Arial" font-size="28" font-weight="800" fill="#fff">SHOP NOW</text><path d="M246 134 l22 0 m-10 -10 l10 10 -10 10" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <rect x="30" y="34" width="230" height="300" rx="18" fill="#0f172a"/><rect x="62" y="70" width="166" height="28" rx="14" fill="#60a5fa"/><rect x="62" y="124" width="96" height="96" rx="16" fill="#f97316"/><path d="M178 220 l58 -76 l58 76 Z" fill="#22c55e"/><rect x="62" y="252" width="168" height="18" rx="9" fill="#fff" opacity="0.72"/><rect x="62" y="282" width="132" height="18" rx="9" fill="#fff" opacity="0.46"/>
   </g>
-  <rect x="132" y="456" width="210" height="48" rx="24" fill="#22c55e"/>
+  <rect x="132" y="456" width="210" height="48" rx="24" fill="#2563eb"/>
   <text x="164" y="488" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">SPURNO ARTICLE</text>
 </svg>
