@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="420" viewBox="0 0 760 420" role="img" aria-labelledby="title desc">
+  <title id="title">Contact response workflow illustration</title>
+  <desc id="desc">A clean workflow showing inquiry, review, quote, and production handoff.</desc>
+  <defs>
+    <linearGradient id="panel" x1="86" y1="54" x2="674" y2="366" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edf3fa"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="144" y1="116" x2="616" y2="304" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffbd69"/>
+      <stop offset="1" stop-color="#f7931e"/>
+    </linearGradient>
+  </defs>
+  <rect width="760" height="420" rx="30" fill="#101d2f"/>
+  <path d="M80 318c40-104 126-172 234-193 150-29 290 28 366 136v87H80z" fill="#1c314f"/>
+  <rect x="72" y="58" width="616" height="284" rx="24" fill="url(#panel)"/>
+  <path d="M150 222h460" stroke="#d6e0ec" stroke-width="8" stroke-linecap="round"/>
+  <path d="M150 222h306" stroke="url(#orange)" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#ffffff" stroke="#f7931e" stroke-width="8">
+    <circle cx="150" cy="222" r="34"/>
+    <circle cx="302" cy="222" r="34"/>
+    <circle cx="456" cy="222" r="34"/>
+    <circle cx="610" cy="222" r="34"/>
+  </g>
+  <path d="M136 222l10 10 20-24" fill="none" stroke="#13243a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M288 222l10 10 20-24" fill="none" stroke="#13243a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M442 222l10 10 20-24" fill="none" stroke="#13243a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M594 212h32M594 226h22" stroke="#13243a" stroke-width="8" stroke-linecap="round"/>
+  <g fill="#13243a" font-family="Arial, sans-serif" font-weight="700" font-size="18">
+    <text x="112" y="292">Inquiry</text>
+    <text x="270" y="292">Review</text>
+    <text x="432" y="292">Quote</text>
+    <text x="568" y="292">Start</text>
+  </g>
+  <rect x="134" y="104" width="172" height="18" rx="9" fill="#13243a"/>
+  <rect x="134" y="138" width="314" height="12" rx="6" fill="#b9c7d5"/>
+  <rect x="134" y="164" width="236" height="12" rx="6" fill="#cbd6e5"/>
+  <rect x="514" y="100" width="86" height="86" rx="20" fill="url(#orange)"/>
+  <path d="M540 143h34M557 126v34" stroke="#13243a" stroke-width="10" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="356" viewBox="0 0 940 356" role="img" aria-labelledby="title desc">
+  <title id="title">SPurno Animation Studio logo</title>
+  <desc id="desc">Orange SPurno Animation Studio wordmark with a vertical studio badge.</desc>
+  <defs>
+    <style>
+      .orange{fill:#f7931e}
+      .script{font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;font-weight:700}
+      .sans{font-family:"Quicksand","Montserrat","Arial",sans-serif;font-weight:800}
+    </style>
+  </defs>
+  <rect x="1" y="2" width="120" height="352" rx="0" ry="0" fill="#f7931e"/>
+  <path d="M121 2v352H1V2h87c18 0 33 15 33 33v286c0 18-15 33-33 33H1V2z" fill="#f7931e"/>
+  <g transform="translate(77 31) rotate(90)">
+    <text class="sans" x="0" y="0" fill="#fff" font-size="52" letter-spacing="20">STUDIO</text>
+  </g>
+  <text class="script" x="154" y="174" font-size="172" fill="#fff" stroke="#f7931e" stroke-width="9" stroke-linejoin="round">SP</text>
+  <text class="script orange" x="456" y="178" font-size="140">urno</text>
+  <text class="sans orange" x="150" y="299" font-size="67" letter-spacing="48">animation</text>
+</svg>

@@ -246,7 +246,7 @@
   };
 
 (function(){
-  // Insert the SPurno loading screen and auto-remove after 3s.
+  // Insert the SPurno loading screen and auto-remove after page load.
   function insertMsLoader(){
     if(document.getElementById('ms-loader-overlay')) return;
     var overlay = document.createElement('div');
@@ -256,15 +256,18 @@
     overlay.setAttribute('aria-live', 'polite');
     var loader = document.createElement('div');
     loader.className = 'ms-loader';
+    var logoWrap = document.createElement('div');
+    logoWrap.className = 'ms-loader-logo-wrap';
     var logo = document.createElement('img');
     var scriptSrc = document.currentScript && document.currentScript.src ? document.currentScript.src : 'assets/js/hs.core.js';
     logo.className = 'ms-loader-logo';
-    logo.src = new URL('../../images/spurno-logo.png', scriptSrc).href;
+    logo.src = new URL('../../images/spurno-logo.svg', scriptSrc).href;
     logo.alt = 'SPurno Animation Studio';
-    loader.appendChild(logo);
+    logoWrap.appendChild(logo);
+    loader.appendChild(logoWrap);
     var text = document.createElement('div');
     text.className = 'ms-loader-text';
-    text.textContent = 'Welcome to SPurno Animation Studio.';
+    text.textContent = 'Welcome';
     loader.appendChild(text);
     overlay.appendChild(loader);
     if(document.body){

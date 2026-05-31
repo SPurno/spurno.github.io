@@ -168,21 +168,20 @@
 }
 
 .spurno-loader {
-  --spurno-loader-angle: 0deg;
-  --spurno-loader-ring-size: clamp(142px, 28vw, 242px);
-  --spurno-loader-ring-y: calc(50% - clamp(38px, 7vw, 70px));
+  --spurno-loader-orange: #f7931e;
+  --spurno-loader-mark-y: calc(50% - 34px);
   flex-direction: column;
   text-align: center;
   background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.96) 0 58%, transparent 59%) center var(--spurno-loader-ring-y) / var(--spurno-loader-ring-size) var(--spurno-loader-ring-size) no-repeat,
-    conic-gradient(from var(--spurno-loader-angle), transparent 0 12%, #00a8ff 14% 26%, transparent 28% 48%, #ff3d71 50% 61%, transparent 63% 77%, #26c281 79% 90%, transparent 92% 100%) center var(--spurno-loader-ring-y) / var(--spurno-loader-ring-size) var(--spurno-loader-ring-size) no-repeat,
+    radial-gradient(circle at center var(--spurno-loader-mark-y), rgba(247, 147, 30, 0.16) 0 1px, rgba(247, 147, 30, 0.08) 2px 58px, transparent 92px),
+    linear-gradient(90deg, transparent, rgba(247, 147, 30, 0.8), transparent) center calc(50% + 72px) / clamp(128px, 18vw, 190px) 1px no-repeat,
     rgba(255, 255, 255, 0.96);
   z-index: 99999;
-  animation: spurno-loader-ring-shift 1.2s linear infinite;
+  animation: spurno-loader-breathe 2.4s ease-in-out infinite;
 }
 
 .ms-loader {
-  width: min(86vw, 560px);
+  width: min(86vw, 420px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -191,8 +190,8 @@
 
 .ms-loader-logo-wrap {
   position: relative;
-  width: clamp(142px, 28vw, 242px);
-  aspect-ratio: 1;
+  width: clamp(128px, 20vw, 188px);
+  aspect-ratio: 2.64;
   display: grid;
   place-items: center;
 }
@@ -201,30 +200,28 @@
 .ms-loader-logo-wrap::after {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: 50%;
   pointer-events: none;
 }
 
 .ms-loader-logo-wrap::before {
-  background:
-    conic-gradient(from 90deg, transparent 0 12%, #00a8ff 14% 26%, transparent 28% 48%, #ff3d71 50% 61%, transparent 63% 77%, #26c281 79% 90%, transparent 92% 100%);
-  animation: spurno-loader-orbit 1.2s linear infinite;
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
-          mask: radial-gradient(farthest-side, transparent calc(100% - 12px), #000 calc(100% - 11px));
+  inset: -18px -28px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(247, 147, 30, 0.16), transparent 68%);
+  animation: spurno-loader-glow 2.4s ease-in-out infinite;
 }
 
 .ms-loader-logo-wrap::after {
-  inset: 12%;
-  border: 2px solid rgba(17, 24, 39, 0.12);
-  border-top-color: #00a8ff;
-  border-right-color: #ff3d71;
-  animation: spurno-loader-counter-orbit 1.8s linear infinite;
+  left: 8%;
+  right: 8%;
+  bottom: -18px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(247, 147, 30, 0.9), transparent);
+  animation: spurno-loader-line 1.8s ease-in-out infinite;
 }
 
 .ms-loader-logo,
 .spurno-loader::before {
-  width: clamp(110px, 22vw, 190px);
+  width: clamp(126px, 20vw, 184px);
   height: auto;
   display: block;
 }
@@ -232,31 +229,34 @@
 .ms-loader-logo {
   position: relative;
   z-index: 1;
-  animation: spurno-logo-motion 1.4s ease-in-out infinite;
-  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.18));
+  animation: spurno-logo-soft-lift 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(247, 147, 30, 0.18));
 }
 
 .ms-loader-text,
 .spurno-loader::after {
-  max-width: min(86vw, 760px);
-  margin-top: clamp(16px, 3vw, 26px);
-  color: #111827;
-  font-size: clamp(1.35rem, 4.8vw, 3rem);
-  font-weight: 800;
-  line-height: 1.18;
+  max-width: min(86vw, 520px);
+  margin-top: clamp(14px, 2.5vw, 22px);
+  color: #142033;
+  font-size: clamp(0.92rem, 2.4vw, 1.35rem);
+  font-weight: 300;
+  line-height: 1.35;
   letter-spacing: 0;
 }
 
 .spurno-loader::before {
   content: "";
-  background: url("../../images/spurno-logo.png") center / contain no-repeat;
-  height: clamp(72px, 14vw, 122px);
-  animation: spurno-logo-motion 1.4s ease-in-out infinite;
-  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.18));
+  position: relative;
+  z-index: 1;
+  aspect-ratio: 940 / 356;
+  background: url("../../images/spurno-logo.svg") center / contain no-repeat;
+  animation: spurno-logo-soft-lift 2.2s ease-in-out infinite;
+  filter: drop-shadow(0 10px 18px rgba(247, 147, 30, 0.18));
 }
 
 .spurno-loader::after {
-  content: "Welcome to SPurno Animation Studio.";
+  content: "Welcome";
+  font-family: "Quicksand", "Helvetica Neue", Arial, sans-serif;
 }
 
 .ms-loader-overlay.hidden,
@@ -266,36 +266,55 @@ body.loaded .spurno-loader {
   transition: opacity .4s ease;
 }
 
-@keyframes spurno-logo-motion {
+@keyframes spurno-logo-soft-lift {
   0%, 100% {
-    transform: translateY(0) scale(1) rotate(0deg);
+    opacity: 0.88;
+    transform: translateY(0) scale(0.98);
   }
   50% {
-    transform: translateY(-8px) scale(1.05) rotate(1.5deg);
+    opacity: 1;
+    transform: translateY(-4px) scale(1);
   }
 }
 
-@keyframes spurno-loader-orbit {
-  to {
-    transform: rotate(360deg);
+@keyframes spurno-loader-breathe {
+  0%, 100% {
+    background-size: auto, clamp(128px, 18vw, 190px) 1px, auto;
+  }
+  50% {
+    background-size: auto, clamp(152px, 22vw, 230px) 1px, auto;
   }
 }
 
-@keyframes spurno-loader-counter-orbit {
-  to {
-    transform: rotate(-360deg);
+@keyframes spurno-loader-line {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scaleX(0.76);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
   }
 }
 
-@property --spurno-loader-angle {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
+@keyframes spurno-loader-glow {
+  0%, 100% {
+    opacity: 0.62;
+    transform: scale(0.92);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-@keyframes spurno-loader-ring-shift {
-  to {
-    --spurno-loader-angle: 360deg;
+@media (prefers-reduced-motion: reduce) {
+  .spurno-loader,
+  .spurno-loader::before,
+  .ms-loader-logo,
+  .ms-loader-logo-wrap::before,
+  .ms-loader-logo-wrap::after {
+    animation: none;
   }
 }
 

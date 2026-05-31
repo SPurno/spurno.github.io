@@ -68,10 +68,390 @@
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/css/spurno.css">
+    <style>
+        .contact-page {
+            --contact-ink: #142033;
+            --contact-muted: #5d6878;
+            --contact-line: #e6ebf2;
+            --contact-soft: #f6f9fc;
+            --contact-deep: #101d2f;
+            --contact-accent: #f7931e;
+            color: var(--contact-ink);
+            background: #ffffff;
+        }
+
+        .contact-hero {
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            background:
+                linear-gradient(90deg, rgba(10, 20, 36, .92), rgba(10, 20, 36, .72) 50%, rgba(10, 20, 36, .28)),
+                url("images/spurno-promo-new-video-animation.jpg") center / cover no-repeat;
+            color: #ffffff;
+            padding: 120px 0 84px;
+        }
+
+        .contact-eyebrow,
+        .contact-kicker {
+            color: var(--contact-accent);
+            display: inline-block;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .16em;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+        }
+
+        .contact-title {
+            color: inherit;
+            font-size: clamp(2.4rem, 5.5vw, 5rem);
+            font-weight: 800;
+            letter-spacing: 0;
+            line-height: 1;
+            margin-bottom: 24px;
+            max-width: 900px;
+        }
+
+        .contact-lead {
+            color: rgba(255, 255, 255, .86);
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.75;
+            max-width: 720px;
+        }
+
+        .contact-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 32px;
+        }
+
+        .contact-btn,
+        .contact-btn-outline {
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            min-height: 48px;
+            padding: 13px 22px;
+            text-transform: uppercase;
+        }
+
+        .contact-btn {
+            background: var(--contact-accent);
+            border: 0;
+            color: #111827;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover,
+        .contact-btn:focus {
+            background: #ffad45;
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .contact-btn-outline {
+            border: 1px solid rgba(255, 255, 255, .62);
+            color: #ffffff;
+        }
+
+        .contact-btn-outline:hover,
+        .contact-btn-outline:focus {
+            background: #ffffff;
+            color: var(--contact-ink);
+            text-decoration: none;
+        }
+
+        .contact-section {
+            padding: 92px 0;
+        }
+
+        .contact-section-soft {
+            background: var(--contact-soft);
+        }
+
+        .contact-section-dark {
+            background: var(--contact-deep);
+            color: #d8e1eb;
+        }
+
+        .contact-heading {
+            color: var(--contact-ink);
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: 0;
+            line-height: 1.08;
+            margin-bottom: 20px;
+        }
+
+        .contact-section-dark .contact-heading {
+            color: #ffffff;
+        }
+
+        .contact-copy {
+            color: var(--contact-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .contact-section-dark .contact-copy {
+            color: #b9c7d5;
+        }
+
+        .contact-card,
+        .contact-form-card,
+        .contact-detail-card {
+            background: #ffffff;
+            border: 1px solid var(--contact-line);
+            border-radius: 8px;
+            box-shadow: 0 16px 42px rgba(17, 24, 39, .07);
+        }
+
+        .contact-card {
+            height: 100%;
+            padding: 28px;
+        }
+
+        .contact-card i,
+        .contact-detail-card i {
+            color: var(--contact-accent);
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .contact-card h3,
+        .contact-detail-card h3,
+        .contact-form-card h2 {
+            color: var(--contact-ink);
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .contact-card h3,
+        .contact-detail-card h3 {
+            font-size: 1.12rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-card p,
+        .contact-detail-card p {
+            color: var(--contact-muted);
+            margin-bottom: 0;
+        }
+
+        .contact-card a,
+        .contact-detail-card a {
+            color: var(--contact-ink);
+            font-weight: 800;
+        }
+
+        .contact-visual {
+            display: block;
+            height: auto;
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .contact-form-card {
+            padding: 36px;
+        }
+
+        .contact-form-card .form-group label {
+            color: var(--contact-ink);
+            font-size: .82rem;
+            font-weight: 800;
+            letter-spacing: .08em;
+            margin-bottom: 9px;
+            text-transform: uppercase;
+        }
+
+        .contact-form-card .form-control,
+        .contact-form-card .custom-select {
+            border-color: #d9e2ee;
+            border-radius: 6px;
+            color: var(--contact-ink);
+            min-height: 48px;
+        }
+
+        .contact-form-card textarea.form-control {
+            min-height: 150px;
+        }
+
+        .contact-form-card .form-control:focus,
+        .contact-form-card .custom-select:focus {
+            border-color: var(--contact-accent);
+            box-shadow: 0 0 0 .2rem rgba(247, 147, 30, .15);
+        }
+
+        .contact-note {
+            color: var(--contact-muted);
+            font-size: .92rem;
+            line-height: 1.7;
+            margin-top: 16px;
+        }
+
+        .contact-consent {
+            align-items: flex-start;
+            display: flex;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .contact-consent input[type="checkbox"] {
+            accent-color: var(--contact-accent);
+            cursor: pointer;
+            flex: 0 0 auto;
+            height: 20px;
+            margin-top: 2px;
+            opacity: 1;
+            position: static;
+            width: 20px;
+            z-index: auto;
+        }
+
+        .contact-consent label {
+            color: var(--contact-ink);
+            cursor: pointer;
+            font-size: .98rem;
+            font-weight: 700;
+            letter-spacing: 0;
+            line-height: 1.55;
+            margin: 0;
+            text-transform: none;
+        }
+
+        .contact-detail-card {
+            height: 100%;
+            padding: 30px;
+        }
+
+        .contact-list {
+            list-style: none;
+            margin: 24px 0 0;
+            padding: 0;
+        }
+
+        .contact-list li {
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            color: #cbd6e5;
+            display: flex;
+            gap: 12px;
+            padding: 14px 0;
+        }
+
+        .contact-list li::before {
+            color: var(--contact-accent);
+            content: "\2713";
+            font-weight: 900;
+        }
+
+        .contact-step {
+            background: rgba(255, 255, 255, .06);
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 8px;
+            height: 100%;
+            padding: 28px;
+        }
+
+        .contact-step span {
+            color: var(--contact-accent);
+            display: block;
+            font-size: .86rem;
+            font-weight: 900;
+            letter-spacing: .12em;
+            margin-bottom: 18px;
+        }
+
+        .contact-step h3 {
+            color: #ffffff;
+            font-size: 1.12rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .contact-step p {
+            color: #b9c7d5;
+            margin-bottom: 0;
+        }
+
+        .contact-ad {
+            background: #ffffff;
+            border-top: 1px solid var(--contact-line);
+            padding: 24px 0;
+        }
+
+        .contact-footer {
+            background: #0d1726;
+            color: #b9c7d5;
+            padding: 58px 0 28px;
+        }
+
+        .contact-footer h3,
+        .contact-footer h4 {
+            color: #ffffff;
+            font-weight: 800;
+            letter-spacing: 0;
+        }
+
+        .contact-footer p {
+            color: #b9c7d5;
+            line-height: 1.8;
+        }
+
+        .contact-footer a {
+            color: #d8e1eb;
+        }
+
+        .contact-footer a:hover,
+        .contact-footer a:focus {
+            color: var(--contact-accent);
+            text-decoration: none;
+        }
+
+        .contact-footer-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .contact-footer-list li {
+            margin-bottom: 10px;
+        }
+
+        .contact-footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, .12);
+            margin-top: 34px;
+            padding-top: 22px;
+        }
+
+        @media (max-width: 991px) {
+            .contact-hero {
+                min-height: 560px;
+                padding: 96px 0 64px;
+            }
+        }
+
+        @media (max-width: 575px) {
+            .contact-section {
+                padding: 64px 0;
+            }
+
+            .contact-actions a,
+            .contact-actions button {
+                width: 100%;
+            }
+
+            .contact-form-card {
+                padding: 24px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <main>
+    <main class="contact-page">
         <!-- Header -->
         <header id="js-header" class="u-header u-header--static u-shadow-v19">
             <div itemscope class="u-header__section u-header__section--light g-bg-lightblue-radialgradient-circle g-transition-0_3 g-py-10">
@@ -724,102 +1104,307 @@
         </header>
         <!-- End Header -->
 
-        <!-- Promo Block -->
-        <section class="u-bg-overlay g-bg-size-cover g-bg-pos-center g-bg-black-opacity-0_3--after" style="background-image: url(../../assets/img-temp/1920x800/img4.jpg);">
-            </div>
-            <div class="container g-color-white text-center g-pos-rel g-z-index-1 g-py-150">
-                <h1 class="h2 g-font-weight-300">It is good to meet you</h1>
-                <h2 class="display-2 g-font-weight-600 text-uppercase g-letter-spacing-1">Contact us</h2>
-            </div>
-        </section>
-        <!-- End Promo Block -->
-
-        <!-- Contacts -->
-        <section class="container g-py-100">
-            <div class="row no-gutters">
-                <div class="col-lg-7">
-                    <!-- Article -->
-                    <article class="h-100 text-center g-overflow-hidden">
-                        <div class="h-100 u-block-hover--scale g-min-height-400 g-flex-middle g-bg-cover g-bg-size-cover g-bg-black-opacity-0_3--after g-transition-0_5 g-pa-20" data-bg-img-src="images/spurno-promo.jpg" style="background-image: url('images/spurno-promo.jpg');">
+        <!-- Contact Hero -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-7 g-mb-50 g-mb-0--lg">
+                        <span class="contact-eyebrow">Contact SPurno Animation Studio</span>
+                        <h1 class="contact-title">Tell us what you need to animate.</h1>
+                        <p class="contact-lead">Use this page to request custom motion graphics, animated backgrounds, After Effects template edits, product mockups, presentation visuals, sale banners, and stock-video production support.</p>
+                        <div class="contact-actions">
+                            <a href="#project-form" class="contact-btn">Send Project Brief</a>
+                            <a href="mailto:spurno@icloud.com" class="contact-btn-outline">Email Directly</a>
                         </div>
-                    </article>
-                    <!-- End Article -->
-                </div>
-
-                <div class="col-lg-5 g-bg-gray-dark-v1">
-                    <div class="g-pa-50 g-pa-70--md">
-                        <h2 class="h2 g-color-white">Our office</h2>
-
-                        <!-- Contact Details -->
-                        <ul class="list-unstyled g-color-white-opacity-0_7 g-font-weight-300 g-font-size-13 g-line-height-1_8 mb-0">
-                            <li class="g-my-30">
-                                <div class="media">
-                                    <i class="d-flex g-color-primary g-font-size-20 mt-1 mr-4 icon-hotel-restaurant-235 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        Dhanmondi,
-                                        <br>Dhaka, Bangladesh.
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="g-my-30">
-                                <div class="media">
-                                    <i class="d-flex g-color-primary g-font-size-20 mt-1 mr-4 icon-communication-062 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        spurno@icloud.com
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="g-my-30">
-                                <div class="media">
-                                    <i class="d-flex g-color-primary g-font-size-20 mt-1 mr-4 icon-communication-033 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        +880 15212 11774
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="media">
-                                    <i class="d-flex g-color-primary g-font-size-20 mt-1 mr-4 icon-education-097 u-line-icon-pro"></i>
-                                    <div class="media-body">
-                                        <h2 class="g-color-white-opacity-0_9 g-font-size-default g-font-weight-600 text-uppercase mb-3">Office hours:</h2>
-                                        <div class="mb-3">
-                                            <span class="d-block g-color-white">Monday - Firday</span>
-                                            09:00 AM - 06:00 PM
-                                        </div>
-                                        <div class="mb-3">
-                                            <span class="d-block g-color-white">Saturday</span>
-                                            09:00 AM - 06:00 PM
-                                        </div>
-                                        <span class="d-block g-color-white">Sunday &amp; Holidays</span>
-                                        Closed
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <!-- End Contact Details -->
+                    </div>
+                    <div class="col-lg-5">
+                        <img class="contact-visual" src="images/contact-motion-brief.svg" alt="Project brief and motion graphics planning illustration">
                     </div>
                 </div>
             </div>
         </section>
-        <!-- End Contacts -->
-            <!-- banner  -->
-        <section class="g-bg-gray-dark-v1 g-color-white g-pa-20">
+        <!-- End Contact Hero -->
+
+        <!-- Contact Methods -->
+        <section class="contact-section">
             <div class="container">
-                <div class="row justify-content-md-around">
-                    <!-- banner_ads -->
-                    <ins class="adsbygoogle"
-                        style="display:block; width:100%;"
-                        data-ad-client="ca-pub-9371167470298440"
-                        data-ad-slot="6814031410"
-                        data-ad-format="auto"
-                        data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+                <div class="text-center mx-auto g-width-780 g-mb-60">
+                    <span class="contact-kicker">Contact details</span>
+                    <h2 class="contact-heading">Reach the studio with the project context ready.</h2>
+                    <p class="contact-copy">For the fastest quote, include the service type, target platform, preferred duration, reference style, deadline, and whether you need source files or final exported video only.</p>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="contact-card text-center">
+                            <i class="icon-envelope d-inline-block"></i>
+                            <h3>Email</h3>
+                            <p><a href="mailto:spurno@icloud.com">spurno@icloud.com</a></p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="contact-card text-center">
+                            <i class="icon-call-in d-inline-block"></i>
+                            <h3>Phone</h3>
+                            <p><a href="tel:+8801521211774">+880 1521211774</a></p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="contact-card text-center">
+                            <i class="icon-earphones-alt d-inline-block"></i>
+                            <h3>WhatsApp</h3>
+                            <p><a href="https://wa.me/8801521211774">+880 1521211774</a></p>
+                        </article>
+                    </div>
+                    <div class="col-md-6 col-lg-3 g-mb-30">
+                        <article class="contact-card text-center">
+                            <i class="icon-globe d-inline-block"></i>
+                            <h3>Office</h3>
+                            <p>Dhanmondi 32, Dhaka, 1207</p>
+                        </article>
+                    </div>
                 </div>
             </div>
         </section>
-        <!-- banner 2 end  -->
+        <!-- End Contact Methods -->
+
+        <!-- Project Form -->
+        <section id="project-form" class="contact-section contact-section-soft">
+            <div class="container">
+                <div class="row align-items-start">
+                    <div class="col-lg-5 g-mb-40 g-mb-0--lg">
+                        <span class="contact-kicker">Project inquiry</span>
+                        <h2 class="contact-heading">Complete contact form for quote requests.</h2>
+                        <p class="contact-copy">This form uses the same Formspree backend endpoint used in the offer section on the home page, so submissions go to the existing project inquiry workflow.</p>
+                        <img class="contact-visual g-mt-35" src="images/contact-response-flow.svg" alt="Inquiry review quote and production workflow illustration">
+
+                        <div class="row g-mt-30">
+                            <div class="col-sm-6 g-mb-20">
+                                <article class="contact-detail-card">
+                                    <i class="icon-clock d-inline-block"></i>
+                                    <h3>Response time</h3>
+                                    <p>Most clear project briefs are reviewed within one business day.</p>
+                                </article>
+                            </div>
+                            <div class="col-sm-6 g-mb-20">
+                                <article class="contact-detail-card">
+                                    <i class="icon-docs d-inline-block"></i>
+                                    <h3>Useful details</h3>
+                                    <p>Share references, format, duration, deadline, and delivery files.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-7">
+                        <form class="contact-form-card" action="https://formspree.io/f/mreagqoe" method="POST">
+                            <input type="hidden" name="_subject" value="New project inquiry from SPurno contact page">
+                            <input type="hidden" name="source" value="contact-us.html">
+                            <h2 class="h3 g-mb-25">Send your project details</h2>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-name">Full name</label>
+                                    <input id="contact-name" class="form-control" type="text" name="name" placeholder="Your name" required>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-email">Email address</label>
+                                    <input id="contact-email" class="form-control" type="email" name="email" placeholder="email@example.com" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-phone">Phone or WhatsApp</label>
+                                    <input id="contact-phone" class="form-control" type="tel" name="phone" placeholder="+880 1521211774">
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-company">Company or channel</label>
+                                    <input id="contact-company" class="form-control" type="text" name="company" placeholder="Brand, agency, channel, or website">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-service">Service type</label>
+                                    <select id="contact-service" class="custom-select" name="service_type" required>
+                                        <option value="">Choose a service</option>
+                                        <option>Motion graphics</option>
+                                        <option>Animated background</option>
+                                        <option>After Effects template edit</option>
+                                        <option>Product or device mockup</option>
+                                        <option>Infographic or presentation video</option>
+                                        <option>Sale banner or advertising asset</option>
+                                        <option>Stock video production</option>
+                                        <option>Other creative support</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-package">Preferred package</label>
+                                    <select id="contact-package" class="custom-select" name="package">
+                                        <option>Not sure yet</option>
+                                        <option>Starter - from $100</option>
+                                        <option>Advanced - from $200</option>
+                                        <option>Professional - from $500</option>
+                                        <option>Custom quote</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-budget">Budget range</label>
+                                    <select id="contact-budget" class="custom-select" name="budget">
+                                        <option>Need recommendation</option>
+                                        <option>$100 - $199</option>
+                                        <option>$200 - $499</option>
+                                        <option>$500 - $999</option>
+                                        <option>$1000+</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="contact-deadline">Delivery deadline</label>
+                                    <input id="contact-deadline" class="form-control" type="text" name="deadline" placeholder="Example: June 15, 2026">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-reference">Reference link</label>
+                                <input id="contact-reference" class="form-control" type="url" name="reference_link" placeholder="https://example.com/reference-video-or-asset">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message">Project brief</label>
+                                <textarea id="contact-message" class="form-control" name="message" placeholder="Describe the animation, platform, duration, style, required file formats, source-file needs, and any brand guidelines." required></textarea>
+                            </div>
+
+                            <div class="contact-consent">
+                                <input id="contact-consent" type="checkbox" name="project_contact_permission" value="yes" required>
+                                <label for="contact-consent">I agree to be contacted about this project inquiry.</label>
+                            </div>
+
+                            <button type="submit" class="contact-btn">Submit Inquiry</button>
+                            <p class="contact-note mb-0">Your inquiry will be reviewed with the project details you provide, then we will reply with the best production path.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Project Form -->
+
+        <!-- Scope Checklist -->
+        <section class="contact-section contact-section-dark">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 g-mb-40 g-mb-0--lg">
+                        <span class="contact-kicker">Before you send</span>
+                        <h2 class="contact-heading">A clear brief makes pricing and delivery faster.</h2>
+                        <p class="contact-copy">Share enough information for a practical estimate. The studio can still help shape the scope, but these details reduce back-and-forth before production begins.</p>
+                        <ul class="contact-list">
+                            <li>Target platform such as YouTube, website, social ads, presentation, or stock marketplace.</li>
+                            <li>Preferred duration, dimensions, file format, and whether looping is required.</li>
+                            <li>Brand colors, logo files, sample references, and any style restrictions.</li>
+                            <li>Deadline, revision needs, and whether editable source files are required.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="row">
+                            <div class="col-md-6 g-mb-30">
+                                <article class="contact-step">
+                                    <span>01</span>
+                                    <h3>Inquiry</h3>
+                                    <p>Submit the form with your project brief, references, timeline, and contact details.</p>
+                                </article>
+                            </div>
+                            <div class="col-md-6 g-mb-30">
+                                <article class="contact-step">
+                                    <span>02</span>
+                                    <h3>Review</h3>
+                                    <p>The scope is checked for complexity, output files, creative direction, and schedule.</p>
+                                </article>
+                            </div>
+                            <div class="col-md-6 g-mb-30">
+                                <article class="contact-step">
+                                    <span>03</span>
+                                    <h3>Quote</h3>
+                                    <p>You receive a recommended package, price guidance, and production requirements.</p>
+                                </article>
+                            </div>
+                            <div class="col-md-6 g-mb-30">
+                                <article class="contact-step">
+                                    <span>04</span>
+                                    <h3>Production</h3>
+                                    <p>After approval, assets are animated, reviewed, exported, and prepared for delivery.</p>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Scope Checklist -->
+
+        <!-- Advertisement -->
+        <section class="contact-ad" aria-label="Advertisement">
+            <div class="container">
+                <ins class="adsbygoogle"
+                    style="display:block; width:100%;"
+                    data-ad-client="ca-pub-9371167470298440"
+                    data-ad-slot="6814031410"
+                    data-ad-format="auto"
+                    data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+        </section>
+        <!-- End Advertisement -->
+        <!-- Footer -->
+        <footer class="contact-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 g-mb-30">
+                        <a href="https://spurno.github.io" class="d-inline-block g-mb-20">
+                            <img src="images/spurno-logo.png" alt="SPurno Animation Studio logo" style="height: 40px; width: 100px;">
+                        </a>
+                        <h3 class="h5">SPurno Animation Studio</h3>
+                        <p class="g-mb-0">Motion graphics, animated backgrounds, stock video footage, After Effects templates, mockups, infographics, and advertising visuals for brands, creators, and marketplaces.</p>
+                    </div>
+                    <div class="col-sm-6 col-lg-3 g-mb-30">
+                        <h4 class="h6 text-uppercase g-mb-18">Studio</h4>
+                        <ul class="contact-footer-list">
+                            <li><a href="about-us.html">About Us</a></li>
+                            <li><a href="contact-us.html">Contact Us</a></li>
+                            <li><a href="motion-graphics.html">Motion Graphics</a></li>
+                            <li><a href="infographic.html">Infographic Animation</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-lg-4 g-mb-30">
+                        <h4 class="h6 text-uppercase g-mb-18">Contact</h4>
+                        <ul class="contact-footer-list">
+                            <li>Dhanmondi 32, Dhaka, 1207</li>
+                            <li><a href="mailto:spurno@icloud.com">spurno@icloud.com</a></li>
+                            <li><a href="tel:+8801521211774">+880 1521211774</a></li>
+                            <li><a href="https://wa.me/8801521211774">WhatsApp project inquiry</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="contact-footer-bottom d-flex flex-column flex-md-row justify-content-between">
+                    <p class="g-mb-10 g-mb-0--md">Copyright 2026 SPurno Animation Studio. All rights reserved.</p>
+                    <p class="g-mb-0"><a href="privacy-policy.html">Privacy Policy</a> | <a href="terms-of-use.html">Terms of Use</a></p>
+                </div>
+            </div>
+        </footer>
+        <!-- End Footer -->
+
+        <!-- Go To -->
+        <a class="js-go-to u-go-to-v2" href="#" data-type="fixed" data-position='{
+           "bottom": 15,
+           "right": 15
+         }' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+            <i class="hs-icon hs-icon-arrow-top"></i>
+        </a>
+        <!-- End Go To -->
     </main>
 
     <div class="u-outer-spaces-helper"></div>
@@ -888,7 +1473,6 @@
             // initialization of sticky blocks
             $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
         });
-    </script>
     </script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
     <script>
