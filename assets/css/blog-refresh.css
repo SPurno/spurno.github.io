@@ -110,15 +110,25 @@ h4,
 }
 
 
-li {
-  color: #ffffff;
-  font-size: 1rem;
+article p,
+main > section.g-pt-50.g-pb-100 p {
+  color: #334155;
+  font-size: 1.05rem;
+  line-height: 1.78;
+  margin-bottom: 1.2rem;
+}
+
+main > section.g-pt-50.g-pb-100 li,
+.spurno-seo-article li,
+.spurno-blog-article li {
+  color: #334155;
+  font-size: 1.05rem;
   line-height: 1.78;
 }
 
-article p,
-main > section.g-pt-50.g-pb-100 p {
-  margin-bottom: 1.2rem;
+main > section.g-pt-50.g-pb-100 .u-list-inline li,
+main > section.g-pt-50.g-pb-100 .list-inline li {
+  color: inherit;
 }
 
 main > section.g-pt-50.g-pb-100 img,
