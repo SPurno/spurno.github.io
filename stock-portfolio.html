@@ -61,6 +61,285 @@
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="/assets/css/spurno.css">
+  <style>
+    .stock-hero {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(10, 22, 34, .96), rgba(19, 61, 71, .92)),
+        url("images/spurno-promo.jpg") center / cover no-repeat;
+      color: #fff;
+      padding: clamp(56px, 9vw, 112px) 0 clamp(38px, 7vw, 76px);
+    }
+
+    .stock-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 120px;
+      background: linear-gradient(180deg, transparent, rgba(255, 255, 255, .96));
+      pointer-events: none;
+    }
+
+    .stock-hero .container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .stock-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 255, 255, .32);
+      border-radius: 999px;
+      color: #f8fafc;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 7px 12px;
+      text-transform: uppercase;
+    }
+
+    .stock-hero h1 {
+      color: #fff;
+      font-size: clamp(2.2rem, 5vw, 4.85rem);
+      line-height: 1.04;
+      margin: 18px 0;
+      max-width: 800px;
+    }
+
+    .stock-hero-copy {
+      color: rgba(255, 255, 255, .84);
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      line-height: 1.72;
+      max-width: 690px;
+    }
+
+    .stock-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .stock-btn {
+      align-items: center;
+      border-radius: 6px;
+      display: inline-flex;
+      font-weight: 800;
+      gap: 9px;
+      min-height: 44px;
+      padding: 11px 16px;
+      text-transform: uppercase;
+    }
+
+    .stock-btn-primary {
+      background: #f7931e;
+      color: #111827;
+    }
+
+    .stock-btn-primary:hover,
+    .stock-btn-primary:focus {
+      color: #111827;
+      background: #ffab45;
+      text-decoration: none;
+    }
+
+    .stock-btn-outline {
+      border: 1px solid rgba(255, 255, 255, .4);
+      color: #fff;
+    }
+
+    .stock-btn-outline:hover,
+    .stock-btn-outline:focus {
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .stock-visual-board {
+      background: rgba(255, 255, 255, .1);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 8px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+      overflow: hidden;
+    }
+
+    .stock-visual-board img {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .stock-visual-caption {
+      align-items: center;
+      background: rgba(10, 22, 34, .82);
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 14px 16px;
+    }
+
+    .stock-visual-caption span {
+      color: #8ef0dd;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .stock-video-gallery,
+    .stock-promo {
+      padding: clamp(44px, 7vw, 78px) 0;
+    }
+
+    .stock-section-lead {
+      color: #526172;
+      font-size: 1.05rem;
+      line-height: 1.72;
+      margin: 0 auto 34px;
+      max-width: 760px;
+      text-align: center;
+    }
+
+    .stock-video-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .stock-video-card {
+      background: #fff;
+      border: 1px solid #e5eaf0;
+      border-radius: 8px;
+      box-shadow: 0 18px 45px rgba(15, 23, 42, .08);
+      overflow: hidden;
+    }
+
+    .stock-video-frame {
+      aspect-ratio: 16 / 9;
+      background: #101828;
+      position: relative;
+    }
+
+    .stock-video-frame video {
+      display: block;
+      height: 100%;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .stock-load-video {
+      align-items: center;
+      background: rgba(247, 147, 30, .94);
+      border: 0;
+      border-radius: 999px !important;
+      color: #111827;
+      display: inline-flex;
+      font-size: .9rem;
+      font-weight: 800;
+      gap: 8px;
+      left: 50%;
+      min-height: 42px;
+      padding: 10px 16px;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+    }
+
+    .stock-load-video.is-hidden {
+      display: none;
+    }
+
+    .stock-media-watermark {
+      background: rgba(10, 22, 34, .68);
+      border: 1px solid rgba(255, 255, 255, .2);
+      border-radius: 4px;
+      bottom: 10px;
+      color: rgba(255, 255, 255, .86);
+      font-size: .72rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      padding: 5px 8px;
+      pointer-events: none;
+      position: absolute;
+      right: 10px;
+      text-transform: uppercase;
+      z-index: 3;
+    }
+
+    .stock-video-body {
+      padding: 18px;
+    }
+
+    .stock-video-body h3 {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .stock-video-body p {
+      color: #526172;
+      font-size: .95rem;
+      line-height: 1.62;
+      margin-bottom: 0;
+    }
+
+    .stock-promo {
+      background: linear-gradient(180deg, #f8fafc, #fff);
+    }
+
+    .stock-promo-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .stock-promo-item {
+      background: #fff;
+      border: 1px solid #e5eaf0;
+      border-radius: 8px;
+      min-height: 170px;
+      padding: 22px;
+    }
+
+    .stock-promo-item i {
+      color: #0f766e;
+      font-size: 1.8rem;
+      margin-bottom: 16px;
+    }
+
+    .stock-promo-item h3 {
+      font-size: 1rem;
+      margin-bottom: 9px;
+    }
+
+    .stock-promo-item p {
+      color: #526172;
+      font-size: .93rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 991.98px) {
+      .stock-video-grid,
+      .stock-promo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .stock-video-grid,
+      .stock-promo-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stock-hero {
+        padding-top: 46px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -748,469 +1027,141 @@
         </header>
         <!-- End Header -->
         <br />
-        <!-- Portfolio Section Content -->
-        <section class="g-py-35 portfolio-section">
+        <section class="stock-hero" aria-labelledby="stockHeroTitle">
             <div class="container">
-                <div class="text-center g-mb-50">
-                    <h2 class="h3 g-color-black g-font-weight-700 mb-1">
-                        Our Portfolio
-                    </h2>
-                    <p class="mb-0">Check out some of our latest work</p>
+                <div class="row align-items-center">
+                    <div class="col-lg-7 g-mb-35 g-mb-0--lg">
+                        <span class="stock-kicker"><i class="fa fa-play-circle"></i> Stock motion portfolio</span>
+                        <h1 id="stockHeroTitle">Premium video assets for brands, creators, and marketplaces</h1>
+                        <p class="stock-hero-copy">Explore SPurno Animation Studio stock footage, promo animation, infographic motion, mockup videos, and commercial background loops built for fast edits, clean licensing, and polished campaign delivery.</p>
+                        <div class="stock-cta-row">
+                            <a class="stock-btn stock-btn-primary" href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation"><i class="fa fa-shopping-cart"></i> Adobe Stock</a>
+                            <a class="stock-btn stock-btn-outline" href="https://www.shutterstock.com/g/SPurnoAnimation"><i class="fa fa-video-camera"></i> Shutterstock</a>
+                            <a class="stock-btn stock-btn-outline" href="https://www.pond5.com/artist/spurnoanimation"><i class="fa fa-film"></i> Pond5</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <figure class="stock-visual-board">
+                            <img src="images/spurno-promo-new-video-animation.jpg" alt="SPurno Animation Studio promo video preview graphic">
+                            <figcaption class="stock-visual-caption">
+                                <strong>Featured collection</strong>
+                                <span>Motion ready</span>
+                            </figcaption>
+                        </figure>
+                    </div>
                 </div>
-            </div>
-            <div class="clearfix">
-                <!-- Cube Portfolio Blocks - Filter -->
-                <ul id="filterControls" class="d-block list-inline text-center g-mb-50">
-                    <li class="list-inline-item cbp-filter-item cbp-filter-item-active g-brd-around g-brd-gray-light-v4 g-brd-primary--active g-color-gray-dark-v4 g-color-primary--hover g-color-primary--active g-font-size-12 rounded g-transition-0_3 g-px-20 g-py-7 mb-2" role="button" data-filter="*">
-                        All
-                    </li>
-                    <li class="list-inline-item cbp-filter-item g-brd-around g-brd-gray-light-v4 g-brd-primary--active g-color-gray-dark-v4 g-color-primary--hover g-color-primary--active g-font-size-12 rounded g-transition-0_3 g-px-20 g-py-7 mb-2" role="button" data-filter=".identity">
-                        Identity
-                    </li>
-                    <li class="list-inline-item cbp-filter-item g-brd-around g-brd-gray-light-v4 g-brd-primary--active g-color-gray-dark-v4 g-color-primary--hover g-color-primary--active g-font-size-12 rounded g-transition-0_3 g-px-20 g-py-7 mb-2" role="button" data-filter=".design">
-                        Design
-                    </li>
-                    <li class="list-inline-item cbp-filter-item g-brd-around g-brd-gray-light-v4 g-brd-primary--active g-color-gray-dark-v4 g-color-primary--hover g-color-primary--active g-font-size-12 rounded g-transition-0_3 g-px-20 g-py-7 mb-2" role="button" data-filter=".graphic">
-                        Graphic
-                    </li>
-                    <li class="list-inline-item cbp-filter-item g-brd-around g-brd-gray-light-v4 g-brd-primary--active g-color-gray-dark-v4 g-color-primary--hover g-color-primary--active g-font-size-12 rounded g-transition-0_3 g-px-20 g-py-7 mb-2" role="button" data-filter=".graphic, .identity">
-                        Design &amp; Identity
-                    </li>
-                </ul>
-                <!-- End Cube Portfolio Blocks - Filter -->
-
-                <!-- Cube Portfolio Blocks - Content -->
-                <div class="cbp" data-controls="#filterControls" data-animation="quicksand" data-x-gap="30" data-y-gap="30" data-media-queries="[
-                {'width': 1500, 'cols': 3},
-                {'width': 1100, 'cols': 3},
-                {'width': 800, 'cols': 3},
-                {'width': 480, 'cols': 3},
-                {'width': 300, 'cols': 2},
-                {'width': 0, 'cols': 1}
-              ]">
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item identity design">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img13.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img13.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Branding work
-                            </h3>
-                            <p class="mb-0">Identity, Design</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item design">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img14.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img14.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Development
-                            </h3>
-                            <p class="mb-0">Design</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic identity">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img15.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img15.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Project planner
-                            </h3>
-                            <p class="mb-0">Graphic, Identity</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img16.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img16.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">Design</h3>
-                            <p class="mb-0">Graphic</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item identity">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img9.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img9.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Creative agency
-                            </h3>
-                            <p class="mb-0">Identity</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img10.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img10.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Production
-                            </h3>
-                            <p class="mb-0">Graphic</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item identity design">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img23.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img23.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Photography
-                            </h3>
-                            <p class="mb-0">Identity, Design</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item design">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img18.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img18.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Social strategy
-                            </h3>
-                            <p class="mb-0">Design</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item identity">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img19.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img19.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Videography
-                            </h3>
-                            <p class="mb-0">Identity</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img28.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img28.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Capabilities
-                            </h3>
-                            <p class="mb-0">Graphic</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item identity">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img27.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img27.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Videography
-                            </h3>
-                            <p class="mb-0">Identity</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img25.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img25.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Capabilities
-                            </h3>
-                            <p class="mb-0">Graphic</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item design">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="images/Animated-Background-Stock-Video-Footage-for-Premium-Download.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="images/Animated-Background-Stock-Video-Footage-for-Premium-Download.jp">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Development
-                            </h3>
-                            <p class="mb-0">Design</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic identity">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img24.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img24.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">
-                                Project planner
-                            </h3>
-                            <p class="mb-0">Graphic, Identity</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-
-                    <!-- Cube Portfolio Blocks - Item -->
-                    <div class="cbp-item graphic">
-                        <div class="u-block-hover g-parent">
-                            <img class="img-fluid g-transform-scale-1_1--parent-hover g-transition-0_5 g-transition--ease-in-out" src="assets/img-temp/400x270/img26.jpg" alt="Stock Portfolio motion graphics preview by SPurno Animation Studio" />
-                            <div class="d-flex w-100 h-100 g-bg-black-opacity-0_6 opacity-0 g-opacity-1--parent-hover g-pos-abs g-top-0 g-left-0 g-transition-0_3 g-transition--ease-in u-block-hover__additional--fade u-block-hover__additional--fade-in g-pa-30">
-                                <ul class="align-items-end flex-column list-inline mt-auto ml-auto mb-0">
-                                    <li class="list-inline-item">
-                                        <a class="u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="#">
-                                            <i class="icon-communication-095 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a class="cbp-lightbox u-icon-v2 u-icon-size--sm g-brd-white g-color-black g-bg-white rounded-circle" href="assets/img-temp/400x270/img26.jpg">
-                                            <i class="icon-communication-017 u-line-icon-pro"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="g-bg-white text-center g-pa-15">
-                            <h3 class="h5 g-color-black g-font-weight-700 mb-1">Design</h3>
-                            <p class="mb-0">Graphic</p>
-                        </div>
-                    </div>
-                    <!-- End Cube Portfolio Blocks - Item -->
-                </div>
-                <!-- End Cube Portfolio Blocks - Content -->
             </div>
         </section>
 
-        <!-- End Cube Portfolio Blocks -->
+        <section class="stock-video-gallery" aria-labelledby="stockVideoGalleryTitle">
+            <div class="container">
+                <div class="text-center g-mb-20">
+                    <h2 id="stockVideoGalleryTitle" class="h3 g-color-black g-font-weight-700 mb-2">Video Gallery</h2>
+                    <p class="stock-section-lead">Preview selected SPurno stock videos directly on this page. Media files load only after you press preview, which helps avoid automatic download prompts from download-manager extensions.</p>
+                </div>
+                <div class="stock-video-grid">
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/spurno-promo-new-video-animation.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="studio-promo"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>Studio Promo Animation</h3>
+                            <p>Brand-ready motion graphics for agency reels, landing pages, and commercial intros.</p>
+                        </div>
+                    </article>
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/infographics-spurno-animation-studio.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="infographics-demo"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>Infographics Video Demo</h3>
+                            <p>Clean animated data scenes for corporate explainers, reports, and presentation promos.</p>
+                        </div>
+                    </article>
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/3d-infographic-circle-animated-screen.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="infographic-3d"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>3D Infographic Template</h3>
+                            <p>Dimensional business visuals designed for finance, technology, and startup storytelling.</p>
+                        </div>
+                    </article>
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/Animated-Background-Stock-Video-Footage-for-Premium-Download-5.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="animated-background"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>Animated Background Loop</h3>
+                            <p>Abstract motion backplates for title cards, broadcast graphics, and digital displays.</p>
+                        </div>
+                    </article>
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/news-background-animation.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="news-background"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>News Background Animation</h3>
+                            <p>Broadcast-style motion scenes for headlines, digital signage, and current-affairs packages.</p>
+                        </div>
+                    </article>
+                    <article class="stock-video-card">
+                        <div class="stock-video-frame">
+                            <video controls preload="none" poster="images/tablet-mockup-animated-screen.jpg" controlsList="nodownload noplaybackrate" disablePictureInPicture oncontextmenu="return false" data-media-key="product-mockup"></video>
+                            <button class="stock-load-video" type="button" data-load-media><i class="fa fa-play"></i> Preview</button>
+                            <span class="stock-media-watermark">SPurno Animation Studio</span>
+                        </div>
+                        <div class="stock-video-body">
+                            <h3>Product Promotion Mockup</h3>
+                            <p>Device-focused advertising animation for app showcases, SaaS promos, and product launches.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="stock-promo" aria-labelledby="stockPromoTitle">
+            <div class="container">
+                <div class="text-center g-mb-35">
+                    <h2 id="stockPromoTitle" class="h3 g-color-black g-font-weight-700 mb-2">Why License From SPurno</h2>
+                    <p class="stock-section-lead">Promotional graphics, motion backgrounds, and editable-style video concepts prepared for marketplace buyers who need assets that fit real campaign workflows.</p>
+                </div>
+                <div class="stock-promo-grid">
+                    <div class="stock-promo-item">
+                        <i class="fa fa-bolt"></i>
+                        <h3>Fast campaign use</h3>
+                        <p>Preview, choose, and license motion pieces that drop into ads, reels, explainers, and presentation edits.</p>
+                    </div>
+                    <div class="stock-promo-item">
+                        <i class="fa fa-diamond"></i>
+                        <h3>Premium visual polish</h3>
+                        <p>Commercial colors, clean typography, and practical motion pacing for professional brand content.</p>
+                    </div>
+                    <div class="stock-promo-item">
+                        <i class="fa fa-television"></i>
+                        <h3>Multi-platform fit</h3>
+                        <p>Assets work for web, social media, broadcast-style screens, product demos, and marketplace promos.</p>
+                    </div>
+                    <div class="stock-promo-item">
+                        <i class="fa fa-shield"></i>
+                        <h3>Watermarked previews</h3>
+                        <p>Portfolio previews carry visible studio branding while licensed files remain available through stock platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!-- content end here -->
-            <!-- banner  -->
+        <!-- banner  -->
         <section class="g-bg-gray-dark-v1 g-color-white g-pa-20">
             <div class="container">
                 <div class="row justify-content-md-around">
@@ -1227,28 +1178,232 @@
                 </div>
             </div>
         </section>
+        <!-- Footer -->
+        <footer class="g-bg-secondary  g-bg-lightblue-radialgradient-circle">
+            <div class="g-brd-bottom g-brd-secondary-light-v2 g-py-50 g-mb-50">
+                <div class="container">
+                    <!-- Footer - Top Section -->
+                    <div class="g-brd-bottom g-brd-secondary-light-v2 g-mb-30">
+                        <div class="row align-items-center">
+                            <div class="col-md-4 g-hidden-sm-down g-mb-30">
+                                <!-- Logo -->
+                                <a href="https://spurno.github.io">
+                                    <img decoding="async" class="g-width-150" src="images/spurno-logo.png" alt="SPurno Animation Studio logo">
+                                </a>
+                                <!-- End Logo -->
+                            </div>
+
+                            <div class="col-md-4 ml-auto g-mb-30">
+                                <!-- Social Icons -->
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item g-mx-2">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-secondary-light-v2 g-color-secondary-dark-v2 g-color-white--hover g-bg-primary--hover g-font-size-default rounded" href="https://www.facebook.com/SPurnoAnimationStudio" data-toggle="tooltip" data-placement="top" title="Like Us on Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item g-mx-2">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-secondary-light-v2 g-color-secondary-dark-v2 g-color-white--hover g-bg-primary--hover g-font-size-default rounded" href="#" data-toggle="tooltip" data-placement="top" title="Follow Us on Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-inline-item g-mx-2">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-secondary-light-v2 g-color-secondary-dark-v2 g-color-white--hover g-bg-primary--hover g-font-size-default rounded" href="https://www.youtube.com/@spurno-animation-studio" data-toggle="tooltip" data-placement="top" title="Subscribe to Our YouTube Channel">
+                                            <i class="fa fa-youtube"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item g-mx-2">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-secondary-light-v2 g-color-secondary-dark-v2 g-color-white--hover g-bg-primary--hover g-font-size-default rounded" href="#" data-toggle="tooltip" data-placement="top" title="Follow Us on Instagram">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item g-mx-2">
+                                        <a class="u-icon-v2 u-icon-size--sm g-brd-secondary-light-v2 g-color-secondary-dark-v2 g-color-white--hover g-bg-primary--hover g-font-size-default rounded" href="#" data-toggle="tooltip" data-placement="top" title="RSS">
+                                            <i class="fa fa-rss"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- End Social Icons -->
+                            </div>
+
+                            <div class="col-md-4 text-center text-md-right g-mb-30">
+                                <!-- Subscribe Form -->
+                                <form class="input-group rounded">
+                                    <input class="form-control g-brd-secondary-light-v2 g-color-secondary-dark-v1 g-placeholder-secondary-dark-v1 g-bg-secondary-light-v3 g-font-weight-400 g-font-size-13 rounded g-px-20 g-py-12" type="email" placeholder="Enter your email address">
+                                    <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
+                                        <button class="btn u-btn-white g-color-primary--hover g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20" type="submit">Subscribe</button>
+                                    </span>
+                                </form>
+                                <!-- End Subscribe Form -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Footer - Top Section -->
+
+                    <!-- Footer - Bottom Section -->
+                    <div class="row align-items-center">
+                        <div class="col-md-2 g-brd-right--md g-brd-secondary-light-v2 g-mb-30">
+                            <!-- Copyright -->
+                            <p class="g-color-secondary-light-v1 g-font-size-12 mb-0">&copy; 2010-2026 SPurno Animation Studio - Faruk Ahmed</p>
+                            <!-- End Copyright -->
+                        </div>
+
+                        <div class="col-md-8 g-brd-right--md g-brd-secondary-light-v2 g-mb-30">
+                            <!-- Links -->
+                            <ul class="list-inline mb-0">
+                                <li class="list-inline-item g-pl-0 g-pr-10">
+                                    <a class="u-link-v5 g-color-secondary-light-v1 g-font-size-12" href="contact-us.html">Contact Us</a>
+                                </li>
+                                <li class="list-inline-item g-px-10">
+                                    <a class="u-link-v5 g-color-secondary-light-v1 g-font-size-12" href="about-us.html">Work with Us</a>
+                                </li>
+                                <li class="list-inline-item g-px-10">
+                                    <a class="u-link-v5 g-color-secondary-light-v1 g-font-size-12" href="advertisement-design.html">Advertise</a>
+                                </li>
+                                <li class="list-inline-item g-px-10">
+                                    <a class="u-link-v5 g-color-secondary-light-v1 g-font-size-12" href="privacy-policy.html">Privacy</a>
+                                </li>
+                                <li class="list-inline-item g-px-10">
+                                    <a class="u-link-v5 g-color-secondary-light-v1 g-font-size-12" href="terms-of-use.html">Terms of Use</a>
+                                </li>
+                            </ul>
+                            <!-- End Links -->
+                        </div>
+
+                        <div class="col-md-2 g-mb-30">
+                            <!-- Large Button Group -->
+                            <div class="btn-group dropup float-md-right">
+                                <button class="btn align-items-center g-color-secondary-light-v1 g-bg-transparent g-color-primary--hover g-font-size-12 g-px-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <svg class="g-pos-rel g-top-2" xmlns="http://www.w3.org/2000/svg" height="11" width="27" viewBox="0 0 640 480">
+                                        <defs>
+                                            <clipPath id="a">
+                                                <path fill-opacity=".67" d="M-85.333 0h682.67v512h-682.67z" />
+                                            </clipPath>
+                                        </defs>
+                                        <g clip-path="url(#a)" transform="translate(80) scale(.94)">
+                                            <g stroke-width="1pt">
+                                                <path fill="#006" d="M-256 0H768.02v512.01H-256z" />
+                                                <path d="M-256 0v57.244l909.535 454.768H768.02V454.77L-141.515 0H-256zM768.02 0v57.243L-141.515 512.01H-256v-57.243L653.535 0H768.02z" fill="#fff" />
+                                                <path d="M170.675 0v512.01h170.67V0h-170.67zM-256 170.67v170.67H768.02V170.67H-256z" fill="#fff" />
+                                                <path d="M-256 204.804v102.402H768.02V204.804H-256zM204.81 0v512.01h102.4V0h-102.4zM-256 512.01L85.34 341.34h76.324l-341.34 170.67H-256zM-256 0L85.34 170.67H9.016L-256 38.164V0zm606.356 170.67L691.696 0h76.324L426.68 170.67h-76.324zM768.02 512.01L426.68 341.34h76.324L768.02 473.848v38.162z" fill="#c00" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    English
+                                    <i class="g-font-size-12 ml-2 fa fa-caret-up"></i>
+                                </button>
+                                <div class="dropdown-menu g-brd-secondary-light-v2 g-bg-white g-font-size-12">
+                                    <a class="dropdown-item g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-py-5" href="#">
+                                        <svg class="g-pos-rel g-top-1" xmlns="http://www.w3.org/2000/svg" height="11" width="27" viewBox="0 0 640 480">
+                                            <defs>
+                                                <clipPath id="a">
+                                                    <path fill-opacity=".67" d="M-85.333 0h682.67v512h-682.67z" />
+                                                </clipPath>
+                                            </defs>
+                                            <g clip-path="url(#a)" transform="translate(80) scale(.94)">
+                                                <g stroke-width="1pt">
+                                                    <path fill="#006" d="M-256 0H768.02v512.01H-256z" />
+                                                    <path d="M-256 0v57.244l909.535 454.768H768.02V454.77L-141.515 0H-256zM768.02 0v57.243L-141.515 512.01H-256v-57.243L653.535 0H768.02z" fill="#fff" />
+                                                    <path d="M170.675 0v512.01h170.67V0h-170.67zM-256 170.67v170.67H768.02V170.67H-256z" fill="#fff" />
+                                                    <path d="M-256 204.804v102.402H768.02V204.804H-256zM204.81 0v512.01h102.4V0h-102.4zM-256 512.01L85.34 341.34h76.324l-341.34 170.67H-256zM-256 0L85.34 170.67H9.016L-256 38.164V0zm606.356 170.67L691.696 0h76.324L426.68 170.67h-76.324zM768.02 512.01L426.68 341.34h76.324L768.02 473.848v38.162z" fill="#c00" />
+                                                </g>
+                                            </g>
+                                        </svg>
+                                        English
+                                    </a>
+                                    <a class="dropdown-item g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-py-5" href="#">
+                                        <svg class="g-pos-rel g-top-1" xmlns="http://www.w3.org/2000/svg" height="11" width="27" viewBox="0 0 640 480">
+                                            <g stroke-width="1pt" fill-rule="evenodd">
+                                                <path fill="#fff" d="M0 0h640v480H0z" />
+                                                <path fill="#00267f" d="M0 0h213.33v480H0z" />
+                                                <path fill="#f31830" d="M426.67 0H640v480H426.67z" />
+                                            </g>
+                                        </svg>
+                                        Spanish
+                                    </a>
+                                    <a class="dropdown-item g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-py-5" href="#">
+                                        <svg class="g-pos-rel g-top-1" xmlns="http://www.w3.org/2000/svg" height="11" width="27" viewBox="0 0 640 480">
+                                            <g fill-rule="evenodd" stroke-width="1pt">
+                                                <path fill="#fff" d="M0 0h640v480H0z" />
+                                                <path fill="#0039a6" d="M0 160.003h640V480H0z" />
+                                                <path fill="#d52b1e" d="M0 319.997h640V480H0z" />
+                                            </g>
+                                        </svg>
+                                        Russian
+                                    </a>
+                                    <a class="dropdown-item g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-py-5" href="#">
+                                        <svg class="g-pos-rel g-top-1" xmlns="http://www.w3.org/2000/svg" height="11" width="27" viewBox="0 0 640 480">
+                                            <path fill="#ffce00" d="M0 320h640v160.002H0z" />
+                                            <path d="M0 0h640v160H0z" />
+                                            <path fill="#d00" d="M0 160h640v160H0z" />
+                                        </svg>
+                                        German
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- End Large Button Group -->
+                        </div>
+                    </div>
+                    <!-- End Footer - Bottom Section -->
+                </div>
+        </footer>
+        <!-- End Footer -->
         <!-- banner 2 end  -->
     </main>
     <script src="js/site-ads.js"></script>
+    <script>
+        (function() {
+            var mediaSources = {
+                "studio-promo": ["videos", "SPurno-Animation-Studio-Promo-Video-Animation.mp4"],
+                "infographics-demo": ["videos", "infographics-video-demo.mp4"],
+                "infographic-3d": ["videos", "3d-infographic-video-template.mp4"],
+                "animated-background": ["videos", "animated-background-stock-video-for-premium-download-5.mp4"],
+                "news-background": ["videos", "news-background-animation.mov"],
+                "product-mockup": ["videos", "Laptop-product-promotion-advertising-template.mp4"]
+            };
+
+            function loadProtectedMedia(media, trigger) {
+                if (!media || media.src || !media.dataset.mediaKey || !mediaSources[media.dataset.mediaKey]) return;
+                media.src = mediaSources[media.dataset.mediaKey].join("/");
+                media.load();
+                if (trigger) {
+                    trigger.classList.add("is-hidden");
+                    trigger.setAttribute("aria-hidden", "true");
+                }
+                media.play().catch(function() {});
+            }
+
+            document.querySelectorAll("[data-load-media]").forEach(function(button) {
+                button.addEventListener("click", function() {
+                    var frame = button.closest(".stock-video-frame");
+                    loadProtectedMedia(frame ? frame.querySelector("video[data-media-key]") : null, button);
+                });
+            });
+
+            document.querySelectorAll("video").forEach(function(video) {
+                video.addEventListener("contextmenu", function(event) {
+                    event.preventDefault();
+                });
+            });
+        })();
+    </script>
     <div class='spurno-loader' aria-hidden='true'></div>
     <script>setTimeout(function(){document.body.classList.add('loaded');},5000);</script>
 </body>
 
 <!-- JS Global Compulsory -->
 <script src="assets/vendor/jquery/jquery.min.js"></script>
-    <script src="https://unpkg.com/i18next@23.16.8/dist/umd/i18next.min.js"></script>
-    <script src="https://unpkg.com/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
-    <script src="js/footer-i18n.js"></script>
+<script src="https://unpkg.com/i18next@23.16.8/dist/umd/i18next.min.js"></script>
+<script src="https://unpkg.com/jquery-i18next@1.2.1/jquery-i18next.min.js"></script>
+<script src="js/footer-i18n.js"></script>
 <script src="assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
 <script src="assets/vendor/jquery.easing/js/jquery.easing.min.js"></script>
 <script src="assets/vendor/popper.min.js"></script>
 <script src="assets/vendor/bootstrap/bootstrap.min.js"></script>
 <script src="assets/js/components/hs.cubeportfolio.js"></script>
-
 <!-- JS Implementing Plugins -->
 <script src="assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
 <!-- JS Unify -->
-
 <script src="assets/js/hs.core.js"></script>
 <script src="assets/js/components/hs.header.js"></script>
 <script src="assets/js/helpers/hs.hamburgers.js"></script>

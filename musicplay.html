@@ -29,16 +29,59 @@
             flex-direction: column;
             height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            background:
+                linear-gradient(135deg, rgba(14, 27, 39, .96), rgba(19, 83, 88, .9)),
+                url("images/spurno-cover-art.jpg") center / cover no-repeat;
         }
 
         .music-control {
+            position: relative;
+            width: min(92vw, 420px);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .18);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .94);
+            box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
             text-align: center;
-            margin-bottom: 20px;
+            padding: 34px 28px 28px;
+        }
+
+        .music-control::before {
+            content: "SPurno Animation Studio";
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            border: 1px solid rgba(15, 23, 42, .14);
+            border-radius: 4px;
+            color: rgba(15, 23, 42, .55);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            padding: 4px 6px;
+            text-transform: uppercase;
+            pointer-events: none;
+        }
+
+        .music-title {
+            color: #17242f;
+            font-size: 22px;
+            margin: 0 0 6px;
+        }
+
+        .music-note {
+            color: #667085;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 0 0 22px;
         }
 
         button {
-            padding: 10px 20px;
+            border: 0;
+            border-radius: 6px;
+            background: #f7931e;
+            color: #111827;
+            font-weight: 700;
+            padding: 12px 22px;
             font-size: 16px;
             cursor: pointer;
         }
@@ -51,19 +94,21 @@
     <link rel="stylesheet" href="assets/css/blog-refresh.css">
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="/assets/css/spurno.css">
+    <link rel="stylesheet" href="/assets/css/spurno.css">
 </head>
 
 <body>
+    <!-- SPurno Animation Studio watermark: keep this creator mark with the music player. -->
     <div class="music-control">
-        <button id="musicButton" onclick="toggleMusic()">Pause Music</button>
+        <h1 class="music-title">Background Music Player</h1>
+        <p class="music-note">Watermarked preview player. Music loads only after the play button is pressed.</p>
+        <button id="musicButton" onclick="toggleMusic()">Play Music</button>
         <br />
         <label for="volumeControl">Volume:</label>
         <input type="range" id="volumeControl" class="volume-slider" min="0" max="1" step="0.01" value="0.5" oninput="adjustVolume(this.value)" />
     </div>
 
-    <audio id="backgroundMusic" loop autoplay>
-        <source src="music/EmotionalPiano.mp3" type="audio/mpeg" />
+    <audio id="backgroundMusic" loop preload="none" controlsList="nodownload noplaybackrate" data-watermark="SPurno Animation Studio">
         Your browser does not support the audio element.
     </audio>
 
@@ -71,10 +116,22 @@
         const backgroundMusic = document.getElementById("backgroundMusic");
         const musicButton = document.getElementById("musicButton");
         const volumeControl = document.getElementById("volumeControl");
-        let isPlaying = true;
+        const protectedMusicPath = ["music", "EmotionalPiano.mp3"].join("/");
+        let isPlaying = false;
+        let musicLoaded = false;
 
         // Set initial volume
         backgroundMusic.volume = 0.5;
+        backgroundMusic.addEventListener("contextmenu", function(event) {
+            event.preventDefault();
+        });
+
+        function loadMusicPreview() {
+            if (musicLoaded) return;
+            backgroundMusic.src = protectedMusicPath;
+            backgroundMusic.load();
+            musicLoaded = true;
+        }
 
         // Toggle music play/pause
         function toggleMusic() {
@@ -82,8 +139,13 @@
                 backgroundMusic.pause();
                 musicButton.textContent = "Play Music";
             } else {
-                backgroundMusic.play();
-                musicButton.textContent = "Pause Music";
+                loadMusicPreview();
+                backgroundMusic.play().then(function() {
+                    musicButton.textContent = "Pause Music";
+                }).catch(function() {
+                    musicButton.textContent = "Play Music";
+                    isPlaying = false;
+                });
             }
             isPlaying = !isPlaying;
         }
