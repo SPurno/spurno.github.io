@@ -1,3 +1,48 @@
+        .js-go-to.u-go-to-v2 {
+            background-color: #f7931e;
+        }
+
+        .js-go-to.u-go-to-v2:hover,
+        .js-go-to.u-go-to-v2:focus,
+        .js-go-to.u-go-to-v2:focus:hover {
+            background-color: #d97808;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .home-ad-section {
+            background: #fff;
+            margin: 32px auto;
+            max-width: 970px;
+            min-height: 90px;
+            padding: 0;
+        }
+
+        .home-ad-section .container {
+            max-width: 970px;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .home-ad-section .row {
+            margin-left: 0;
+            margin-right: 0;
+            min-height: 90px;
+        }
+
+        .home-ad-section .adsbygoogle {
+            background: #fff;
+            display: block;
+            min-height: 90px;
+            width: 100%;
+        }
+
+        @media (max-width: 991.98px) {
+            .home-ad-section,
+            .home-ad-section .container {
+                max-width: 100%;
+            }
+        }
 .youtube-subscribe-btn {
     margin-top: 50px;
 }
