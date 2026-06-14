@@ -53,17 +53,265 @@
     <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <link rel="manifest" href="../favicon/site.webmanifest">
-    <link rel="stylesheet" href="../assets/css/watch.css">
+    <link rel="stylesheet" href="../assets/vendor/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="../assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="../assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="../assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="../assets/css/unify.css">
+    <link rel="stylesheet" href="../assets/css/unify-components.css">
+    <link rel="stylesheet" href="../assets/css/unify-globals.css">    <link rel="stylesheet" href="../assets/css/watch.css">
   <link rel="stylesheet" href="/assets/css/spurno.css">
 </head>
 
 <body>
-    <header class="watch-header">
-        <a class="watch-logo" href="../index.html" aria-label="SPurno Animation Studio home">
-            <img src="../images/spurno-logo.png" alt="SPurno Animation Studio logo">
-        </a>
-        <a class="watch-nav" href="../animated-background-stock-video-footage-for-premium-download.html">Stock video collection</a>
-    </header>
+        <!-- Header -->
+        <header id="js-header" class="u-header u-header--static u-shadow-v19">
+            <div itemscope class="u-header__section u-header__section--light g-bg-lightblue-radialgradient-circle g-transition-0_3 g-py-10">
+                <nav class="js-mega-menu navbar navbar-expand-lg g-px-0">
+                    <div class="container g-px-15">
+                        <!-- Responsive Toggle Button -->
+                        <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-20 ml-auto" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse" data-target="#navBar">
+                            <span class="hamburger hamburger--slider g-pa-0">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </span>
+                        </button>
+                        <!-- End Responsive Toggle Button -->
+                        <a href="../index.html" class="navbar-brand" aria-label="SPurno Animation Studio home">
+                            <img decoding="async" src="../images/spurno-logo.png" alt="SPurno Animation Studio logo" style="height: 40px; width: 100px;">
+                        </a>
+                        <!-- Navigation -->
+                        <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg g-mr-40--lg" id="navBar">
+                            <ul class="navbar-nav g-font-weight-600">
+                                <!-- Home - Submenu -->
+                                <li class="nav-item hs-has-sub-menu g-mr-10--lg g-mr-20--xl">
+                                    <a id="nav-link--home" class="nav-link text-uppercase g-color-primary--hover g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-controls="nav-submenu--home" aria-label="Home and marketplaces" title="Home and marketplaces">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-hotel-restaurant-105 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <ul id="nav-submenu--home" class="hs-sub-menu list-unstyled u-shadow-v11 g-min-width-220 g-brd-top g-brd-primary g-brd-top-2 g-mt-17" aria-labelledby="nav-link--home">
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="../index.html">Home</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="../stock-portfolio.html">Stock Portfolio</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation">Adobe Stock</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="https://www.shutterstock.com/g/SPurnoAnimation">Shutterstock Video</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="https://www.pond5.com/artist/spurnoanimation">Pond5</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="https://www.freepik.com/author/pixellvector">Freepik</a></li>
+                                        <li class="dropdown-item g-bg-secondary--hover"><a class="nav-link g-color-secondary-dark-v1" href="https://www.shutterstock.com/en/g/SPurnoAnimation?rid=441825909">Get 20% OFF</a></li>
+                                    </ul>
+                                </li>
+                                <!-- End Home - Submenu -->
+
+                                <!-- Animation Mega Menu -->
+                                <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+                                    <a id="mega-menu-label-animation" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Animation pages" title="Animation">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-education-187 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling g-bg-lightblue-radialgradient-circle" aria-labelledby="mega-menu-label-animation">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Motion Graphics</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../motion-graphics.html">Motion Graphics Stock Video</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../motion-graphics-background.html">Motion Graphics Backgrounds</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../motion-graphics-animated-background.html">Motion Graphics Animated Backgrounds</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../background-animation.html">Background Animation Videos</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../animated-background-stock-video-footage-for-premium-download.html">Animated Background Stock Video Footage</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">After Effects</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../animation-studio-after-effects.html">After Effects Animation Studio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../adobe-after-effect-animation-tutorial.html">Adobe After Effects Animation Tutorial</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../adobe-after-effect-plugins.html">Adobe After Effects Plugins</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../loading-bar-animation.html">Loading Bar Animation Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../progress-bar-animation.html">Progress Bar Animation</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Title and Broadcast</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../typography.html">Typography Animation Guide</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../typography-design.html">Typography Design for Video Animation</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../news-background-animation.html">News Background Animation</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/typography-animation.html">Typography Animation Video</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/news-background-animation.html">News Background Animation Video</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Animation Mega Menu -->
+
+                                <!-- Design Mega Menu -->
+                                <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+                                    <a id="mega-menu-label-design" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Design and mockup pages" title="Design and mockups">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-media-001 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling g-bg-purple-gradient-opacity-v1" aria-labelledby="mega-menu-label-design">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Mockups</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../device-mockup.html">Device Mockup Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../laptop-mockup.html">Laptop Mockup Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../iphone-mockup.html">iPhone Mockup Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../green-screen-mockup.html">Green Screen Mockup Templates</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Design Assets</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../digital-wallpaper.html">Digital Wallpaper Designs</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../advertisement-design.html">Advertisement Design with Motion Graphics</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../sale-banner.html">Sale Banner Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../shop-now-button.html">Shop Now Button Animation</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../svg/index.html">SVG Animation with GSAP</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Mockup Videos</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/laptop-product-promotion-advertising-template.html">Laptop Product Promotion Advertising Template</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/spurno-animation-studio-promo-video-animation.html">SPurno Animation Studio Promo Video</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Design Mega Menu -->
+
+                                <!-- Presentation Mega Menu -->
+                                <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+                                    <a id="mega-menu-label-presentation" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Presentation and infographic pages" title="Presentations and infographics">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-education-002 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling g-bg-lightblue-radialgradient-circle" aria-labelledby="mega-menu-label-presentation">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Infographics</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../infographic.html">Infographic Animation</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../infographics.html">Infographics Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../infographic-template.html">Infographic Template Downloads</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../3d-infographic.html">3D Infographic Templates</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Presentations</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../presentation-slides.html">Presentation Slides Theme</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../presentation-templates.html">Presentation Slides Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../powerpoint-slides.html">PowerPoint Slides Templates</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../pitch-deck.html">Pitch Deck Templates</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Preview Videos</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/infographics-video-demo.html">Infographics Video Demo</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/3d-infographic-video-template.html">3D Infographic Video Template</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/3d-infographic-video-template-2.html">3D Infographic Video Template 2</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Presentation Mega Menu -->
+
+                                <!-- Learn Mega Menu -->
+                                <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+                                    <a id="mega-menu-label-learn" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Learning and stock pages" title="Learn and earn">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-finance-256 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-learn">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Learning</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../learn-graphics-design.html">Learn Graphic Design Online</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../learn-seo-search-engine-optimization.html">Learn SEO and Search Engine Optimization</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../how-to-make-freelancing.html">How to Start Freelancing</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../how-to-make-money-online.html">How to Make Money Online</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Stock Collections</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../stock-portfolio.html">Stock Portfolio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/animated-background-stock-video-premium-download-5.html">Animated Background Preview 5</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../watch/animated-background-stock-video-premium-download-6.html">Animated Background Preview 6</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">External Stores</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation">Adobe Stock Portfolio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://www.shutterstock.com/g/SPurnoAnimation">Shutterstock Portfolio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://www.pond5.com/artist/spurnoanimation">Pond5 Portfolio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://www.freepik.com/author/pixellvector">Freepik Portfolio</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Learn Mega Menu -->
+
+                                <!-- Site Mega Menu -->
+                                <li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl" data-animation-in="fadeIn" data-animation-out="fadeOut" data-position="right">
+                                    <a id="mega-menu-label-site" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false" aria-label="Site pages" title="Site pages">
+                                        <span class="u-icon-v1">
+                                            <i class="icon-communication-025 u-line-icon-pro"></i>
+                                        </span>
+                                    </a>
+                                    <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling g-bg-purple-gradient-opacity-v1" aria-labelledby="mega-menu-label-site">
+                                        <div class="row">
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Company</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../about-us.html">About SPurno Animation Studio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../contact-us.html">Contact SPurno Animation Studio</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../index.html">Motion Background Stock Footage</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Policies</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../privacy-policy.html">Privacy Policy</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="../terms-of-use.html">Terms and Conditions</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <h3 class="h6 g-font-weight-700 g-mb-15">Quick Contact</h3>
+                                                <ul class="list-unstyled mb-0">
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="mailto:spurno@icloud.com">spurno@icloud.com</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://www.linkedin.com/in/spurno">LinkedIn</a></li>
+                                                    <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10"><a class="g-color-main g-color-primary--hover" href="https://github.com/SPurno">GitHub</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                                <!-- End Site Mega Menu -->
+                            </ul>
+                        </div>
+                        <!-- End Navigation -->
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <!-- End Header -->
 
     <main class="watch-main">
         <h1 class="watch-title">Typography Animation Video</h1>
@@ -104,6 +352,31 @@
 
     <div class='spurno-loader' aria-hidden='true'></div>
     <script>setTimeout(function(){document.body.classList.add('loaded');},5000);</script>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+    <script src="../assets/vendor/popper.min.js"></script>
+    <script src="../assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="../assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+    <script src="../assets/js/hs.core.js"></script>
+    <script src="../assets/js/components/hs.header.js"></script>
+    <script src="../assets/js/helpers/hs.hamburgers.js"></script>
+    <script>
+        $(document).on('ready', function() {
+            if ($.HSCore && $.HSCore.components && $.HSCore.components.HSHeader) {
+                $.HSCore.components.HSHeader.init($('#js-header'));
+            }
+            if ($.HSCore && $.HSCore.helpers && $.HSCore.helpers.HSHamburgers) {
+                $.HSCore.helpers.HSHamburgers.init('.hamburger');
+            }
+            if ($.fn.HSMegaMenu) {
+                $('.js-mega-menu').HSMegaMenu({
+                    event: 'hover',
+                    pageContainer: $('.container'),
+                    breakpoint: 991
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>
