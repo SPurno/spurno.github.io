@@ -368,7 +368,7 @@
         </header>
         <!-- End Header -->
 
-        <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="blur-effect-slider" data-source="gallery" style="background-color:#2d3032;padding:0px;">
+        <div id="rev_slider_151_1_wrapper" class="rev_slider_wrapper fullscreen-container spurno-video-slider" data-alias="spurno-video-showcase" data-source="gallery" style="background-color:#111827;padding:0px;">
             <!-- START REVOLUTION SLIDER 5.4.1 fullscreen mode -->
             <div id="rev_slider_151_1" class="rev_slider fullscreenbanner" style="display:none;" data-version="5.4.1">
                 <ul> <!-- SLIDE  -->
@@ -1467,22 +1467,315 @@
 
         var tpj = jQuery;
 
+        var spurnoSliderFallbackThumb = "svg/spurno-slider-thumbnail.svg";
+
+        function buildSpurnoVideoSlider() {
+            var slides = [
+                {
+                    id: "spurno-promo",
+                    title: "SPurno Animation Studio",
+                    kicker: "Featured showreel",
+                    copy: "Motion graphics, brand promos, animated backgrounds, and presentation video assets for global creators.",
+                    poster: "images/motion-cyan.jpg",
+                    video: "videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4",
+                    cta: "Watch Promo",
+                    href: "watch/spurno-animation-studio-promo-video-animation.html"
+                },
+                {
+                    id: "motion-backgrounds",
+                    title: "Premium Motion Backgrounds",
+                    kicker: "HD and 4K stock footage",
+                    copy: "Cinematic animated backgrounds built for openers, social videos, broadcast packages, and presentations.",
+                    poster: "images/Animated-Background-Stock-Video-Footage-for-Premium-Download.jpg",
+                    video: "videos/animated-background-stock-video-for-premium-download-5.mp4",
+                    cta: "Browse Footage",
+                    href: "animated-background-stock-video-footage-for-premium-download.html"
+                },
+                {
+                    id: "infographics",
+                    title: "Infographics Video Templates",
+                    kicker: "Data-driven animation",
+                    copy: "Clean explainer visuals, timeline scenes, and infographic systems ready for business storytelling.",
+                    poster: "svg/spurno-slider-thumbnail.svg",
+                    video: "videos/infographics-video-demo.mp4",
+                    cta: "View Demo",
+                    href: "watch/infographics-video-demo.html"
+                },
+                {
+                    id: "three-d-infographic",
+                    title: "3D Infographic Scenes",
+                    kicker: "Depth for presentations",
+                    copy: "Polished 3D animated charts and visual systems designed for pitch decks and corporate videos.",
+                    poster: "images/infographics-template-thumb.jpg",
+                    video: "videos/3d-infographic-video-template.mp4",
+                    cta: "Explore 3D",
+                    href: "watch/3d-infographic-video-template.html"
+                },
+                {
+                    id: "news-backgrounds",
+                    title: "News Background Animation",
+                    kicker: "Broadcast-ready loops",
+                    copy: "Dynamic studio-style news backgrounds with strong pacing for intros, updates, and digital channels.",
+                    poster: "images/news-background-animation.jpg",
+                    video: "videos/news-background-animation.mp4",
+                    cta: "See Package",
+                    href: "news-background-animation.html"
+                },
+                {
+                    id: "product-promo",
+                    title: "Product Promotion Videos",
+                    kicker: "Device mockups and ads",
+                    copy: "Modern laptop, phone, and app promo scenes built for product marketing and launch campaigns.",
+                    poster: "images/device-mockup.jpg",
+                    video: "videos/Laptop-product-promotion-advertising-template.mp4",
+                    cta: "View Mockups",
+                    href: "device-mockup.html"
+                },
+                {
+                    id: "typography",
+                    title: "Typography Animation",
+                    kicker: "Kinetic title systems",
+                    copy: "Bold text animation templates for intros, quote reels, advertising spots, and social video edits.",
+                    poster: "images/typography-animation.jpg",
+                    video: "videos/typography-animation.mp4",
+                    cta: "View Typography",
+                    href: "typography.html"
+                },
+                {
+                    id: "iphone-mockup",
+                    title: "iPhone Mockup Animation",
+                    kicker: "Mobile product showcase",
+                    copy: "Responsive app-preview motion built for portfolios, product walkthroughs, and client presentations.",
+                    poster: "images/iphone-mockup.jpg",
+                    video: "videos/iphone-mockup.mp4",
+                    cta: "View iPhone Mockup",
+                    href: "iphone-mockup.html"
+                }
+            ];
+
+            var slider = document.getElementById("rev_slider_151_1");
+            if (!slider) return;
+
+            var list = slider.querySelector("ul");
+            if (!list) return;
+
+            var staticLayers = slider.querySelector(".tp-static-layers");
+            if (staticLayers) {
+                staticLayers.parentNode.removeChild(staticLayers);
+            }
+
+            list.innerHTML = slides.map(function(slide, index) {
+                var slideNo = index + 1;
+                var base = "slide-" + slideNo;
+                var overlay = base + "-overlay";
+                var video = base + "-video";
+                var play = base + "-play";
+                var pause = base + "-pause";
+                var volume = base + "-volume";
+                var kicker = base + "-kicker";
+                var title = base + "-title";
+                var copy = base + "-copy";
+                var cta = base + "-cta";
+                var poster = slide.poster || spurnoSliderFallbackThumb;
+                var thumb = slide.thumb || poster || spurnoSliderFallbackThumb;
+                var restoreLayers = [overlay, kicker, title, copy, cta, play];
+                var hideLayers = [overlay, kicker, title, copy, cta, play];
+                var restoreActions = restoreLayers.map(function(layer) {
+                    return {"event": "click", "action": "startlayer", "layer": layer, "delay": ""};
+                });
+                var hideActions = hideLayers.map(function(layer) {
+                    return {"event": "click", "action": "stoplayer", "layer": layer, "delay": ""};
+                });
+                var playActions = [{"event": "click", "action": "playvideo", "layer": video, "delay": ""}]
+                    .concat(hideActions)
+                    .concat([
+                        {"event": "click", "action": "startlayer", "layer": pause, "delay": ""},
+                        {"event": "click", "action": "startlayer", "layer": volume, "delay": ""}
+                    ]);
+                var stopActions = [{"event": "click", "action": "stopvideo", "layer": video, "delay": ""}]
+                    .concat(restoreActions)
+                    .concat([
+                        {"event": "click", "action": "stoplayer", "layer": pause, "delay": ""},
+                        {"event": "click", "action": "stoplayer", "layer": volume, "delay": ""}
+                    ]);
+
+                return [
+                    '<li data-index="rs-' + slideNo + '" data-transition="fade" data-slotamount="default" data-hideafterloop="0" data-hideslideonmobile="off" data-easein="Power2.easeInOut" data-easeout="Power2.easeInOut" data-masterspeed="700" data-thumb="' + thumb + '" data-rotate="0" data-saveperformance="off" data-title="' + slide.title + '" data-param1="' + slide.kicker + '" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-param10="" data-description="">',
+                    '<img decoding="async" src="' + poster + '" onerror="this.onerror=null;this.src=\'' + spurnoSliderFallbackThumb + '\';" alt="' + slide.title + ' preview by SPurno Animation Studio" data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat" class="rev-slidebg">',
+                    '<div id="' + video + '" class="tp-caption tp-resizeme fullscreenvideo tp-videolayer" data-x="0" data-y="0" data-whitespace="nowrap" data-type="video" data-responsive_offset="on" data-frames=\'[{"delay":300,"speed":700,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":700,"frame":"999","to":"opacity:0;","ease":"Power2.easeInOut"}]\' data-videowidth="100%" data-videoheight="100%" data-videomp4="' + slide.video + '" data-videoposter="' + poster + '" data-videopreload="none" data-videocontrols="none" data-videoloop="none" data-forceCover="1" data-aspectratio="16:9" data-autoplay="off" data-nextslideatend="false" data-volume="80" data-allowfullscreenvideo="true" data-textAlign="[\'left\',\'left\',\'left\',\'left\']" style="z-index:5;border-width:0;"></div>',
+                    '<div id="' + overlay + '" class="tp-caption tp-shape tp-shapewrapper spurno-video-overlay" data-x="[\'left\',\'left\',\'left\',\'left\']" data-y="[\'top\',\'top\',\'top\',\'top\']" data-width="full" data-height="full" data-whitespace="nowrap" data-type="shape" data-actions=\'' + JSON.stringify(stopActions) + '\' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames=\'[{"delay":250,"speed":900,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"bytrigger","speed":500,"frame":"999","to":"opacity:0;","ease":"Power3.easeInOut"}]\' data-lasttriggerstate="reset" style="z-index:6;cursor:pointer;"></div>',
+                    '<div id="' + kicker + '" class="tp-caption tp-resizeme spurno-rev-kicker" data-x="[\'left\',\'left\',\'center\',\'center\']" data-hoffset="[\'90\',\'70\',\'0\',\'0\']" data-y="[\'middle\',\'middle\',\'middle\',\'middle\']" data-voffset="[\'-170\',\'-150\',\'-180\',\'-150\']" data-fontsize="[\'15\',\'14\',\'14\',\'12\']" data-lineheight="[\'20\',\'20\',\'20\',\'18\']" data-width="[\'720\',\'640\',\'88%\',\'88%\']" data-whitespace="normal" data-type="text" data-responsive_offset="on" data-frames=\'[{"delay":650,"speed":800,"frame":"0","from":"y:25px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"bytrigger","speed":400,"frame":"999","to":"y:-20px;opacity:0;","ease":"Power2.easeInOut"}]\' data-textAlign="[\'left\',\'left\',\'center\',\'center\']" data-lasttriggerstate="reset" style="z-index:8;">' + slide.kicker + '</div>',
+                    '<div id="' + title + '" class="tp-caption tp-resizeme spurno-rev-title" data-x="[\'left\',\'left\',\'center\',\'center\']" data-hoffset="[\'90\',\'70\',\'0\',\'0\']" data-y="[\'middle\',\'middle\',\'middle\',\'middle\']" data-voffset="[\'-92\',\'-78\',\'-110\',\'-86\']" data-fontsize="[\'70\',\'58\',\'48\',\'34\']" data-lineheight="[\'78\',\'64\',\'54\',\'40\']" data-width="[\'780\',\'690\',\'88%\',\'90%\']" data-whitespace="normal" data-type="text" data-responsive_offset="on" data-frames=\'[{"delay":800,"speed":900,"frame":"0","from":"y:35px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"bytrigger","speed":450,"frame":"999","to":"y:-25px;opacity:0;","ease":"Power2.easeInOut"}]\' data-textAlign="[\'left\',\'left\',\'center\',\'center\']" data-lasttriggerstate="reset" style="z-index:9;">' + slide.title + '</div>',
+                    '<div id="' + copy + '" class="tp-caption tp-resizeme spurno-rev-copy" data-x="[\'left\',\'left\',\'center\',\'center\']" data-hoffset="[\'92\',\'72\',\'0\',\'0\']" data-y="[\'middle\',\'middle\',\'middle\',\'middle\']" data-voffset="[\'24\',\'24\',\'8\',\'12\']" data-fontsize="[\'22\',\'20\',\'19\',\'16\']" data-lineheight="[\'34\',\'31\',\'29\',\'24\']" data-width="[\'680\',\'600\',\'82%\',\'88%\']" data-whitespace="normal" data-type="text" data-responsive_offset="on" data-frames=\'[{"delay":950,"speed":900,"frame":"0","from":"y:35px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"bytrigger","speed":450,"frame":"999","to":"y:-22px;opacity:0;","ease":"Power2.easeInOut"}]\' data-textAlign="[\'left\',\'left\',\'center\',\'center\']" data-lasttriggerstate="reset" style="z-index:10;">' + slide.copy + '</div>',
+                    '<a id="' + cta + '" class="tp-caption rev-btn spurno-rev-btn" href="' + slide.href + '" data-x="[\'left\',\'left\',\'center\',\'center\']" data-hoffset="[\'92\',\'72\',\'0\',\'0\']" data-y="[\'middle\',\'middle\',\'middle\',\'middle\']" data-voffset="[\'126\',\'122\',\'110\',\'108\']" data-fontsize="[\'15\',\'15\',\'14\',\'13\']" data-lineheight="[\'48\',\'48\',\'44\',\'40\']" data-width="none" data-height="none" data-whitespace="nowrap" data-type="button" data-responsive_offset="on" data-frames=\'[{"delay":1100,"speed":900,"frame":"0","from":"y:30px;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"bytrigger","speed":450,"frame":"999","to":"y:-18px;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"250","ease":"Power1.easeInOut","to":"o:1;","style":"c:#fff;bg:#d97808;bc:#d97808;"}]\' data-textAlign="[\'center\',\'center\',\'center\',\'center\']" data-paddingtop="[0,0,0,0]" data-paddingright="[28,28,24,22]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[28,28,24,22]" data-lasttriggerstate="reset" style="z-index:11;">' + slide.cta + '</a>',
+                    '<div id="' + play + '" class="tp-caption rev-btn spurno-video-play" data-x="[\'center\',\'center\',\'center\',\'center\']" data-y="[\'middle\',\'middle\',\'middle\',\'middle\']" data-fontsize="[\'42\',\'38\',\'32\',\'28\']" data-lineheight="[\'104\',\'96\',\'82\',\'72\']" data-width="[\'104\',\'96\',\'82\',\'72\']" data-height="[\'104\',\'96\',\'82\',\'72\']" data-whitespace="nowrap" data-type="button" data-actions=\'' + JSON.stringify(playActions) + '\' data-responsive_offset="on" data-responsive="off" data-frames=\'[{"delay":1250,"speed":900,"frame":"0","from":"sX:0.6;sY:0.6;opacity:0;","to":"o:1;","ease":"Power3.easeOut"},{"delay":"bytrigger","speed":350,"frame":"999","to":"sX:0.6;sY:0.6;opacity:0;","ease":"Power2.easeInOut"},{"frame":"hover","speed":"250","ease":"Power1.easeInOut","to":"o:1;sX:1.06;sY:1.06;","style":"c:#111827;bg:#f7931e;"}]\' data-textAlign="[\'center\',\'center\',\'center\',\'center\']" data-paddingtop="[0,0,0,0]" data-paddingright="[0,0,0,0]" data-paddingbottom="[0,0,0,0]" data-paddingleft="[7,7,6,6]" data-lasttriggerstate="reset" style="z-index:12;cursor:pointer;"><i class="fa fa-play"></i></div>',
+                    '<div id="' + pause + '" class="tp-caption rev-btn spurno-video-pause" data-x="[\'right\',\'right\',\'right\',\'right\']" data-hoffset="[\'28\',\'28\',\'22\',\'18\']" data-y="[\'bottom\',\'bottom\',\'bottom\',\'bottom\']" data-voffset="[\'28\',\'28\',\'24\',\'20\']" data-fontsize="[\'18\',\'18\',\'16\',\'15\']" data-lineheight="[\'48\',\'48\',\'44\',\'42\']" data-width="[\'48\',\'48\',\'44\',\'42\']" data-height="[\'48\',\'48\',\'44\',\'42\']" data-whitespace="nowrap" data-type="button" data-actions=\'' + JSON.stringify(stopActions) + '\' data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames=\'[{"delay":"bytrigger","speed":350,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"bytrigger","speed":250,"frame":"999","to":"opacity:0;","ease":"Power2.easeInOut"}]\' data-lasttriggerstate="reset" style="z-index:13;cursor:pointer;"><i class="fa fa-pause"></i></div>',
+                    '<div id="' + volume + '" class="tp-caption spurno-video-volume" data-x="[\'right\',\'right\',\'right\',\'right\']" data-hoffset="[\'88\',\'88\',\'76\',\'68\']" data-y="[\'bottom\',\'bottom\',\'bottom\',\'bottom\']" data-voffset="[\'28\',\'28\',\'24\',\'20\']" data-width="[\'176\',\'176\',\'156\',\'148\']" data-height="[\'48\',\'48\',\'44\',\'42\']" data-whitespace="nowrap" data-type="text" data-basealign="slide" data-responsive_offset="off" data-responsive="off" data-frames=\'[{"delay":"bytrigger","speed":350,"frame":"0","from":"opacity:0;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"bytrigger","speed":250,"frame":"999","to":"opacity:0;","ease":"Power2.easeInOut"}]\' data-lasttriggerstate="reset" style="z-index:14;"><div class="spurno-volume-shell"><button class="spurno-volume-toggle" type="button" aria-label="Mute video"><i class="fa fa-volume-up" aria-hidden="true"></i><i class="fa fa-volume-off" aria-hidden="true"></i></button><input class="spurno-volume-range" type="range" min="0" max="100" step="1" value="80" aria-label="Video volume"></div></div>',
+                    '</li>'
+                ].join("");
+            }).join("");
+        }
+
+        function initSpurnoVideoControls() {
+            var slider = document.getElementById("rev_slider_151_1");
+            if (!slider) return;
+
+            function getLayerBase(control) {
+                var layer = control.closest(".spurno-video-play, .spurno-video-pause, .spurno-video-volume");
+                if (!layer || !layer.id) return "";
+                return layer.id.replace(/-(play|pause|volume)$/, "");
+            }
+
+            function getVideo(control) {
+                var base = getLayerBase(control);
+                var layer = base ? document.getElementById(base + "-video") : null;
+                var video = layer ? layer.querySelector("video") : null;
+
+                if (!video) {
+                    var slide = control.closest(".tp-revslider-slidesli");
+                    video = slide ? slide.querySelector(".tp-videolayer video") : null;
+                }
+
+                return video;
+            }
+
+            function getVolumeLayer(control) {
+                var base = getLayerBase(control);
+                return base ? document.getElementById(base + "-volume") : control.closest(".spurno-video-volume");
+            }
+
+            function syncVolumeUI(layer, video) {
+                if (!layer) return;
+
+                var range = layer.querySelector(".spurno-volume-range");
+                var muted = !video || video.muted || Number(video.volume) === 0;
+
+                layer.classList.toggle("spurno-volume-muted", muted);
+
+                if (range && video) {
+                    var value = muted ? 0 : Math.round(video.volume * 100);
+                    range.value = String(value);
+                }
+            }
+
+            function setVideoVolume(control, value) {
+                var video = getVideo(control);
+                var layer = getVolumeLayer(control);
+                var nextVolume = Math.max(0, Math.min(100, Number(value))) / 100;
+
+                if (video) {
+                    video.volume = nextVolume;
+                    video.muted = nextVolume === 0;
+                }
+
+                syncVolumeUI(layer, video);
+            }
+
+            function playNativeVideo(control, attempts) {
+                attempts = attempts || 0;
+                var video = getVideo(control);
+                var volumeLayer = getVolumeLayer(control);
+                var range = volumeLayer ? volumeLayer.querySelector(".spurno-volume-range") : null;
+
+                if (!video) {
+                    if (attempts > 8) return;
+                    window.setTimeout(function() {
+                        playNativeVideo(control, attempts + 1);
+                    }, 120);
+                    return;
+                }
+
+                if (range) {
+                    setVideoVolume(control, range.value);
+                }
+
+                var playback = video.play();
+                if (playback && playback.catch) {
+                    playback.catch(function() {});
+                }
+            }
+
+            function pauseNativeVideo(control) {
+                var video = getVideo(control);
+                if (video) {
+                    video.pause();
+                }
+            }
+
+            slider.addEventListener("click", function(event) {
+                var playButton = event.target.closest(".spurno-video-play");
+                var pauseButton = event.target.closest(".spurno-video-pause");
+                var muteButton = event.target.closest(".spurno-volume-toggle");
+
+                if (playButton) {
+                    playNativeVideo(playButton);
+                    return;
+                }
+
+                if (pauseButton) {
+                    pauseNativeVideo(pauseButton);
+                    return;
+                }
+
+                if (muteButton) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
+                    var volumeLayer = muteButton.closest(".spurno-video-volume");
+                    var video = getVideo(muteButton);
+                    var range = volumeLayer ? volumeLayer.querySelector(".spurno-volume-range") : null;
+
+                    if (video) {
+                        if (video.muted || Number(video.volume) === 0) {
+                            video.muted = false;
+                            video.volume = range && Number(range.value) > 0 ? Number(range.value) / 100 : 0.8;
+                        } else {
+                            video.muted = true;
+                        }
+                    }
+
+                    syncVolumeUI(volumeLayer, video);
+                }
+            });
+
+            slider.addEventListener("input", function(event) {
+                if (!event.target.classList.contains("spurno-volume-range")) return;
+
+                event.stopPropagation();
+                setVideoVolume(event.target, event.target.value);
+            }, true);
+
+            tpj(slider).on("revolution.slide.onbeforeswap", function() {
+                slider.querySelectorAll(".tp-videolayer video").forEach(function(video) {
+                    video.pause();
+                });
+            });
+
+            tpj(slider).on("revolution.slide.onvideoplay revolution.slide.onvideostop", function() {
+                slider.querySelectorAll(".spurno-video-volume").forEach(function(layer) {
+                    syncVolumeUI(layer, getVideo(layer));
+                });
+            });
+        }
+
         var revapi151;
         tpj(document).ready(function() {
+            buildSpurnoVideoSlider();
+            initSpurnoVideoControls();
             if (tpj("#rev_slider_151_1").revolution == undefined) {
                 revslider_showDoubleJqueryError("#rev_slider_151_1");
             } else {
                 revapi151 = tpj("#rev_slider_151_1").show().revolution({
                     sliderType: "standard",
-                    jsFileLocation: "revolution/js/",
+                    jsFileLocation: "assets/vendor/revolution-slider/revolution/js/",
                     sliderLayout: "fullscreen",
                     dottedOverlay: "none",
-                    delay: 5000,
+                    delay: 8000,
                     navigation: {
                         keyboardNavigation: "on",
-                        keyboard_direction: "vertical",
-                        mouseScrollNavigation: "on",
-                        mouseScrollReverse: "on",
+                        keyboard_direction: "horizontal",
+                        mouseScrollNavigation: "off",
+                        mouseScrollReverse: "default",
                         onHoverStop: "off",
                         touch: {
                             touchenabled: "on",
@@ -1510,6 +1803,19 @@
                                 h_offset: 0,
                                 v_offset: 0
                             }
+                        },
+                        bullets: {
+                            enable: true,
+                            hide_onmobile: false,
+                            style: "hesperiden",
+                            hide_onleave: false,
+                            direction: "horizontal",
+                            h_align: "center",
+                            v_align: "bottom",
+                            h_offset: 0,
+                            v_offset: 28,
+                            space: 8,
+                            tmp: ''
                         }
                     },
                     responsiveLevels: [1240, 1024, 778, 480],
@@ -1518,9 +1824,9 @@
                     gridheight: [868, 768, 960, 720],
                     lazyType: "none",
                     scrolleffect: {
-                        blur: "on",
-                        maxblur: "20",
-                        on_slidebg: "on",
+                        blur: "off",
+                        maxblur: "0",
+                        on_slidebg: "off",
                         direction: "top",
                         multiplicator: "2",
                         multiplicator_layers: "2",
@@ -1538,6 +1844,7 @@
                     stopLoop: "off",
                     stopAfterLoops: -1,
                     stopAtSlide: -1,
+                    stopSlider: "off",
                     shuffle: "off",
                     autoHeight: "off",
                     fullScreenAutoWidth: "off",
