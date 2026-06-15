@@ -1,0 +1,24 @@
+{
+  "name": "spurno.github.io",
+  "version": "1.0.0",
+  "description": "![Description of Image](https://spurno.github.io/images/bio.jpg)\r ## SPurno Animation Studio | Animation Creator | Coder | Advertising Producer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SPurno/spurno.github.io.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/SPurno/spurno.github.io/issues"
+  },
+  "homepage": "https://github.com/SPurno/spurno.github.io#readme",
+  "dependencies": {
+    "three": "^0.169.0"
+  }
+}
