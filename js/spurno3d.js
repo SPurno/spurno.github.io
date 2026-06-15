@@ -389,6 +389,177 @@ animate();
 // SCROLL REVEAL & NAVIGATION
 
 
+// --- 3D TEXT TILT EFFECT — Hero Title ---
+class Text3DTilt {
+    constructor() {
+        this.container = document.querySelector('.hero-3d-tilt');
+        if (!this.container) return;
+
+        this.title = this.container.querySelector('.hero-title-3d');
+        this.glow = document.getElementById('hero3dGlow');
+
+        this.boundingRect = null;
+        this.mouseX = 0.5;
+        this.mouseY = 0.5;
+        this.targetRotX = 0;
+        this.targetRotY = 0;
+        this.currentRotX = 0;
+        this.currentRotY = 0;
+        this.glowX = 0;
+        this.glowY = 0;
+        this.isTouching = false;
+        this.isHovering = false;
+        this.autoRotate = true;
+        this.autoAngle = 0;
+
+        this.initSplitText();
+        this.bindEvents();
+        this.startAnimation();
+    }
+
+    initSplitText() {
+        // Walk all text nodes inside the title and wrap each char in a span.
+        // Critical: we skip whitespace-only text nodes (HTML source indentation)
+        // and trim leading/trailing whitespace from meaningful text so alignment isn't broken.
+        const walker = document.createTreeWalker(this.title, NodeFilter.SHOW_TEXT, null, false);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+
+        textNodes.forEach((node) => {
+            const text = node.textContent;
+
+            // Skip pure whitespace nodes (HTML indentation between tags)
+            if (!text.trim()) {
+                node.parentNode.removeChild(node);
+                return;
+            }
+
+            // Trim leading/trailing whitespace so HTML indentation doesn't become visible spans
+            const trimmed = text.trim();
+
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < trimmed.length; i++) {
+                const ch = trimmed[i];
+                if (ch === ' ') {
+                    const sp = document.createElement('span');
+                    sp.className = 'char-3d-space';
+                    sp.innerHTML = '&nbsp;';
+                    frag.appendChild(sp);
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'char-3d';
+                    span.textContent = ch;
+                    // staggered random delays & durations for organic feel
+                    span.style.animationDelay = `${(Math.random() * 2).toFixed(2)}s`;
+                    span.style.animationDuration = `${(2.8 + Math.random() * 1.8).toFixed(2)}s`;
+                    frag.appendChild(span);
+                }
+            }
+            node.parentNode.replaceChild(frag, node);
+        });
+    }
+
+    bindEvents() {
+        // --- Mouse ---
+        document.addEventListener('mousemove', (e) => this.onPointer(e.clientX, e.clientY));
+
+        this.container.addEventListener('mouseenter', () => {
+            this.isHovering = true;
+            this.autoRotate = false;
+        });
+        this.container.addEventListener('mouseleave', () => {
+            this.isHovering = false;
+            this.autoRotate = true;
+            this.mouseX = 0.5;
+            this.mouseY = 0.5;
+        });
+
+        // --- Touch ---
+        this.container.addEventListener('touchstart', (e) => {
+            this.isTouching = true;
+            this.autoRotate = false;
+            this.container.classList.add('touch-active');
+            const t = e.touches[0];
+            if (t) this.onPointer(t.clientX, t.clientY);
+        }, { passive: true });
+
+        this.container.addEventListener('touchmove', (e) => {
+            const t = e.touches[0];
+            if (t) this.onPointer(t.clientX, t.clientY);
+        }, { passive: true });
+
+        this.container.addEventListener('touchend', () => {
+            this.isTouching = false;
+            this.autoRotate = true;
+            this.container.classList.remove('touch-active');
+            this.mouseX = 0.5;
+            this.mouseY = 0.5;
+        }, { passive: true });
+
+        window.addEventListener('resize', () => this.updateRect());
+    }
+
+    onPointer(cx, cy) {
+        this.updateRect();
+        const rect = this.boundingRect;
+        if (!rect) return;
+
+        this.mouseX = (cx - rect.left) / rect.width;
+        this.mouseY = (cy - rect.top) / rect.height;
+        this.glowX = cx - rect.left;
+        this.glowY = cy - rect.top;
+    }
+
+    updateRect() {
+        this.boundingRect = this.container.getBoundingClientRect();
+    }
+
+    startAnimation() {
+        const tick = () => {
+            if (this.autoRotate) {
+                this.autoAngle += 0.002;
+                this.targetRotY = Math.sin(this.autoAngle) * 3;
+                this.targetRotX = Math.sin(this.autoAngle * 0.7) * 1.5;
+            } else {
+                this.targetRotY = (this.mouseX - 0.5) * 20;
+                this.targetRotX = (this.mouseY - 0.5) * -12;
+            }
+
+            // Smooth spring interpolation
+            this.currentRotX += (this.targetRotX - this.currentRotX) * 0.06;
+            this.currentRotY += (this.targetRotY - this.currentRotY) * 0.06;
+
+            if (this.title) {
+                this.title.style.transform =
+                    `rotateX(${this.currentRotX}deg) rotateY(${this.currentRotY}deg)`;
+            }
+
+            // Glow follower
+            if (this.glow) {
+                this.glow.style.left = `${this.glowX}px`;
+                this.glow.style.top = `${this.glowY}px`;
+            }
+
+            // Highlight gradient hotspot
+            const hl = this.title?.querySelector('.highlight');
+            if (hl) {
+                hl.style.setProperty('--glow-x', `${this.mouseX * 100}%`);
+                hl.style.setProperty('--glow-y', `${this.mouseY * 100}%`);
+            }
+
+            requestAnimationFrame(tick);
+        };
+        setTimeout(tick, 120);
+    }
+}
+
+// Init after DOM
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => new Text3DTilt());
+} else {
+    new Text3DTilt();
+}
+
 // --- Font loading promise (consumed by Three.js module) ---
 window.__fontsPromise = document.fonts.ready;
 
