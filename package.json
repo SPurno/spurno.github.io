@@ -1,7 +1,7 @@
 {
   "name": "spurno.github.io",
-  "version": "1.0.0",
-  "description": "![Description of Image](https://spurno.github.io/images/bio.jpg)\r ## SPurno Animation Studio | Animation Creator | Coder | Advertising Producer",
+  "version": "2.0.1",
+  "description": "SPurno Animation Studio - Premium motion background videos, animated templates, and stock footage for creators worldwide. Web portfolio by Faruk Ahmed.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
