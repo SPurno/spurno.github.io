@@ -47,19 +47,19 @@
         .blog-article p { color: rgba(255,255,255,0.65); line-height: 1.8; font-size: 1.02rem; margin-bottom: 16px; }
         .blog-article ul, .blog-article ol { color: rgba(255,255,255,0.65); line-height: 1.8; font-size: 1.02rem; margin-bottom: 16px; padding-left: 24px; }
         .blog-article li { margin-bottom: 8px; }
-        .blog-article a { color: #f093fb; transition: color 0.2s ease; }
-        .blog-article a:hover { color: #f5576c; text-decoration: underline; }
-        .blog-article .btn-buy { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.3px; background: linear-gradient(135deg, #f093fb, #f5576c); color: #fff; box-shadow: 0 4px 24px rgba(245, 87, 108, 0.35); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; cursor: pointer; text-decoration: none; margin-bottom: 24px; }
-        .blog-article .btn-buy:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 32px rgba(245, 87, 108, 0.5); }
+        .blog-article a { color: #f7b731; transition: color 0.2s ease; }
+        .blog-article a:hover { color: #f7931e; text-decoration: underline; }
+        .blog-article .btn-buy { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.3px; background: linear-gradient(135deg, #f7b731, #f7931e); color: #fff; box-shadow: 0 4px 24px rgba(247, 147, 30, 0.35); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; cursor: pointer; text-decoration: none; margin-bottom: 24px; }
+        .blog-article .btn-buy:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 32px rgba(247, 147, 30, 0.5); }
         .blog-article .check-list { list-style: none; padding: 0; }
         .blog-article .check-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; }
         .blog-article .check-list li::before { content: '\2713'; color: #43e97b; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
         .blog-article .step-list { padding-left: 0; list-style: none; counter-reset: step; }
         .blog-article .step-list li { counter-increment: step; padding: 12px 16px 12px 48px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; position: relative; }
-        .blog-article .step-list li::before { content: counter(step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #f093fb, #4facfe); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+        .blog-article .step-list li::before { content: counter(step); position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #f7b731, #d97706); color: #fff; font-size: 0.8rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
         .blog-article .tag-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
         .blog-article .tag-list a { padding: 6px 14px; border-radius: 20px; font-size: 0.78rem; font-weight: 500; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.55); transition: all 0.25s ease; text-decoration: none; }
-        .blog-article .tag-list a:hover { background: rgba(240, 147, 251, 0.12); border-color: rgba(240, 147, 251, 0.2); color: #fff; }
+        .blog-article .tag-list a:hover { background: rgba(247, 183, 49, 0.12); border-color: rgba(247, 183, 49, 0.2); color: #fff; }
         .blog-article .share-bar { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin: 32px 0 24px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,0.06); border-bottom: 1px solid rgba(255,255,255,0.06); }
         .blog-article .share-bar .share-label { font-size: 0.85rem; color: rgba(255,255,255,0.4); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
         .blog-article .share-bar .share-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); font-size: 0.9rem; transition: all 0.25s ease; text-decoration: none; }
@@ -68,12 +68,12 @@
         .blog-article .share-bar .share-btn.tw:hover { background: #1da1f2; color: #fff; border-color: #1da1f2; }
         .blog-article .share-bar .share-btn.pin:hover { background: #e60023; color: #fff; border-color: #e60023; }
         .blog-article .author-card { display: flex; gap: 20px; padding: 28px; margin-top: 40px; align-items: flex-start; }
-        .blog-article .author-card .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #f093fb, #4facfe); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+        .blog-article .author-card .avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, #f7b731, #d97706); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 700; color: #fff; flex-shrink: 0; }
         .blog-article .author-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 6px; }
         .blog-article .author-card p { font-size: 0.9rem; color: rgba(255,255,255,0.5); margin-bottom: 10px; }
         .blog-article .author-card .social-mini { display: flex; gap: 8px; }
         .blog-article .author-card .social-mini a { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.5); transition: all 0.2s ease; text-decoration: none; }
-        .blog-article .author-card .social-mini a:hover { background: rgba(240, 147, 251, 0.15); border-color: rgba(240, 147, 251, 0.25); color: #fff; }
+        .blog-article .author-card .social-mini a:hover { background: rgba(247, 183, 49, 0.15); border-color: rgba(247, 183, 49, 0.25); color: #fff; }
         .blog-sidebar { display: flex; flex-direction: column; gap: 28px; }
         .sidebar-card { padding: 28px 24px; }
         .sidebar-card h3 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.7); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.06); }
@@ -81,13 +81,13 @@
         .sidebar-card ul li { margin-bottom: 10px; }
         .sidebar-card ul li a { display: flex; align-items: center; gap: 10px; padding: 8px 12px; border-radius: 10px; font-size: 0.88rem; color: rgba(255,255,255,0.55); transition: all 0.2s ease; text-decoration: none; }
         .sidebar-card ul li a:hover { background: rgba(255,255,255,0.04); color: #fff; padding-left: 16px; }
-        .sidebar-card ul li a .arrow { color: rgba(240, 147, 251, 0.5); font-size: 0.7rem; }
+        .sidebar-card ul li a .arrow { color: rgba(247, 183, 49, 0.5); font-size: 0.7rem; }
         .sidebar-card .recent-item { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
         .sidebar-card .recent-item:last-child { border-bottom: none; }
         .sidebar-card .recent-item .thumb { width: 52px; height: 52px; border-radius: 10px; background: linear-gradient(135deg, rgba(240,147,251,0.1), rgba(79,172,254,0.1)); border: 1px solid rgba(255,255,255,0.06); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
         .sidebar-card .recent-item .info h4 { font-size: 0.85rem; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
         .sidebar-card .recent-item .info h4 a { color: rgba(255,255,255,0.7); text-decoration: none; transition: color 0.2s ease; }
-        .sidebar-card .recent-item .info h4 a:hover { color: #f093fb; }
+        .sidebar-card .recent-item .info h4 a:hover { color: #f7b731; }
         .sidebar-card .recent-item .info .date { font-size: 0.72rem; color: rgba(255,255,255,0.3); }
         .ad-container { text-align: center; padding: 20px 0; }
         .ad-inline { padding: 24px; margin: 32px 0; text-align: center; }
@@ -137,7 +137,7 @@
                     </video>
                 </div>
                 <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn-buy">✦ Buy From Adobe Stock</a>
-                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.75); font-weight: 500; border-left: 3px solid #f093fb; padding-left: 20px;">Sale Banner Templates provide ready-to-use promotional designs for ecommerce, retail campaigns, and seasonal sales events. Professional banners drive conversions.</p>
+                <p style="font-size: 1.1rem; color: rgba(255,255,255,0.75); font-weight: 500; border-left: 3px solid #f7b731; padding-left: 20px;">Sale Banner Templates provide ready-to-use promotional designs for ecommerce, retail campaigns, and seasonal sales events. Professional banners drive conversions.</p>
                 <h2>Why Sale Banner Templates Matter</h2>
                 <p>Sale banners are critical for ecommerce and retail marketing. Well-designed banners capture attention, communicate offers clearly, and drive click-through rates. Animated sale banners are even more effective at stopping the scroll.</p>
                 <div class="ad-inline glass-light">
