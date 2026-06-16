@@ -6,6 +6,17 @@
 (function($) {
     'use strict';
 
+    /* ===== FORMSPREE CONFIGURATION =====
+     * To enable form submissions:
+     * 1. Go to https://formspree.io and create a free account
+     * 2. Create a new form (+ New Form) to get your Form ID
+     * 3. Replace 'YOUR_FORM_ID' below with the ID from your Formspree dashboard
+     *    (e.g., if your form endpoint is https://formspree.io/f/xabc1234, the ID is "xabc1234")
+     *
+     * You can use separate form IDs for contact vs newsletter, or the same one for both.
+     */
+    const FORMSPREE_ID = 'xdavjwjo'; // ← Replace this with your actual Formspree form ID
+
     /* ===== PRELOADER (outside DOM ready for reliable load event) ===== */
     $(window).on('load', function() {
         setTimeout(function() {
@@ -100,14 +111,14 @@
             $('a, button, .service-card, .portfolio-card, .blog-card, .swiper-button-prev, .swiper-button-next').on('mouseenter', function() {
                 cursorOutline.style.width = '60px';
                 cursorOutline.style.height = '60px';
-                cursorOutline.style.borderColor = '#a29bfe';
-                cursorOutline.style.background = 'rgba(108, 92, 231, 0.05)';
+                cursorOutline.style.borderColor = '#b0a6f5';
+                cursorOutline.style.background = 'rgba(124, 111, 240, 0.05)';
             });
 
             $('a, button, .service-card, .portfolio-card, .blog-card, .swiper-button-prev, .swiper-button-next').on('mouseleave', function() {
                 cursorOutline.style.width = '40px';
                 cursorOutline.style.height = '40px';
-                cursorOutline.style.borderColor = '#a29bfe';
+                cursorOutline.style.borderColor = '#b0a6f5';
                 cursorOutline.style.background = 'transparent';
             });
         }
@@ -201,20 +212,52 @@
             
             if (!valid) return;
             
+            // Check that Formspree is configured
+            if (FORMSPREE_ID === 'FORMSPREE_ID') {
+                alert('Please configure Formspree in js/main.js. Set the FORMSPREE_ID constant at the top of the file with your Formspree form ID.');
+                return;
+            }
+            
             // Show loading state
             $button.html('<span class="spinner-border spinner-border-sm me-2" role="status"></span>Sending...');
             $button.prop('disabled', true);
             
-            // Simulate sending (in production, replace with actual AJAX call)
-            setTimeout(function() {
-                $button.html('<span><i class="fas fa-check me-2"></i>Message Sent!</span>');
-                
-                setTimeout(function() {
-                    $button.html(originalText);
-                    $button.prop('disabled', false);
+            // Send to Formspree
+            const formData = new FormData($form[0]);
+            formData.append('_subject', 'Contact Form Submission - PixelPerfect');
+            
+            fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    $button.html('<span><i class="fas fa-check me-2"></i>Message Sent!</span>');
                     $form[0].reset();
-                }, 3000);
-            }, 2000);
+                    setTimeout(function() {
+                        $button.html(originalText);
+                        $button.prop('disabled', false);
+                    }, 3000);
+                } else {
+                    response.json().then(function(data) {
+                        alert(data.errors ? data.errors.map(function(e) { return e.message; }).join(', ') : 'Oops! There was a problem submitting your form.');
+                        $button.html(originalText);
+                        $button.prop('disabled', false);
+                    }).catch(function() {
+                        alert('Oops! There was a problem submitting your form.');
+                        $button.html(originalText);
+                        $button.prop('disabled', false);
+                    });
+                }
+            })
+            .catch(function() {
+                alert('Oops! There was a problem submitting your form. Please try again.');
+                $button.html(originalText);
+                $button.prop('disabled', false);
+            });
         });
 
         // Remove validation styles on input
@@ -226,12 +269,50 @@
         $('.newsletter-form').on('submit', function(e) {
             e.preventDefault();
             const $form = $(this);
+            const $button = $form.find('button[type="submit"]');
             const $input = $form.find('input[type="email"]');
+            const originalHtml = $button.html();
             
-            if ($input.val().trim()) {
-                $input.val('');
-                alert('Thank you for subscribing!');
+            if (!$input.val().trim()) return;
+            
+            // Check that Formspree is configured
+            if (FORMSPREE_ID === 'xdavjwjo') {
+                alert('Please configure Formspree in js/main.js to enable newsletter subscriptions.');
+                return;
             }
+            
+            // Show loading
+            $button.prop('disabled', true);
+            $button.html('<i class="fas fa-spinner fa-spin"></i>');
+            
+            const formData = new FormData();
+            formData.append('email', $input.val().trim());
+            formData.append('_subject', 'Newsletter Subscription - PixelPerfect');
+            
+            fetch('https://formspree.io/f/' + FORMSPREE_ID, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    $input.val('');
+                    $button.html('<i class="fas fa-check"></i>');
+                    setTimeout(function() {
+                        $button.html(originalHtml);
+                        $button.prop('disabled', false);
+                    }, 2000);
+                } else {
+                    $button.html(originalHtml);
+                    $button.prop('disabled', false);
+                }
+            })
+            .catch(function() {
+                $button.html(originalHtml);
+                $button.prop('disabled', false);
+            });
         });
 
         // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
@@ -372,8 +453,8 @@
             });
         }
 
-        console.log('%c PixelPerfect v1.0.0 ', 'background: #6c5ce7; color: #fff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;');
-        console.log('%c 🚀 Built with Three.js, GSAP, Bootstrap 5 ', 'color: #a29bfe; font-size: 11px;');
+        console.log('%c PixelPerfect v1.0.0 ', 'background: #7c6ff0; color: #fff; padding: 4px 8px; border-radius: 4px; font-family: monospace; font-size: 12px;');
+        console.log('%c 🚀 Built with Three.js, GSAP, Bootstrap 5 ', 'color: #b0a6f5; font-size: 11px;');
 
     }); // End DOM ready
 

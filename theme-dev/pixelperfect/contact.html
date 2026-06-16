@@ -133,25 +133,25 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="nameMain">Your Name <span class="text-accent">*</span></label>
-                                        <input type="text" class="form-control modern-input" id="nameMain" placeholder="John Doe" required>
+                                        <input type="text" class="form-control modern-input" id="nameMain" name="name" placeholder="John Doe" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="emailMain">Your Email <span class="text-accent">*</span></label>
-                                        <input type="email" class="form-control modern-input" id="emailMain" placeholder="john@example.com" required>
+                                        <input type="email" class="form-control modern-input" id="emailMain" name="email" placeholder="john@example.com" required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="phoneMain">Phone Number</label>
-                                        <input type="tel" class="form-control modern-input" id="phoneMain" placeholder="+1 (234) 567-890">
+                                        <input type="tel" class="form-control modern-input" id="phoneMain" name="phone" placeholder="+1 (234) 567-890">
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label for="budget">Budget Range</label>
-                                        <select class="form-select modern-input" id="budget">
+                                        <select class="form-select modern-input" id="budget" name="budget">
                                             <option value="">Select a range</option>
                                             <option value="<5k">Less than $5k</option>
                                             <option value="5k-10k">$5k - $10k</option>
@@ -165,13 +165,13 @@
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="subjectMain">Subject</label>
-                                        <input type="text" class="form-control modern-input" id="subjectMain" placeholder="Project Inquiry">
+                                        <input type="text" class="form-control modern-input" id="subjectMain" name="subject" placeholder="Project Inquiry">
                                     </div>
                                 </div>
                                 <div class="col-12">
                                     <div class="form-group">
                                         <label for="messageMain">Your Message <span class="text-accent">*</span></label>
-                                        <textarea class="form-control modern-input" id="messageMain" rows="6" placeholder="Tell me about your project..." required></textarea>
+                                        <textarea class="form-control modern-input" id="messageMain" name="message" rows="6" placeholder="Tell me about your project..." required></textarea>
                                     </div>
                                 </div>
                                 <div class="col-12">
@@ -241,7 +241,7 @@
                         <p class="footer-desc">Subscribe for the latest updates and insights.</p>
                         <form class="newsletter-form">
                             <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Your Email" required>
+                                <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                                 <button class="btn btn-glow" type="submit">
                                     <i class="fas fa-paper-plane"></i>
                                 </button>

@@ -39,10 +39,10 @@
     const colorsArray = new Float32Array(particleCount * 3);
     const sizesArray = new Float32Array(particleCount);
     
-    const color1 = new THREE.Color('#6c5ce7'); // Primary purple
-    const color2 = new THREE.Color('#00cec9'); // Teal accent
-    const color3 = new THREE.Color('#a29bfe'); // Light purple
-    const color4 = new THREE.Color('#fd79a8'); // Pink
+    const color1 = new THREE.Color('#7c6ff0'); // Primary indigo
+    const color2 = new THREE.Color('#6dd5c8'); // Mint accent
+    const color3 = new THREE.Color('#b0a6f5'); // Light indigo
+    const color4 = new THREE.Color('#f0b27a'); // Warm gold
     
     for (let i = 0; i < particleCount; i++) {
         // Position particles in a sphere with some randomness
@@ -185,7 +185,7 @@
     
     const linesMaterial = new THREE.PointsMaterial({
         size: 0.05,
-        color: 0x6c5ce7,
+        color: 0x7c6ff0,
         transparent: true,
         opacity: 0.3,
         blending: THREE.AdditiveBlending

@@ -32,6 +32,153 @@
     <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <link rel="stylesheet" href="../assets/css/spurno3d.css">
+    <link rel="stylesheet" href="../assets/style-switcher/style-switcher.css">
+    <link rel="stylesheet" href="../assets/style-switcher/vendor/spectrum/spectrum.css">
+    <link rel="stylesheet" href="../assets/style-switcher/vendor/spectrum/themes/sp-dark.css">
+    <style>
+        /* Dark theme overrides for style-switcher */
+        .u-ss-wrap {
+            background: rgba(15, 15, 25, 0.96);
+            backdrop-filter: blur(24px) saturate(1.5);
+            -webkit-backdrop-filter: blur(24px) saturate(1.5);
+            border-left: 1px solid rgba(255,255,255,0.08);
+            box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+        }
+        .u-ss_opened .u-ss-wrap {
+            box-shadow: -8px 0 40px rgba(0,0,0,0.5);
+        }
+        .u-ss-header {
+            background: rgba(20, 20, 35, 0.9);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .u-ss__main-title {
+            color: rgba(255,255,255,0.9);
+            font-family: 'Jost', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .u-ss-body {
+            background: transparent;
+        }
+        .u-ss-section__title {
+            color: rgba(255,255,255,0.7);
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .u-ss-section {
+            border-bottom-color: rgba(255,255,255,0.06);
+        }
+        .u-ss-check__item i {
+            color: #fff !important;
+            font-size: 16px;
+        }
+        .u-ss__control {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.8);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            padding: 10px 14px;
+        }
+        .u-ss__control:focus {
+            border-color: var(--color-primary);
+            outline: none;
+        }
+        .u-ss-toggler {
+            background: rgba(15, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.10);
+            color: rgba(255,255,255,0.7);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            font-size: 20px;
+        }
+        .u-ss-toggler:hover {
+            color: var(--color-primary);
+            border-color: rgba(var(--color-primary-rgb), 0.3);
+        }
+        .u-ss-btn--green {
+            background: rgba(255,255,255,0.08) !important;
+            border-color: rgba(255,255,255,0.12) !important;
+            color: rgba(255,255,255,0.8) !important;
+            font-family: 'Jost', sans-serif;
+            font-weight: 500;
+            border-radius: 12px;
+            padding: 12px 16px;
+            transition: all 0.3s ease;
+        }
+        .u-ss-btn--green:hover {
+            background: rgba(255,255,255,0.12) !important;
+            color: #fff !important;
+        }
+        .sp-replacer {
+            border-color: rgba(255,255,255,0.15) !important;
+            background: rgba(255,255,255,0.06) !important;
+        }
+        .sp-container {
+            border-color: rgba(255,255,255,0.10) !important;
+            background: #1a1a2e !important;
+            border-radius: 12px !important;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5) !important;
+        }
+        .sp-input {
+            background: rgba(255,255,255,0.06) !important;
+            color: #fff !important;
+            border-color: rgba(255,255,255,0.10) !important;
+        }
+        .sp-input:focus {
+            border-color: var(--color-primary) !important;
+        }
+        .sp-cancel {
+            color: rgba(255,255,255,0.5) !important;
+        }
+        .sp-choose {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent)) !important;
+            color: #fff !important;
+        }
+
+        /* ===== STYLE SWITCHER GEAR ICON ===== */
+        .ss-gear {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            animation: ss-gear-spin 6s linear infinite;
+        }
+        .ss-gear svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .u-ss-toggler:hover .ss-gear {
+            animation-duration: 0.8s;
+        }
+        .u-ss_opened .u-ss-toggler .ss-gear {
+            animation-duration: 2s;
+        }
+        .u-ss_opened .u-ss-toggler:hover .ss-gear {
+            animation-duration: 0.5s;
+        }
+        @keyframes ss-gear-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Gradient swatch fix: class-based override for reliable gradient display */
+        .u-ss-check__item.swatch-grad {
+            background-size: 100% 100% !important;
+            background-position: 0 0 !important;
+        }
+    </style>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
     <style>
         .blog-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; }
@@ -392,6 +539,136 @@
             </div>
         </footer>
     </main>
+
+    <!-- ===== STYLE SWITCHER ===== -->
+    <div class="u-ss" data-cookies-prefix="spurno">
+        <button class="u-ss-toggler" aria-label="Toggle theme styles">
+            <span class="ss-gear">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5.64 5.64l1.41 1.41m9.9 9.9l1.41 1.41M5.64 18.36l1.41-1.41m9.9-9.9l1.41-1.41M12 6a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/>
+                    <circle cx="12" cy="12" r="2"/>
+                </svg>
+            </span>
+        </button>
+        <div class="u-ss-wrap">
+            <div class="u-ss-header">
+                <h3 class="u-ss__main-title">Style Switcher</h3>
+            </div>
+            <div class="u-ss-body js-ss-scrollbar">
+                <!-- Preset Colors: Solids -->
+                <div class="u-ss-section">
+                    <h4 class="u-ss-section__title">Solid Colors</h4>
+                    <div class="u-ss-sub-section-wrap" id="customColors">
+                        <label class="u-ss-check" title="Gold (Default)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-gold" value="theme-gold" checked>
+                            <span class="u-ss-check__item" style="background: #f7b731;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Blue">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-blue" value="theme-blue">
+                            <span class="u-ss-check__item" style="background: #4facfe;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Purple">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-purple" value="theme-purple">
+                            <span class="u-ss-check__item" style="background: #a855f7;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Green">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-green" value="theme-green">
+                            <span class="u-ss-check__item" style="background: #34d399;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Pink">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-pink" value="theme-pink">
+                            <span class="u-ss-check__item" style="background: #f472b6;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Cyan">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-cyan" value="theme-cyan">
+                            <span class="u-ss-check__item" style="background: #22d3ee;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Red">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-red" value="theme-red">
+                            <span class="u-ss-check__item" style="background: #f87171;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Orange">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-orange" value="theme-orange">
+                            <span class="u-ss-check__item" style="background: #fb923c;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Coral">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-coral" value="theme-coral">
+                            <span class="u-ss-check__item" style="background: #ff6b6b;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Teal">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-teal" value="theme-teal">
+                            <span class="u-ss-check__item" style="background: #2dd4bf;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Rose">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-rose" value="theme-rose">
+                            <span class="u-ss-check__item" style="background: #fb7185;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Lime">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-lime" value="theme-lime">
+                            <span class="u-ss-check__item" style="background: #84cc16;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Indigo">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-indigo" value="theme-indigo">
+                            <span class="u-ss-check__item" style="background: #6366f1;"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Amber">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="theme-amber" value="theme-amber">
+                            <span class="u-ss-check__item" style="background: #f59e0b;"><i>&#10003;</i></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Gradient Pair Themes -->
+                <div class="u-ss-section">
+                    <h4 class="u-ss-section__title">Gradient Themes</h4>
+                    <div class="u-ss-check-section" style="margin: 0 -4px 12px;">
+                        <label class="u-ss-check" title="Sunset (Purple → Pink)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-sunset" value="gradient-sunset">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #a855f7, #f472b6);"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Ocean (Teal → Blue)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-ocean" value="gradient-ocean">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #2dd4bf, #3b82f6);"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Fire (Orange → Red)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-fire" value="gradient-fire">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #fb923c, #ef4444);"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Forest (Green → Emerald)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-forest" value="gradient-forest">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #22c55e, #059669);"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Midnight (Indigo → Purple)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-midnight" value="gradient-midnight">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);"><i>&#10003;</i></span>
+                        </label>
+                        <label class="u-ss-check" title="Aurora (Cyan → Purple)">
+                            <input type="radio" name="theme-color" class="u-ss-color" id="gradient-aurora" value="gradient-aurora">
+                            <span class="u-ss-check__item swatch-grad" style="background: linear-gradient(135deg, #22d3ee, #a855f7);"><i>&#10003;</i></span>
+                        </label>
+                    </div>
+                    <p style="font-size: 0.72rem; color: rgba(255,255,255,0.35); margin-top: -8px;">Gradient themes pair contrasting colors for buttons &amp; headings</p>
+                </div>
+
+                <!-- Custom Color -->
+                <div class="u-ss-section" id="userColor">
+                    <h4 class="u-ss-section__title">Custom Color</h4>
+                    <div class="u-ss-control-wrap">
+                        <input type="text" class="u-ss__control" id="customColorInput" placeholder="Hex color e.g. #f7b731">
+                        <input type="text" class="js-ss-color-picker" id="customColorPicker" value="#f7b731">
+                    </div>
+                </div>
+
+                <!-- Reset -->
+                <div class="u-ss-section" style="border-bottom: none; margin-bottom: 0;">
+                    <button class="u-ss-btn u-ss-btn--green js-ss-reset">Reset to Default</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../assets/style-switcher/vendor/spectrum/spectrum.js"></script>
+    <script src="../assets/style-switcher/style-switcher-init.js"></script>
     <script type="importmap" crossorigin="anonymous">
         { "imports": { "three": "../js/lib/three.module.js" } }
     </script>
