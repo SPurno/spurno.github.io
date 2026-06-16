@@ -765,6 +765,22 @@
     function bindLanguageMenu() {
         var $ = window.jQuery;
 
+        // Toggle language dropdown on button click (supports mobile where :hover is unreliable)
+        $(document).on('click', '.lang-btn', function (event) {
+            event.stopPropagation();
+            var $selector = $(this).closest('.language-selector');
+            // Close all other open language menus first
+            $('.language-selector').not($selector).removeClass('open');
+            $selector.toggleClass('open');
+        });
+
+        // Close open language dropdown when clicking outside
+        $(document).on('click', function (event) {
+            if (!$(event.target).closest('.language-selector').length) {
+                $('.language-selector').removeClass('open');
+            }
+        });
+
         $(document).on('click', '[data-language]', function (event) {
             event.preventDefault();
 
@@ -773,6 +789,9 @@
             if (languages.indexOf(language) === -1) {
                 return;
             }
+
+            // Close dropdown after selecting a language
+            $(this).closest('.language-selector').removeClass('open');
 
             window.i18next.changeLanguage(language, function () {
                 setStoredLanguage(language);

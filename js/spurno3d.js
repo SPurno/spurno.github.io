@@ -604,8 +604,10 @@ navLinks.querySelectorAll('a').forEach((link) => {
     });
 });
 
-// --- Smooth scroll for anchor links ---
+// --- Smooth scroll for anchor links (skip language options) ---
 document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+    // Skip language selector options (href="#" but handled separately)
+    if (anchor.hasAttribute('data-language')) return;
     anchor.addEventListener('click', (e) => {
         const target = document.querySelector(anchor.getAttribute('href'));
         if (target) {
