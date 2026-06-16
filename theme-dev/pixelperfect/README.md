@@ -352,9 +352,9 @@ PixelPerfect uses the following open-source libraries:
 
 <div align="center">
 
-**Made with ❤️ for [WrapBootstrap](https://wrapbootstrap.com)**
+**Made with ❤️ for [Developers]**
 
-[Documentation](documentation/index.html) · [WrapBootstrap](https://wrapbootstrap.com)
+[Documentation](documentation/index.html)
 
 © 2026 PixelPerfect. All rights reserved.
 
