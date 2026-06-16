@@ -249,34 +249,6 @@
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Animate service cards
-            gsap.from('.service-card', {
-                scrollTrigger: {
-                    trigger: '#services',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                },
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
-
-            // Animate portfolio items
-            gsap.from('.portfolio-card', {
-                scrollTrigger: {
-                    trigger: '#portfolio',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none'
-                },
-                y: 60,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: 'power3.out'
-            });
-
             // Parallax effect on hero stats
             gsap.to('.hero-stats-grid', {
                 scrollTrigger: {
