@@ -540,25 +540,12 @@
 
     <!-- ===== STYLE SWITCHER OVERLAY ===== -->
     <div class="ss-overlay" id="ssOverlay"></div>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../assets/style-switcher/style-switcher-init.js"></script>
     <script type="importmap" crossorigin="anonymous">
         { "imports": { "three": "../js/lib/three.module.js" } }
     </script>
     <script type="module" src="../js/spurno3d.js"></script>
-    <script>
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 80); });
-        const navToggle = document.getElementById('navToggle');
-        const navLinks = document.getElementById('navLinks');
-        navToggle.addEventListener('click', () => { navLinks.classList.toggle('open'); });
-        navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { navLinks.classList.remove('open'); }); });
-        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-            a.addEventListener('click', function(e) {
-                var t = document.querySelector(a.getAttribute('href'));
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-            });
-        });
-    </script>
+
 </body>
 </html>

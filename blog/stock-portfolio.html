@@ -539,28 +539,14 @@
 
     <!-- ===== STYLE SWITCHER OVERLAY ===== -->
     <div class="ss-overlay" id="ssOverlay"></div>
-    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="../assets/style-switcher/style-switcher-init.js"></script>
     <script type="importmap" crossorigin="anonymous">
         { "imports": { "three": "../js/lib/three.module.js" } }
     </script>
     <script type="module" src="../js/spurno3d.js"></script>
     <script>
-        // Navbar scroll effect
-        var navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', function() { navbar.classList.toggle('scrolled', window.scrollY > 80); });
-        var navToggle = document.getElementById('navToggle');
-        var navLinks = document.getElementById('navLinks');
-        if (navToggle) { navToggle.addEventListener('click', function() { navLinks.classList.toggle('open'); }); }
-        if (navLinks) { navLinks.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', function() { navLinks.classList.remove('open'); }); }); }
-        document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-            a.addEventListener('click', function(e) {
-                var t = document.querySelector(a.getAttribute('href'));
-                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-            });
-        });
-
-        // ===== VIDEO GALLERY =====
+// ===== VIDEO GALLERY =====
         (function() {
             var videos = [
                 { id: 'spurno-promo', title: 'SPurno Animation Studio Promo', cat: 'motion', file: 'SPurno-Animation-Studio-Promo-Video-Animation.mp4', thumb: '../images/spurno-promo-new-video-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: '../watch/spurno-animation-studio-promo-video-animation.html' },

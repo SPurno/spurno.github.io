@@ -8,6 +8,7 @@
                     about: 'About',
                     services: 'Services',
                     portfolio: 'Portfolio',
+                    videos: 'Videos',
                     explore: 'Explore',
                     contact: 'Contact',
                     shopNow: 'Shop Now'
@@ -60,6 +61,7 @@
                     about: 'Acerca de',
                     services: 'Servicios',
                     portfolio: 'Portafolio',
+                    videos: 'Videos',
                     explore: 'Explorar',
                     contact: 'Contacto',
                     shopNow: 'Comprar ahora'
@@ -112,6 +114,7 @@
                     about: '\u041e \u043d\u0430\u0441',
                     services: '\u0423\u0441\u043b\u0443\u0433\u0438',
                     portfolio: '\u041f\u043e\u0440\u0442\u0444\u043e\u043b\u0438\u043e',
+                    videos: '\u0412\u0438\u0434\u0435\u043e',
                     explore: '\u0418\u0441\u0441\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u044c',
                     contact: '\u041a\u043e\u043d\u0442\u0430\u043a\u0442\u044b',
                     shopNow: '\u041a\u0443\u043f\u0438\u0442\u044c'
@@ -164,6 +167,7 @@
                     about: '\u00dcber uns',
                     services: 'Dienstleistungen',
                     portfolio: 'Portfolio',
+                    videos: 'Videos',
                     explore: 'Erkunden',
                     contact: 'Kontakt',
                     shopNow: 'Jetzt kaufen'
@@ -216,6 +220,7 @@
                     about: '\u00c0 propos',
                     services: 'Services',
                     portfolio: 'Portfolio',
+                    videos: 'Vid\u00e9os',
                     explore: 'Explorer',
                     contact: 'Contact',
                     shopNow: 'Acheter'
@@ -268,6 +273,7 @@
                     about: 'Sobre',
                     services: 'Servi\u00e7os',
                     portfolio: 'Portf\u00f3lio',
+                    videos: 'V\u00eddeos',
                     explore: 'Explorar',
                     contact: 'Contato',
                     shopNow: 'Comprar'
@@ -320,6 +326,7 @@
                     about: '\u6982\u8981',
                     services: '\u30b5\u30fc\u30d3\u30b9',
                     portfolio: '\u30dd\u30fc\u30c8\u30d5\u30a9\u30ea\u30aa',
+                    videos: '\u52d5\u753b',
                     explore: '\u63a2\u3059',
                     contact: '\u304a\u554f\u3044\u5408\u308f\u305b',
                     shopNow: '\u8cfc\u5165\u3059\u308b'
@@ -372,6 +379,7 @@
                     about: '\u5173\u4e8e',
                     services: '\u670d\u52a1',
                     portfolio: '\u4f5c\u54c1\u96c6',
+                    videos: '\u89c6\u9891',
                     explore: '\u63a2\u7d22',
                     contact: '\u8054\u7cfb',
                     shopNow: '\u7acb\u5373\u8d2d\u4e70'
