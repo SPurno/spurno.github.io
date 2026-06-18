@@ -2,13 +2,13 @@
                    THEME VARIABLES
         ============================================ */
         :root {
-            --color-primary: #f7b731;
-            --color-primary-dark: #d97706;
-            --color-accent: #f7931e;
+            --color-primary: #22d3ee;
+            --color-primary-dark: #04b5d0;
+            --color-accent: #a855f7;
             --color-bg: #0a0a0f;
-            --color-primary-rgb: 247, 183, 49;
-            --color-accent-rgb: 247, 147, 30;
-            --color-primary-dark-rgb: 217, 119, 6;
+            --color-primary-rgb: 34, 211, 238;
+            --color-accent-rgb: 168, 85, 247;
+            --color-primary-dark-rgb: 4, 181, 208;
         }
 
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
