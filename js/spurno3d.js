@@ -474,27 +474,29 @@ class Text3DTilt {
             this.mouseY = 0.5;
         });
 
-        // --- Touch ---
-        this.container.addEventListener('touchstart', (e) => {
-            this.isTouching = true;
-            this.autoRotate = false;
-            this.container.classList.add('touch-active');
-            const t = e.touches[0];
-            if (t) this.onPointer(t.clientX, t.clientY);
-        }, { passive: true });
+        // --- Touch (desktop/tablet only — skip on small screens to avoid scroll interference) ---
+        if (window.innerWidth >= 768) {
+            this.container.addEventListener('touchstart', (e) => {
+                this.isTouching = true;
+                this.autoRotate = false;
+                this.container.classList.add('touch-active');
+                const t = e.touches[0];
+                if (t) this.onPointer(t.clientX, t.clientY);
+            }, { passive: true });
 
-        this.container.addEventListener('touchmove', (e) => {
-            const t = e.touches[0];
-            if (t) this.onPointer(t.clientX, t.clientY);
-        }, { passive: true });
+            this.container.addEventListener('touchmove', (e) => {
+                const t = e.touches[0];
+                if (t) this.onPointer(t.clientX, t.clientY);
+            }, { passive: true });
 
-        this.container.addEventListener('touchend', () => {
-            this.isTouching = false;
-            this.autoRotate = true;
-            this.container.classList.remove('touch-active');
-            this.mouseX = 0.5;
-            this.mouseY = 0.5;
-        }, { passive: true });
+            this.container.addEventListener('touchend', () => {
+                this.isTouching = false;
+                this.autoRotate = true;
+                this.container.classList.remove('touch-active');
+                this.mouseX = 0.5;
+                this.mouseY = 0.5;
+            }, { passive: true });
+        }
 
         window.addEventListener('resize', () => this.updateRect());
     }
