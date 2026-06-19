@@ -182,7 +182,7 @@
         <nav class="navbar" id="navbar">
             <a href="../index.html" class="nav-logo">
                 <img src="../images/spurno-logo.png" alt="SPurno Animation Studio logo" loading="lazy">
-                <span>SPurno</span>
+                 
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="../index.html#about">About</a>
@@ -572,7 +572,7 @@
                 for (var i = 0; i < filtered.length; i++) {
                     var v = filtered[i];
                     html += '<div class="video-card" data-id="' + v.id + '" data-cat="' + v.cat + '">';
-                    html += '  <div class="video-watermark"><img src="../images/spurno-logo.png" alt="SPurno" loading="lazy"><span>SPurno</span></div>';
+                    html += '  <div class="video-watermark"><img src="../images/spurno-logo.png" alt="SPurno" loading="lazy"> </div>';
                     html += '  <video preload="metadata" muted loop playsinline poster="' + v.thumb + '"><source src="../videos/' + v.file + '" type="video/mp4"></video>';
 
                     html += '  <div class="video-card-overlay"><div class="video-title">' + v.title + '</div><div class="video-subtitle">' + v.cat.charAt(0).toUpperCase() + v.cat.slice(1) + ' Graphics</div></div>';

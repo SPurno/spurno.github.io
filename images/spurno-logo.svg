@@ -1,19 +1,68 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="940" height="356" viewBox="0 0 940 356" role="img" aria-labelledby="title desc">
-  <title id="title">SPurno Animation Studio logo</title>
-  <desc id="desc">Orange SPurno Animation Studio wordmark with a vertical studio badge.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 260" width="780" height="260" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">SPurno Animation Studio</title>
+  <desc id="logoDesc">A geometric S monogram built from two precision circular arcs, with a subtle offset ghost frame — referencing animation's onion-skinning technique.</desc>
+
   <defs>
-    <style>
-      .orange{fill:#f7931e}
-      .script{font-family:"Brush Script MT","Segoe Script","Lucida Handwriting",cursive;font-weight:700}
-      .sans{font-family:"Quicksand","Montserrat","Arial",sans-serif;font-weight:800}
-    </style>
+    <linearGradient id="primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB84D"/>
+      <stop offset="60%" stop-color="#f7931e"/>
+      <stop offset="100%" stop-color="#e67e00"/>
+    </linearGradient>
+
+    <linearGradient id="ghost" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD79C"/>
+      <stop offset="100%" stop-color="#FFB84D"/>
+    </linearGradient>
   </defs>
-  <rect x="1" y="2" width="120" height="352" rx="0" ry="0" fill="#f7931e"/>
-  <path d="M121 2v352H1V2h87c18 0 33 15 33 33v286c0 18-15 33-33 33H1V2z" fill="#f7931e"/>
-  <g transform="translate(77 31) rotate(90)">
-    <text class="sans" x="0" y="0" fill="#fff" font-size="52" letter-spacing="20">STUDIO</text>
+
+  <g transform="translate(35, 60)">
+
+    <path d="M 0,30 A 55,55 0 0,1 90,68 A 55,55 0 0,1 0,106"
+          fill="none"
+          stroke="url(#ghost)"
+          stroke-width="24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.07"
+          transform="translate(12, -6)"/>
+
+    <path d="M 0,30 A 55,55 0 0,1 90,68 A 55,55 0 0,1 0,106"
+          fill="none"
+          stroke="url(#ghost)"
+          stroke-width="24"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          opacity="0.18"
+          transform="translate(6, -3)"/>
+
+    <path d="M 0,30 A 55,55 0 0,1 90,68 A 55,55 0 0,1 0,106"
+          fill="none"
+          stroke="url(#primary)"
+          stroke-width="24"
+          stroke-linecap="round"
+          stroke-linejoin="round"/>
   </g>
-  <text class="script" x="154" y="174" font-size="172" fill="#fff" stroke="#f7931e" stroke-width="9" stroke-linejoin="round">SP</text>
-  <text class="script orange" x="456" y="178" font-size="140">urno</text>
-  <text class="sans orange" x="150" y="299" font-size="67" letter-spacing="48">animation</text>
+
+  <text x="194" y="143"
+        font-family="'Montserrat','Inter','Segoe UI',Arial,sans-serif"
+        font-size="86"
+        font-weight="900"
+        fill="#f7931e"
+        letter-spacing="-2.5"
+        style="font-variant-numeric: lining-nums;">SP</text>
+
+  <text x="352" y="146"
+        font-family="'Montserrat','Inter','Segoe UI',Arial,sans-serif"
+        font-size="72"
+        font-weight="250"
+        fill="#f7931e"
+        letter-spacing="0.5">urno</text>
+
+  <text x="196" y="200"
+        font-family="'Montserrat','Inter','Segoe UI',Arial,sans-serif"
+        font-size="13"
+        font-weight="600"
+        fill="#a8846a"
+        letter-spacing="11">ANIMATION STUDIO</text>
+
 </svg>
