@@ -285,14 +285,9 @@
     <!-- ===== 3D LOADING SCREEN ===== -->
     <div id="loading-screen">
         <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-logo">
-        <div class="loader-3d">
+        <div class="loader-canvas-wrap">
             <div class="loader-glow"></div>
-            <div class="face"></div>
-            <div class="face"></div>
-            <div class="face"></div>
-            <div class="face"></div>
-            <div class="face"></div>
-            <div class="face"></div>
+            <canvas id="loader-canvas" width="80" height="80"></canvas>
         </div>
         <div class="loader-progress-wrap">
             <div class="loader-progress"></div>
@@ -662,6 +657,7 @@
         }
     </script>
     <script type="module" src="js/spurno3d.js"></script>
+    <script type="module" src="js/loading-tomandjerry.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
