@@ -2,7 +2,7 @@
  * SPurno Auth Client — Handles login/register API calls and token management
  */
 
-const AUTH_API_URL = 'https://spurno-auth.your-subdomain.workers.dev/api';
+const AUTH_API_URL = 'https://spurno-auth.ispurno.workers.dev/api';
 
 // For local development, uncomment the line below and adjust:
 // const AUTH_API_URL = 'http://localhost:8787/api';

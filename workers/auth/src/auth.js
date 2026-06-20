@@ -24,7 +24,7 @@ function getJwtSecret(env) {
  */
 function corsHeaders(env) {
   return {
-    'Access-Control-Allow-Origin': env.ALLOWED_ORIGIN || '*',
+    'Access-Control-Allow-Origin': 'https://spurno.github.io',
     'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Credentials': 'true',
@@ -74,11 +74,11 @@ export async function handleRegister(request, env) {
       );
     }
 
-    // Ensure schema exists (sync)
-    ensureSchema(env);
+    // Ensure schema exists
+    await ensureSchema(env);
 
-    // Check if user already exists (sync)
-    const existingUser = findUserByEmail(env, email.toLowerCase());
+    // Check if user already exists
+    const existingUser = await findUserByEmail(env, email.toLowerCase());
     if (existingUser) {
       return new Response(
         JSON.stringify({ error: 'An account with this email already exists' }),
@@ -89,8 +89,8 @@ export async function handleRegister(request, env) {
     // Hash password (sync)
     const passwordHash = bcrypt.hashSync(password, SALT_ROUNDS);
 
-    // Create user (sync)
-    const user = createUser(env, {
+    // Create user
+    const user = await createUser(env, {
       email: email.toLowerCase(),
       name: name || email.split('@')[0],
       passwordHash,
@@ -137,11 +137,11 @@ export async function handleLogin(request, env) {
       );
     }
 
-    // Ensure schema exists (sync)
-    ensureSchema(env);
+    // Ensure schema exists
+    await ensureSchema(env);
 
-    // Find user (sync)
-    const user = findUserByEmail(env, email.toLowerCase());
+    // Find user
+    const user = await findUserByEmail(env, email.toLowerCase());
     if (!user) {
       return new Response(
         JSON.stringify({ error: 'Invalid email or password' }),
@@ -215,8 +215,8 @@ export async function handleGetMe(request, env) {
       );
     }
 
-    // Get user from database (sync)
-    const user = findUserById(env, payload.sub);
+    // Get user from database
+    const user = await findUserById(env, payload.sub);
     if (!user) {
       return new Response(
         JSON.stringify({ error: 'User not found' }),
