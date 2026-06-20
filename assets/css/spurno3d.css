@@ -234,6 +234,13 @@
             transform: scale(1.05);
             box-shadow: 0 4px 20px rgba(var(--color-accent-rgb), 0.4);
         }
+        .nav-auth {
+            color: rgba(255,255,255,0.65) !important;
+        }
+        .nav-auth:hover {
+            color: var(--color-primary) !important;
+            background: rgba(255,255,255,0.06) !important;
+        }
         .nav-toggle {
             display: none;
             flex-direction: column;

@@ -1,0 +1,20 @@
+{
+  "name": "spurno-auth-worker",
+  "version": "1.0.0",
+  "description": "Cloudflare Worker for user authentication with Turso database",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:setup": "node scripts/setup-db.js"
+  },
+  "dependencies": {
+    "@libsql/client": "^0.17.4",
+    "@tursodatabase/serverless": "^0.1.0",
+    "bcryptjs": "^2.4.3",
+    "jose": "^5.9.0"
+  },
+  "devDependencies": {
+    "wrangler": "^3.80.0"
+  }
+}

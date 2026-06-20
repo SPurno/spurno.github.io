@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>My Account | SPurno Animation Studio</title>
+    <meta name="description" content="Manage your SPurno Animation Studio account.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <style>
+        :root {
+            --color-primary: #22d3ee;
+            --color-primary-dark: #04b5d0;
+            --color-accent: #a855f7;
+            --color-bg: #0a0a0f;
+            --color-primary-rgb: 34, 211, 238;
+            --color-accent-rgb: 168, 85, 247;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            color: #fff;
+            background: var(--color-bg);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 30%, rgba(34, 211, 238, 0.06) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 50% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .account-container {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 440px;
+        }
+
+        .auth-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            text-decoration: none;
+        }
+        .auth-logo img {
+            height: 40px;
+            width: auto;
+            border-radius: 8px;
+        }
+        .auth-logo span {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #fff;
+            letter-spacing: 0.3px;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(1.4);
+            -webkit-backdrop-filter: blur(20px) saturate(1.4);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            border-radius: 24px;
+            padding: 40px 36px;
+            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+            text-align: center;
+        }
+
+        .account-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+
+        .account-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .account-email {
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+            margin-bottom: 24px;
+        }
+
+        .account-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+            text-align: left;
+        }
+
+        .account-meta .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            font-size: 0.88rem;
+        }
+
+        .account-meta .row .label {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .account-meta .row .value {
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+        }
+
+        .btn-danger {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .btn-danger:hover {
+            background: rgba(239, 68, 68, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-family: 'Jost', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.10);
+            color: #fff;
+            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            margin-top: 12px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .alert {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .alert.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 24px;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: var(--color-primary);
+        }
+
+        @media (max-width: 480px) {
+            .auth-card { padding: 28px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="account-container">
+        <a href="index.html" class="auth-logo">
+            <img src="images/spurno-logo.png" alt="SPurno Animation Studio">
+            <span>SPurno</span>
+        </a>
+
+        <div class="auth-card">
+            <div class="alert error" id="alertMessage" role="alert">You are not signed in. Redirecting...</div>
+
+            <div id="accountContent" style="display:none;">
+                <div class="account-avatar" id="avatarLetter">S</div>
+                <h1 class="account-name" id="userName">User</h1>
+                <p class="account-email" id="userEmail">user@example.com</p>
+
+                <div class="account-meta">
+                    <div class="row">
+                        <span class="label">Member Since</span>
+                        <span class="value" id="userSince">—</span>
+                    </div>
+                    <div class="row">
+                        <span class="label">User ID</span>
+                        <span class="value" id="userId">—</span>
+                    </div>
+                </div>
+
+                <button class="btn-danger" onclick="handleLogout()">Sign Out</button>
+                <a href="index.html" class="btn-secondary">← Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/auth-client.js"></script>
+    <script>
+        (function() {
+            const alertEl = document.getElementById('alertMessage');
+            const contentEl = document.getElementById('accountContent');
+            const nameEl = document.getElementById('userName');
+            const emailEl = document.getElementById('userEmail');
+            const avatarEl = document.getElementById('avatarLetter');
+            const sinceEl = document.getElementById('userSince');
+            const idEl = document.getElementById('userId');
+
+            // Check if authenticated
+            if (!AuthClient.isAuthenticated()) {
+                alertEl.textContent = 'You are not signed in. Redirecting...';
+                alertEl.className = 'alert error';
+                setTimeout(() => {
+                    window.location.href = '/login.html';
+                }, 2000);
+                return;
+            }
+
+            // Show content
+            contentEl.style.display = 'block';
+
+            // Get user data from localStorage first (fast)
+            const localUser = AuthClient.getUser();
+            if (localUser) {
+                nameEl.textContent = localUser.name || localUser.email.split('@')[0];
+                emailEl.textContent = localUser.email;
+                avatarEl.textContent = (localUser.name || localUser.email)[0].toUpperCase();
+                idEl.textContent = '#' + localUser.id;
+            }
+
+            // Fetch fresh data from API
+            AuthClient.getMe().then(user => {
+                if (user) {
+                    nameEl.textContent = user.name || user.email.split('@')[0];
+                    emailEl.textContent = user.email;
+                    avatarEl.textContent = (user.name || user.email)[0].toUpperCase();
+                    idEl.textContent = '#' + user.id;
+                    if (user.created_at) {
+                        sinceEl.textContent = new Date(user.created_at).toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric'
+                        });
+                    }
+                }
+            });
+        })();
+
+        function handleLogout() {
+            if (confirm('Are you sure you want to sign out?')) {
+                AuthClient.logout();
+            }
+        }
+    </script>
+</body>
+</html>

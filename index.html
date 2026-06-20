@@ -127,6 +127,10 @@
                 <a href="#videos" data-i18n="nav.videos">Videos</a>
                 <a href="#categories" data-i18n="nav.explore">Explore</a>
                 <a href="#contact" data-i18n="nav.contact">Contact</a>
+                <a href="login.html" class="nav-auth" id="navLogin">Sign In</a>
+                <a href="register.html" class="nav-cta" id="navRegister">Get Started</a>
+                <a href="account.html" class="nav-auth" id="navProfile" style="display:none;">My Account</a>
+                <a href="#" class="nav-auth" id="navSignout" style="display:none;" onclick="if(confirm('Sign out of your account?')){AuthClient.logout();} return false;">Sign Out</a>
                 <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" data-i18n="nav.shopNow">Shop Now</a>
                 <div class="language-selector">
                     <button class="lang-btn" aria-label="Select language">
@@ -727,6 +731,23 @@
     <script type="module" src="js/spurno3d.js"></script>
     <script type="module" src="js/loading-tomandjerry.js"></script>
     <script type="text/javascript" src="js/videoplayer.js"></script>
+    <script src="js/auth-client.js"></script>
+    <script>
+        // Update nav based on auth state
+        (function() {
+            const navLogin = document.getElementById('navLogin');
+            const navRegister = document.getElementById('navRegister');
+            const navProfile = document.getElementById('navProfile');
+            const navSignout = document.getElementById('navSignout');
+
+            if (AuthClient.isAuthenticated()) {
+                navLogin.style.display = 'none';
+                navRegister.style.display = 'none';
+                navProfile.style.display = 'inline-flex';
+                navSignout.style.display = 'inline-flex';
+            }
+        })();
+    </script>
 
 </body>
 </html>
