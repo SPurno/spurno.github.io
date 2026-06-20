@@ -15,6 +15,19 @@
 .video-card-actions .preview-btn { width: 44px; height: 44px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.7); background: rgba(0,0,0,0.4); backdrop-filter: blur(4px); color: #fff; font-size: 0.9rem; cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; pointer-events: auto; }
 .video-card-actions .preview-btn:hover { background: rgba(var(--color-primary-rgb), 0.5); border-color: var(--color-primary); transform: scale(1.1); }
 .video-card-actions .shop-btn { padding: 6px 16px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); color: #fff; border: none; cursor: pointer; transition: all 0.25s ease; text-decoration: none; pointer-events: auto; white-space: nowrap; }
+.video-card-actions .fav-btn { width: 36px; height: 36px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.6); background: rgba(0,0,0,0.35); backdrop-filter: blur(4px); color: rgba(255,255,255,0.7); cursor: pointer; transition: all 0.25s ease; display: flex; align-items: center; justify-content: center; pointer-events: auto; padding: 0; }
+.video-card-actions .fav-btn:hover { background: rgba(255,255,255,0.15); border-color: #f7931e; color: #f7931e; transform: scale(1.1); }
+.video-card-actions .fav-btn--active { background: rgba(247,147,30,0.2); border-color: #f7931e; color: #f7931e; }
+.video-card-actions .fav-btn--active:hover { background: rgba(247,147,30,0.3); border-color: #d4790a; color: #d4790a; }
+.video-card-actions .fav-btn--active .fav-icon { fill: #f7931e; }
+.video-card-actions .fav-btn--loading .fav-icon { animation: gallery-fav-pulse 0.6s ease-in-out infinite; }
+.video-card-actions .fav-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+.video-card-actions .fav-icon { flex-shrink: 0; transition: transform 0.2s ease; }
+@keyframes gallery-fav-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.25); } }
+.gallery-toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px); padding: 10px 22px; border-radius: 8px; font-size: 13px; font-weight: 600; color: #fff; z-index: 99999; opacity: 0; transition: all 0.3s ease; pointer-events: none; box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+.gallery-toast--visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+.gallery-toast--success { background: #16a34a; }
+.gallery-toast--error { background: #dc2626; }
 .video-card-actions .shop-btn:hover { transform: scale(1.05); box-shadow: 0 4px 16px rgba(var(--color-accent-rgb), 0.4); }
 .video-card-controls { position: absolute; bottom: 0; left: 0; right: 0; padding: 4px 10px 6px; display: none; align-items: center; gap: 8px; z-index: 4; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); }
 .video-card.playing .video-card-controls { display: flex; }

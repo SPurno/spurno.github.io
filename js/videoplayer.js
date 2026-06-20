@@ -1,18 +1,18 @@
         // ===== VIDEO GALLERY =====
         (function() {
             var videos = [
-                { id: 'spurno-promo', title: 'SPurno Animation Studio Promo', cat: 'motion', file: 'SPurno-Animation-Studio-Promo-Video-Animation.mp4', thumb: 'images/spurno-promo-new-video-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/spurno-animation-studio-promo-video-animation.html' },
-                { id: 'bg-5', title: 'Animated Background Stock Video 5', cat: 'motion', file: 'red-motion-animated-background.mp4', thumb: 'images/motion-red.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/animated-background-stock-video-premium-download-5.html' },
-                { id: 'bg-6', title: 'Animated Background Stock Video 6', cat: 'motion', file: 'animated-background-stock-video-for-premium-download-6.mp4', thumb: 'images/Animated-Background-Stock-Video-Footage-for-Premium-Download-7.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/animated-background-stock-video-premium-download-6.html' },
-                { id: '3d-infographic-1', title: '3D Infographic Video Template', cat: 'infographic', file: '3d-infographic-video-template.mp4', thumb: 'images/infographics-template-thumb.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/3d-infographic-video-template.html' },
-                { id: '3d-infographic-2', title: '3D Infographic Video Template 2', cat: 'infographic', file: '3d-infographic-video-template2.mp4', thumb: 'images/infographics-template-thumb2.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/3d-infographic-video-template-2.html' },
-                { id: 'infographic-demo', title: 'Infographics Video Demo', cat: 'infographic', file: 'infographics-video-demo.mp4', thumb: 'images/3d-infographic-hexagon-animated-screen.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/infographics-video-demo.html' },
-                { id: 'laptop-mockup', title: 'Laptop Product Promo Template', cat: 'mockup', file: 'Laptop-product-promotion-advertising-template.mp4', thumb: 'images/device-mockup.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/laptop-product-promotion-advertising-template.html' },
-                { id: 'iphone-mockup', title: 'iPhone Mockup Animation', cat: 'mockup', file: 'iphone-mockup.mp4', thumb: 'images/iphone-mockup.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'index.html' },
-                { id: 'loading-bar', title: 'Loading Bar 100% Animation', cat: 'motion', file: 'loading-bar-100-percent.mp4', thumb: 'images/loading-bar.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'blog/loading-bar-animation.html' },
-                { id: 'news-bg', title: 'News Background Animation', cat: 'motion', file: 'news-background-animation.mp4', thumb: 'images/news-background-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/news-background-animation.html' },
-                { id: 'news-bg-studio', title: 'News Background Animation Studio', cat: 'motion', file: 'news-background-animation-studio.mp4', thumb: 'images/news-background-world-globe-studio.png', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'blog/news-background-animation.html' },
-                { id: 'typography', title: 'Typography Animation Video', cat: 'typography', file: 'typography-animation.mp4', thumb: 'images/typography-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/typography-animation.html' }
+                { id: 'spurno-promo', title: 'SPurno Animation Studio Promo', cat: 'motion', file: 'SPurno-Animation-Studio-Promo-Video-Animation.mp4', thumb: 'images/spurno-promo-new-video-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/spurno-animation-studio-promo-video-animation.html', itemId: 'watch-spurno-animation-studio-promo-video-animation' },
+                { id: 'bg-5', title: 'Animated Background Stock Video 5', cat: 'motion', file: 'red-motion-animated-background.mp4', thumb: 'images/motion-red.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/animated-background-stock-video-premium-download-5.html', itemId: 'watch-animated-background-stock-video-premium-download-5' },
+                { id: 'bg-6', title: 'Animated Background Stock Video 6', cat: 'motion', file: 'animated-background-stock-video-for-premium-download-6.mp4', thumb: 'images/Animated-Background-Stock-Video-Footage-for-Premium-Download-7.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/animated-background-stock-video-premium-download-6.html', itemId: 'watch-animated-background-stock-video-premium-download-6' },
+                { id: '3d-infographic-1', title: '3D Infographic Video Template', cat: 'infographic', file: '3d-infographic-video-template.mp4', thumb: 'images/infographics-template-thumb.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/3d-infographic-video-template.html', itemId: 'watch-3d-infographic-video-template' },
+                { id: '3d-infographic-2', title: '3D Infographic Video Template 2', cat: 'infographic', file: '3d-infographic-video-template2.mp4', thumb: 'images/infographics-template-thumb2.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/3d-infographic-video-template-2.html', itemId: 'watch-3d-infographic-video-template-2' },
+                { id: 'infographic-demo', title: 'Infographics Video Demo', cat: 'infographic', file: 'infographics-video-demo.mp4', thumb: 'images/3d-infographic-hexagon-animated-screen.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/infographics-video-demo.html', itemId: 'watch-infographics-video-demo' },
+                { id: 'laptop-mockup', title: 'Laptop Product Promo Template', cat: 'mockup', file: 'Laptop-product-promotion-advertising-template.mp4', thumb: 'images/device-mockup.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/laptop-product-promotion-advertising-template.html', itemId: 'watch-laptop-product-promotion-advertising-template' },
+                { id: 'iphone-mockup', title: 'iPhone Mockup Animation', cat: 'mockup', file: 'iphone-mockup.mp4', thumb: 'images/iphone-mockup.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'index.html', itemId: 'watch-iphone-mockup-animation' },
+                { id: 'loading-bar', title: 'Loading Bar 100% Animation', cat: 'motion', file: 'loading-bar-100-percent.mp4', thumb: 'images/loading-bar.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'blog/loading-bar-animation.html', itemId: 'watch-loading-bar-animation' },
+                { id: 'news-bg', title: 'News Background Animation', cat: 'motion', file: 'news-background-animation.mp4', thumb: 'images/news-background-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/news-background-animation.html', itemId: 'watch-news-background-animation' },
+                { id: 'news-bg-studio', title: 'News Background Animation Studio', cat: 'motion', file: 'news-background-animation-studio.mp4', thumb: 'images/news-background-world-globe-studio.png', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'blog/news-background-animation.html', itemId: 'watch-news-background-animation-studio' },
+                { id: 'typography', title: 'Typography Animation Video', cat: 'typography', file: 'typography-animation.mp4', thumb: 'images/typography-animation.jpg', shop: 'https://stock.adobe.com/contributor/211977281/SPurnoAnimation', watch: 'watch/typography-animation.html', itemId: 'watch-typography-animation' }
             ];
 
             var gallery = document.getElementById('videoGallery');
@@ -23,12 +23,15 @@
                 var html = '';
                 for (var i = 0; i < filtered.length; i++) {
                     var v = filtered[i];
-                    html += '<div class="video-card" data-id="' + v.id + '" data-cat="' + v.cat + '">';
+                    html += '<div class="video-card" data-id="' + v.id + '" data-cat="' + v.cat + '" data-item-id="' + (v.itemId || v.id) + '" data-watch="' + v.watch + '">';
                     html += '  <div class="video-watermark"><img src="images/spurno-logo.png" alt="SPurno" loading="lazy"><span>SPurno</span></div>';
                     html += '  <video preload="metadata" muted loop playsinline poster="' + v.thumb + '"><source src="videos/' + v.file + '" type="video/mp4"></video>';
                     html += '  <div class="video-card-overlay"><div class="video-title">' + v.title + '</div><div class="video-subtitle">' + v.cat.charAt(0).toUpperCase() + v.cat.slice(1) + ' Graphics</div></div>';
                     html += '  <div class="video-card-actions">';
                     html += '    <button class="preview-btn" onclick="event.stopPropagation(); togglePlay(\'' + v.id + '\')" title="Preview">▶</button>';
+                    html += '    <button class="fav-btn" onclick="event.stopPropagation(); toggleGalleryFav(\'' + (v.itemId || v.id) + '\', this)" title="Save to favorites">';
+                    html += '      <svg class="fav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+                    html += '    </button>';
                     html += '    <a href="' + v.shop + '" target="_blank" class="shop-btn" onclick="event.stopPropagation();">🛒 Shop Now</a>';
                     html += '  </div>';
                     html += '  <div class="video-card-controls">';
@@ -50,6 +53,11 @@
                             togglePlay(id);
                         });
                     })(cards[j]);
+                }
+
+                // Init favorite states after render
+                if (typeof initGalleryFavorites === 'function') {
+                    initGalleryFavorites();
                 }
             }
 
@@ -114,6 +122,97 @@
 
             renderGallery('all');
         })();
+
+        // ===== TOAST NOTIFICATION =====
+        window.showGalleryToast = function(message, type) {
+            var existing = document.querySelector('.gallery-toast');
+            if (existing) existing.remove();
+            var toast = document.createElement('div');
+            toast.className = 'gallery-toast gallery-toast--' + (type || 'success');
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            requestAnimationFrame(function() { toast.classList.add('gallery-toast--visible'); });
+            setTimeout(function() {
+                toast.classList.remove('gallery-toast--visible');
+                setTimeout(function() { toast.remove(); }, 300);
+            }, 3000);
+        };
+
+        // ===== GALLERY FAVORITE TOGGLE =====
+        window.toggleGalleryFav = function(itemId, btn) {
+            if (typeof AuthClient === 'undefined' || !AuthClient.isAuthenticated()) {
+                showGalleryToast('Please sign in to save favorites', 'error');
+                return;
+            }
+
+            btn.classList.add('fav-btn--loading');
+            btn.disabled = true;
+            var isActive = btn.classList.contains('fav-btn--active');
+
+            if (isActive) {
+                AuthClient.removeFavorite(itemId)
+                    .then(function() {
+                        btn.classList.remove('fav-btn--active');
+                        btn.title = 'Save to favorites';
+                        showGalleryToast('Removed from favorites');
+                    })
+                    .catch(function(err) {
+                        showGalleryToast(err.message || 'Failed to remove', 'error');
+                    })
+                    .finally(function() {
+                        btn.classList.remove('fav-btn--loading');
+                        btn.disabled = false;
+                    });
+            } else {
+                var card = btn.closest('.video-card');
+                var title = card ? (card.querySelector('.video-title') || {}).textContent || '' : '';
+                var watchUrl = card ? card.getAttribute('data-watch') || '' : '';
+
+                AuthClient.addFavorite({
+                    item_id: itemId,
+                    item_type: 'video',
+                    title: title,
+                    url: watchUrl
+                })
+                    .then(function() {
+                        btn.classList.add('fav-btn--active');
+                        btn.title = 'Remove from favorites';
+                        showGalleryToast('Saved to favorites!');
+                    })
+                    .catch(function(err) {
+                        showGalleryToast(err.message || 'Failed to save', 'error');
+                    })
+                    .finally(function() {
+                        btn.classList.remove('fav-btn--loading');
+                        btn.disabled = false;
+                    });
+            }
+        };
+
+        // ===== INIT GALLERY FAVORITES =====
+        window.initGalleryFavorites = function() {
+            if (typeof AuthClient === 'undefined' || !AuthClient.isAuthenticated()) return;
+
+            var cards = document.querySelectorAll('.video-card[data-item-id]');
+            cards.forEach(function(card) {
+                var itemId = card.getAttribute('data-item-id');
+                if (!itemId) return;
+
+                AuthClient.isFavorite(itemId)
+                    .then(function(data) {
+                        if (data.favorited) {
+                            var btn = card.querySelector('.fav-btn');
+                            if (btn) {
+                                btn.classList.add('fav-btn--active');
+                                btn.title = 'Remove from favorites';
+                            }
+                        }
+                    })
+                    .catch(function() {
+                        // silently fail — not logged in or network issue
+                    });
+            });
+        };
 
         // ===== FULLSCREEN MODAL =====
         var fsOverlay = document.getElementById('fsOverlay');
