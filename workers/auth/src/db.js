@@ -62,6 +62,19 @@ export async function ensureSchema(env) {
 
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_downloads_user ON download_history(user_id);`);
 
+  await db.execute(`CREATE TABLE IF NOT EXISTS password_resets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    token TEXT NOT NULL UNIQUE,
+    expires_at TEXT NOT NULL,
+    used INTEGER NOT NULL DEFAULT 0,
+    created_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  );`);
+
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_resets_token ON password_resets(token);`);
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_resets_user ON password_resets(user_id);`);
+
   return true;
 }
 
@@ -111,6 +124,16 @@ export async function updatePassword(env, id, passwordHash) {
   });
 }
 
+export async function findUserPasswordHash(env, userId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT password_hash FROM users WHERE id = ?',
+    args: [userId],
+  });
+  const row = result.rows[0];
+  return row ? row.password_hash : null;
+}
+
 // ── Favorites ──────────────────────────────────────────
 
 export async function getFavorites(env, userId) {
@@ -124,16 +147,11 @@ export async function getFavorites(env, userId) {
 
 export async function addFavorite(env, userId, { itemId, itemType, title, thumbnail, url }) {
   const db = getDb(env);
-  try {
-    const result = await db.execute({
-      sql: "INSERT OR IGNORE INTO favorites (user_id, item_id, item_type, title, thumbnail, url) VALUES (?, ?, ?, ?, ?, ?) RETURNING id, item_id, item_type, title, created_at",
-      args: [userId, itemId, itemType || 'video', title || '', thumbnail || '', url || ''],
-    });
-    return result.rows[0] || null;
-  } catch {
-    // If unique constraint fails, it already exists
-    return null;
-  }
+  const result = await db.execute({
+    sql: "INSERT OR IGNORE INTO favorites (user_id, item_id, item_type, title, thumbnail, url) VALUES (?, ?, ?, ?, ?, ?) RETURNING id, item_id, item_type, title, created_at",
+    args: [userId, itemId, itemType || 'video', title || '', thumbnail || '', url || ''],
+  });
+  return result.rows[0] || null;
 }
 
 export async function removeFavorite(env, userId, itemId) {
@@ -172,4 +190,31 @@ export async function addDownload(env, userId, { itemId, itemType, title, platfo
     args: [userId, itemId, itemType || 'video', title || '', platform || 'adobe'],
   });
   return result.rows[0] || null;
+}
+
+// ── Password Resets ────────────────────────────────────
+
+export async function createResetToken(env, userId, token, expiresAt) {
+  const db = getDb(env);
+  await db.execute({
+    sql: "INSERT INTO password_resets (user_id, token, expires_at) VALUES (?, ?, ?)",
+    args: [userId, token, expiresAt],
+  });
+}
+
+export async function findValidResetToken(env, token) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: "SELECT id, user_id, token, expires_at FROM password_resets WHERE token = ? AND used = 0 AND expires_at > datetime('now')",
+    args: [token],
+  });
+  return result.rows[0] || null;
+}
+
+export async function markResetTokenUsed(env, tokenId) {
+  const db = getDb(env);
+  await db.execute({
+    sql: 'UPDATE password_resets SET used = 1 WHERE id = ?',
+    args: [tokenId],
+  });
 }

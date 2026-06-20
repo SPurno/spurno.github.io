@@ -8,6 +8,92 @@ const AUTH_API_URL = 'https://spurno-auth.ispurno.workers.dev/api';
 // const AUTH_API_URL = 'http://localhost:8787/api';
 
 const AuthClient = {
+  // ── Helper: authenticated fetch ────────────────────
+  async _fetch(path, options = {}) {
+    const token = this.getToken();
+    if (!token) throw new Error('Not authenticated');
+
+    const response = await fetch(`${AUTH_API_URL}${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        ...(options.headers || {}),
+      },
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  },
+
+  // ── Favorites ───────────────────────────────────────
+  async getFavorites() {
+    return this._fetch('/favorites');
+  },
+
+  async isFavorite(itemId) {
+    return this._fetch(`/favorites?item_id=${encodeURIComponent(itemId)}`);
+  },
+
+  async addFavorite({ item_id, item_type, title, thumbnail, url }) {
+    return this._fetch('/favorites', {
+      method: 'POST',
+      body: JSON.stringify({ item_id, item_type, title, thumbnail, url }),
+    });
+  },
+
+  async removeFavorite(itemId) {
+    return this._fetch('/favorites', {
+      method: 'DELETE',
+      body: JSON.stringify({ item_id: itemId }),
+    });
+  },
+
+  // ── Download History ─────────────────────────────────
+  async getDownloads() {
+    return this._fetch('/downloads');
+  },
+
+  async addDownload({ item_id, item_type, title, platform }) {
+    return this._fetch('/downloads', {
+      method: 'POST',
+      body: JSON.stringify({ item_id, item_type, title, platform }),
+    });
+  },
+
+  // ── Account Settings ────────────────────────────────
+  async updateAccount({ name, current_password, new_password }) {
+    return this._fetch('/account', {
+      method: 'PUT',
+      body: JSON.stringify({ name, current_password, new_password }),
+    });
+  },
+
+  // ── Password Reset ───────────────────────────────────
+  async forgotPassword(email) {
+    const response = await fetch(`${AUTH_API_URL}/forgot-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  },
+
+  async resetPassword(token, password) {
+    const response = await fetch(`${AUTH_API_URL}/reset-password`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token, password }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  },
+
+  // ── Original methods below ──────────────────────────
   /**
    * Register a new user
    */

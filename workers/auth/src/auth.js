@@ -3,7 +3,7 @@
  */
 import bcrypt from 'bcryptjs';
 import { SignJWT, jwtVerify } from 'jose';
-import { findUserByEmail, findUserById, createUser, ensureSchema } from './db.js';
+import { findUserByEmail, findUserById, createUser, ensureSchema, createResetToken, findValidResetToken, markResetTokenUsed, updatePassword } from './db.js';
 
 const SALT_ROUNDS = 10;
 const JWT_ALGORITHM = 'HS256';
@@ -177,6 +177,125 @@ export async function handleLogin(request, env) {
     console.error('Login error:', error);
     return new Response(
       JSON.stringify({ error: 'Login failed. Please try again.' }),
+      { status: 500, headers: { ...headers, 'Content-Type': 'application/json' } }
+    );
+  }
+}
+
+/**
+ * POST /api/forgot-password
+ * Generates a password reset token. In production this would be emailed.
+ */
+export async function handleForgotPassword(request, env) {
+  const headers = corsHeaders(env);
+
+  try {
+    const { email } = await request.json();
+
+    if (!email) {
+      return new Response(
+        JSON.stringify({ error: 'Email is required' }),
+        { status: 400, headers: { ...headers, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Ensure schema exists (creates password_resets table if needed)
+    await ensureSchema(env);
+
+    // Always return success to prevent email enumeration
+    const user = await findUserByEmail(env, email.toLowerCase());
+
+    if (user) {
+      // Generate a random token (48 bytes of hex = 96 chars)
+      const array = new Uint8Array(48);
+      crypto.getRandomValues(array);
+      const token = Array.from(array, b => b.toString(16).padStart(2, '0')).join('');
+
+      // Token expires in 1 hour
+      const expiresAt = new Date(Date.now() + 3600000).toISOString().replace('T', ' ').replace('Z', '');
+
+      await createResetToken(env, user.id, token, expiresAt);
+
+      // Build reset link (in production this would be emailed)
+      const resetLink = `https://spurno.github.io/reset-password.html?token=${token}`;
+
+      return new Response(
+        JSON.stringify({
+          message: 'If an account exists with this email, a reset link has been generated.',
+          // In production, remove this and send via email:
+          _debug_reset_link: resetLink,
+        }),
+        { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Same response even if user doesn't exist (no email enumeration)
+    return new Response(
+      JSON.stringify({
+        message: 'If an account exists with this email, a reset link has been generated.',
+      }),
+      { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    console.error('Forgot password error:', error);
+    return new Response(
+      JSON.stringify({ error: 'Something went wrong. Please try again.' }),
+      { status: 500, headers: { ...headers, 'Content-Type': 'application/json' } }
+    );
+  }
+}
+
+/**
+ * POST /api/reset-password
+ * Resets a user's password using a valid reset token
+ */
+export async function handleResetPassword(request, env) {
+  const headers = corsHeaders(env);
+
+  try {
+    const { token, password } = await request.json();
+
+    if (!token || !password) {
+      return new Response(
+        JSON.stringify({ error: 'Token and password are required' }),
+        { status: 400, headers: { ...headers, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    if (password.length < 6) {
+      return new Response(
+        JSON.stringify({ error: 'Password must be at least 6 characters' }),
+        { status: 400, headers: { ...headers, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Ensure schema exists
+    await ensureSchema(env);
+
+    // Find valid (unused, not expired) token
+    const resetRecord = await findValidResetToken(env, token);
+    if (!resetRecord) {
+      return new Response(
+        JSON.stringify({ error: 'Invalid or expired reset token. Please request a new one.' }),
+        { status: 400, headers: { ...headers, 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Hash new password
+    const passwordHash = bcrypt.hashSync(password, SALT_ROUNDS);
+
+    // Update password & mark token used
+    await updatePassword(env, resetRecord.user_id, passwordHash);
+    await markResetTokenUsed(env, resetRecord.id);
+
+    return new Response(
+      JSON.stringify({ message: 'Password reset successful. You can now sign in with your new password.' }),
+      { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+    );
+  } catch (error) {
+    console.error('Reset password error:', error);
+    return new Response(
+      JSON.stringify({ error: 'Failed to reset password. Please try again.' }),
       { status: 500, headers: { ...headers, 'Content-Type': 'application/json' } }
     );
   }

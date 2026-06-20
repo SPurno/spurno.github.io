@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Account | SPurno Animation Studio</title>
-    <meta name="description" content="Manage your SPurno Animation Studio account.">
+    <title>My Dashboard | SPurno Animation Studio</title>
+    <meta name="description" content="Manage your SPurno account — view favorites, download history, and settings.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,299 +12,497 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <style>
         :root {
-            --color-primary: #22d3ee;
-            --color-primary-dark: #04b5d0;
-            --color-accent: #a855f7;
-            --color-bg: #0a0a0f;
-            --color-primary-rgb: 34, 211, 238;
-            --color-accent-rgb: 168, 85, 247;
+            --color-primary: #22d3ee; --color-primary-dark: #04b5d0;
+            --color-accent: #a855f7; --color-bg: #0a0a0f;
+            --color-primary-rgb: 34, 211, 238; --color-accent-rgb: 168, 85, 247;
         }
-
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'Jost', sans-serif;
             color: #fff;
             background: var(--color-bg);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 24px;
         }
-
         body::before {
             content: '';
-            position: fixed;
-            inset: 0;
+            position: fixed; inset: 0;
             background:
-                radial-gradient(ellipse 80% 60% at 50% 30%, rgba(34, 211, 238, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 80% at 50% 70%, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
-            pointer-events: none;
-            z-index: 0;
+                radial-gradient(ellipse 80% 60% at 20% 20%, rgba(34,211,238,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 80% at 80% 80%, rgba(168,85,247,0.05) 0%, transparent 60%);
+            pointer-events: none; z-index: 0;
         }
 
-        .account-container {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 440px;
-        }
+        .dashboard-wrap { position: relative; z-index: 1; max-width: 1000px; margin: 0 auto; padding: 24px 20px; }
 
-        .auth-logo {
-            display: flex;
-            align-items: center;
+        /* ── Top bar ─────────────────────────────────── */
+        .dash-top {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 16px 24px; margin-bottom: 28px;
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 18px; gap: 12px; flex-wrap: wrap;
+        }
+        .dash-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .dash-logo img { height: 32px; border-radius: 6px; }
+        .dash-logo span { font-weight: 700; font-size: 1rem; color: #fff; }
+        .dash-top-right { display: flex; align-items: center; gap: 12px; }
+        .dash-signout {
+            padding: 8px 18px; border-radius: 30px; font-size: 0.82rem; font-weight: 500;
+            background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.2);
+            color: #fca5a5; cursor: pointer; transition: all 0.3s;
+            text-decoration: none; font-family: 'Jost', sans-serif;
+        }
+        .dash-signout:hover { background: rgba(239,68,68,0.2); }
+
+        /* ── Tab navigation ───────────────────────────── */
+        .tab-nav {
+            display: flex; gap: 4px; padding: 6px;
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(14px);
+            border: 1px solid rgba(255,255,255,0.06); border-radius: 16px;
+            margin-bottom: 24px; overflow-x: auto;
+        }
+        .tab-btn {
+            flex: 1; padding: 12px 18px; border: none; border-radius: 12px;
+            font-family: 'Jost', sans-serif; font-size: 0.85rem; font-weight: 500;
+            background: transparent; color: rgba(255,255,255,0.5); cursor: pointer;
+            transition: all 0.3s; white-space: nowrap; display: flex; align-items: center; gap: 8px;
             justify-content: center;
-            gap: 12px;
-            margin-bottom: 32px;
-            text-decoration: none;
         }
-        .auth-logo img {
-            height: 40px;
-            width: auto;
-            border-radius: 8px;
+        .tab-btn:hover { color: rgba(255,255,255,0.8); background: rgba(255,255,255,0.04); }
+        .tab-btn.active {
+            background: rgba(255,255,255,0.08); color: #fff;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
         }
-        .auth-logo span {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: #fff;
-            letter-spacing: 0.3px;
-        }
-
-        .auth-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px) saturate(1.4);
-            -webkit-backdrop-filter: blur(20px) saturate(1.4);
-            border: 1px solid rgba(255, 255, 255, 0.10);
-            border-radius: 24px;
-            padding: 40px 36px;
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-            text-align: center;
-        }
-
-        .account-avatar {
-            width: 72px;
-            height: 72px;
-            border-radius: 50%;
+        .tab-badge {
             background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
+            font-size: 0.7rem; padding: 2px 8px; border-radius: 30px; color: #fff; font-weight: 600;
         }
 
-        .account-name {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 4px;
+        /* ── Panels ───────────────────────────────────── */
+        .tab-panel { display: none; }
+        .tab-panel.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ── Card ─────────────────────────────────────── */
+        .dash-card {
+            background: rgba(255,255,255,0.04); backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.08); border-radius: 20px;
+            padding: 32px 28px; box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .dash-card-title {
+            font-size: 1.15rem; font-weight: 600; margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
         }
 
-        .account-email {
-            color: rgba(255, 255, 255, 0.5);
-            font-size: 0.9rem;
-            margin-bottom: 24px;
+        /* ── Profile ──────────────────────────────────── */
+        .profile-header { text-align: center; margin-bottom: 28px; }
+        .profile-avatar {
+            width: 88px; height: 88px; border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2.2rem; font-weight: 700; margin: 0 auto 16px;
         }
+        .profile-name { font-size: 1.4rem; font-weight: 600; }
+        .profile-email { color: rgba(255,255,255,0.5); font-size: 0.92rem; margin-top: 4px; }
+        .profile-meta {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px;
+        }
+        .profile-meta .row {
+            display: flex; flex-direction: column; gap: 4px;
+            padding: 14px 16px; background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.06); border-radius: 12px;
+        }
+        .profile-meta .row .label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.35); }
+        .profile-meta .row .value { font-size: 0.92rem; color: rgba(255,255,255,0.85); font-weight: 500; }
 
-        .account-meta {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 32px;
-            text-align: left;
+        /* ── Favorites / Downloads grid ─────────────────── */
+        .items-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 16px;
         }
+        .item-card {
+            padding: 18px; border-radius: 14px;
+            background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.3s; position: relative;
+        }
+        .item-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-2px); }
+        .item-card .thumb {
+            width: 100%; aspect-ratio: 16/9; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(var(--color-primary-rgb),0.1), rgba(var(--color-accent-rgb),0.1));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.6rem; margin-bottom: 12px; overflow: hidden;
+        }
+        .item-card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+        .item-card .item-title { font-size: 0.88rem; font-weight: 500; margin-bottom: 4px; }
+        .item-card .item-meta { font-size: 0.78rem; color: rgba(255,255,255,0.4); }
+        .item-card .item-remove {
+            position: absolute; top: 10px; right: 10px;
+            width: 28px; height: 28px; border-radius: 50%;
+            background: rgba(239,68,68,0.15); border: none;
+            color: #fca5a5; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            font-size: 0.8rem; transition: all 0.2s; opacity: 0;
+        }
+        .item-card:hover .item-remove { opacity: 1; }
+        .item-card .item-remove:hover { background: rgba(239,68,68,0.3); }
 
-        .account-meta .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            font-size: 0.88rem;
+        .items-empty {
+            text-align: center; padding: 48px 24px; color: rgba(255,255,255,0.35);
         }
+        .items-empty .icon { font-size: 2.4rem; margin-bottom: 12px; }
+        .items-empty p { font-size: 0.92rem; }
 
-        .account-meta .row .label {
-            color: rgba(255, 255, 255, 0.45);
+        /* ── Settings form ──────────────────────────────── */
+        .settings-form { display: flex; flex-direction: column; gap: 20px; }
+        .settings-section { padding-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .settings-section:last-child { border-bottom: none; padding-bottom: 0; }
+        .settings-section h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 16px; color: rgba(255,255,255,0.8); }
+        .form-row { margin-bottom: 16px; }
+        .form-row:last-child { margin-bottom: 0; }
+        .form-row label { display: block; font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
+        .form-row input {
+            width: 100%; padding: 12px 16px;
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
+            border-radius: 12px; color: #fff; font-family: 'Jost', sans-serif;
+            font-size: 0.92rem; outline: none; transition: border-color 0.3s;
         }
+        .form-row input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb),0.1); }
+        .form-row input::placeholder { color: rgba(255,255,255,0.2); }
 
-        .account-meta .row .value {
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
+        .btn-save {
+            padding: 12px 28px; border: none; border-radius: 12px;
+            font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+            color: #fff; cursor: pointer; transition: all 0.35s;
+            box-shadow: 0 4px 20px rgba(var(--color-accent-rgb),0.3);
         }
-
-        .btn-danger {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 14px;
-            font-family: 'Jost', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            background: rgba(239, 68, 68, 0.15);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .btn-danger:hover {
-            background: rgba(239, 68, 68, 0.25);
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            width: 100%;
-            padding: 16px;
-            border: none;
-            border-radius: 14px;
-            font-family: 'Jost', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.3px;
-            cursor: pointer;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.10);
-            color: #fff;
-            transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
-            margin-top: 12px;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.12);
-            transform: translateY(-2px);
-        }
+        .btn-save:hover { transform: translateY(-2px); box-shadow: 0 6px 28px rgba(var(--color-accent-rgb),0.45); }
+        .btn-save:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
         .alert {
-            display: none;
-            padding: 14px 18px;
-            border-radius: 12px;
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            display: none; padding: 12px 16px; border-radius: 12px;
+            font-size: 0.85rem; margin-bottom: 16px; line-height: 1.5;
         }
-        .alert.error {
-            display: block;
-            background: rgba(239, 68, 68, 0.12);
-            border: 1px solid rgba(239, 68, 68, 0.2);
-            color: #fca5a5;
-        }
+        .alert.error { display: block; background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.2); color: #fca5a5; }
+        .alert.success { display: block; background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.2); color: #86efac; }
 
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: rgba(255, 255, 255, 0.4);
-            text-decoration: none;
-            font-size: 0.85rem;
-            margin-bottom: 24px;
-            transition: color 0.2s;
+        .loading-spinner {
+            display: inline-block; width: 18px; height: 18px;
+            border: 2px solid rgba(255,255,255,0.15); border-top-color: var(--color-primary);
+            border-radius: 50%; animation: spin 0.6s linear infinite;
         }
-        .back-link:hover {
-            color: var(--color-primary);
-        }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
-        @media (max-width: 480px) {
-            .auth-card { padding: 28px 20px; }
+        @media (max-width: 640px) {
+            .tab-btn { font-size: 0.78rem; padding: 10px 12px; }
+            .profile-meta { grid-template-columns: 1fr; }
+            .items-grid { grid-template-columns: 1fr; }
+            .dash-card { padding: 20px 16px; }
+            .dashboard-wrap { padding: 16px 12px; }
         }
     </style>
 </head>
 <body>
-    <div class="account-container">
-        <a href="index.html" class="auth-logo">
-            <img src="images/spurno-logo.png" alt="SPurno Animation Studio">
-            <span>SPurno</span>
+<div class="dashboard-wrap">
+
+    <!-- Top Bar -->
+    <div class="dash-top">
+        <a href="index.html" class="dash-logo">
+            <img src="images/spurno-logo.png" alt="SPurno">
+            <span>SPurno Dashboard</span>
         </a>
+        <div class="dash-top-right">
+            <a href="index.html" style="color:rgba(255,255,255,0.5);font-size:0.82rem;text-decoration:none;">← Home</a>
+            <button class="dash-signout" onclick="if(confirm('Sign out?'))AuthClient.logout();">Sign Out</button>
+        </div>
+    </div>
 
-        <div class="auth-card">
-            <div class="alert error" id="alertMessage" role="alert">You are not signed in. Redirecting...</div>
+    <!-- Tab Navigation -->
+    <div class="tab-nav" id="tabNav">
+        <button class="tab-btn active" data-tab="profile">👤 Profile</button>
+        <button class="tab-btn" data-tab="favorites">⭐ Favorites <span class="tab-badge" id="favCount">0</span></button>
+        <button class="tab-btn" data-tab="downloads">📥 Downloads <span class="tab-badge" id="dlCount">0</span></button>
+        <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+    </div>
 
-            <div id="accountContent" style="display:none;">
-                <div class="account-avatar" id="avatarLetter">S</div>
-                <h1 class="account-name" id="userName">User</h1>
-                <p class="account-email" id="userEmail">user@example.com</p>
+    <!-- Alert -->
+    <div class="alert" id="alertMessage" role="alert"></div>
 
-                <div class="account-meta">
-                    <div class="row">
-                        <span class="label">Member Since</span>
-                        <span class="value" id="userSince">—</span>
-                    </div>
-                    <div class="row">
-                        <span class="label">User ID</span>
-                        <span class="value" id="userId">—</span>
-                    </div>
+    <!-- ===== Profile Tab ===== -->
+    <div class="tab-panel active" id="panel-profile">
+        <div class="dash-card">
+            <div id="profileContent">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="avatarLetter">S</div>
+                    <h1 class="profile-name" id="userName">—</h1>
+                    <p class="profile-email" id="userEmail">—</p>
                 </div>
-
-                <button class="btn-danger" onclick="handleLogout()">Sign Out</button>
-                <a href="index.html" class="btn-secondary">← Back to Home</a>
+                <div class="profile-meta">
+                    <div class="row"><span class="label">Member Since</span><span class="value" id="userSince">—</span></div>
+                    <div class="row"><span class="label">User ID</span><span class="value" id="userId">—</span></div>
+                    <div class="row"><span class="label">Favorites</span><span class="value" id="statFavs">0</span></div>
+                    <div class="row"><span class="label">Downloads</span><span class="value" id="statDls">0</span></div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="js/auth-client.js"></script>
-    <script>
-        (function() {
-            const alertEl = document.getElementById('alertMessage');
-            const contentEl = document.getElementById('accountContent');
-            const nameEl = document.getElementById('userName');
-            const emailEl = document.getElementById('userEmail');
-            const avatarEl = document.getElementById('avatarLetter');
-            const sinceEl = document.getElementById('userSince');
-            const idEl = document.getElementById('userId');
+    <!-- ===== Favorites Tab ===== -->
+    <div class="tab-panel" id="panel-favorites">
+        <div class="dash-card">
+            <h2 class="dash-card-title">⭐ My Favorites</h2>
+            <div id="favContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
+        </div>
+    </div>
 
-            // Check if authenticated
-            if (!AuthClient.isAuthenticated()) {
-                alertEl.textContent = 'You are not signed in. Redirecting...';
-                alertEl.className = 'alert error';
-                setTimeout(() => {
-                    window.location.href = '/login.html';
-                }, 2000);
-                return;
-            }
+    <!-- ===== Downloads Tab ===== -->
+    <div class="tab-panel" id="panel-downloads">
+        <div class="dash-card">
+            <h2 class="dash-card-title">📥 Download History</h2>
+            <div id="dlContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
+        </div>
+    </div>
 
-            // Show content
-            contentEl.style.display = 'block';
+    <!-- ===== Settings Tab ===== -->
+    <div class="tab-panel" id="panel-settings">
+        <div class="dash-card">
+            <h2 class="dash-card-title">⚙️ Account Settings</h2>
+            <div class="alert" id="settingsAlert" role="alert"></div>
+            <form class="settings-form" id="settingsForm">
+                <div class="settings-section">
+                    <h3>Profile</h3>
+                    <div class="form-row">
+                        <label for="settingsName">Display Name</label>
+                        <input type="text" id="settingsName" placeholder="Your name" autocomplete="name">
+                    </div>
+                </div>
+                <div class="settings-section">
+                    <h3>Change Password</h3>
+                    <div class="form-row">
+                        <label for="settingsCurPw">Current Password</label>
+                        <input type="password" id="settingsCurPw" placeholder="Enter current password" autocomplete="current-password">
+                    </div>
+                    <div class="form-row">
+                        <label for="settingsNewPw">New Password (min 6 characters)</label>
+                        <input type="password" id="settingsNewPw" placeholder="Enter new password" autocomplete="new-password">
+                    </div>
+                    <div class="form-row">
+                        <label for="settingsConfirmPw">Confirm New Password</label>
+                        <input type="password" id="settingsConfirmPw" placeholder="Confirm new password" autocomplete="new-password">
+                    </div>
+                </div>
+                <button type="submit" class="btn-save" id="settingsBtn">Save Changes</button>
+            </form>
+        </div>
+    </div>
 
-            // Get user data from localStorage first (fast)
+</div>
+
+<script src="js/auth-client.js"></script>
+<script>
+(function() {
+    // ── State ──────────────────────────────────────────
+    let user = null;
+    let favorites = [];
+    let downloads = [];
+
+    // ── DOM refs ───────────────────────────────────────
+    const $ = id => document.getElementById(id);
+    const alertEl = $('alertMessage');
+
+    const nameEl = $('userName'), emailEl = $('userEmail');
+    const avatarEl = $('avatarLetter'), sinceEl = $('userSince'), idEl = $('userId');
+    const statFavs = $('statFavs'), statDls = $('statDls');
+    const favCount = $('favCount'), dlCount = $('dlCount');
+    const favContent = $('favContent'), dlContent = $('dlContent');
+
+    const settingsName = $('settingsName');
+    const settingsCurPw = $('settingsCurPw'), settingsNewPw = $('settingsNewPw'), settingsConfirmPw = $('settingsConfirmPw');
+    const settingsBtn = $('settingsBtn'), settingsAlert = $('settingsAlert');
+    const settingsForm = $('settingsForm');
+
+    // ── Auth check ─────────────────────────────────────
+    if (!AuthClient.isAuthenticated()) {
+        alertEl.textContent = 'You are not signed in. Redirecting...';
+        alertEl.className = 'alert error';
+        setTimeout(() => window.location.href = '/login.html', 2000);
+        return;
+    }
+
+    // ── Tab switching ──────────────────────────────────
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            $(`panel-${btn.dataset.tab}`).classList.add('active');
+        });
+    });
+
+    // ── Load data ──────────────────────────────────────
+    async function loadDashboard() {
+        try {
+            // Load user
             const localUser = AuthClient.getUser();
-            if (localUser) {
-                nameEl.textContent = localUser.name || localUser.email.split('@')[0];
-                emailEl.textContent = localUser.email;
-                avatarEl.textContent = (localUser.name || localUser.email)[0].toUpperCase();
-                idEl.textContent = '#' + localUser.id;
+            if (localUser) renderUser(localUser);
+
+            const meData = await AuthClient.getMe();
+            if (meData) {
+                user = meData;
+                renderUser(meData);
             }
 
-            // Fetch fresh data from API
-            AuthClient.getMe().then(user => {
-                if (user) {
-                    nameEl.textContent = user.name || user.email.split('@')[0];
-                    emailEl.textContent = user.email;
-                    avatarEl.textContent = (user.name || user.email)[0].toUpperCase();
-                    idEl.textContent = '#' + user.id;
-                    if (user.created_at) {
-                        sinceEl.textContent = new Date(user.created_at).toLocaleDateString('en-US', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                        });
-                    }
-                }
-            });
-        })();
+            // Load favorites
+            try {
+                const favData = await AuthClient.getFavorites();
+                favorites = favData.favorites || [];
+                renderFavorites();
+            } catch {}
 
-        function handleLogout() {
-            if (confirm('Are you sure you want to sign out?')) {
-                AuthClient.logout();
-            }
+            // Load downloads
+            try {
+                const dlData = await AuthClient.getDownloads();
+                downloads = dlData.downloads || [];
+                renderDownloads();
+            } catch {}
+
+            // Load settings
+            if (user) settingsName.value = user.name || '';
+        } catch {
+            alertEl.textContent = 'Session expired. Please sign in again.';
+            alertEl.className = 'alert error';
+            setTimeout(() => AuthClient.logout(), 2000);
         }
-    </script>
+    }
+
+    function renderUser(u) {
+        const displayName = u.name || u.email.split('@')[0];
+        nameEl.textContent = displayName;
+        emailEl.textContent = u.email;
+        avatarEl.textContent = displayName[0].toUpperCase();
+        idEl.textContent = '#' + u.id;
+        if (u.created_at) {
+            sinceEl.textContent = new Date(u.created_at).toLocaleDateString('en-US', {
+                year: 'numeric', month: 'long', day: 'numeric'
+            });
+        }
+        statFavs.textContent = favorites.length;
+        statDls.textContent = downloads.length;
+    }
+
+    function renderFavorites() {
+        favCount.textContent = favorites.length;
+        statFavs.textContent = favorites.length;
+
+        if (!favorites.length) {
+            favContent.innerHTML = `<div class="items-empty"><div class="icon">⭐</div><p>No favorites yet. Browse our videos and save your favorites!</p></div>`;
+            return;
+        }
+
+        favContent.innerHTML = `<div class="items-grid">${favorites.map(f => `
+            <div class="item-card">
+                <button class="item-remove" onclick="removeFav('${f.item_id}')" title="Remove">✕</button>
+                <div class="thumb">${f.thumbnail ? `<img src="${f.thumbnail}" alt="${f.title}" loading="lazy">` : getTypeIcon(f.item_type)}</div>
+                <div class="item-title">${f.title || 'Untitled'}</div>
+                <div class="item-meta">${formatDate(f.created_at)}</div>
+            </div>
+        `).join('')}</div>`;
+    }
+
+    function renderDownloads() {
+        dlCount.textContent = downloads.length;
+        statDls.textContent = downloads.length;
+
+        if (!downloads.length) {
+            dlContent.innerHTML = `<div class="items-empty"><div class="icon">📥</div><p>No download history yet. Your downloaded items will appear here.</p></div>`;
+            return;
+        }
+
+        dlContent.innerHTML = `<div class="items-grid">${downloads.map(d => `
+            <div class="item-card">
+                <div class="thumb">${getTypeIcon(d.item_type)}</div>
+                <div class="item-title">${d.title || 'Untitled'}</div>
+                <div class="item-meta">${d.platform} · ${formatDate(d.created_at)}</div>
+            </div>
+        `).join('')}</div>`;
+    }
+
+    function getTypeIcon(type) {
+        const icons = { video: '🎬', infographic: '📊', mockup: '📱', typography: '✏️', motion: '✨' };
+        return icons[type] || '📁';
+    }
+
+    function formatDate(dateStr) {
+        if (!dateStr) return '';
+        return new Date(dateStr).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    // ── Remove favorite ────────────────────────────────
+    window.removeFav = async function(itemId) {
+        try {
+            await AuthClient.removeFavorite(itemId);
+            favorites = favorites.filter(f => f.item_id !== itemId);
+            renderFavorites();
+        } catch (e) {
+            alertEl.textContent = e.message || 'Failed to remove';
+            alertEl.className = 'alert error';
+        }
+    };
+
+    // ── Settings form ──────────────────────────────────
+    settingsForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        settingsAlert.className = 'alert';
+        settingsAlert.textContent = '';
+
+        const name = settingsName.value.trim();
+        const curPw = settingsCurPw.value;
+        const newPw = settingsNewPw.value;
+        const confirmPw = settingsConfirmPw.value;
+
+        // Validate passwords
+        if (newPw && newPw.length < 6) {
+            settingsAlert.textContent = 'New password must be at least 6 characters.';
+            settingsAlert.className = 'alert error';
+            return;
+        }
+        if (newPw && newPw !== confirmPw) {
+            settingsAlert.textContent = 'Passwords do not match.';
+            settingsAlert.className = 'alert error';
+            return;
+        }
+
+        settingsBtn.disabled = true;
+        settingsBtn.textContent = 'Saving...';
+
+        try {
+            const body = {};
+            if (name) body.name = name;
+            if (curPw && newPw) { body.current_password = curPw; body.new_password = newPw; }
+
+            const result = await AuthClient.updateAccount(body);
+            settingsAlert.textContent = result.message || 'Settings saved!';
+            settingsAlert.className = 'alert success';
+            settingsCurPw.value = ''; settingsNewPw.value = ''; settingsConfirmPw.value = '';
+
+            // Update stored user
+            if (result.user) {
+                AuthClient.setUser(result.user);
+                user = result.user;
+                renderUser(result.user);
+            }
+        } catch (e) {
+            settingsAlert.textContent = e.message || 'Failed to save settings.';
+            settingsAlert.className = 'alert error';
+        }
+
+        settingsBtn.disabled = false;
+        settingsBtn.textContent = 'Save Changes';
+    });
+
+    // ── Start ──────────────────────────────────────────
+    loadDashboard();
+})();
+</script>
 </body>
 </html>
