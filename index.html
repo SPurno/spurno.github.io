@@ -97,10 +97,8 @@
 
     <!-- ===== 3D LOADING SCREEN ===== -->
     <div id="loading-screen">
-        <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-logo">
-        <div class="loader-canvas-wrap">
-            <div class="loader-glow"></div>
-            <canvas id="loader-canvas" width="80" height="80"></canvas>
+        <div class="loader-logo-wrap">
+            <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-svg-logo">
         </div>
         <div class="loader-progress-wrap">
             <div class="loader-progress"></div>
@@ -156,13 +154,10 @@
         <!-- ===== HERO ===== -->
         <section class="hero" id="home">
             <div class="hero-badge">✦ Motion Graphics &amp; Stock Footage Studio</div>
-            <div class="hero-3d-tilt" data-tilt>
-                <h1 class="hero-title-3d" id="heroTitle3d">
-                    SPurno<br>
-                    <span class="highlight">Animation Studio</span>
-                </h1>
-                <div class="hero-3d-glow" id="hero3dGlow"></div>
-            </div>
+            <h1 class="hero-title">
+                SPurno<br>
+                <span class="highlight">Animation Studio</span>
+            </h1>
             <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Over 4,000+ assets available.</p>
             <div class="hero-actions">
                 <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn-primary" rel="noopener">
@@ -172,10 +167,7 @@
                     Explore Portfolio
                 </a>
             </div>
-            <div class="scroll-indicator">
-                <div class="mouse"></div>
-                <span>Scroll</span>
-            </div>
+
         </section>
 
         <!-- ===== ABOUT ===== -->
@@ -690,6 +682,13 @@
         </div>
     </div>
 
+    <!-- ===== SCROLL TO TOP BUTTON ===== -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Scroll to top">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>
+    </button>
+
     <!-- ===== STYLE SWITCHER OVERLAY (after panel for CSS sibling selector) ===== -->
     <div class="ss-overlay" id="ssOverlay"></div>
 
@@ -729,7 +728,6 @@
         }
     </script>
     <script type="module" src="js/spurno3d.js"></script>
-    <script type="module" src="js/loading-tomandjerry.js"></script>
     <script type="text/javascript" src="js/videoplayer.js"></script>
     <script src="js/auth-client.js"></script>
     <script>
