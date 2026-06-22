@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SPurno/spurno.github.io#readme",
   "dependencies": {
+    "sharp": "^0.35.2",
     "three": "^0.169.0"
   }
 }

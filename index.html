@@ -85,7 +85,9 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
+    <link rel="preload" href="images/spurno-logo.png" as="image" type="image/png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="stylesheet" href="assets/css/spurno3d.css">
@@ -719,9 +721,9 @@
     <!-- ============================================
     THREE.JS - 3D BACKGROUND
     ============================================ -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script src="js/footer-i18n.js"></script>
-    <script src="assets/style-switcher/style-switcher-init.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
+    <script src="js/footer-i18n.js" defer></script>
+    <script src="assets/style-switcher/style-switcher-init.js" defer></script>
     <script type="importmap" crossorigin="anonymous">
         {
             "imports": {
@@ -730,23 +732,18 @@
         }
     </script>
     <script type="module" src="js/spurno3d.js"></script>
-    <script type="text/javascript" src="js/videoplayer.js"></script>
-    <script src="js/auth-client.js"></script>
+    <script type="text/javascript" src="js/videoplayer.js" defer></script>
+    <script src="js/auth-client.js" defer></script>
     <script>
-        // Update nav based on auth state
-        (function() {
-            const navLogin = document.getElementById('navLogin');
-            const navRegister = document.getElementById('navRegister');
-            const navProfile = document.getElementById('navProfile');
-            const navSignout = document.getElementById('navSignout');
-
-            if (AuthClient.isAuthenticated()) {
-                navLogin.style.display = 'none';
-                navRegister.style.display = 'none';
-                navProfile.style.display = 'inline-flex';
-                navSignout.style.display = 'inline-flex';
+        // Update nav based on auth state (waits for deferred auth-client.js)
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthClient !== 'undefined' && AuthClient.isAuthenticated()) {
+                document.getElementById('navLogin').style.display = 'none';
+                document.getElementById('navRegister').style.display = 'none';
+                document.getElementById('navProfile').style.display = 'inline-flex';
+                document.getElementById('navSignout').style.display = 'inline-flex';
             }
-        })();
+        });
     </script>
 
 </body>
