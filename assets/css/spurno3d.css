@@ -206,7 +206,7 @@
             font-size: 1.1rem;
             letter-spacing: 0.5px;
         }
-        .nav-logo img { height: 36px; width: auto; border-radius: 8px; }
+        .nav-logo img { height: 36px; width: auto; aspect-ratio: 470/246; border-radius: 8px; }
         .nav-links {
             display: flex;
             gap: 6px;
@@ -269,6 +269,15 @@
             text-align: center;
             padding: 120px 24px 80px;
             position: relative;
+        }
+        /* Accessibility: dark overlay behind hero text for contrast against 3D background */
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(10,10,15,0.55) 0%, rgba(10,10,15,0.3) 50%, transparent 80%);
+            pointer-events: none;
+            z-index: -1;
         }
         .hero-badge {
             display: inline-block;
@@ -817,6 +826,38 @@
         }
         .skip-link:focus {
             top: 16px;
+        }
+
+        /* ============================================
+                   ACCESSIBILITY: FOCUS INDICATORS
+            ============================================ */
+        :focus-visible {
+            outline: 2px solid var(--color-primary) !important;
+            outline-offset: 2px !important;
+            border-radius: 4px;
+        }
+        .btn:focus-visible,
+        .nav-links a:focus-visible,
+        .stock-card:focus-visible,
+        .category-group ul li a:focus-visible,
+        .category-nav a:focus-visible,
+        .lang-btn:focus-visible,
+        .nav-toggle:focus-visible,
+        .scroll-top-btn:focus-visible,
+        .ss-toggle:focus-visible,
+        .fs-close:focus-visible,
+        .fs-play:focus-visible {
+            outline-offset: 3px !important;
+            border-radius: 30px;
+        }
+        .service-card:focus-visible,
+        .glass-card:focus-visible {
+            outline-offset: 2px !important;
+            border-radius: 20px;
+        }
+        /* Remove default outline for mouse users, keep for keyboard */
+        :focus:not(:focus-visible) {
+            outline: none;
         }
 
         /* ============================================

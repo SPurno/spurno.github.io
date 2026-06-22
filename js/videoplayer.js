@@ -113,8 +113,12 @@
                             if (v) { v.pause(); v.currentTime = 0; }
                             playing[i].classList.remove('playing');
                         }
-                        for (var j = 0; j < filterBtns.length; j++) filterBtns[j].classList.remove('active');
+                        for (var j = 0; j < filterBtns.length; j++) {
+                            filterBtns[j].classList.remove('active');
+                            filterBtns[j].setAttribute('aria-pressed', 'false');
+                        }
                         btn.classList.add('active');
+                        btn.setAttribute('aria-pressed', 'true');
                         renderGallery(btn.getAttribute('data-filter'));
                     });
                 })(filterBtns[k]);

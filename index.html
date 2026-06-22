@@ -100,7 +100,7 @@
     <!-- ===== 3D LOADING SCREEN ===== -->
     <div id="loading-screen">
         <div class="loader-logo-wrap">
-            <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-svg-logo">
+            <img src="images/spurno-logo.png" alt="SPurno Animation Studio" width="470" height="246" class="loader-svg-logo">
         </div>
         <div class="loader-progress-wrap">
             <div class="loader-progress"></div>
@@ -118,7 +118,7 @@
         <!-- ===== NAVBAR ===== -->
         <nav class="navbar" id="navbar">
             <a href="index.html" class="nav-logo">
-                <img src="images/spurno-logo.png" alt="SPurno Animation Studio logo" loading="lazy">
+                <img src="images/spurno-logo.png" alt="SPurno Animation Studio logo" width="470" height="246" loading="lazy">
             </a>
             <div class="nav-links" id="navLinks">
                 <a href="#about" data-i18n="nav.about">About</a>
@@ -137,14 +137,14 @@
                         <span data-i18n="language.current">English</span>
                     </button>
                     <div class="lang-dropdown">
-                        <a href="#" class="lang-option" data-language="en">English</a>
-                        <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
-                        <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
-                        <a href="#" class="lang-option" data-language="de">Deutsch</a>
-                        <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
-                        <a href="#" class="lang-option" data-language="ja">&#26085;&#26412;&#35486;</a>
-                        <a href="#" class="lang-option" data-language="ru">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</a>
-                        <a href="#" class="lang-option" data-language="zh-CN">&#20013;&#25991;&#65288;&#31616;&#20307;&#65289;</a>
+                        <a href="#" class="lang-option" data-language="en" aria-label="Switch to English">English</a>
+                        <a href="#" class="lang-option" data-language="es" aria-label="Cambiar a espa&ntilde;ol">Espa&ntilde;ol</a>
+                        <a href="#" class="lang-option" data-language="fr" aria-label="Passer au fran&ccedil;ais">Fran&ccedil;ais</a>
+                        <a href="#" class="lang-option" data-language="de" aria-label="Zu Deutsch wechseln">Deutsch</a>
+                        <a href="#" class="lang-option" data-language="pt" aria-label="Mudar para portugu&ecirc;s">Portugu&ecirc;s</a>
+                        <a href="#" class="lang-option" data-language="ja" aria-label="&#26085;&#26412;&#35486;&#12395;&#20999;&#12426;&#26367;&#12360;">&#26085;&#26412;&#35486;</a>
+                        <a href="#" class="lang-option" data-language="ru" aria-label="&#1055;&#1077;&#1088;&#1077;&#1082;&#1083;&#1102;&#1095;&#1080;&#1090;&#1100; &#1085;&#1072; &#1088;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;">&#1056;&#1091;&#1089;&#1089;&#1082;&#1080;&#1081;</a>
+                        <a href="#" class="lang-option" data-language="zh-CN" aria-label="&#20999;&#25442;&#21040;&#20013;&#25991;">&#20013;&#25991;&#65288;&#31616;&#20307;&#65289;</a>
                     </div>
                 </div>
             </div>
@@ -205,7 +205,7 @@
                     </div>
                     <div class="reveal">
                         <div class="about-video glass-card" style="overflow: hidden; padding: 0;">
-                            <iframe src="https://player.vimeo.com/video/1184718839" allow="autoplay; fullscreen" allowfullscreen loading="lazy"></iframe>
+                            <iframe src="https://player.vimeo.com/video/1184718839" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
                         </div>
                     </div>
                 </div>
@@ -360,12 +360,12 @@
                     <p>Hover over any video to preview, click to play, or shop the full-resolution version on Adobe Stock.</p>
                 </div>
                 <div class="gallery-header reveal">
-                    <div class="gallery-filter" id="galleryFilter">
-                        <button class="active" data-filter="all">All</button>
-                        <button data-filter="motion">Motion</button>
-                        <button data-filter="infographic">Infographic</button>
-                        <button data-filter="mockup">Mockup</button>
-                        <button data-filter="typography">Typography</button>
+                    <div class="gallery-filter" id="galleryFilter" role="group" aria-label="Filter videos by category">
+                        <button class="active" data-filter="all" aria-pressed="true">All</button>
+                        <button data-filter="motion" aria-pressed="false">Motion</button>
+                        <button data-filter="infographic" aria-pressed="false">Infographic</button>
+                        <button data-filter="mockup" aria-pressed="false">Mockup</button>
+                        <button data-filter="typography" aria-pressed="false">Typography</button>
                     </div>
                 </div>
                 <div class="video-gallery reveal" id="videoGallery"></div>
@@ -506,7 +506,7 @@
                     <div class="footer-grid">
                         <div class="footer-brand">
                             <a href="index.html" class="nav-logo" style="display: inline-flex;">
-                                <img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy" style="height: 36px;">
+                                <img src="images/spurno-logo.png" alt="SPurno Animation Studio" width="470" height="246" loading="lazy" style="height: 36px;">
                                 <span style="font-weight: 700; font-size: 1.1rem;">SPurno Animation Studio</span>
                             </a>
                             <p data-i18n="indexFooter.footerDesc">SPurno Animation Studio creates premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
@@ -699,7 +699,7 @@
         <button class="fs-close" id="fsClose" aria-label="Close fullscreen video">&times;</button>
         <div class="fs-video-wrap">
             <div class="fs-watermark">
-                <img src="images/spurno-logo.png" alt="SPurno" loading="lazy">
+                <img src="images/spurno-logo.png" alt="SPurno" width="470" height="246" loading="lazy">
                  
             </div>
             <video id="fsVideo" playsinline></video>
