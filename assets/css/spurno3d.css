@@ -757,6 +757,30 @@
         }
 
         /* ============================================
+                   ACCESSIBILITY: REDUCED MOTION
+            ============================================ */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+            #three-canvas {
+                opacity: 0.3;
+                transition: opacity 0.3s ease;
+            }
+            .reveal {
+                opacity: 1 !important;
+                transform: none !important;
+                transition: none !important;
+            }
+            .glass-card:hover {
+                transform: none !important;
+            }
+        }
+
+        /* ============================================
                    ANIMATIONS
             ============================================ */
         @keyframes fadeInUp {
