@@ -27,6 +27,7 @@ async function setup() {
   if (shouldReset) {
     console.log('Resetting database — dropping existing tables...');
     // Drop in reverse dependency order to respect foreign key constraints
+    await db.execute(`DROP TABLE IF EXISTS custom_orders;`);
     await db.execute(`DROP TABLE IF EXISTS favorites;`);
     await db.execute(`DROP TABLE IF EXISTS download_history;`);
     await db.execute(`DROP TABLE IF EXISTS password_resets;`);

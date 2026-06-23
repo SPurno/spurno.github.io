@@ -17,7 +17,9 @@ import {
   handleGetFavorites, handleAddFavorite, handleRemoveFavorite,
   handleGetDownloads, handleAddDownload,
   handleUpdateAccount,
+  handleCreateOrder, handleGetOrders,
 } from './dashboard.js';
+import { handleAdminGetOrders, handleAdminUpdateOrder } from './admin.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -62,6 +64,14 @@ export default {
 
     // ── Account Settings ───────────────────────────────
     if (path === '/api/account' && method === 'PUT') return handleUpdateAccount(request, env);
+
+    // ── Custom Orders Routes ───────────────────────────
+    if (path === '/api/orders' && method === 'POST') return handleCreateOrder(request, env);
+    if (path === '/api/orders' && method === 'GET') return handleGetOrders(request, env);
+
+    // ── Admin Routes ───────────────────────────────────
+    if (path === '/api/admin/orders' && method === 'GET') return handleAdminGetOrders(request, env);
+    if (path === '/api/admin/orders' && method === 'PUT') return handleAdminUpdateOrder(request, env);
 
     // 404 for unknown routes
     return new Response(

@@ -9,3 +9,4 @@ TURSO_DATABASE_URL = "libsql://userreg-spurno.aws-us-east-1.turso.io"
 # Secrets you must set before deploying:
 #   npx wrangler secret put TURSO_AUTH_TOKEN
 #   npx wrangler secret put JWT_SECRET
+#   npx wrangler secret put ADMIN_API_KEY

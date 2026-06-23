@@ -138,14 +138,22 @@ text-align: center; padding: 48px 24px; color: rgba(255,255,255,0.35);
 .form-row { margin-bottom: 16px; }
 .form-row:last-child { margin-bottom: 0; }
 .form-row label { display: block; font-size: 0.8rem; font-weight: 500; color: rgba(255,255,255,0.6); margin-bottom: 6px; }
-.form-row input {
+.form-row input,
+.form-row textarea,
+.form-row select {
 width: 100%; padding: 12px 16px;
 background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10);
 border-radius: 12px; color: #fff; font-family: 'Jost', sans-serif;
 font-size: 0.92rem; outline: none; transition: border-color 0.3s;
 }
-.form-row input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb),0.1); }
-.form-row input::placeholder { color: rgba(255,255,255,0.2); }
+.form-row input:focus,
+.form-row textarea:focus,
+.form-row select:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb),0.1); }
+.form-row input::placeholder,
+.form-row textarea::placeholder { color: rgba(255,255,255,0.2); }
+.form-row textarea { resize: vertical; min-height: 80px; }
+.form-row select { cursor: pointer; }
+.form-row select option { background: #1a1a24; color: #fff; }
 .btn-save {
 padding: 12px 28px; border: none; border-radius: 12px;
 font-family: 'Jost', sans-serif; font-size: 0.9rem; font-weight: 600;
@@ -167,6 +175,61 @@ border: 2px solid rgba(255,255,255,0.15); border-top-color: var(--color-primary)
 border-radius: 50%; animation: spin 0.6s linear infinite;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
+/* ── Orders ─────────────────────────────────────── */
+.order-form { display: flex; flex-direction: column; gap: 4px; }
+.orders-list { display: flex; flex-direction: column; gap: 14px; }
+.order-card {
+padding: 20px; border-radius: 14px;
+background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+transition: all 0.3s;
+}
+.order-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-1px); }
+.order-header {
+display: flex; justify-content: space-between; align-items: center;
+margin-bottom: 10px; flex-wrap: wrap; gap: 8px;
+}
+.order-number {
+font-size: 0.72rem; font-weight: 600;
+color: rgba(255,255,255,0.35); letter-spacing: 0.5px;
+font-family: monospace;
+}
+.order-status {
+font-size: 0.72rem; font-weight: 600; padding: 4px 12px;
+border-radius: 30px; letter-spacing: 0.3px;
+}
+.status-pending { background: rgba(234,179,8,0.15); color: #fde047; }
+.status-quoted { background: rgba(59,130,246,0.15); color: #93c5fd; }
+.status-accepted { background: rgba(34,197,94,0.15); color: #86efac; }
+.status-in_progress { background: rgba(168,85,247,0.15); color: #d8b4fe; }
+.status-completed { background: rgba(34,197,94,0.15); color: #86efac; }
+.status-cancelled { background: rgba(239,68,68,0.15); color: #fca5a5; }
+.order-type {
+font-size: 0.88rem; font-weight: 500; margin-bottom: 6px;
+color: rgba(255,255,255,0.85);
+}
+.order-desc {
+font-size: 0.82rem; color: rgba(255,255,255,0.5);
+line-height: 1.5; margin-bottom: 10px;
+}
+.order-meta {
+font-size: 0.78rem; color: rgba(255,255,255,0.35);
+line-height: 1.6; margin-bottom: 8px;
+}
+.order-response {
+font-size: 0.82rem; color: rgba(34,197,94,0.8);
+background: rgba(34,197,94,0.06);
+padding: 10px 14px; border-radius: 10px;
+margin-bottom: 8px; line-height: 1.5;
+border-left: 3px solid rgba(34,197,94,0.3);
+}
+.order-price {
+font-size: 0.85rem; font-weight: 600;
+color: #fde047; margin-bottom: 6px;
+}
+.order-date {
+font-size: 0.72rem; color: rgba(255,255,255,0.25);
+}
+
 @media (max-width: 640px) {
 .tab-btn { font-size: 0.78rem; padding: 10px 12px; }
 .profile-meta { grid-template-columns: 1fr; }

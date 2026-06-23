@@ -35,6 +35,7 @@
         <button class="tab-btn" data-tab="favorites">⭐ Favorites <span class="tab-badge" id="favCount">0</span></button>
         <button class="tab-btn" data-tab="downloads">📥 Downloads <span class="tab-badge" id="dlCount">0</span></button>
         <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
+        <button class="tab-btn" data-tab="orders">📋 Orders</button>
     </div>
 
     <!-- Alert -->
@@ -72,6 +73,84 @@
         <div class="dash-card">
             <h2 class="dash-card-title">📥 Download History</h2>
             <div id="dlContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
+        </div>
+    </div>
+
+    <!-- ===== Orders Tab ===== -->
+    <div class="tab-panel" id="panel-orders">
+        <div class="dash-card">
+            <h2 class="dash-card-title">📋 My Quote Requests</h2>
+            <div class="alert" id="orderAlert" role="alert"></div>
+
+            <!-- Order form (shown when not viewing details) -->
+            <div id="orderFormWrap">
+                <form class="order-form" id="orderForm">
+                    <div class="form-row">
+                        <label for="orderType">Animation Type *</label>
+                        <select id="orderType" required>
+                            <option value="">Select animation type...</option>
+                            <option value="2d-animation">2D Animation</option>
+                            <option value="3d-animation">3D Animation</option>
+                            <option value="motion-graphics">Motion Graphics</option>
+                            <option value="infographic">Infographic</option>
+                            <option value="typography">Typography</option>
+                            <option value="explainer">Explainer Video</option>
+                            <option value="whiteboard">Whiteboard Animation</option>
+                            <option value="logo-animation">Logo Animation</option>
+                            <option value="character-animation">Character Animation</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="orderDuration">Duration (seconds)</label>
+                        <input type="number" id="orderDuration" min="1" max="300" placeholder="e.g. 30">
+                    </div>
+                    <div class="form-row">
+                        <label for="orderDescription">Project Description *</label>
+                        <textarea id="orderDescription" rows="4" placeholder="Describe your animation project in detail — what you need, your vision, target audience, etc." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <label for="orderStyle">Style / Vibe</label>
+                        <input type="text" id="orderStyle" placeholder="e.g. Minimalist, Cartoon, Realistic, Dark, Vibrant...">
+                    </div>
+                    <div class="form-row">
+                        <label for="orderLinks">Reference Links</label>
+                        <input type="text" id="orderLinks" placeholder="Links to examples, moodboards, or references">
+                    </div>
+                    <div class="form-row">
+                        <label for="orderBudget">Budget Range</label>
+                        <input type="text" id="orderBudget" placeholder="e.g. $200 - $500">
+                    </div>
+                    <div class="form-row">
+                        <label for="orderDeadline">Deadline</label>
+                        <input type="text" id="orderDeadline" placeholder="e.g. 2 weeks, December 2024">
+                    </div>
+                    <div class="form-row">
+                        <label for="orderPayment">Payment Method</label>
+                        <select id="orderPayment">
+                            <option value="">Select payment method...</option>
+                            <option value="payoneer">Payoneer</option>
+                            <option value="skrill">Skrill</option>
+                            <option value="bkash">bKash</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-row">
+                        <label for="orderNotes">Additional Notes</label>
+                        <textarea id="orderNotes" rows="3" placeholder="Any other information, special requests, or questions"></textarea>
+                    </div>
+                    <button type="submit" class="btn-save" id="orderSubmitBtn">Submit Quote Request</button>
+                </form>
+            </div>
+
+            <!-- Orders list (shown after submitting or loading existing orders) -->
+            <div id="orderListWrap" style="display:none;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <h3 style="margin:0;font-size:1rem;">Your Requests</h3>
+                    <button class="btn-save" id="newOrderBtn" style="padding:6px 16px;font-size:0.82rem;">+ New Request</button>
+                </div>
+                <div id="orderListContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
+            </div>
         </div>
     </div>
 
@@ -178,6 +257,9 @@
                 renderDownloads();
             } catch {}
 
+            // Load orders
+            loadOrders();
+
             // Load settings
             if (user) settingsName.value = user.name || '';
         } catch {
@@ -260,6 +342,127 @@
             alertEl.className = 'alert error';
         }
     };
+
+    // ── Orders ─────────────────────────────────────────
+    let orders = [];
+    const orderFormWrap = $('orderFormWrap');
+    const orderListWrap = $('orderListWrap');
+    const orderListContent = $('orderListContent');
+    const orderAlert = $('orderAlert');
+    const orderForm = $('orderForm');
+    const orderSubmitBtn = $('orderSubmitBtn');
+    const newOrderBtn = $('newOrderBtn');
+
+    function showOrderAlert(msg, type) {
+        orderAlert.textContent = msg;
+        orderAlert.className = 'alert ' + type;
+        setTimeout(() => { orderAlert.className = 'alert'; }, 5000);
+    }
+
+    async function loadOrders() {
+        try {
+            const data = await AuthClient.getOrders();
+            orders = data.orders || [];
+            renderOrders();
+        } catch {
+            orders = [];
+            renderOrders();
+        }
+    }
+
+    function renderOrders() {
+        if (!orders.length) {
+            orderListContent.innerHTML = `<div class="items-empty"><div class="icon">📋</div><p>No quote requests yet. Submit your first animation project request above!</p></div>`;
+            return;
+        }
+
+        const statusLabels = {
+            pending: '⏳ Pending',
+            quoted: '💰 Quoted',
+            accepted: '✅ Accepted',
+            in_progress: '⚡ In Progress',
+            completed: '🎉 Completed',
+            cancelled: '❌ Cancelled',
+        };
+
+        orderListContent.innerHTML = `<div class="orders-list">${orders.map(o => `
+            <div class="order-card">
+                <div class="order-header">
+                    <span class="order-number">${o.order_number}</span>
+                    <span class="order-status status-${o.status}">${statusLabels[o.status] || o.status}</span>
+                </div>
+                <div class="order-type">${o.animation_type.replace('-', ' ').replace(/\b\w/g, c => c.toUpperCase())}</div>
+                <div class="order-desc">${o.description.length > 120 ? o.description.slice(0, 120) + '...' : o.description}</div>
+                <div class="order-meta">
+                    ${o.duration_seconds ? o.duration_seconds + 's' : ''}
+                    ${o.budget_range ? ' · ' + o.budget_range : ''}
+                    ${o.deadline ? ' · Due: ' + o.deadline : ''}
+                    ${o.payment_method ? ' · ' + o.payment_method : ''}
+                </div>
+                ${o.admin_response ? `<div class="order-response"><strong>Reply:</strong> ${o.admin_response}</div>` : ''}
+                ${o.quoted_price ? `<div class="order-price">Quoted: ${o.quoted_price}</div>` : ''}
+                <div class="order-date">Submitted ${formatDate(o.created_at)}</div>
+            </div>
+        `).join('')}</div>`;
+    }
+
+    // Toggle between form and list
+    function showOrderForm(show) {
+        orderFormWrap.style.display = show ? 'block' : 'none';
+        orderListWrap.style.display = show ? 'none' : 'block';
+    }
+
+    newOrderBtn.addEventListener('click', () => showOrderForm(true));
+
+    orderForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const animationType = $('orderType').value;
+        const duration = $('orderDuration').value;
+        const description = $('orderDescription').value.trim();
+        const styleVibe = $('orderStyle').value.trim();
+        const links = $('orderLinks').value.trim();
+        const budget = $('orderBudget').value.trim();
+        const deadline = $('orderDeadline').value.trim();
+        const payment = $('orderPayment').value;
+        const notes = $('orderNotes').value.trim();
+
+        if (!animationType || !description) {
+            showOrderAlert('Please fill in Animation Type and Description.', 'error');
+            return;
+        }
+
+        orderSubmitBtn.disabled = true;
+        orderSubmitBtn.textContent = 'Submitting...';
+
+        try {
+            const result = await AuthClient.createOrder({
+                animation_type: animationType,
+                duration_seconds: duration ? parseInt(duration, 10) : null,
+                description,
+                style_vibe: styleVibe,
+                reference_links: links,
+                budget_range: budget,
+                deadline,
+                payment_method: payment,
+                additional_notes: notes,
+            });
+
+            showOrderAlert(result.message || 'Quote request submitted!', 'success');
+
+            // Reset form
+            orderForm.reset();
+
+            // Reload orders and switch to list
+            await loadOrders();
+            showOrderForm(false);
+        } catch (e) {
+            showOrderAlert(e.message || 'Failed to submit. Please try again.', 'error');
+        }
+
+        orderSubmitBtn.disabled = false;
+        orderSubmitBtn.textContent = 'Submit Quote Request';
+    });
 
     // ── Settings form ──────────────────────────────────
     settingsForm.addEventListener('submit', async (e) => {

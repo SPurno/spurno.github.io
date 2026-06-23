@@ -70,6 +70,18 @@ const AuthClient = {
     });
   },
 
+  // ── Custom Orders ────────────────────────────────────
+  async createOrder(data) {
+    return this._fetch('/orders', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async getOrders() {
+    return this._fetch('/orders');
+  },
+
   // ── Password Reset ───────────────────────────────────
   async forgotPassword(email) {
     const response = await fetch(`${AUTH_API_URL}/forgot-password`, {

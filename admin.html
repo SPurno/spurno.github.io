@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin Panel | SPurno Animation Studio</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+<div class="admin-wrap">
+
+    <!-- Top Bar -->
+    <div class="admin-top">
+        <div class="admin-logo">
+            <span>⚙️ SPurno Admin</span>
+        </div>
+        <div class="admin-top-right">
+            <span class="admin-key-status" id="keyStatus">Not authenticated</span>
+            <button class="admin-btn" id="adminLogoutBtn" style="display:none;">Sign Out</button>
+        </div>
+    </div>
+
+    <!-- Auth Screen -->
+    <div id="authScreen" class="admin-section">
+        <div class="admin-card" style="max-width:420px;margin:80px auto;">
+            <h2 class="admin-card-title">🔑 Admin Access</h2>
+            <p style="color:rgba(255,255,255,0.5);margin-bottom:20px;font-size:0.9rem;">Enter your admin API key to manage orders.</p>
+            <div class="alert" id="authAlert" role="alert"></div>
+            <div class="form-row">
+                <label for="adminKeyInput">Admin API Key</label>
+                <input type="password" id="adminKeyInput" placeholder="Enter admin API key" autocomplete="off">
+            </div>
+            <button class="admin-btn admin-btn-primary" id="authSubmitBtn" style="width:100%;">Authenticate</button>
+        </div>
+    </div>
+
+    <!-- Dashboard Screen -->
+    <div id="dashScreen" style="display:none;">
+
+        <!-- Stats Bar -->
+        <div class="stats-bar" id="statsBar"></div>
+
+        <!-- Filters -->
+        <div class="admin-section">
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="pending">⏳ Pending</button>
+                <button class="filter-btn" data-filter="quoted">💰 Quoted</button>
+                <button class="filter-btn" data-filter="accepted">✅ Accepted</button>
+                <button class="filter-btn" data-filter="in_progress">⚡ In Progress</button>
+                <button class="filter-btn" data-filter="completed">🎉 Completed</button>
+                <button class="filter-btn" data-filter="cancelled">❌ Cancelled</button>
+            </div>
+        </div>
+
+        <!-- Orders List -->
+        <div class="admin-section">
+            <div class="alert" id="adminAlert" role="alert"></div>
+            <div class="orders-count" id="ordersCount">Loading orders...</div>
+            <div id="adminOrdersList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
+        </div>
+    </div>
+
+    <!-- Update Modal -->
+    <div class="modal-overlay" id="updateModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h2 class="admin-card-title" style="margin-bottom:20px;">✏️ Update Order</h2>
+            <div class="alert" id="modalAlert" role="alert"></div>
+            <form id="updateForm">
+                <input type="hidden" id="updateOrderId">
+                <div class="form-row">
+                    <label>Order Number</label>
+                    <div id="modalOrderNumber" style="font-family:monospace;font-size:0.85rem;color:rgba(255,255,255,0.6);padding:8px 0;"></div>
+                </div>
+                <div class="form-row">
+                    <label for="updateStatus">Status</label>
+                    <select id="updateStatus">
+                        <option value="pending">⏳ Pending</option>
+                        <option value="quoted">💰 Quoted</option>
+                        <option value="accepted">✅ Accepted</option>
+                        <option value="in_progress">⚡ In Progress</option>
+                        <option value="completed">🎉 Completed</option>
+                        <option value="cancelled">❌ Cancelled</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="updatePrice">Quoted Price</label>
+                    <input type="text" id="updatePrice" placeholder="e.g. $350">
+                </div>
+                <div class="form-row">
+                    <label for="updateResponse">Admin Response (visible to user)</label>
+                    <textarea id="updateResponse" rows="3" placeholder="Your message to the customer..."></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="updateNotes">Admin Notes (internal only)</label>
+                    <textarea id="updateNotes" rows="2" placeholder="Internal notes..."></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="admin-btn" id="modalCancelBtn">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary" id="modalSaveBtn">Update Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<script>
+(function() {
+    const API_BASE = 'https://spurno-auth.ispurno.workers.dev/api';
+    const LS_KEY = 'spurno_admin_key';
+
+    // ── DOM refs ───────────────────────────────────────
+    const $ = id => document.getElementById(id);
+    const authScreen = $('authScreen');
+    const dashScreen = $('dashScreen');
+    const keyStatus = $('keyStatus');
+    const adminKeyInput = $('adminKeyInput');
+    const authSubmitBtn = $('authSubmitBtn');
+    const authAlert = $('authAlert');
+    const adminLogoutBtn = $('adminLogoutBtn');
+    const statsBar = $('statsBar');
+    const adminOrdersList = $('adminOrdersList');
+    const ordersCount = $('ordersCount');
+    const adminAlert = $('adminAlert');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const updateModal = $('updateModal');
+    const modalClose = $('modalClose');
+    const modalCancelBtn = $('modalCancelBtn');
+    const modalAlert = $('modalAlert');
+    const updateForm = $('updateForm');
+    const updateOrderId = $('updateOrderId');
+    const modalOrderNumber = $('modalOrderNumber');
+    const updateStatus = $('updateStatus');
+    const updatePrice = $('updatePrice');
+    const updateResponse = $('updateResponse');
+    const updateNotes = $('updateNotes');
+    const modalSaveBtn = $('modalSaveBtn');
+
+    let adminKey = localStorage.getItem(LS_KEY) || '';
+    let currentFilter = 'all';
+    let allOrders = [];
+    let allStats = [];
+
+    // ── Auth ───────────────────────────────────────────
+    function showAuthAlert(msg, type) {
+        authAlert.textContent = msg;
+        authAlert.className = 'alert ' + type;
+    }
+
+    function updateAuthUI() {
+        if (adminKey) {
+            keyStatus.textContent = '✅ Authenticated';
+            adminLogoutBtn.style.display = 'block';
+        } else {
+            keyStatus.textContent = '❌ Not authenticated';
+            adminLogoutBtn.style.display = 'none';
+        }
+    }
+
+    async function authenticate(key) {
+        // Test the key by calling the admin API
+        try {
+            const res = await fetch(`${API_BASE}/admin/orders`, {
+                headers: { 'Authorization': `Bearer ${key}` },
+            });
+            if (!res.ok) {
+                const data = await res.json();
+                throw new Error(data.error || 'Authentication failed');
+            }
+            adminKey = key;
+            localStorage.setItem(LS_KEY, key);
+            updateAuthUI();
+            authScreen.style.display = 'none';
+            dashScreen.style.display = 'block';
+            showAdminAlert('', '');
+            loadDashboard();
+        } catch (e) {
+            showAuthAlert(e.message || 'Invalid admin key', 'error');
+        }
+    }
+
+    authSubmitBtn.addEventListener('click', () => {
+        const key = adminKeyInput.value.trim();
+        if (!key) {
+            showAuthAlert('Please enter your admin API key.', 'error');
+            return;
+        }
+        authenticate(key);
+    });
+
+    adminKeyInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') authSubmitBtn.click();
+    });
+
+    adminLogoutBtn.addEventListener('click', () => {
+        adminKey = '';
+        localStorage.removeItem(LS_KEY);
+        updateAuthUI();
+        dashScreen.style.display = 'none';
+        authScreen.style.display = 'block';
+        adminKeyInput.value = '';
+        authAlert.className = 'alert';
+        authAlert.textContent = '';
+    });
+
+    // ── API helpers ────────────────────────────────────
+    async function adminFetch(path, options = {}) {
+        const res = await fetch(`${API_BASE}${path}`, {
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${adminKey}`,
+                ...(options.headers || {}),
+            },
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Request failed');
+        return data;
+    }
+
+    function showAdminAlert(msg, type) {
+        adminAlert.textContent = msg;
+        adminAlert.className = 'alert ' + type;
+        if (msg) setTimeout(() => { adminAlert.className = 'alert'; }, 5000);
+    }
+
+    function showModalAlert(msg, type) {
+        modalAlert.textContent = msg;
+        modalAlert.className = 'alert ' + type;
+        setTimeout(() => { modalAlert.className = 'alert'; }, 4000);
+    }
+
+    // ── Dashboard ──────────────────────────────────────
+    async function loadDashboard() {
+        try {
+            const data = await adminFetch('/admin/orders');
+            allOrders = data.orders || [];
+            allStats = data.stats || [];
+            renderStats();
+            renderOrders();
+        } catch (e) {
+            showAdminAlert('Failed to load orders: ' + e.message, 'error');
+        }
+    }
+
+    function renderStats() {
+        const statusLabels = {
+            pending: '⏳ Pending', quoted: '💰 Quoted', accepted: '✅ Accepted',
+            in_progress: '⚡ In Progress', completed: '🎉 Completed', cancelled: '❌ Cancelled'
+        };
+        const colors = {
+            pending: '#fde047', quoted: '#93c5fd', accepted: '#86efac',
+            in_progress: '#d8b4fe', completed: '#86efac', cancelled: '#fca5a5'
+        };
+
+        const total = allOrders.length;
+        let html = `<div class="stat-card stat-total"><div class="stat-num">${total}</div><div class="stat-label">Total Orders</div></div>`;
+
+        allStats.forEach(s => {
+            html += `<div class="stat-card" style="--stat-color:${colors[s.status] || '#fff'}">
+                <div class="stat-num">${s.count}</div>
+                <div class="stat-label">${statusLabels[s.status] || s.status}</div>
+            </div>`;
+        });
+
+        statsBar.innerHTML = html;
+    }
+
+    function renderOrders() {
+        let filtered = allOrders;
+        if (currentFilter !== 'all') {
+            filtered = allOrders.filter(o => o.status === currentFilter);
+        }
+
+        ordersCount.textContent = `${filtered.length} order${filtered.length !== 1 ? 's' : ''}${currentFilter !== 'all' ? ` (${currentFilter})` : ''}`;
+
+        if (!filtered.length) {
+            adminOrdersList.innerHTML = `<div class="items-empty"><div class="icon">📋</div><p>No orders found.</p></div>`;
+            return;
+        }
+
+        const statusLabels = {
+            pending: '⏳ Pending', quoted: '💰 Quoted', accepted: '✅ Accepted',
+            in_progress: '⚡ In Progress', completed: '🎉 Completed', cancelled: '❌ Cancelled'
+        };
+
+        adminOrdersList.innerHTML = `<div class="admin-orders-list">${filtered.map(o => {
+            const created = new Date(o.created_at).toLocaleDateString('en-US', {
+                month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+            });
+            return `<div class="admin-order-card" data-order-id="${o.id}">
+                <div class="admin-order-top">
+                    <div class="admin-order-left">
+                        <span class="admin-order-number">${o.order_number}</span>
+                        <span class="admin-order-user">👤 ${o.user_name || o.user_email || 'Unknown'}</span>
+                    </div>
+                    <span class="order-status status-${o.status}">${statusLabels[o.status] || o.status}</span>
+                </div>
+                <div class="admin-order-type">${o.animation_type.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())}${o.duration_seconds ? ` · ${o.duration_seconds}s` : ''}</div>
+                <div class="admin-order-desc">${o.description.length > 150 ? o.description.slice(0, 150) + '...' : o.description}</div>
+                <div class="admin-order-meta">
+                    ${o.budget_range ? '💰 ' + o.budget_range : ''}
+                    ${o.deadline ? ' 📅 Due: ' + o.deadline : ''}
+                    ${o.payment_method ? ' 💳 ' + o.payment_method : ''}
+                </div>
+                <div class="admin-order-footer">
+                    <span class="admin-order-date">${created}</span>
+                    <div class="admin-order-actions">
+                        ${o.admin_response ? '<span class="admin-has-response">💬 Has reply</span>' : ''}
+                        ${o.quoted_price ? '<span class="admin-has-price">💰 ' + o.quoted_price + '</span>' : ''}
+                        <button class="admin-btn admin-btn-sm admin-update-btn" data-id="${o.id}">✏️ Update</button>
+                    </div>
+                </div>
+            </div>`;
+        }).join('')}</div>`;
+
+        // Attach update button handlers
+        document.querySelectorAll('.admin-update-btn').forEach(btn => {
+            btn.addEventListener('click', () => openUpdateModal(btn.dataset.id));
+        });
+    }
+
+    // ── Filters ────────────────────────────────────────
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentFilter = btn.dataset.filter;
+            renderOrders();
+        });
+    });
+
+    // ── Update Modal ───────────────────────────────────
+    async function openUpdateModal(orderId) {
+        try {
+            const data = await adminFetch(`/admin/orders?id=${orderId}`);
+            const order = data.order;
+
+            updateOrderId.value = order.id;
+            modalOrderNumber.textContent = order.order_number || '—';
+            updateStatus.value = order.status || 'pending';
+            updatePrice.value = order.quoted_price || '';
+            updateResponse.value = order.admin_response || '';
+            updateNotes.value = order.admin_notes || '';
+            modalAlert.className = 'alert';
+            modalAlert.textContent = '';
+
+            // Disable completed/cancelled statuses if they can't be changed
+            // (keep it simple - allow any transition)
+
+            updateModal.classList.add('show');
+        } catch (e) {
+            showAdminAlert('Failed to load order details: ' + e.message, 'error');
+        }
+    }
+
+    function closeModal() {
+        updateModal.classList.remove('show');
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modalCancelBtn.addEventListener('click', closeModal);
+    updateModal.addEventListener('click', (e) => {
+        if (e.target === updateModal) closeModal();
+    });
+
+    updateForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        modalSaveBtn.disabled = true;
+        modalSaveBtn.textContent = 'Updating...';
+
+        try {
+            const result = await adminFetch('/admin/orders', {
+                method: 'PUT',
+                body: JSON.stringify({
+                    id: parseInt(updateOrderId.value, 10),
+                    status: updateStatus.value,
+                    quoted_price: updatePrice.value.trim() || null,
+                    admin_response: updateResponse.value.trim() || null,
+                    admin_notes: updateNotes.value.trim() || null,
+                }),
+            });
+
+            showModalAlert(result.message || 'Order updated!', 'success');
+            closeModal();
+            showAdminAlert(`Order ${result.order.order_number} updated successfully.`, 'success');
+            loadDashboard(); // Reload
+        } catch (e) {
+            showModalAlert(e.message || 'Failed to update order', 'error');
+        }
+
+        modalSaveBtn.disabled = false;
+        modalSaveBtn.textContent = 'Update Order';
+    });
+
+    // ── Auto-login if key stored ───────────────────────
+    if (adminKey) {
+        updateAuthUI();
+        authenticate(adminKey);
+    } else {
+        updateAuthUI();
+        authScreen.style.display = 'block';
+        adminKeyInput.focus();
+    }
+})();
+</script>
+</body>
+</html>

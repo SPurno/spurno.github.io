@@ -7,6 +7,7 @@ import {
   getFavorites, addFavorite, removeFavorite, isFavorite,
   getDownloads, addDownload,
   updateUser, updatePassword, findUserById, findUserPasswordHash,
+  createOrder, getOrders, getOrderById,
 } from './db.js';
 
 const SALT_ROUNDS = 10;
@@ -253,5 +254,79 @@ export async function handleUpdateAccount(request, env) {
   } catch (error) {
     console.error('Update account error:', error);
     return new Response(JSON.stringify({ error: 'Failed to update account' }), { status: 500, headers });
+  }
+}
+
+// ── Custom Orders ─────────────────────────────────────
+
+/**
+ * POST /api/orders — Create a custom order / quote request
+ * Body: { animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes }
+ */
+export async function handleCreateOrder(request, env) {
+  const auth = await authenticate(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const body = await request.json();
+
+    if (!body.animation_type || !body.description) {
+      return new Response(JSON.stringify({ error: 'Animation type and description are required' }), { status: 400, headers });
+    }
+
+    const order = await createOrder(env, auth.payload.sub, {
+      animationType: body.animation_type,
+      durationSeconds: body.duration_seconds ? parseInt(body.duration_seconds, 10) : null,
+      description: body.description,
+      referenceLinks: body.reference_links,
+      budgetRange: body.budget_range,
+      deadline: body.deadline,
+      styleVibe: body.style_vibe,
+      paymentMethod: body.payment_method,
+      additionalNotes: body.additional_notes,
+    });
+
+    return new Response(JSON.stringify({
+      message: 'Quote request submitted successfully! We will review and get back to you shortly.',
+      order,
+    }), { status: 201, headers });
+  } catch (error) {
+    console.error('Create order error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to submit quote request. Please try again.' }), { status: 500, headers });
+  }
+}
+
+/**
+ * GET /api/orders — List all orders for the authenticated user
+ */
+export async function handleGetOrders(request, env) {
+  const auth = await authenticate(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const url = new URL(request.url);
+    const orderId = url.searchParams.get('id');
+
+    if (orderId) {
+      const order = await getOrderById(env, orderId);
+      if (!order) {
+        return new Response(JSON.stringify({ error: 'Order not found' }), { status: 404, headers });
+      }
+      // Security: only return if it belongs to the user
+      if (order.user_id !== auth.payload.sub) {
+        return new Response(JSON.stringify({ error: 'Not authorized' }), { status: 403, headers });
+      }
+      return new Response(JSON.stringify({ order }), { status: 200, headers });
+    }
+
+    const orders = await getOrders(env, auth.payload.sub);
+    return new Response(JSON.stringify({ orders }), { status: 200, headers });
+  } catch (error) {
+    console.error('Get orders error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to load orders' }), { status: 500, headers });
   }
 }

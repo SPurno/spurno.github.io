@@ -75,6 +75,31 @@ export async function ensureSchema(env) {
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_resets_token ON password_resets(token);`);
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_resets_user ON password_resets(user_id);`);
 
+  await db.execute(`CREATE TABLE IF NOT EXISTS custom_orders (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    order_number TEXT NOT NULL UNIQUE,
+    animation_type TEXT NOT NULL,
+    duration_seconds INTEGER,
+    description TEXT NOT NULL,
+    reference_links TEXT DEFAULT '',
+    budget_range TEXT DEFAULT '',
+    deadline TEXT DEFAULT '',
+    style_vibe TEXT DEFAULT '',
+    payment_method TEXT DEFAULT '',
+    additional_notes TEXT DEFAULT '',
+    status TEXT NOT NULL DEFAULT 'pending',
+    quoted_price TEXT DEFAULT '',
+    admin_notes TEXT DEFAULT '',
+    admin_response TEXT DEFAULT '',
+    created_at TEXT DEFAULT (datetime('now')),
+    updated_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  );`);
+
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_orders_user ON custom_orders(user_id);`);
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_orders_status ON custom_orders(status);`);
+
   return true;
 }
 
@@ -243,4 +268,105 @@ export async function markResetTokenUsed(env, tokenId) {
     sql: 'UPDATE password_resets SET used = 1 WHERE id = ?',
     args: [tokenId],
   });
+}
+
+// ── Custom Orders ─────────────────────────────────────
+
+function generateOrderNumber(userId) {
+  const ts = Date.now().toString(36).toUpperCase();
+  const rand = Math.floor(Math.random() * 1679616).toString(36).toUpperCase().padStart(4, '0');
+  return `ORD-${userId}-${ts}${rand}`;
+}
+
+export async function createOrder(env, userId, data) {
+  const db = getDb(env);
+  const orderNumber = generateOrderNumber(userId);
+  const {
+    animationType, durationSeconds, description,
+    referenceLinks, budgetRange, deadline, styleVibe,
+    paymentMethod, additionalNotes,
+  } = data;
+  const result = await db.execute({
+    sql: `INSERT INTO custom_orders (
+      user_id, order_number, animation_type, duration_seconds, description,
+      reference_links, budget_range, deadline, style_vibe,
+      payment_method, additional_notes
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, created_at`,
+    args: [
+      userId, orderNumber, animationType, durationSeconds || null, description,
+      referenceLinks || '', budgetRange || '', deadline || '', styleVibe || '',
+      paymentMethod || '', additionalNotes || '',
+    ],
+  });
+  return result.rows[0] || null;
+}
+
+export async function getOrders(env, userId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, quoted_price, admin_response, created_at FROM custom_orders WHERE user_id = ? ORDER BY created_at DESC',
+    args: [userId],
+  });
+  return result.rows;
+}
+
+export async function getOrderById(env, orderId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT id, user_id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, quoted_price, admin_notes, admin_response, created_at, updated_at FROM custom_orders WHERE id = ?',
+    args: [orderId],
+  });
+  return result.rows[0] || null;
+}
+
+/**
+ * Admin: get all orders across all users, with user info
+ */
+export async function getAllOrders(env) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: `SELECT o.id, o.user_id, o.order_number, o.animation_type, o.duration_seconds,
+      o.description, o.reference_links, o.budget_range, o.deadline,
+      o.style_vibe, o.payment_method, o.additional_notes,
+      o.status, o.quoted_price, o.admin_notes, o.admin_response,
+      o.created_at, o.updated_at,
+      u.email AS user_email, u.name AS user_name
+      FROM custom_orders o
+      LEFT JOIN users u ON o.user_id = u.id
+      ORDER BY o.created_at DESC`,
+    args: [],
+  });
+  return result.rows;
+}
+
+/**
+ * Admin: update an order (status, quoted_price, admin_response, admin_notes)
+ */
+export async function updateOrder(env, orderId, data) {
+  const db = getDb(env);
+  const { status, quotedPrice, adminResponse, adminNotes } = data;
+  const result = await db.execute({
+    sql: `UPDATE custom_orders SET
+      status = COALESCE(?, status),
+      quoted_price = COALESCE(?, quoted_price),
+      admin_response = COALESCE(?, admin_response),
+      admin_notes = COALESCE(?, admin_notes),
+      updated_at = datetime('now')
+      WHERE id = ?
+      RETURNING id, user_id, order_number, status, quoted_price, admin_response, admin_notes, updated_at`,
+    args: [status || null, quotedPrice || null, adminResponse || null, adminNotes || null, orderId],
+  });
+  return result.rows[0] || null;
+}
+
+/**
+ * Admin: get order stats (counts by status)
+ */
+export async function getOrderStats(env) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: `SELECT status, COUNT(*) AS count FROM custom_orders GROUP BY status ORDER BY status`,
+    args: [],
+  });
+  return result.rows;
 }
