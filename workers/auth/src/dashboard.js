@@ -285,6 +285,8 @@ export async function handleCreateOrder(request, env) {
       deadline: body.deadline,
       styleVibe: body.style_vibe,
       paymentMethod: body.payment_method,
+      contactEmail: body.contact_email,
+      contactPhone: body.contact_phone,
       additionalNotes: body.additional_notes,
     });
 

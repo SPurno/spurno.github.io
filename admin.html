@@ -309,6 +309,10 @@
                     ${o.deadline ? ' 📅 Due: ' + o.deadline : ''}
                     ${o.payment_method ? ' 💳 ' + o.payment_method : ''}
                 </div>
+                <div class="admin-order-contact">
+                    ${o.contact_email ? '✉️ ' + o.contact_email : ''}
+                    ${o.contact_phone ? ' 📞 ' + o.contact_phone : ''}
+                </div>
                 <div class="admin-order-footer">
                     <span class="admin-order-date">${created}</span>
                     <div class="admin-order-actions">

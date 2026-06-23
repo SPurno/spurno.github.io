@@ -126,6 +126,14 @@
                         <input type="text" id="orderDeadline" placeholder="e.g. 2 weeks, December 2024">
                     </div>
                     <div class="form-row">
+                        <label for="orderEmail">Contact Email *</label>
+                        <input type="email" id="orderEmail" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-row">
+                        <label for="orderPhone">Phone Number</label>
+                        <input type="tel" id="orderPhone" placeholder="e.g. +880 1234 567890">
+                    </div>
+                    <div class="form-row">
                         <label for="orderPayment">Payment Method</label>
                         <select id="orderPayment">
                             <option value="">Select payment method...</option>
@@ -399,6 +407,10 @@
                     ${o.deadline ? ' · Due: ' + o.deadline : ''}
                     ${o.payment_method ? ' · ' + o.payment_method : ''}
                 </div>
+                <div class="order-contact">
+                    ${o.contact_email ? '✉️ ' + o.contact_email : ''}
+                    ${o.contact_phone ? ' 📞 ' + o.contact_phone : ''}
+                </div>
                 ${o.admin_response ? `<div class="order-response"><strong>Reply:</strong> ${o.admin_response}</div>` : ''}
                 ${o.quoted_price ? `<div class="order-price">Quoted: ${o.quoted_price}</div>` : ''}
                 <div class="order-date">Submitted ${formatDate(o.created_at)}</div>
@@ -424,11 +436,17 @@
         const links = $('orderLinks').value.trim();
         const budget = $('orderBudget').value.trim();
         const deadline = $('orderDeadline').value.trim();
+        const contactEmail = $('orderEmail').value.trim();
+        const contactPhone = $('orderPhone').value.trim();
         const payment = $('orderPayment').value;
         const notes = $('orderNotes').value.trim();
 
         if (!animationType || !description) {
             showOrderAlert('Please fill in Animation Type and Description.', 'error');
+            return;
+        }
+        if (!contactEmail) {
+            showOrderAlert('Please provide a contact email.', 'error');
             return;
         }
 
@@ -445,6 +463,8 @@
                 budget_range: budget,
                 deadline,
                 payment_method: payment,
+                contact_email: contactEmail,
+                contact_phone: contactPhone,
                 additional_notes: notes,
             });
 

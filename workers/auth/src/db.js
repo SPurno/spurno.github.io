@@ -87,6 +87,8 @@ export async function ensureSchema(env) {
     deadline TEXT DEFAULT '',
     style_vibe TEXT DEFAULT '',
     payment_method TEXT DEFAULT '',
+    contact_email TEXT DEFAULT '',
+    contact_phone TEXT DEFAULT '',
     additional_notes TEXT DEFAULT '',
     status TEXT NOT NULL DEFAULT 'pending',
     quoted_price TEXT DEFAULT '',
@@ -284,18 +286,18 @@ export async function createOrder(env, userId, data) {
   const {
     animationType, durationSeconds, description,
     referenceLinks, budgetRange, deadline, styleVibe,
-    paymentMethod, additionalNotes,
+    paymentMethod, contactEmail, contactPhone, additionalNotes,
   } = data;
   const result = await db.execute({
     sql: `INSERT INTO custom_orders (
       user_id, order_number, animation_type, duration_seconds, description,
       reference_links, budget_range, deadline, style_vibe,
-      payment_method, additional_notes
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, created_at`,
+      payment_method, contact_email, contact_phone, additional_notes
+    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, contact_email, contact_phone, additional_notes, status, created_at`,
     args: [
       userId, orderNumber, animationType, durationSeconds || null, description,
       referenceLinks || '', budgetRange || '', deadline || '', styleVibe || '',
-      paymentMethod || '', additionalNotes || '',
+      paymentMethod || '', contactEmail || '', contactPhone || '', additionalNotes || '',
     ],
   });
   return result.rows[0] || null;
@@ -304,7 +306,7 @@ export async function createOrder(env, userId, data) {
 export async function getOrders(env, userId) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: 'SELECT id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, quoted_price, admin_response, created_at FROM custom_orders WHERE user_id = ? ORDER BY created_at DESC',
+    sql: 'SELECT id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, contact_email, contact_phone, additional_notes, status, quoted_price, admin_response, created_at FROM custom_orders WHERE user_id = ? ORDER BY created_at DESC',
     args: [userId],
   });
   return result.rows;
@@ -313,7 +315,7 @@ export async function getOrders(env, userId) {
 export async function getOrderById(env, orderId) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: 'SELECT id, user_id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, additional_notes, status, quoted_price, admin_notes, admin_response, created_at, updated_at FROM custom_orders WHERE id = ?',
+    sql: 'SELECT id, user_id, order_number, animation_type, duration_seconds, description, reference_links, budget_range, deadline, style_vibe, payment_method, contact_email, contact_phone, additional_notes, status, quoted_price, admin_notes, admin_response, created_at, updated_at FROM custom_orders WHERE id = ?',
     args: [orderId],
   });
   return result.rows[0] || null;
@@ -327,7 +329,8 @@ export async function getAllOrders(env) {
   const result = await db.execute({
     sql: `SELECT o.id, o.user_id, o.order_number, o.animation_type, o.duration_seconds,
       o.description, o.reference_links, o.budget_range, o.deadline,
-      o.style_vibe, o.payment_method, o.additional_notes,
+      o.style_vibe, o.payment_method, o.contact_email, o.contact_phone,
+      o.additional_notes,
       o.status, o.quoted_price, o.admin_notes, o.admin_response,
       o.created_at, o.updated_at,
       u.email AS user_email, u.name AS user_name
