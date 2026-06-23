@@ -1,12 +1,12 @@
 /**
  * Admin handlers — All orders management with API key authentication
  */
-import { getAllOrders, getOrderById, updateOrder, getOrderStats } from './db.js';
+import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats } from './db.js';
 
 function corsHeaders() {
   return {
     'Access-Control-Allow-Origin': 'https://spurno.github.io',
-    'Access-Control-Allow-Methods': 'GET, POST, PUT, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Credentials': 'true',
     'Content-Type': 'application/json',
@@ -115,5 +115,86 @@ export async function handleAdminUpdateOrder(request, env) {
   } catch (error) {
     console.error('Admin update order error:', error);
     return new Response(JSON.stringify({ error: 'Failed to update order' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Delete Order ────────────────────────────────
+
+/**
+ * DELETE /api/admin/orders — Admin delete any order
+ * Body: { id }
+ */
+export async function handleAdminDeleteOrder(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const { id } = await request.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'Order ID is required' }), { status: 400, headers });
+    }
+
+    const deleted = await adminDeleteOrder(env, id);
+
+    if (!deleted) {
+      return new Response(JSON.stringify({ error: 'Order not found' }), { status: 404, headers });
+    }
+
+    return new Response(JSON.stringify({
+      message: `Order ${deleted.order_number} deleted successfully`,
+    }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin delete order error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to delete order' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Messages ────────────────────────────────────
+
+/**
+ * GET /api/admin/messages — List all messages from users
+ */
+export async function handleAdminGetMessages(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const messages = await getAllMessages(env);
+    const stats = await getMessageStats(env);
+    return new Response(JSON.stringify({ messages, stats }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin get messages error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to load messages' }), { status: 500, headers });
+  }
+}
+
+/**
+ * DELETE /api/admin/messages — Delete any message
+ * Body: { id }
+ */
+export async function handleAdminDeleteMessage(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const { id } = await request.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'Message ID is required' }), { status: 400, headers });
+    }
+
+    await deleteMessage(env, id);
+
+    return new Response(JSON.stringify({ message: 'Message deleted successfully' }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin delete message error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to delete message' }), { status: 500, headers });
   }
 }

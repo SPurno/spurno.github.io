@@ -82,6 +82,25 @@ const AuthClient = {
     return this._fetch('/orders');
   },
 
+  async deleteOrder(id) {
+    return this._fetch('/orders', {
+      method: 'DELETE',
+      body: JSON.stringify({ id }),
+    });
+  },
+
+  // ── Contact Messages ────────────────────────────────────
+  async sendMessage(data) {
+    return this._fetch('/messages', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+  },
+
+  async getMessages() {
+    return this._fetch('/messages');
+  },
+
   // ── Password Reset ───────────────────────────────────
   async forgotPassword(email) {
     const response = await fetch(`${AUTH_API_URL}/forgot-password`, {

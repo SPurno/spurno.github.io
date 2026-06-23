@@ -102,6 +102,19 @@ export async function ensureSchema(env) {
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_orders_user ON custom_orders(user_id);`);
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_orders_status ON custom_orders(status);`);
 
+  await db.execute(`CREATE TABLE IF NOT EXISTS contact_messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id TEXT NOT NULL,
+    name TEXT NOT NULL DEFAULT '',
+    email TEXT NOT NULL DEFAULT '',
+    subject TEXT NOT NULL DEFAULT '',
+    message TEXT NOT NULL,
+    created_at TEXT DEFAULT (datetime('now')),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+  );`);
+
+  await db.execute(`CREATE INDEX IF NOT EXISTS idx_messages_user ON contact_messages(user_id);`);
+
   return true;
 }
 
@@ -360,6 +373,82 @@ export async function updateOrder(env, orderId, data) {
     args: [status || null, quotedPrice || null, adminResponse || null, adminNotes || null, orderId],
   });
   return result.rows[0] || null;
+}
+
+/**
+ * User: delete own order (ownership must be checked by caller)
+ */
+export async function deleteOrder(env, orderId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'DELETE FROM custom_orders WHERE id = ? RETURNING id, order_number',
+    args: [orderId],
+  });
+  return result.rows[0] || null;
+}
+
+/**
+ * Admin: delete any order (no ownership check)
+ */
+export async function adminDeleteOrder(env, orderId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'DELETE FROM custom_orders WHERE id = ? RETURNING id, order_number, user_id',
+    args: [orderId],
+  });
+  return result.rows[0] || null;
+}
+
+// ── Contact Messages ──────────────────────────────────
+
+export async function createMessage(env, userId, data) {
+  const db = getDb(env);
+  const { name, email, subject, message } = data;
+  const result = await db.execute({
+    sql: "INSERT INTO contact_messages (user_id, name, email, subject, message) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, subject, message, created_at",
+    args: [userId, name || '', email || '', subject || '', message],
+  });
+  return result.rows[0] || null;
+}
+
+export async function getUserMessages(env, userId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT id, name, email, subject, message, created_at FROM contact_messages WHERE user_id = ? ORDER BY created_at DESC',
+    args: [userId],
+  });
+  return result.rows;
+}
+
+export async function getAllMessages(env) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: `SELECT m.id, m.user_id, m.name, m.email, m.subject, m.message, m.created_at,
+      u.email AS user_email, u.name AS user_name
+      FROM contact_messages m
+      LEFT JOIN users u ON m.user_id = u.id
+      ORDER BY m.created_at DESC`,
+    args: [],
+  });
+  return result.rows;
+}
+
+export async function deleteMessage(env, messageId) {
+  const db = getDb(env);
+  await db.execute({
+    sql: 'DELETE FROM contact_messages WHERE id = ?',
+    args: [messageId],
+  });
+  return true;
+}
+
+export async function getMessageStats(env) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT COUNT(*) AS count FROM contact_messages',
+    args: [],
+  });
+  return result.rows[0] || { count: 0 };
 }
 
 /**

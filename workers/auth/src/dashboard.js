@@ -7,7 +7,8 @@ import {
   getFavorites, addFavorite, removeFavorite, isFavorite,
   getDownloads, addDownload,
   updateUser, updatePassword, findUserById, findUserPasswordHash,
-  createOrder, getOrders, getOrderById,
+  createOrder, getOrders, getOrderById, deleteOrder,
+  createMessage, getUserMessages,
 } from './db.js';
 
 const SALT_ROUNDS = 10;
@@ -330,5 +331,97 @@ export async function handleGetOrders(request, env) {
   } catch (error) {
     console.error('Get orders error:', error);
     return new Response(JSON.stringify({ error: 'Failed to load orders' }), { status: 500, headers });
+  }
+}
+
+/**
+ * DELETE /api/orders — Delete own order (with ownership check)
+ * Body: { id }
+ */
+export async function handleDeleteOrder(request, env) {
+  const auth = await authenticate(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const { id } = await request.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'Order ID is required' }), { status: 400, headers });
+    }
+
+    // Verify ownership
+    const order = await getOrderById(env, id);
+    if (!order) {
+      return new Response(JSON.stringify({ error: 'Order not found' }), { status: 404, headers });
+    }
+    if (order.user_id !== auth.payload.sub) {
+      return new Response(JSON.stringify({ error: 'Not authorized to delete this order' }), { status: 403, headers });
+    }
+
+    const deleted = await deleteOrder(env, id);
+
+    return new Response(JSON.stringify({
+      message: 'Order deleted successfully',
+      order: deleted,
+    }), { status: 200, headers });
+  } catch (error) {
+    console.error('Delete order error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to delete order' }), { status: 500, headers });
+  }
+}
+
+// ── Contact Messages ──────────────────────────────────
+
+/**
+ * POST /api/messages — Send a message to admin
+ * Body: { name?, email?, subject?, message }
+ */
+export async function handleSendMessage(request, env) {
+  const auth = await authenticate(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const body = await request.json();
+
+    if (!body.message || !body.message.trim()) {
+      return new Response(JSON.stringify({ error: 'Message is required' }), { status: 400, headers });
+    }
+
+    const msg = await createMessage(env, auth.payload.sub, {
+      name: body.name,
+      email: body.email,
+      subject: body.subject,
+      message: body.message.trim(),
+    });
+
+    return new Response(JSON.stringify({
+      message: 'Message sent successfully! Admin will review it shortly.',
+      msg,
+    }), { status: 201, headers });
+  } catch (error) {
+    console.error('Send message error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to send message. Please try again.' }), { status: 500, headers });
+  }
+}
+
+/**
+ * GET /api/messages — List user's own messages
+ */
+export async function handleGetMessages(request, env) {
+  const auth = await authenticate(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const messages = await getUserMessages(env, auth.payload.sub);
+    return new Response(JSON.stringify({ messages }), { status: 200, headers });
+  } catch (error) {
+    console.error('Get messages error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to load messages' }), { status: 500, headers });
   }
 }

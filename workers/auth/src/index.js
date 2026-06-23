@@ -17,9 +17,13 @@ import {
   handleGetFavorites, handleAddFavorite, handleRemoveFavorite,
   handleGetDownloads, handleAddDownload,
   handleUpdateAccount,
-  handleCreateOrder, handleGetOrders,
+  handleCreateOrder, handleGetOrders, handleDeleteOrder,
+  handleSendMessage, handleGetMessages,
 } from './dashboard.js';
-import { handleAdminGetOrders, handleAdminUpdateOrder } from './admin.js';
+import {
+  handleAdminGetOrders, handleAdminUpdateOrder, handleAdminDeleteOrder,
+  handleAdminGetMessages, handleAdminDeleteMessage,
+} from './admin.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -68,10 +72,20 @@ export default {
     // ── Custom Orders Routes ───────────────────────────
     if (path === '/api/orders' && method === 'POST') return handleCreateOrder(request, env);
     if (path === '/api/orders' && method === 'GET') return handleGetOrders(request, env);
+    if (path === '/api/orders' && method === 'DELETE') return handleDeleteOrder(request, env);
+
+    // ── Contact Messages Routes ────────────────────────
+    if (path === '/api/messages' && method === 'POST') return handleSendMessage(request, env);
+    if (path === '/api/messages' && method === 'GET') return handleGetMessages(request, env);
 
     // ── Admin Routes ───────────────────────────────────
     if (path === '/api/admin/orders' && method === 'GET') return handleAdminGetOrders(request, env);
     if (path === '/api/admin/orders' && method === 'PUT') return handleAdminUpdateOrder(request, env);
+    if (path === '/api/admin/orders' && method === 'DELETE') return handleAdminDeleteOrder(request, env);
+
+    // ── Admin Messages Routes ──────────────────────────
+    if (path === '/api/admin/messages' && method === 'GET') return handleAdminGetMessages(request, env);
+    if (path === '/api/admin/messages' && method === 'DELETE') return handleAdminDeleteMessage(request, env);
 
     // 404 for unknown routes
     return new Response(

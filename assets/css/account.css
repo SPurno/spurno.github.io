@@ -230,9 +230,24 @@ color: #fde047; margin-bottom: 6px;
 font-size: 0.78rem; color: rgba(255,255,255,0.45);
 margin-bottom: 8px;
 }
+.order-contact {
+font-size: 0.78rem; color: rgba(255,255,255,0.45);
+margin-bottom: 8px;
+}
 .order-date {
 font-size: 0.72rem; color: rgba(255,255,255,0.25);
 }
+.order-delete-btn {
+position: absolute; top: 12px; right: 12px;
+background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.2);
+color: #fca5a5; cursor: pointer; font-size: 0.75rem;
+padding: 4px 10px; border-radius: 8px;
+font-family: 'Jost', sans-serif; transition: all 0.2s;
+opacity: 0;
+}
+.order-card:hover .order-delete-btn { opacity: 1; }
+.order-delete-btn:hover { background: rgba(239,68,68,0.25); }
+.order-card { position: relative; }
 
 @media (max-width: 640px) {
 .tab-btn { font-size: 0.78rem; padding: 10px 12px; }

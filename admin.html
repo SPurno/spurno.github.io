@@ -44,8 +44,14 @@
         <!-- Stats Bar -->
         <div class="stats-bar" id="statsBar"></div>
 
-        <!-- Filters -->
-        <div class="admin-section">
+        <!-- Tab Navigation (Orders / Messages) -->
+        <div class="filter-bar" style="margin-bottom:16px;">
+            <button class="filter-btn active" data-admin-tab="orders">📋 Orders</button>
+            <button class="filter-btn" data-admin-tab="messages">💬 Messages <span id="msgBadge" style="background:linear-gradient(135deg,var(--color-primary),var(--color-accent));font-size:0.7rem;padding:2px 8px;border-radius:30px;color:#fff;font-weight:600;margin-left:4px;">0</span></button>
+        </div>
+
+        <!-- Orders Panel -->
+        <div class="admin-panel" id="adminPanelOrders">
             <div class="filter-bar">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="pending">⏳ Pending</button>
@@ -55,13 +61,21 @@
                 <button class="filter-btn" data-filter="completed">🎉 Completed</button>
                 <button class="filter-btn" data-filter="cancelled">❌ Cancelled</button>
             </div>
+
+            <div class="admin-section" style="margin-top:16px;">
+                <div class="alert" id="adminAlert" role="alert"></div>
+                <div class="orders-count" id="ordersCount">Loading orders...</div>
+                <div id="adminOrdersList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
+            </div>
         </div>
 
-        <!-- Orders List -->
-        <div class="admin-section">
-            <div class="alert" id="adminAlert" role="alert"></div>
-            <div class="orders-count" id="ordersCount">Loading orders...</div>
-            <div id="adminOrdersList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
+        <!-- Messages Panel -->
+        <div class="admin-panel" id="adminPanelMessages" style="display:none;">
+            <div class="admin-section">
+                <div class="alert" id="adminMsgAlert" role="alert"></div>
+                <div class="orders-count" id="messagesCount">Loading messages...</div>
+                <div id="adminMessagesList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
+            </div>
         </div>
     </div>
 
@@ -319,16 +333,115 @@
                         ${o.admin_response ? '<span class="admin-has-response">💬 Has reply</span>' : ''}
                         ${o.quoted_price ? '<span class="admin-has-price">💰 ' + o.quoted_price + '</span>' : ''}
                         <button class="admin-btn admin-btn-sm admin-update-btn" data-id="${o.id}">✏️ Update</button>
+                        <button class="admin-btn admin-btn-sm admin-delete-order-btn" data-id="${o.id}" style="color:#fca5a5;">🗑️</button>
                     </div>
                 </div>
             </div>`;
         }).join('')}</div>`;
 
-        // Attach update button handlers
+        // Attach update and delete button handlers
         document.querySelectorAll('.admin-update-btn').forEach(btn => {
             btn.addEventListener('click', () => openUpdateModal(btn.dataset.id));
         });
+        document.querySelectorAll('.admin-delete-order-btn').forEach(btn => {
+            btn.addEventListener('click', () => adminDeleteOrder(btn.dataset.id));
+        });
     }
+
+    // ── Admin Delete Order ─────────────────────────────
+    async function adminDeleteOrder(orderId) {
+        if (!confirm('Delete this order? This cannot be undone.')) return;
+        try {
+            const result = await adminFetch('/admin/orders', {
+                method: 'DELETE',
+                body: JSON.stringify({ id: parseInt(orderId, 10) }),
+            });
+            showAdminAlert(result.message || 'Order deleted.', 'success');
+            loadDashboard();
+        } catch (e) {
+            showAdminAlert('Failed to delete order: ' + e.message, 'error');
+        }
+    }
+
+    // ── Admin Messages ─────────────────────────────────
+    async function loadAdminMessages() {
+        try {
+            const data = await adminFetch('/admin/messages');
+            const messages = data.messages || [];
+            const stats = data.stats || {};
+
+            // Update badge
+            document.getElementById('msgBadge').textContent = stats.count || messages.length;
+
+            const listEl = document.getElementById('adminMessagesList');
+            const countEl = document.getElementById('messagesCount');
+
+            countEl.textContent = `${messages.length} message${messages.length !== 1 ? 's' : ''}`;
+
+            if (!messages.length) {
+                listEl.innerHTML = `<div class="items-empty"><div class="icon">💬</div><p>No messages from users yet.</p></div>`;
+                return;
+            }
+
+            listEl.innerHTML = `<div class="admin-orders-list">${messages.map(m => {
+                const created = new Date(m.created_at).toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+                return `<div class="admin-order-card">
+                    <div class="admin-order-top">
+                        <div class="admin-order-left">
+                            <span class="admin-order-user">👤 ${m.name || m.user_name || m.user_email || 'Unknown'}</span>
+                            <span class="admin-order-number">${m.email || ''}</span>
+                        </div>
+                        <span class="admin-order-date">${created}</span>
+                    </div>
+                    <div class="admin-order-type">${m.subject || '(No subject)'}</div>
+                    <div class="admin-order-desc">${m.message}</div>
+                    <div class="admin-order-footer">
+                        <span></span>
+                        <div class="admin-order-actions">
+                            <button class="admin-btn admin-btn-sm admin-delete-msg-btn" data-id="${m.id}" style="color:#fca5a5;">🗑️ Delete</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('')}</div>`;
+
+            document.querySelectorAll('.admin-delete-msg-btn').forEach(btn => {
+                btn.addEventListener('click', () => adminDeleteMessage(btn.dataset.id));
+            });
+        } catch (e) {
+            document.getElementById('adminMsgAlert').textContent = 'Failed to load messages: ' + e.message;
+            document.getElementById('adminMsgAlert').className = 'alert error';
+        }
+    }
+
+    async function adminDeleteMessage(msgId) {
+        if (!confirm('Delete this message?')) return;
+        try {
+            const result = await adminFetch('/admin/messages', {
+                method: 'DELETE',
+                body: JSON.stringify({ id: parseInt(msgId, 10) }),
+            });
+            document.getElementById('adminMsgAlert').textContent = result.message || 'Message deleted.';
+            document.getElementById('adminMsgAlert').className = 'alert success';
+            loadAdminMessages();
+        } catch (e) {
+            document.getElementById('adminMsgAlert').textContent = 'Failed: ' + e.message;
+            document.getElementById('adminMsgAlert').className = 'alert error';
+        }
+    }
+
+    // ── Admin Tab Switching (Orders / Messages) ──────
+    document.querySelectorAll('[data-admin-tab]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('[data-admin-tab]').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.admin-panel').forEach(p => p.style.display = 'none');
+            btn.classList.add('active');
+            const tab = btn.dataset.adminTab;
+            document.getElementById('adminPanel' + tab.charAt(0).toUpperCase() + tab.slice(1)).style.display = 'block';
+            if (tab === 'messages') loadAdminMessages();
+        });
+    });
 
     // ── Filters ────────────────────────────────────────
     filterBtns.forEach(btn => {

@@ -36,6 +36,7 @@
         <button class="tab-btn" data-tab="downloads">📥 Downloads <span class="tab-badge" id="dlCount">0</span></button>
         <button class="tab-btn" data-tab="settings">⚙️ Settings</button>
         <button class="tab-btn" data-tab="orders">📋 Orders</button>
+        <button class="tab-btn" data-tab="messages">💬 Messages</button>
     </div>
 
     <!-- Alert -->
@@ -158,6 +159,42 @@
                     <button class="btn-save" id="newOrderBtn" style="padding:6px 16px;font-size:0.82rem;">+ New Request</button>
                 </div>
                 <div id="orderListContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== Messages Tab ===== -->
+    <div class="tab-panel" id="panel-messages">
+        <div class="dash-card">
+            <h2 class="dash-card-title">💬 Contact Admin</h2>
+            <div class="alert" id="msgAlert" role="alert"></div>
+            <div id="msgFormWrap">
+                <form class="order-form" id="msgForm">
+                    <div class="form-row">
+                        <label for="msgName">Your Name</label>
+                        <input type="text" id="msgName" placeholder="Your name">
+                    </div>
+                    <div class="form-row">
+                        <label for="msgEmail">Your Email</label>
+                        <input type="email" id="msgEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-row">
+                        <label for="msgSubject">Subject</label>
+                        <input type="text" id="msgSubject" placeholder="What is this about?">
+                    </div>
+                    <div class="form-row">
+                        <label for="msgContent">Message *</label>
+                        <textarea id="msgContent" rows="4" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-save" id="msgSubmitBtn">Send Message</button>
+                </form>
+            </div>
+            <div id="msgListWrap" style="display:none;">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+                    <h3 style="margin:0;font-size:1rem;">Your Messages</h3>
+                    <button class="btn-save" id="newMsgBtn" style="padding:6px 16px;font-size:0.82rem;">+ New Message</button>
+                </div>
+                <div id="msgListContent"><div class="loading-spinner" style="margin:24px auto;display:block;"></div></div>
             </div>
         </div>
     </div>
@@ -414,6 +451,7 @@
                 ${o.admin_response ? `<div class="order-response"><strong>Reply:</strong> ${o.admin_response}</div>` : ''}
                 ${o.quoted_price ? `<div class="order-price">Quoted: ${o.quoted_price}</div>` : ''}
                 <div class="order-date">Submitted ${formatDate(o.created_at)}</div>
+                <button class="order-delete-btn" onclick="deleteOrder(${o.id})" title="Delete Order">🗑️ Delete</button>
             </div>
         `).join('')}</div>`;
     }
@@ -484,6 +522,102 @@
         orderSubmitBtn.textContent = 'Submit Quote Request';
     });
 
+    // ── Delete Order ───────────────────────────────────
+    window.deleteOrder = async function(orderId) {
+        if (!confirm('Are you sure you want to delete this order? This cannot be undone.')) return;
+        try {
+            await AuthClient.deleteOrder(orderId);
+            showOrderAlert('Order deleted successfully.', 'success');
+            await loadOrders();
+        } catch (e) {
+            showOrderAlert(e.message || 'Failed to delete order.', 'error');
+        }
+    };
+
+    // ── Messages ───────────────────────────────────────
+    let messages = [];
+    const msgFormWrap = $('msgFormWrap');
+    const msgListWrap = $('msgListWrap');
+    const msgListContent = $('msgListContent');
+    const msgAlert = $('msgAlert');
+    const msgForm = $('msgForm');
+    const msgSubmitBtn = $('msgSubmitBtn');
+    const newMsgBtn = $('newMsgBtn');
+
+    function showMsgAlert(msg, type) {
+        msgAlert.textContent = msg;
+        msgAlert.className = 'alert ' + type;
+        setTimeout(() => { msgAlert.className = 'alert'; }, 5000);
+    }
+
+    function showMsgForm(show) {
+        msgFormWrap.style.display = show ? 'block' : 'none';
+        msgListWrap.style.display = show ? 'none' : 'block';
+    }
+
+    newMsgBtn.addEventListener('click', () => showMsgForm(true));
+
+    async function loadMessages() {
+        try {
+            const data = await AuthClient.getMessages();
+            messages = data.messages || [];
+            if (messages.length) showMsgForm(false);
+            renderMessages();
+        } catch {
+            messages = [];
+            renderMessages();
+        }
+    }
+
+    function renderMessages() {
+        if (!messages.length) {
+            msgListContent.innerHTML = `<div class="items-empty"><div class="icon">💬</div><p>No messages yet. Send a message to the admin!</p></div>`;
+            return;
+        }
+        msgListContent.innerHTML = `<div class="orders-list">${messages.map(m => `
+            <div class="order-card">
+                <div class="order-header">
+                    <span class="order-number">${m.subject || 'No subject'}</span>
+                </div>
+                <div class="order-desc">${m.message.length > 200 ? m.message.slice(0, 200) + '...' : m.message}</div>
+                <div class="order-contact">
+                    ${m.name ? '👤 ' + m.name : ''}
+                    ${m.email ? ' ✉️ ' + m.email : ''}
+                </div>
+                <div class="order-date">Sent ${formatDate(m.created_at)}</div>
+            </div>
+        `).join('')}</div>`;
+    }
+
+    msgForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = $('msgName').value.trim();
+        const email = $('msgEmail').value.trim();
+        const subject = $('msgSubject').value.trim();
+        const message = $('msgContent').value.trim();
+
+        if (!message) {
+            showMsgAlert('Please write a message.', 'error');
+            return;
+        }
+
+        msgSubmitBtn.disabled = true;
+        msgSubmitBtn.textContent = 'Sending...';
+
+        try {
+            const result = await AuthClient.sendMessage({ name, email, subject, message });
+            showMsgAlert(result.message || 'Message sent!', 'success');
+            msgForm.reset();
+            await loadMessages();
+            showMsgForm(false);
+        } catch (e) {
+            showMsgAlert(e.message || 'Failed to send.', 'error');
+        }
+
+        msgSubmitBtn.disabled = false;
+        msgSubmitBtn.textContent = 'Send Message';
+    });
+
     // ── Settings form ──────────────────────────────────
     settingsForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -533,6 +667,11 @@
 
         settingsBtn.disabled = false;
         settingsBtn.textContent = 'Save Changes';
+    });
+
+    // ── Load messages when tab is clicked ─────────────
+    document.querySelector('[data-tab="messages"]')?.addEventListener('click', () => {
+        loadMessages();
     });
 
     // ── Start ──────────────────────────────────────────
