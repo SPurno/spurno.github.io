@@ -51,8 +51,8 @@
         .blog-article li { margin-bottom: 8px; }
         .blog-article a { color: var(--color-primary); transition: color 0.2s ease; }
         .blog-article a:hover { color: var(--color-accent); text-decoration: underline; }
-        .blog-article .btn-buy { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 50px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.3px; background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); color: #fff; box-shadow: 0 4px 24px rgba(var(--color-accent-rgb), 0.35); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); border: none; cursor: pointer; text-decoration: none; margin-bottom: 24px; }
-        .blog-article .btn-buy:hover { transform: translateY(-3px) scale(1.04); box-shadow: 0 8px 32px rgba(var(--color-accent-rgb), 0.5); }
+        .blog-article .btn-buy { display: inline-flex; align-items: center; gap: 10px; padding: 14px 32px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.3px; background: #fff; color: var(--color-accent); box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s ease; border: none; cursor: pointer; text-decoration: none; margin-bottom: 24px; }
+        .blog-article .btn-buy:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(var(--color-accent-rgb), 0.35); background: var(--color-accent); color: #fff; }
         .blog-article .check-list { list-style: none; padding: 0; }
         .blog-article .check-list li { display: flex; align-items: flex-start; gap: 12px; padding: 10px 16px; border-radius: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); margin-bottom: 10px; }
         .blog-article .check-list li::before { content: '✓'; color: #43e97b; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
@@ -125,13 +125,28 @@
                  
             </a>
             <div class="nav-links" id="navLinks">
-                <a href="../index.html#about">About</a>
-                <a href="../index.html#services">Services</a>
-                <a href="../index.html#portfolio">Portfolio</a>
-                <a href="../index.html#videos">Videos</a>
+                <a href="../index.html#about" data-i18n="nav.about">About</a>
+                <a href="../index.html#services" data-i18n="nav.services">Services</a>
+                <a href="../index.html#portfolio" data-i18n="nav.portfolio">Portfolio</a>
+                <a href="../index.html#videos" data-i18n="nav.videos">Videos</a>
                 <a href="../index.html#categories">Explore</a>
-                <a href="../index.html#contact">Contact</a>
-                <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" rel="noopener">Shop Now</a>
+                <a href="../index.html#contact" data-i18n="nav.contact">Contact</a>
+                <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" data-i18n="nav.shopNow" rel="noopener">Shop Now</a>
+                <div class="language-selector">
+                    <button class="lang-btn" aria-label="Select language">
+                        <span data-i18n="language.current">English</span>
+                    </button>
+                    <div class="lang-dropdown">
+                        <a href="#" class="lang-option" data-language="en" aria-label="Switch to English">English</a>
+                        <a href="#" class="lang-option" data-language="es" aria-label="Cambiar a español">Español</a>
+                        <a href="#" class="lang-option" data-language="fr" aria-label="Passer au français">Français</a>
+                        <a href="#" class="lang-option" data-language="de" aria-label="Zu Deutsch wechseln">Deutsch</a>
+                        <a href="#" class="lang-option" data-language="pt" aria-label="Mudar para português">Português</a>
+                        <a href="#" class="lang-option" data-language="ja" aria-label="日本語に切り替え">日本語</a>
+                        <a href="#" class="lang-option" data-language="ru" aria-label="Переключить на русский">Русский</a>
+                        <a href="#" class="lang-option" data-language="zh-CN" aria-label="切换到中文">中文（简体）</a>
+                    </div>
+                </div>
             </div>
             <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
@@ -492,6 +507,7 @@
     <!-- ===== STYLE SWITCHER OVERLAY ===== -->
     <div class="ss-overlay" id="ssOverlay"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../js/footer-i18n.js" defer></script>
     <script src="../assets/style-switcher/style-switcher-init.js"></script>
     <script type="importmap" crossorigin="anonymous">
         { "imports": { "three": "../js/lib/three.module.js" } }
