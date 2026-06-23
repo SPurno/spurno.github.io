@@ -24,7 +24,7 @@ export async function ensureSchema(env) {
   const db = getDb(env);
 
   await db.execute(`CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id TEXT PRIMARY KEY,
     email TEXT UNIQUE NOT NULL,
     name TEXT DEFAULT '',
     password_hash TEXT NOT NULL,
@@ -36,7 +36,7 @@ export async function ensureSchema(env) {
 
   await db.execute(`CREATE TABLE IF NOT EXISTS favorites (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_id TEXT NOT NULL,
     item_id TEXT NOT NULL,
     item_type TEXT NOT NULL DEFAULT 'video',
     title TEXT NOT NULL DEFAULT '',
@@ -51,7 +51,7 @@ export async function ensureSchema(env) {
 
   await db.execute(`CREATE TABLE IF NOT EXISTS download_history (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_id TEXT NOT NULL,
     item_id TEXT NOT NULL,
     item_type TEXT NOT NULL DEFAULT 'video',
     title TEXT NOT NULL DEFAULT '',
@@ -64,7 +64,7 @@ export async function ensureSchema(env) {
 
   await db.execute(`CREATE TABLE IF NOT EXISTS password_resets (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
+    user_id TEXT NOT NULL,
     token TEXT NOT NULL UNIQUE,
     expires_at TEXT NOT NULL,
     used INTEGER NOT NULL DEFAULT 0,
@@ -98,13 +98,39 @@ export async function findUserById(env, id) {
   return result.rows[0] || null;
 }
 
+/**
+ * Generate a unique user ID in SP-hex format (e.g., SP0A3F9B2)
+ */
+function generateUserId() {
+  const hex = Array.from({ length: 7 }, () =>
+    Math.floor(Math.random() * 16).toString(16).toUpperCase()
+  ).join('');
+  return `SP${hex}`;
+}
+
 export async function createUser(env, { email, name, passwordHash }) {
   const db = getDb(env);
-  const result = await db.execute({
-    sql: "INSERT INTO users (email, name, password_hash) VALUES (?, ?, ?) RETURNING id, email, name, created_at",
-    args: [email, name, passwordHash],
-  });
-  return result.rows[0] || null;
+
+  // Retry loop in case of collision (extremely unlikely with 16^7 ≈ 268M IDs)
+  for (let attempt = 0; attempt < 5; attempt++) {
+    const id = generateUserId();
+    try {
+      const result = await db.execute({
+        sql: "INSERT INTO users (id, email, name, password_hash) VALUES (?, ?, ?, ?) RETURNING id, email, name, created_at",
+        args: [id, email, name, passwordHash],
+      });
+      return result.rows[0] || null;
+    } catch (err) {
+      // Only retry on UNIQUE constraint violation on the primary key
+      if (err?.message?.includes('UNIQUE constraint failed') || err?.code === 'SQLITE_CONSTRAINT_PRIMARYKEY') {
+        continue;
+      }
+      throw err;
+    }
+  }
+
+  // Fallback: extremely unlikely to reach here
+  throw new Error('Failed to generate unique user ID after 5 attempts');
 }
 
 export async function updateUser(env, id, { name }) {

@@ -22,11 +22,23 @@ async function setup() {
     authToken: TURSO_AUTH_TOKEN,
   });
 
+  const shouldReset = process.argv.includes('--reset');
+
+  if (shouldReset) {
+    console.log('Resetting database — dropping existing tables...');
+    // Drop in reverse dependency order to respect foreign key constraints
+    await db.execute(`DROP TABLE IF EXISTS favorites;`);
+    await db.execute(`DROP TABLE IF EXISTS download_history;`);
+    await db.execute(`DROP TABLE IF EXISTS password_resets;`);
+    await db.execute(`DROP TABLE IF EXISTS users;`);
+    console.log('✓ Existing tables dropped.');
+  }
+
   console.log('Creating users table...');
 
   await db.execute(`
     CREATE TABLE IF NOT EXISTS users (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      id TEXT PRIMARY KEY,
       email TEXT UNIQUE NOT NULL,
       name TEXT DEFAULT '',
       password_hash TEXT NOT NULL,
