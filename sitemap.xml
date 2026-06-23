@@ -373,4 +373,84 @@
       <video:live>no</video:live>
     </video:video>
   </url>
+  <url>
+    <loc>https://spurno.github.io/watch/red-motion-animated-background</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://spurno.github.io/images/motion-red.jpg</video:thumbnail_loc>
+      <video:title>Red Motion Animated Background</video:title>
+      <video:description>Watch a red motion animated background video with dynamic flowing particles and vibrant color gradients for video titles, presentations, and motion graphics projects.</video:description>
+      <video:content_loc>https://spurno.github.io/videos/red-motion-animated-background.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+      <video:publication_date>2025-04-15T10:00:00+06:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://spurno.github.io/watch/iphone-mockup</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://spurno.github.io/images/spurno-logo.png</video:thumbnail_loc>
+      <video:title>iPhone Mockup Template</video:title>
+      <video:description>Watch an iPhone mockup template video with device animations, app presentation overlays, and product showcase motion graphics for app demos and marketing.</video:description>
+      <video:content_loc>https://spurno.github.io/videos/iphone-mockup.mp4</video:content_loc>
+      <video:duration>15</video:duration>
+      <video:publication_date>2025-03-10T10:00:00+06:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://spurno.github.io/watch/loading-bar-animation</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://spurno.github.io/images/loading-bar.jpg</video:thumbnail_loc>
+      <video:title>Loading Bar Animation 100 Percent</video:title>
+      <video:description>Watch a loading bar animation video with progress indicator motion graphics for app loading screens, UI mockups, software demonstrations, and HUD interfaces.</video:description>
+      <video:content_loc>https://spurno.github.io/videos/loading-bar-100-percent.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+      <video:publication_date>2025-02-20T10:00:00+06:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://spurno.github.io/watch/news-background-animation-studio</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://spurno.github.io/images/spurno-logo.png</video:thumbnail_loc>
+      <video:title>News Background Animation Studio</video:title>
+      <video:description>Watch a news background animation studio video with broadcast-quality motion graphics for breaking news, headline screens, newsroom visuals, and professional broadcast packages.</video:description>
+      <video:content_loc>https://spurno.github.io/videos/news-background-animation-studio.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+      <video:publication_date>2025-05-01T10:00:00+06:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://spurno.github.io/watch/sale-banner-shop-now</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <video:video>
+      <video:thumbnail_loc>https://spurno.github.io/images/sale-banner-typography.jpg</video:thumbnail_loc>
+      <video:title>Sale Banner Shop Now Typography</video:title>
+      <video:description>Watch a sale banner shop now typography animation video with promotional text motion graphics, call-to-action design, and ecommerce marketing animations.</video:description>
+      <video:content_loc>https://spurno.github.io/videos/sale-banner-shop-now-typography.mp4</video:content_loc>
+      <video:duration>10</video:duration>
+      <video:publication_date>2025-03-25T10:00:00+06:00</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:live>no</video:live>
+    </video:video>
+  </url>
 </urlset>
