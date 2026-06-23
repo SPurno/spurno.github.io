@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Option B - Prism Cathedral</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { overflow: hidden; background: #08080f; font-family: 'Jost', sans-serif; }
+        canvas { display: block; }
+        #info {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            pointer-events: none;
+            text-shadow: 0 0 20px rgba(255,255,255,0.08);
+            font-weight: 300;
+            transition: opacity 0.8s ease;
+        }
+        #info span { display: inline-block; opacity: 0.6; }
+        #tag-b {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            color: rgba(255,255,255,0.3);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 300;
+            pointer-events: none;
+        }
+        @media (max-width: 768px) {
+            #info { font-size: 10px; bottom: 25px; }
+            #tag-b { top: 20px; left: 20px; font-size: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="tag-b">Option B — Prism Cathedral</div>
+    <div id="info"><span>↔ drag to orbit · scroll to zoom</span></div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// ─── Scene Setup ───────────────────────────────────────────
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x08080f);
+
+const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 100);
+camera.position.set(0, 1.5, 6);
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.0;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+document.body.appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.dampingFactor = 0.05;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.5;
+controls.minDistance = 2.5;
+controls.maxDistance = 12;
+controls.target.set(0, 0.2, 0);
+controls.update();
+
+let idleTimer = null;
+controls.addEventListener('start', () => {
+    controls.autoRotate = false;
+    if (idleTimer) clearTimeout(idleTimer);
+});
+controls.addEventListener('end', () => {
+    if (idleTimer) clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => { controls.autoRotate = true; }, 4000);
+});
+
+// ─── Lighting ──────────────────────────────────────────────
+const ambient = new THREE.AmbientLight(0x111133, 0.4);
+scene.add(ambient);
+
+const topLight = new THREE.DirectionalLight(0x6688ff, 1.5);
+topLight.position.set(0, 5, 2);
+scene.add(topLight);
+
+const backLight = new THREE.DirectionalLight(0xff4488, 0.8);
+backLight.position.set(-2, 1, -4);
+scene.add(backLight);
+
+const warmLight = new THREE.DirectionalLight(0xffaa33, 0.6);
+warmLight.position.set(3, -1, 2);
+scene.add(warmLight);
+
+const rimLight = new THREE.DirectionalLight(0x44ccff, 1.2);
+rimLight.position.set(0, -3, -5);
+scene.add(rimLight);
+
+// ─── Central Light Core ───────────────────────────────────
+const coreGeo = new THREE.IcosahedronGeometry(0.3, 1);
+const coreMat = new THREE.MeshBasicMaterial({
+    color: 0x88ccff,
+    transparent: true,
+    opacity: 0.9,
+});
+const core = new THREE.Mesh(coreGeo, coreMat);
+core.position.y = 0.2;
+scene.add(core);
+
+// Core glow
+const glowGeo = new THREE.SphereGeometry(0.6, 16, 16);
+const glowMat = new THREE.MeshBasicMaterial({
+    color: 0x4488ff,
+    transparent: true,
+    opacity: 0.12,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+});
+const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+glowMesh.position.y = 0.2;
+scene.add(glowMesh);
+
+// Core point light
+const coreLight = new THREE.PointLight(0x4488ff, 4, 4);
+coreLight.position.set(0, 0.2, 0);
+scene.add(coreLight);
+
+// ─── Crystal Shards ───────────────────────────────────────
+// A ring of floating faceted crystals around the core
+const shardGroup = new THREE.Group();
+const shardCount = 16;
+
+function createCrystal(hue, size) {
+    // Create a faceted crystal (elongated octahedron)
+    const geo = new THREE.OctahedronGeometry(size, 0);
+    const pos = geo.attributes.position;
+    // Stretch along Y
+    const arr = pos.array;
+    for (let i = 0; i < arr.length; i += 3) {
+        arr[i+1] *= 2.0; // stretch vertically
+    }
+    pos.needsUpdate = true;
+    geo.computeVertexNormals();
+
+    const color = new THREE.Color().setHSL(hue, 0.7, 0.5);
+    const mat = new THREE.MeshPhysicalMaterial({
+        color: color,
+        metalness: 0.3,
+        roughness: 0.05,
+        transparent: true,
+        opacity: 0.7,
+        envMapIntensity: 2.5,
+        clearcoat: 0.6,
+        clearcoatRoughness: 0.1,
+        ior: 1.8,
+        reflectivity: 1.0,
+        side: THREE.DoubleSide,
+    });
+    return new THREE.Mesh(geo, mat);
+}
+
+const shards = [];
+for (let i = 0; i < shardCount; i++) {
+    const hue = i / shardCount;
+    const size = 0.25 + Math.random() * 0.35;
+    const shard = createCrystal(hue, size);
+
+    const angle = (i / shardCount) * Math.PI * 2;
+    const radius = 1.5 + Math.random() * 0.8;
+    const heightOff = (Math.random() - 0.5) * 1.2;
+
+    shard.position.set(
+        Math.cos(angle) * radius,
+        0.2 + heightOff,
+        Math.sin(angle) * radius
+    );
+
+    // Random rotation
+    shard.rotation.set(
+        Math.random() * Math.PI * 2,
+        Math.random() * Math.PI * 2,
+        Math.random() * Math.PI * 2
+    );
+
+    shard.userData = {
+        angle: angle,
+        radius: radius,
+        heightOff: heightOff,
+        rotSpeed: { x: (Math.random() - 0.5) * 0.5, y: (Math.random() - 0.5) * 0.5, z: (Math.random() - 0.5) * 0.3 },
+        hue: hue,
+        bobSpeed: 0.3 + Math.random() * 0.4,
+        bobAmount: 0.1 + Math.random() * 0.15,
+    };
+
+    shardGroup.add(shard);
+    shards.push(shard);
+}
+scene.add(shardGroup);
+
+// ─── Crystal wireframes (inner glow) ──────────────────────
+const wireShards = [];
+for (let i = 0; i < shardCount; i++) {
+    const parent = shards[i];
+    const wireGeo = parent.geometry.clone();
+    const wireMat = new THREE.MeshBasicMaterial({
+        color: new THREE.Color().setHSL(i / shardCount, 0.6, 0.7),
+        wireframe: true,
+        transparent: true,
+        opacity: 0.1,
+    });
+    const wire = new THREE.Mesh(wireGeo, wireMat);
+    wire.position.copy(parent.position);
+    wire.rotation.copy(parent.rotation);
+    wire.scale.copy(parent.scale);
+    shardGroup.add(wire);
+    wireShards.push(wire);
+}
+
+// ─── Outer Ring of Smaller Shards ─────────────────────────
+const outerGroup = new THREE.Group();
+const outerCount = 24;
+for (let i = 0; i < outerCount; i++) {
+    const hue = 0.5 + (i / outerCount) * 0.5;
+    const size = 0.06 + Math.random() * 0.08;
+    const geo = new THREE.OctahedronGeometry(size, 0);
+    const mat = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color().setHSL(hue, 0.6, 0.6),
+        metalness: 0.4,
+        roughness: 0.1,
+        transparent: true,
+        opacity: 0.5,
+        envMapIntensity: 1.5,
+        clearcoat: 0.3,
+        side: THREE.DoubleSide,
+    });
+    const mesh = new THREE.Mesh(geo, mat);
+    const angle = (i / outerCount) * Math.PI * 2;
+    const radius = 2.8 + Math.random() * 0.5;
+    mesh.position.set(
+        Math.cos(angle) * radius,
+        0.2 + (Math.random() - 0.5) * 0.8,
+        Math.sin(angle) * radius
+    );
+    mesh.userData = {
+        angle,
+        radius,
+        speed: 0.15 + Math.random() * 0.2,
+        bobSpeed: 0.2 + Math.random() * 0.3,
+    };
+    outerGroup.add(mesh);
+}
+scene.add(outerGroup);
+
+// ─── Light Rays (Volumetric Lines) ────────────────────────
+const rayGroup = new THREE.Group();
+const rayCount = 40;
+for (let i = 0; i < rayCount; i++) {
+    const hue = 0.55 + (i / rayCount) * 0.25;
+    const color = new THREE.Color().setHSL(hue, 0.6, 0.5);
+    const rayLen = 0.8 + Math.random() * 1.5;
+    const rayGeo = new THREE.BufferGeometry();
+    const verts = new Float32Array([
+        0, 0, 0,
+        0, rayLen, 0
+    ]);
+    rayGeo.setAttribute('position', new THREE.BufferAttribute(verts, 3));
+
+    const rayMat = new THREE.LineBasicMaterial({
+        color: color,
+        transparent: true,
+        opacity: 0.04 + Math.random() * 0.06,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+    });
+    const ray = new THREE.Line(rayGeo, rayMat);
+
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    const r = 0.3 + Math.random() * 2.0;
+
+    ray.position.set(
+        Math.sin(phi) * Math.cos(theta) * r,
+        0.2,
+        Math.sin(phi) * Math.sin(theta) * r
+    );
+    ray.lookAt(Math.random() * 2 - 1, 1 + Math.random() * 2, Math.random() * 2 - 1);
+
+    ray.userData = {
+        theta,
+        phi,
+        r,
+        opacity: 0.04 + Math.random() * 0.06,
+        pulseSpeed: 0.3 + Math.random() * 0.5,
+        phase: Math.random() * Math.PI * 2,
+    };
+    rayGroup.add(ray);
+}
+scene.add(rayGroup);
+
+// ─── Floating Particles (Dust Motes) ──────────────────────
+const dustCount = 1500;
+const dGeo = new THREE.BufferGeometry();
+const dPos = new Float32Array(dustCount * 3);
+const dSizes = new Float32Array(dustCount);
+const dData = [];
+
+for (let i = 0; i < dustCount; i++) {
+    const theta = Math.random() * Math.PI * 2;
+    const phi = Math.acos(2 * Math.random() - 1);
+    const r = 0.5 + Math.random() * 3.5;
+    dPos[i*3] = Math.sin(phi) * Math.cos(theta) * r;
+    dPos[i*3+1] = Math.sin(phi) * Math.sin(theta) * r * 0.5 + 0.2;
+    dPos[i*3+2] = Math.cos(phi) * r;
+    dSizes[i] = 0.005 + Math.random() * 0.02;
+    dData.push({
+        theta,
+        phi,
+        r,
+        speed: 0.05 + Math.random() * 0.15,
+        phase: Math.random() * Math.PI * 2,
+    });
+}
+dGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+dGeo.setAttribute('size', new THREE.BufferAttribute(dSizes, 1));
+
+const dMat = new THREE.PointsMaterial({
+    color: 0xaaccff,
+    size: 0.015,
+    transparent: true,
+    opacity: 0.4,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+});
+const dust = new THREE.Points(dGeo, dMat);
+scene.add(dust);
+
+// ─── Ground ring ──────────────────────────────────────────
+const ringGeo = new THREE.RingGeometry(1.2, 1.5, 64);
+const ringMat = new THREE.MeshBasicMaterial({
+    color: 0x4466aa,
+    transparent: true,
+    opacity: 0.06,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+});
+const ring = new THREE.Mesh(ringGeo, ringMat);
+ring.rotation.x = -Math.PI / 2;
+ring.position.y = -0.1;
+scene.add(ring);
+
+const ring2 = new THREE.RingGeometry(2.2, 2.4, 64);
+const ring2Mat = new THREE.MeshBasicMaterial({
+    color: 0x6688cc,
+    transparent: true,
+    opacity: 0.04,
+    side: THREE.DoubleSide,
+    depthWrite: false,
+});
+const ring2Mesh = new THREE.Mesh(ring2, ring2Mat);
+ring2Mesh.rotation.x = -Math.PI / 2;
+ring2Mesh.position.y = -0.15;
+scene.add(ring2Mesh);
+
+// ─── Animation Loop ────────────────────────────────────────
+const clock = new THREE.Clock();
+
+function animate() {
+    requestAnimationFrame(animate);
+
+    const t = clock.getElapsedTime();
+
+    // Pulse core
+    const corePulse = 0.9 + Math.sin(t * 0.6) * 0.1;
+    core.scale.setScalar(corePulse);
+    core.material.color.setHSL(0.58 + Math.sin(t * 0.2) * 0.02, 0.6, 0.6);
+
+    glowMat.opacity = 0.08 + Math.sin(t * 0.5) * 0.06;
+    glowMesh.scale.setScalar(1 + Math.sin(t * 0.4) * 0.1);
+
+    coreLight.intensity = 3 + Math.sin(t * 0.5) * 1.5;
+
+    // Animate shards
+    shardGroup.children.forEach((shard, i) => {
+        if (!shard.userData.angle) return;
+        const { angle, radius, heightOff, rotSpeed, bobSpeed, bobAmount } = shard.userData;
+
+        const a = angle + t * 0.08;
+        const bob = Math.sin(t * bobSpeed + angle) * bobAmount;
+        shard.position.x = Math.cos(a) * (radius + Math.sin(t * 0.05 + i) * 0.1);
+        shard.position.z = Math.sin(a) * (radius + Math.cos(t * 0.04 + i * 1.1) * 0.1);
+        shard.position.y = 0.2 + heightOff + bob;
+
+        shard.rotation.x += rotSpeed.x * 0.01;
+        shard.rotation.y += rotSpeed.y * 0.01;
+        shard.rotation.z += rotSpeed.z * 0.01;
+
+        // Color shift
+        const hue = (shard.userData.hue + Math.sin(t * 0.05 + i) * 0.03) % 1;
+        shard.material.color.setHSL(hue, 0.7, 0.5);
+
+        // Update wireframe match
+        if (wireShards[i]) {
+            wireShards[i].position.copy(shard.position);
+            wireShards[i].rotation.copy(shard.rotation);
+            wireShards[i].scale.copy(shard.scale);
+            const wh = (shard.userData.hue + Math.sin(t * 0.05 + i + 0.3) * 0.03) % 1;
+            wireShards[i].material.color.setHSL(wh, 0.6, 0.7);
+            wireShards[i].material.opacity = 0.06 + Math.sin(t * 0.5 + i) * 0.04;
+        }
+    });
+
+    // Animate outer shards
+    outerGroup.children.forEach((shard) => {
+        const { angle, radius, speed, bobSpeed } = shard.userData;
+        const a = angle + t * speed;
+        shard.position.x = Math.cos(a) * radius;
+        shard.position.z = Math.sin(a) * radius;
+        shard.position.y = 0.2 + Math.sin(t * bobSpeed + angle) * 0.2;
+        shard.rotation.y += 0.01;
+        shard.rotation.x += 0.005;
+    });
+
+    // Animate light rays
+    rayGroup.children.forEach((ray) => {
+        const { opacity, pulseSpeed, phase } = ray.userData;
+        ray.material.opacity = opacity * (0.5 + Math.sin(t * pulseSpeed + phase) * 0.5);
+        ray.rotation.y += 0.001;
+    });
+
+    // Animate dust motes
+    const dp = dust.geometry.attributes.position;
+    for (let i = 0; i < dustCount; i++) {
+        const data = dData[i];
+        const theta = data.theta + t * data.speed * 0.1;
+        const r = data.r + Math.sin(t * data.speed * 0.3 + data.phase) * 0.1;
+        dp.array[i*3] = Math.sin(data.phi) * Math.cos(theta) * r;
+        dp.array[i*3+1] = Math.sin(data.phi) * Math.sin(theta) * r * 0.4 + 0.2 + Math.sin(t * data.speed + data.phase) * 0.1;
+        dp.array[i*3+2] = Math.cos(data.phi) * r;
+    }
+    dp.needsUpdate = true;
+
+    // Rotate ring
+    ring.rotation.z = t * 0.03;
+    ring2Mesh.rotation.z = -t * 0.05;
+
+    controls.update();
+    renderer.render(scene, camera);
+}
+
+animate();
+
+// ─── Resize ────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+    </script>
+</body>
+</html>
