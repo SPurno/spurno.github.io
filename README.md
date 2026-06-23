@@ -31,6 +31,11 @@ Created by **Faruk Ahmed** — a Web Developer, Motion Graphics Designer, and An
 - **Google AdSense** – Monetized with contextual ad placements
 - **3D Loading Screen** – Animated CSS 3D cube spinner with progress bar
 - **Category Browser** – Organized navigation through Motion Graphics, After Effects, Mockups, Infographics, Presentations, and more
+- **User Authentication** – Full registration, login, password reset with JWT tokens
+- **User Dashboard** – Profile management, favorites, download history, and account settings
+- **Custom Orders (Quote Requests)** – Users can submit animation project requests with details like animation type, duration, budget, deadline, and payment method
+- **Admin Panel** – Secure admin dashboard to manage all orders, update status, set quoted prices, and respond to customers
+- **Internationalization (i18n)** – Multi-language support with 8 languages (English, Spanish, French, German, Portuguese, Japanese, Russian, Chinese)
 
 ## 🛠 Tech Stack
 
@@ -46,6 +51,10 @@ Created by **Faruk Ahmed** — a Web Developer, Motion Graphics Designer, and An
 | **Fancybox** | Lightbox media viewer |
 | **Dzsparallaxer** | Parallax scrolling effects |
 | **Bootstrap (offcanvas)** | Mobile navigation component |
+| **[Cloudflare Workers](https://workers.cloudflare.com/)** | Serverless API (auth, orders, dashboard) |
+| **[Turso (libSQL)](https://turso.tech/)** | Edge database for user data & orders |
+| **[JWT (jose)](https://github.com/panva/jose)** | Token-based authentication |
+| **[bcryptjs](https://github.com/dcodeIO/bcrypt.js)** | Password hashing |
 
 ## 📁 Project Structure
 
@@ -80,6 +89,26 @@ spurno.github.io/
 ├── svg/                        # GSAP SVG animations
 ├── rev/                        # Revolution slider assets
 ├── favicon/                    # Favicon & PWA icons
+├── admin.html                  # Admin panel (order management)
+├── login.html                  # User login page
+├── register.html               # User registration page
+├── forgot-password.html        # Password reset request
+├── reset-password.html         # Password reset form
+├── account.html                # User dashboard (profile, favorites, orders)
+│
+├── workers/
+│   └── auth/                   # Cloudflare Worker (auth API)
+│       ├── src/
+│       │   ├── index.js        # Request router
+│       │   ├── auth.js         # Register, login, password reset handlers
+│       │   ├── dashboard.js    # Favorites, downloads, account, orders handlers
+│       │   ├── admin.js        # Admin order management handlers
+│       │   └── db.js           # Turso database schema & CRUD operations
+│       ├── scripts/
+│       │   ├── setup-db.js     # Database setup script (CommonJS)
+│       │   └── setup-db.mjs    # Database setup script (ESM, with --reset)
+│       ├── wrangler.toml       # Cloudflare Workers configuration
+│       └── package.json        # Worker dependencies
 │
 ├── package.json                # Node.js dependencies (Three.js)
 ├── robots.txt                  # Crawler directives
@@ -114,10 +143,15 @@ Then open `http://localhost:8000` in your browser.
 ### Dependencies
 
 ```bash
+# Site dependencies
+npm install
+
+# Auth worker dependencies
+cd workers/auth
 npm install
 ```
 
-Currently the only npm dependency is [Three.js](https://threejs.org/) `^0.169.0` for the 3D background scene.
+Currently the site requires [Three.js](https://threejs.org/) `^0.169.0` for the 3D background scene. The auth worker requires additional packages (see `workers/auth/package.json`).
 
 ## 🌐 Deployment
 

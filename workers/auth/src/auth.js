@@ -25,7 +25,7 @@ function getJwtSecret(env) {
 function corsHeaders(env) {
   return {
     'Access-Control-Allow-Origin': 'https://spurno.github.io',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     'Access-Control-Allow-Credentials': 'true',
   };
