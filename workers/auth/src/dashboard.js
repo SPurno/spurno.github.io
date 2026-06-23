@@ -10,6 +10,7 @@ import {
   createOrder, getOrders, getOrderById, deleteOrder,
   createMessage, getUserMessages,
 } from './db.js';
+import { ensureSchema } from './db.js';
 
 const SALT_ROUNDS = 10;
 
@@ -385,6 +386,9 @@ export async function handleSendMessage(request, env) {
   const headers = corsHeaders();
 
   try {
+    // Ensure schema (create contact_messages table if needed)
+    await ensureSchema(env);
+
     const body = await request.json();
 
     if (!body.message || !body.message.trim()) {
@@ -418,6 +422,9 @@ export async function handleGetMessages(request, env) {
   const headers = corsHeaders();
 
   try {
+    // Ensure schema (create contact_messages table if needed)
+    await ensureSchema(env);
+
     const messages = await getUserMessages(env, auth.payload.sub);
     return new Response(JSON.stringify({ messages }), { status: 200, headers });
   } catch (error) {

@@ -2,6 +2,7 @@
  * Admin handlers — All orders management with API key authentication
  */
 import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats } from './db.js';
+import { ensureSchema } from './db.js';
 
 function corsHeaders() {
   return {
@@ -164,6 +165,7 @@ export async function handleAdminGetMessages(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const messages = await getAllMessages(env);
     const stats = await getMessageStats(env);
     return new Response(JSON.stringify({ messages, stats }), { status: 200, headers });
