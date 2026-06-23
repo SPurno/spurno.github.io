@@ -36,248 +36,7 @@
     <link rel="stylesheet" href="assets/css/spurno3d.css">
     <script src="js/indexnowapi.js"></script>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
-    <style>
-        /* About-specific styles using the dark glassmorphism theme */
-        .about-hero {
-            min-height: 90vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 24px 80px;
-            position: relative;
-        }
-        .about-hero .hero-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            background: rgba(255,255,255,0.06);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.10);
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-        .about-hero h1 {
-            font-size: clamp(2.4rem, 6vw, 5.2rem);
-            font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.5));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 20px;
-            max-width: 900px;
-            animation: fadeInUp 1s ease 0.4s both;
-        }
-        .about-hero h1 .highlight {
-            background: linear-gradient(135deg, #f7b731, #f7931e, #d97706);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .about-hero p {
-            font-size: clamp(1.05rem, 2vw, 1.28rem);
-            color: rgba(255,255,255,0.65);
-            max-width: 720px;
-            line-height: 1.75;
-            margin-bottom: 32px;
-            animation: fadeInUp 1s ease 0.6s both;
-        }
-        .about-hero .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            justify-content: center;
-            animation: fadeInUp 1s ease 0.8s both;
-        }
-
-        .about-stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-top: 32px;
-        }
-        .about-stat-card {
-            padding: 24px;
-            text-align: center;
-        }
-        .about-stat-card strong {
-            display: block;
-            font-size: 2rem;
-            background: linear-gradient(135deg, #f7b731, #f7931e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-        .about-stat-card span {
-            color: rgba(255,255,255,0.5);
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .about-list {
-            list-style: none;
-            margin: 20px 0 0;
-            padding: 0;
-        }
-        .about-list li {
-            padding: 10px 0;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .about-list li::before {
-            content: '▸';
-            color: #f7b731;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-top: 40px;
-        }
-        .process-step {
-            padding: 28px;
-            counter-increment: process;
-        }
-        .process-step .step-num {
-            display: block;
-            font-size: 0.86rem;
-            font-weight: 900;
-            letter-spacing: 0.12em;
-            color: #f7b731;
-            margin-bottom: 18px;
-        }
-        .process-step h3 {
-            font-size: 1.12rem;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-        .process-step p {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            margin-bottom: 0;
-            line-height: 1.7;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            align-items: stretch;
-        }
-        .pricing-card {
-            padding: 34px;
-            display: flex;
-            flex-direction: column;
-        }
-        .pricing-card.featured {
-            border-color: rgba(247, 183, 49, 0.3);
-            box-shadow: 0 8px 40px rgba(247, 147, 30, 0.2);
-            transform: translateY(-8px);
-        }
-        .pricing-card h3 {
-            font-size: 1.15rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .pricing-card .desc {
-            color: rgba(255,255,255,0.5);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-        .pricing-card .price {
-            font-size: 2.15rem;
-            font-weight: 900;
-            margin: 20px 0 4px;
-            background: linear-gradient(135deg, #f7b731, #f7931e);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .pricing-card .price-label {
-            color: rgba(255,255,255,0.35);
-            font-size: 0.82rem;
-        }
-        .pricing-card .about-list {
-            flex: 1;
-            margin: 20px 0;
-        }
-        .pricing-card .btn {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .contact-info-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-        }
-        .contact-info-item {
-            padding: 24px;
-            text-align: center;
-        }
-        .contact-info-item .icon {
-            font-size: 2rem;
-            margin-bottom: 16px;
-            display: block;
-            color: #f7b731;
-        }
-        .contact-info-item h3 {
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 10px;
-        }
-        .contact-info-item p,
-        .contact-info-item strong,
-        .contact-info-item a {
-            color: rgba(255,255,255,0.8);
-            font-weight: 600;
-            font-size: 0.92rem;
-        }
-        .contact-info-item a:hover { color: #f7b731; text-decoration: none; }
-
-        .about-media {
-            width: 100%;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.10);
-            overflow: hidden;
-        }
-        .about-media img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-
-        @media (max-width: 968px) {
-            .process-grid { grid-template-columns: repeat(2, 1fr); }
-            .pricing-grid { grid-template-columns: 1fr; }
-            .pricing-card.featured { transform: none; }
-            .contact-info-grid { grid-template-columns: repeat(2, 1fr); }
-            .about-stats-grid { grid-template-columns: repeat(3, 1fr); }
-        }
-        @media (max-width: 575px) {
-            .process-grid { grid-template-columns: 1fr; }
-            .contact-info-grid { grid-template-columns: 1fr; }
-            .about-stats-grid { grid-template-columns: 1fr; }
-            .about-hero { padding: 100px 16px 60px; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/about.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -315,7 +74,11 @@
                 <a href="index.html#categories" data-i18n="nav.explore">Explore</a>
                 <a href="contact-us.html" data-i18n="nav.contact">Contact</a>
                 <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" data-i18n="nav.shopNow" rel="noopener">Shop Now</a>
-                <div class="language-selector">
+                                <a href="login.html" class="nav-auth" id="navLogin">Sign In</a>
+                <a href="register.html" class="nav-cta" id="navRegister">Get Started</a>
+                <a href="account.html" class="nav-auth" id="navProfile" style="display:none;">My Account</a>
+                <a href="#" class="nav-auth" id="navSignout" style="display:none;" onclick="if(confirm('Sign out of your account?')){AuthClient.logout();} return false;">Sign Out</a>
+<div class="language-selector">
                     <button class="lang-btn" aria-label="Select language">
                         <span data-i18n="language.current">English</span>
                     </button>
@@ -361,7 +124,7 @@
                         <p>Every asset is designed with clean composition, clear movement, and broad usability in mind, so buyers can adapt it for websites, ads, social media, YouTube, presentations, and commercial video projects.</p>
                         <div class="about-stats-grid">
                             <div class="about-stat-card glass-card">
-                                <strong>2000+</strong>
+                                <strong>4000+</strong>
                                 <span>stock assets</span>
                             </div>
                             <div class="about-stat-card glass-card">
@@ -677,5 +440,20 @@
     </script>
     <div class='spurno-loader' aria-hidden='true'></div>
     <script>setTimeout(function(){document.body.classList.add('loaded');},3000);</script>
+    <script src="js/auth-client.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthClient !== 'undefined' && AuthClient.isAuthenticated()) {
+                var login = document.getElementById('navLogin');
+                var register = document.getElementById('navRegister');
+                var profile = document.getElementById('navProfile');
+                var signout = document.getElementById('navSignout');
+                if (login) login.style.display = 'none';
+                if (register) register.style.display = 'none';
+                if (profile) profile.style.display = 'inline-flex';
+                if (signout) signout.style.display = 'inline-flex';
+            }
+        });
+    </script>
 </body>
 </html>

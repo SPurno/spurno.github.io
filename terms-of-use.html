@@ -27,78 +27,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/spurno3d.css">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9371167470298440" crossorigin="anonymous"></script>
-    <style>
-        .policy-page {
-            padding: 120px 24px 60px;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .policy-article {
-            max-width: 860px;
-            width: 100%;
-            padding: 48px 40px;
-        }
-        .policy-article h1 {
-            font-size: clamp(2rem, 4vw, 3.2rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 16px;
-            letter-spacing: -0.5px;
-        }
-        .policy-article .article-lead {
-            color: rgba(255,255,255,0.6);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 24px;
-        }
-        .policy-article .last-updated {
-            color: rgba(255,255,255,0.35);
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 32px;
-            display: block;
-        }
-        .policy-article .hero-figure {
-            border-radius: 16px;
-            overflow: hidden;
-            margin-bottom: 40px;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        .policy-article .hero-figure img {
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-        .policy-article section {
-            margin-bottom: 32px;
-        }
-        .policy-article section:last-of-type {
-            margin-bottom: 0;
-        }
-        .policy-article h2 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #f7b731;
-            letter-spacing: 0;
-        }
-        .policy-article p {
-            color: rgba(255,255,255,0.6);
-            font-size: 0.98rem;
-            line-height: 1.8;
-        }
-        .policy-article .ad-wrap {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        @media (max-width: 575px) {
-            .policy-page { padding: 100px 16px 40px; }
-            .policy-article { padding: 28px 20px; }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/css/terms-of-use.css">
 </head>
 <body>
     <a href="#main-content" class="skip-link">Skip to content</a>
@@ -141,7 +70,11 @@
                 <a href="index.html#categories" data-i18n="nav.explore">Explore</a>
                 <a href="contact-us.html" data-i18n="nav.contact">Contact</a>
                 <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" data-i18n="nav.shopNow" rel="noopener">Shop Now</a>
-                <div class="language-selector">
+                                <a href="login.html" class="nav-auth" id="navLogin">Sign In</a>
+                <a href="register.html" class="nav-cta" id="navRegister">Get Started</a>
+                <a href="account.html" class="nav-auth" id="navProfile" style="display:none;">My Account</a>
+                <a href="#" class="nav-auth" id="navSignout" style="display:none;" onclick="if(confirm('Sign out of your account?')){AuthClient.logout();} return false;">Sign Out</a>
+<div class="language-selector">
                     <button class="lang-btn" aria-label="Select language">
                         <span data-i18n="language.current">English</span>
                     </button>
@@ -288,5 +221,20 @@
     <script type="module" src="js/spurno3d.js"></script>
     <div class='spurno-loader' aria-hidden='true'></div>
     <script>setTimeout(function(){document.body.classList.add('loaded');},3000);</script>
+    <script src="js/auth-client.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof AuthClient !== 'undefined' && AuthClient.isAuthenticated()) {
+                var login = document.getElementById('navLogin');
+                var register = document.getElementById('navRegister');
+                var profile = document.getElementById('navProfile');
+                var signout = document.getElementById('navSignout');
+                if (login) login.style.display = 'none';
+                if (register) register.style.display = 'none';
+                if (profile) profile.style.display = 'inline-flex';
+                if (signout) signout.style.display = 'inline-flex';
+            }
+        });
+    </script>
 </body>
 </html>
