@@ -24,7 +24,7 @@
                 for (var i = 0; i < filtered.length; i++) {
                     var v = filtered[i];
                     html += '<div class="video-card" data-id="' + v.id + '" data-cat="' + v.cat + '" data-item-id="' + (v.itemId || v.id) + '" data-watch="' + v.watch + '">';
-                    html += '  <div class="video-watermark"><img src="images/spurno-logo.png" alt="SPurno" loading="lazy"><span>SPurno</span></div>';
+                    html += '  <div class="video-watermark"><img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy" title="SPurno Animation Studio - Video Gallery Watermark"><span>SPurno</span></div>';
                     html += '  <video preload="metadata" muted loop playsinline poster="' + v.thumb + '"><source src="videos/' + v.file + '" type="video/mp4"></video>';
                     html += '  <div class="video-card-overlay"><div class="video-title">' + v.title + '</div><div class="video-subtitle">' + v.cat.charAt(0).toUpperCase() + v.cat.slice(1) + ' Graphics</div></div>';
                     html += '  <div class="video-card-actions">';
