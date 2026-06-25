@@ -802,9 +802,7 @@
                     <div class="admin-order-footer">
                         <span></span>
                         <div class="admin-order-actions">
-                            ${hasReply ? '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(34,197,94,0.1);color:#86efac;">✅ Replied</span>' : '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(234,179,8,0.1);color:#fde047;">⏳ Awaiting reply</span>'}
-                            <button class="admin-btn admin-btn-sm admin-reply-btn" data-id="${m.id}" data-user="${(m.name || m.user_name || m.user_email || 'Unknown').replace(/"/g, '&quot;')}" data-msg="${m.message.replace(/"/g, '&quot;').replace(/
-/g, ' ')}">💬 Reply</button>
+                            ${hasReply ? '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(34,197,94,0.1);color:#86efac;">✅ Replied</span>' : '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(234,179,8,0.1);color:#fde047;">⏳ Awaiting reply</span>'}                            <button class="admin-btn admin-btn-sm admin-reply-btn" data-id="${m.id}" data-user="${(m.name || m.user_name || m.user_email || 'Unknown').replace(/"/g, '&quot;')}" data-msg="${m.message.replace(/"/g, '&quot;').replace(/\n/g, ' ')}">💬 Reply</button>
                             <button class="admin-btn admin-btn-sm admin-delete-msg-btn" data-id="${m.id}" style="color:#fca5a5;">🗑️ Delete</button>
                         </div>
                     </div>

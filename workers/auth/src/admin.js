@@ -48,6 +48,7 @@ export async function handleAdminGetOrders(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const url = new URL(request.url);
     const statusFilter = url.searchParams.get('status');
     const orderId = url.searchParams.get('id');
@@ -87,6 +88,7 @@ export async function handleAdminUpdateOrder(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const body = await request.json();
 
     if (!body.id) {
@@ -132,6 +134,7 @@ export async function handleAdminDeleteOrder(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const { id } = await request.json();
 
     if (!id) {
@@ -186,6 +189,7 @@ export async function handleAdminDeleteMessage(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const { id } = await request.json();
 
     if (!id) {
@@ -214,6 +218,7 @@ export async function handleAdminReplyMessage(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const { id, reply } = await request.json();
 
     if (!id || !reply || !reply.trim()) {
@@ -250,6 +255,7 @@ export async function handleAdminGetUsers(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const users = await getAllUsers(env);
     return new Response(JSON.stringify({ users }), { status: 200, headers });
   } catch (error) {
@@ -271,6 +277,7 @@ export async function handleAdminComposeMessage(request, env) {
   const headers = corsHeaders();
 
   try {
+    await ensureSchema(env);
     const { user_id, subject, message } = await request.json();
 
     if (!user_id || !message || !message.trim()) {

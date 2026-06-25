@@ -45,6 +45,12 @@ export default {
         { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
+    if (!env.ADMIN_API_KEY) {
+      return new Response(
+        JSON.stringify({ error: 'Server misconfigured: ADMIN_API_KEY not set. Run: wrangler secret put ADMIN_API_KEY' }),
+        { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+      );
+    }
 
     // Handle CORS preflight
     if (method === 'OPTIONS') {
