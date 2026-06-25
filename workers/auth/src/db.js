@@ -117,6 +117,12 @@ export async function ensureSchema(env) {
 
   await db.execute(`CREATE INDEX IF NOT EXISTS idx_messages_user ON contact_messages(user_id);`);
 
+  // ── Schema Migrations ────────────────────────────────
+  // Add columns that may be missing if the table was created by an older schema version.
+  // SQLite does not support IF NOT EXISTS for ALTER TABLE, so we catch the "duplicate" error.
+  try { await db.execute(`ALTER TABLE contact_messages ADD COLUMN admin_reply TEXT DEFAULT ''`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
+  try { await db.execute(`ALTER TABLE contact_messages ADD COLUMN admin_replied_at TEXT DEFAULT NULL`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
+
   return true;
 }
 
