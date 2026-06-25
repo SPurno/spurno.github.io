@@ -29,7 +29,7 @@ border: 1px solid rgba(255,255,255,0.08);
 border-radius: 18px; gap: 12px; flex-wrap: wrap;
 }
 .dash-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.dash-logo img { height: 32px; width: auto; max-width: 100%; border-radius: 6px; }
+.dash-logo img { height: 32px; max-width: 100%; border-radius: 6px; }
 .dash-logo span { font-weight: 700; font-size: 1rem; color: #fff; }
 .dash-top-right { display: flex; align-items: center; gap: 12px; }
 .dash-signout {
