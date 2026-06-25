@@ -44,10 +44,11 @@
         <!-- Stats Bar -->
         <div class="stats-bar" id="statsBar"></div>
 
-        <!-- Tab Navigation (Orders / Messages) -->
+        <!-- Tab Navigation (Orders / Messages / Users) -->
         <div class="filter-bar" style="margin-bottom:16px;">
             <button class="filter-btn active" data-admin-tab="orders">📋 Orders</button>
             <button class="filter-btn" data-admin-tab="messages">💬 Messages <span id="msgBadge" style="background:linear-gradient(135deg,var(--color-primary),var(--color-accent));font-size:0.7rem;padding:2px 8px;border-radius:30px;color:#fff;font-weight:600;margin-left:4px;">0</span></button>
+            <button class="filter-btn" data-admin-tab="users">👥 Users</button>
         </div>
 
         <!-- Orders Panel -->
@@ -77,9 +78,18 @@
                 <div id="adminMessagesList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
             </div>
         </div>
+
+        <!-- Users Panel -->
+        <div class="admin-panel" id="adminPanelUsers" style="display:none;">
+            <div class="admin-section">
+                <div class="alert" id="adminUserAlert" role="alert"></div>
+                <div class="orders-count" id="usersCount">Loading users...</div>
+                <div id="adminUsersList"><div class="loading-spinner" style="margin:40px auto;display:block;"></div></div>
+            </div>
+        </div>
     </div>
 
-    <!-- Update Modal -->
+    <!-- Update Order Modal -->
     <div class="modal-overlay" id="updateModal">
         <div class="modal-content">
             <button class="modal-close" id="modalClose">&times;</button>
@@ -117,6 +127,62 @@
                 <div class="modal-actions">
                     <button type="button" class="admin-btn" id="modalCancelBtn">Cancel</button>
                     <button type="submit" class="admin-btn admin-btn-primary" id="modalSaveBtn">Update Order</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Reply to Message Modal -->
+    <div class="modal-overlay" id="replyModal">
+        <div class="modal-content">
+            <button class="modal-close" id="replyModalClose">&times;</button>
+            <h2 class="admin-card-title" style="margin-bottom:20px;">💬 Reply to User</h2>
+            <div class="alert" id="replyModalAlert" role="alert"></div>
+            <form id="replyForm">
+                <input type="hidden" id="replyMessageId">
+                <div class="form-row">
+                    <label>From User</label>
+                    <div id="replyUserInfo" style="font-size:0.85rem;color:rgba(255,255,255,0.6);padding:8px 0;"></div>
+                </div>
+                <div class="form-row">
+                    <label>Original Message</label>
+                    <div id="replyOriginalMsg" style="font-size:0.82rem;color:rgba(255,255,255,0.45);padding:12px;background:rgba(255,255,255,0.03);border-radius:10px;line-height:1.5;max-height:100px;overflow-y:auto;"></div>
+                </div>
+                <div class="form-row">
+                    <label for="replyText">Your Reply *</label>
+                    <textarea id="replyText" rows="4" placeholder="Write your reply to the user..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="admin-btn" id="replyCancelBtn">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary" id="replySendBtn">Send Reply</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Compose Message to User Modal -->
+    <div class="modal-overlay" id="composeModal">
+        <div class="modal-content">
+            <button class="modal-close" id="composeModalClose">&times;</button>
+            <h2 class="admin-card-title" style="margin-bottom:20px;">✉️ Compose Message to User</h2>
+            <div class="alert" id="composeModalAlert" role="alert"></div>
+            <form id="composeForm">
+                <input type="hidden" id="composeUserId">
+                <div class="form-row">
+                    <label>Sending To</label>
+                    <div id="composeUserInfo" style="font-size:0.85rem;color:rgba(255,255,255,0.6);padding:8px 0;"></div>
+                </div>
+                <div class="form-row">
+                    <label for="composeSubject">Subject</label>
+                    <input type="text" id="composeSubject" placeholder="e.g. Special Offer, Project Update...">
+                </div>
+                <div class="form-row">
+                    <label for="composeMessage">Message *</label>
+                    <textarea id="composeMessage" rows="4" placeholder="Write your message to this user..." required></textarea>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="admin-btn" id="composeCancelBtn">Cancel</button>
+                    <button type="submit" class="admin-btn admin-btn-primary" id="composeSendBtn">Send Message</button>
                 </div>
             </form>
         </div>
@@ -431,7 +497,7 @@
         }
     }
 
-    // ── Admin Tab Switching (Orders / Messages) ──────
+    // ── Admin Tab Switching (Orders / Messages / Users) ─
     document.querySelectorAll('[data-admin-tab]').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('[data-admin-tab]').forEach(b => b.classList.remove('active'));
@@ -440,6 +506,7 @@
             const tab = btn.dataset.adminTab;
             document.getElementById('adminPanel' + tab.charAt(0).toUpperCase() + tab.slice(1)).style.display = 'block';
             if (tab === 'messages') loadAdminMessages();
+            if (tab === 'users') loadAdminUsers();
         });
     });
 
@@ -467,9 +534,6 @@
             updateNotes.value = order.admin_notes || '';
             modalAlert.className = 'alert';
             modalAlert.textContent = '';
-
-            // Disable completed/cancelled statuses if they can't be changed
-            // (keep it simple - allow any transition)
 
             updateModal.classList.add('show');
         } catch (e) {
@@ -515,6 +579,251 @@
         modalSaveBtn.disabled = false;
         modalSaveBtn.textContent = 'Update Order';
     });
+
+    // ── Reply to Message Modal ─────────────────────────
+    const replyModal = $('replyModal');
+    const replyModalClose = $('replyModalClose');
+    const replyCancelBtn = $('replyCancelBtn');
+    const replyForm = $('replyForm');
+    const replyMessageId = $('replyMessageId');
+    const replyUserInfo = $('replyUserInfo');
+    const replyOriginalMsg = $('replyOriginalMsg');
+    const replyText = $('replyText');
+    const replySendBtn = $('replySendBtn');
+    const replyModalAlert = $('replyModalAlert');
+
+    function openReplyModal(msgId, userInfo, originalMsg) {
+        replyMessageId.value = msgId;
+        replyUserInfo.textContent = userInfo;
+        replyOriginalMsg.textContent = originalMsg;
+        replyText.value = '';
+        replyModalAlert.className = 'alert';
+        replyModalAlert.textContent = '';
+        replyModal.classList.add('show');
+    }
+
+    function closeReplyModal() {
+        replyModal.classList.remove('show');
+    }
+
+    replyModalClose.addEventListener('click', closeReplyModal);
+    replyCancelBtn.addEventListener('click', closeReplyModal);
+    replyModal.addEventListener('click', (e) => {
+        if (e.target === replyModal) closeReplyModal();
+    });
+
+    replyForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const reply = replyText.value.trim();
+        if (!reply) {
+            replyModalAlert.textContent = 'Please write a reply.';
+            replyModalAlert.className = 'alert error';
+            return;
+        }
+
+        replySendBtn.disabled = true;
+        replySendBtn.textContent = 'Sending...';
+
+        try {
+            const result = await adminFetch('/admin/messages/reply', {
+                method: 'POST',
+                body: JSON.stringify({
+                    id: parseInt(replyMessageId.value, 10),
+                    reply,
+                }),
+            });
+
+            replyModalAlert.textContent = result.message || 'Reply sent!';
+            replyModalAlert.className = 'alert success';
+            closeReplyModal();
+            document.getElementById('adminMsgAlert').textContent = 'Reply sent successfully.';
+            document.getElementById('adminMsgAlert').className = 'alert success';
+            loadAdminMessages();
+        } catch (e) {
+            replyModalAlert.textContent = e.message || 'Failed to send reply';
+            replyModalAlert.className = 'alert error';
+        }
+
+        replySendBtn.disabled = false;
+        replySendBtn.textContent = 'Send Reply';
+    });
+
+    // ── Admin Users ────────────────────────────────────
+    async function loadAdminUsers() {
+        try {
+            const data = await adminFetch('/admin/users');
+            const users = data.users || [];
+
+            const listEl = document.getElementById('adminUsersList');
+            const countEl = document.getElementById('usersCount');
+            const alertEl = document.getElementById('adminUserAlert');
+
+            countEl.textContent = `${users.length} registered user${users.length !== 1 ? 's' : ''}`;
+
+            if (!users.length) {
+                listEl.innerHTML = `<div class="items-empty"><div class="icon">👥</div><p>No users registered yet.</p></div>`;
+                return;
+            }
+
+            listEl.innerHTML = `<div class="admin-orders-list">${users.map(u => {
+                const created = new Date(u.created_at).toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+                return `<div class="admin-order-card">
+                    <div class="admin-order-top">
+                        <div class="admin-order-left">
+                            <span class="admin-order-user">👤 ${u.name || u.email.split('@')[0]}</span>
+                            <span class="admin-order-number">#${u.id}</span>
+                        </div>
+                        <span class="admin-order-date">Joined ${created}</span>
+                    </div>
+                    <div class="admin-order-type">✉️ ${u.email}</div>
+                    <div class="admin-order-footer">
+                        <span></span>
+                        <div class="admin-order-actions">
+                            <button class="admin-btn admin-btn-sm admin-compose-btn" data-user-id="${u.id}" data-user-name="${(u.name || u.email.split('@')[0]).replace(/"/g, '&quot;')}" data-user-email="${u.email}">✉️ Send Message</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('')}</div>`;
+
+            document.querySelectorAll('.admin-compose-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openComposeModal(btn.dataset.userId, btn.dataset.userName, btn.dataset.userEmail);
+                });
+            });
+        } catch (e) {
+            document.getElementById('adminUserAlert').textContent = 'Failed to load users: ' + e.message;
+            document.getElementById('adminUserAlert').className = 'alert error';
+        }
+    }
+
+    // ── Compose Message Modal ──────────────────────────
+    const composeModal = $('composeModal');
+    const composeModalClose = $('composeModalClose');
+    const composeCancelBtn = $('composeCancelBtn');
+    const composeForm = $('composeForm');
+    const composeUserId = $('composeUserId');
+    const composeUserInfo = $('composeUserInfo');
+    const composeSubject = $('composeSubject');
+    const composeMessage = $('composeMessage');
+    const composeSendBtn = $('composeSendBtn');
+    const composeModalAlert = $('composeModalAlert');
+
+    function openComposeModal(userId, userName, userEmail) {
+        composeUserId.value = userId;
+        composeUserInfo.textContent = `${userName} (${userEmail})`;
+        composeSubject.value = '';
+        composeMessage.value = '';
+        composeModalAlert.className = 'alert';
+        composeModalAlert.textContent = '';
+        composeModal.classList.add('show');
+    }
+
+    function closeComposeModal() {
+        composeModal.classList.remove('show');
+    }
+
+    composeModalClose.addEventListener('click', closeComposeModal);
+    composeCancelBtn.addEventListener('click', closeComposeModal);
+    composeModal.addEventListener('click', (e) => {
+        if (e.target === composeModal) closeComposeModal();
+    });
+
+    composeForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const message = composeMessage.value.trim();
+        if (!message) {
+            composeModalAlert.textContent = 'Please write a message.';
+            composeModalAlert.className = 'alert error';
+            return;
+        }
+
+        composeSendBtn.disabled = true;
+        composeSendBtn.textContent = 'Sending...';
+
+        try {
+            const result = await adminFetch('/admin/messages/compose', {
+                method: 'POST',
+                body: JSON.stringify({
+                    user_id: composeUserId.value,
+                    subject: composeSubject.value.trim() || 'Message from Admin',
+                    message,
+                }),
+            });
+
+            composeModalAlert.textContent = result.message || 'Message sent!';
+            composeModalAlert.className = 'alert success';
+            setTimeout(() => closeComposeModal(), 1500);
+        } catch (e) {
+            composeModalAlert.textContent = e.message || 'Failed to send message';
+            composeModalAlert.className = 'alert error';
+        }
+
+        composeSendBtn.disabled = false;
+        composeSendBtn.textContent = 'Send Message';
+    });
+
+    // ── Update the messages render to include reply button ──
+    loadAdminMessages = async function() {
+        try {
+            const data = await adminFetch('/admin/messages');
+            const messages = data.messages || [];
+            const stats = data.stats || {};
+
+            document.getElementById('msgBadge').textContent = stats.count || messages.length;
+
+            const listEl = document.getElementById('adminMessagesList');
+            const countEl = document.getElementById('messagesCount');
+
+            countEl.textContent = `${messages.length} message${messages.length !== 1 ? 's' : ''}`;
+
+            if (!messages.length) {
+                listEl.innerHTML = `<div class="items-empty"><div class="icon">💬</div><p>No messages from users yet.</p></div>`;
+                return;
+            }
+
+            listEl.innerHTML = `<div class="admin-orders-list">${messages.map(m => {
+                const created = new Date(m.created_at).toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit'
+                });
+                const hasReply = m.admin_reply && m.admin_reply.trim();
+                return `<div class="admin-order-card">
+                    <div class="admin-order-top">
+                        <div class="admin-order-left">
+                            <span class="admin-order-user">👤 ${m.name || m.user_name || m.user_email || 'Unknown'}</span>
+                            <span class="admin-order-number">${m.email || ''}</span>
+                        </div>
+                        <span class="admin-order-date">${created}</span>
+                    </div>
+                    <div class="admin-order-type">${m.subject || '(No subject)'}</div>
+                    <div class="admin-order-desc">${m.message}</div>
+                    ${hasReply ? `<div class="admin-order-meta" style="margin-top:8px;padding:10px;background:rgba(34,197,94,0.06);border-radius:8px;border-left:3px solid #86efac;"><strong style="color:#86efac;">✅ Your Reply:</strong> ${m.admin_reply}${m.admin_replied_at ? ' <span style="color:rgba(255,255,255,0.3);font-size:0.72rem;">(' + new Date(m.admin_replied_at).toLocaleDateString('en-US', {month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'}) + ')</span>' : ''}</div>` : ''}
+                    <div class="admin-order-footer">
+                        <span></span>
+                        <div class="admin-order-actions">
+                            ${hasReply ? '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(34,197,94,0.1);color:#86efac;">✅ Replied</span>' : '<span style="font-size:0.72rem;padding:3px 10px;border-radius:20px;background:rgba(234,179,8,0.1);color:#fde047;">⏳ Awaiting reply</span>'}
+                            <button class="admin-btn admin-btn-sm admin-reply-btn" data-id="${m.id}" data-user="${(m.name || m.user_name || m.user_email || 'Unknown').replace(/"/g, '&quot;')}" data-msg="${m.message.replace(/"/g, '&quot;').replace(/
+/g, ' ')}">💬 Reply</button>
+                            <button class="admin-btn admin-btn-sm admin-delete-msg-btn" data-id="${m.id}" style="color:#fca5a5;">🗑️ Delete</button>
+                        </div>
+                    </div>
+                </div>`;
+            }).join('')}</div>`;
+
+            document.querySelectorAll('.admin-reply-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openReplyModal(btn.dataset.id, btn.dataset.user, btn.dataset.msg);
+                });
+            });
+            document.querySelectorAll('.admin-delete-msg-btn').forEach(btn => {
+                btn.addEventListener('click', () => adminDeleteMessage(btn.dataset.id));
+            });
+        } catch (e) {
+            document.getElementById('adminMsgAlert').textContent = 'Failed to load messages: ' + e.message;
+            document.getElementById('adminMsgAlert').className = 'alert error';
+        }
+    };
 
     // ── Auto-login if key stored ───────────────────────
     if (adminKey) {

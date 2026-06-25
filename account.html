@@ -578,13 +578,18 @@
             <div class="order-card">
                 <div class="order-header">
                     <span class="order-number">${m.subject || 'No subject'}</span>
+                    <span class="order-date">${formatDate(m.created_at)}</span>
                 </div>
                 <div class="order-desc">${m.message.length > 200 ? m.message.slice(0, 200) + '...' : m.message}</div>
+                ${m.admin_reply ? `<div class="order-response" style="margin-top:10px;padding:12px;background:rgba(34,197,94,0.06);border-radius:10px;border-left:3px solid #43e97b;">
+                    <strong style="color:#43e97b;font-size:0.82rem;">🛡️ Admin Reply:</strong>
+                    <p style="margin:6px 0 0;color:rgba(255,255,255,0.7);font-size:0.88rem;">${m.admin_reply}</p>
+                    ${m.admin_replied_at ? `<p style="margin:4px 0 0;font-size:0.72rem;color:rgba(255,255,255,0.3);">Replied ${formatDate(m.admin_replied_at)}</p>` : ''}
+                </div>` : ''}
                 <div class="order-contact">
                     ${m.name ? '👤 ' + m.name : ''}
                     ${m.email ? ' ✉️ ' + m.email : ''}
                 </div>
-                <div class="order-date">Sent ${formatDate(m.created_at)}</div>
             </div>
         `).join('')}</div>`;
     }

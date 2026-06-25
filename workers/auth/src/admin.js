@@ -1,7 +1,7 @@
 /**
  * Admin handlers — All orders management with API key authentication
  */
-import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats } from './db.js';
+import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats, updateMessageReply, getAllUsers, getMessageById, createAdminMessage } from './db.js';
 import { ensureSchema } from './db.js';
 
 function corsHeaders() {
@@ -198,5 +198,98 @@ export async function handleAdminDeleteMessage(request, env) {
   } catch (error) {
     console.error('Admin delete message error:', error);
     return new Response(JSON.stringify({ error: 'Failed to delete message' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Reply to Message ────────────────────────────
+
+/**
+ * POST /api/admin/messages/reply — Admin replies to a user message
+ * Body: { id, reply }
+ */
+export async function handleAdminReplyMessage(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const { id, reply } = await request.json();
+
+    if (!id || !reply || !reply.trim()) {
+      return new Response(JSON.stringify({ error: 'Message ID and reply text are required' }), { status: 400, headers });
+    }
+
+    // Verify message exists
+    const msg = await getMessageById(env, id);
+    if (!msg) {
+      return new Response(JSON.stringify({ error: 'Message not found' }), { status: 404, headers });
+    }
+
+    const updated = await updateMessageReply(env, id, reply.trim());
+
+    return new Response(JSON.stringify({
+      message: 'Reply sent successfully',
+      reply: updated,
+    }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin reply message error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to send reply' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Get Users ───────────────────────────────────
+
+/**
+ * GET /api/admin/users — List all registered users
+ */
+export async function handleAdminGetUsers(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const users = await getAllUsers(env);
+    return new Response(JSON.stringify({ users }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin get users error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to load users' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Compose Message ─────────────────────────────
+
+/**
+ * POST /api/admin/messages/compose — Admin sends a new message to a user
+ * Body: { user_id, subject, message }
+ */
+export async function handleAdminComposeMessage(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    const { user_id, subject, message } = await request.json();
+
+    if (!user_id || !message || !message.trim()) {
+      return new Response(JSON.stringify({ error: 'User ID and message are required' }), { status: 400, headers });
+    }
+
+    const msg = await createAdminMessage(env, user_id, {
+      subject: subject || 'Message from Admin',
+      message: message.trim(),
+      name: 'Admin',
+      email: '',
+    });
+
+    return new Response(JSON.stringify({
+      message: 'Message sent to user successfully',
+      msg,
+    }), { status: 201, headers });
+  } catch (error) {
+    console.error('Admin compose message error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to send message' }), { status: 500, headers });
   }
 }

@@ -1,5 +1,5 @@
 .blog-hero { min-height: 45vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 140px 24px 60px; position: relative; }
-.blog-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -1px; background: linear-gradient(135deg, #fff 30%, rgba(255,255,255,0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+.blog-hero h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -1px; background: linear-gradient(135deg, var(--color-primary, #fff) 30%, var(--color-accent, rgba(255,255,255,0.5))); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
 .blog-hero .meta-line { color: rgba(255,255,255,0.5); font-size: 0.9rem; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; }
 .blog-hero .meta-line span { display: flex; align-items: center; gap: 6px; }
 .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 40px; max-width: 1200px; margin: 0 auto; padding: 0 24px 80px; }

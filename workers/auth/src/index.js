@@ -23,6 +23,7 @@ import {
 import {
   handleAdminGetOrders, handleAdminUpdateOrder, handleAdminDeleteOrder,
   handleAdminGetMessages, handleAdminDeleteMessage,
+  handleAdminReplyMessage, handleAdminGetUsers, handleAdminComposeMessage,
 } from './admin.js';
 
 export default {
@@ -86,6 +87,11 @@ export default {
     // ── Admin Messages Routes ──────────────────────────
     if (path === '/api/admin/messages' && method === 'GET') return handleAdminGetMessages(request, env);
     if (path === '/api/admin/messages' && method === 'DELETE') return handleAdminDeleteMessage(request, env);
+    if (path === '/api/admin/messages/reply' && method === 'POST') return handleAdminReplyMessage(request, env);
+    if (path === '/api/admin/messages/compose' && method === 'POST') return handleAdminComposeMessage(request, env);
+
+    // ── Admin Users Routes ──────────────────────────────
+    if (path === '/api/admin/users' && method === 'GET') return handleAdminGetUsers(request, env);
 
     // 404 for unknown routes
     return new Response(

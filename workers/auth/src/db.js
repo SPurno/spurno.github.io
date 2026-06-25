@@ -109,6 +109,8 @@ export async function ensureSchema(env) {
     email TEXT NOT NULL DEFAULT '',
     subject TEXT NOT NULL DEFAULT '',
     message TEXT NOT NULL,
+    admin_reply TEXT DEFAULT '',
+    admin_replied_at TEXT DEFAULT NULL,
     created_at TEXT DEFAULT (datetime('now')),
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
   );`);
@@ -405,7 +407,7 @@ export async function createMessage(env, userId, data) {
   const db = getDb(env);
   const { name, email, subject, message } = data;
   const result = await db.execute({
-    sql: "INSERT INTO contact_messages (user_id, name, email, subject, message) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, subject, message, created_at",
+    sql: "INSERT INTO contact_messages (user_id, name, email, subject, message) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, subject, message, admin_reply, admin_replied_at, created_at",
     args: [userId, name || '', email || '', subject || '', message],
   });
   return result.rows[0] || null;
@@ -414,7 +416,7 @@ export async function createMessage(env, userId, data) {
 export async function getUserMessages(env, userId) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: 'SELECT id, name, email, subject, message, created_at FROM contact_messages WHERE user_id = ? ORDER BY created_at DESC',
+    sql: 'SELECT id, name, email, subject, message, admin_reply, admin_replied_at, created_at FROM contact_messages WHERE user_id = ? ORDER BY created_at DESC',
     args: [userId],
   });
   return result.rows;
@@ -423,7 +425,7 @@ export async function getUserMessages(env, userId) {
 export async function getAllMessages(env) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: `SELECT m.id, m.user_id, m.name, m.email, m.subject, m.message, m.created_at,
+    sql: `SELECT m.id, m.user_id, m.name, m.email, m.subject, m.message, m.admin_reply, m.admin_replied_at, m.created_at,
       u.email AS user_email, u.name AS user_name
       FROM contact_messages m
       LEFT JOIN users u ON m.user_id = u.id
@@ -431,6 +433,15 @@ export async function getAllMessages(env) {
     args: [],
   });
   return result.rows;
+}
+
+export async function updateMessageReply(env, messageId, reply) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: "UPDATE contact_messages SET admin_reply = ?, admin_replied_at = datetime('now') WHERE id = ? RETURNING id, admin_reply, admin_replied_at",
+    args: [reply, messageId],
+  });
+  return result.rows[0] || null;
 }
 
 export async function deleteMessage(env, messageId) {
@@ -449,6 +460,38 @@ export async function getMessageStats(env) {
     args: [],
   });
   return result.rows[0] || { count: 0 };
+}
+
+// ── Admin: Create message to a user (compose) ─────────
+
+export async function createAdminMessage(env, userId, data) {
+  const db = getDb(env);
+  const { name, email, subject, message } = data;
+  const result = await db.execute({
+    sql: "INSERT INTO contact_messages (user_id, name, email, subject, message) VALUES (?, ?, ?, ?, ?) RETURNING id, name, email, subject, message, created_at",
+    args: [userId, name || 'Admin', email || '', subject || '', message],
+  });
+  return result.rows[0] || null;
+}
+
+// ── Users (Admin) ─────────────────────────────────────
+
+export async function getAllUsers(env) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT id, email, name, created_at FROM users ORDER BY created_at DESC',
+    args: [],
+  });
+  return result.rows;
+}
+
+export async function getMessageById(env, messageId) {
+  const db = getDb(env);
+  const result = await db.execute({
+    sql: 'SELECT id, user_id, name, email, subject, message, admin_reply, admin_replied_at, created_at FROM contact_messages WHERE id = ?',
+    args: [messageId],
+  });
+  return result.rows[0] || null;
 }
 
 /**
