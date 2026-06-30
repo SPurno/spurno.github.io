@@ -1,0 +1,9 @@
+node_modules/
+.env
+database/node_modules/
+database/package.json
+database/package-lock.json
+.DS_Store
+Thumbs.db
+*.log
+.vscode/

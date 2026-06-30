@@ -1,0 +1,61 @@
+import { createClient } from "@libsql/client";
+import { readFileSync } from "fs";
+
+const client = createClient({
+  url: "libsql://ecommercelog-spurno.aws-us-east-1.turso.io",
+  authToken: "eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODI4Mzg4MjUsImlkIjoiMDE5ZjE5NzItZmQwMS03ZDBkLWFkNWMtNWQ5YTkzZWI0NzBlIiwia2lkIjoiY3dfWmw5T3NsV2FnNFFkUjVHZUN0Nll2b19MTkdlUmY1STY1bEZVMXRCOCIsInJpZCI6ImVjYzBjNjcxLWUyMmMtNDA0Yy1hZjNmLWYzZDNlNjE4OTk5ZiJ9.4otvGu6MrGbhOb7JppDQwSXHXXsWDKf5miDw43Oba8M33U5wRNtK8DC8Zv2D-M-21nE6fo2cdazBjAgB4mgDAQ"
+});
+
+async function main() {
+  console.log("🚀 Initializing ShopVerse database...");
+
+  // Read schema
+  const schema = readFileSync("schema.sql", "utf-8");
+  const seed = readFileSync("seed.sql", "utf-8");
+
+  // Execute schema
+  console.log("📦 Creating tables...");
+  const statements = schema.split(";").filter(s => s.trim().length > 0);
+  for (const stmt of statements) {
+    try {
+      await client.execute(stmt.trim() + ";");
+    } catch (err) {
+      if (!err.message.includes("already exists")) {
+        console.error(`Error executing: ${stmt.substring(0, 50)}...`);
+        console.error(err.message);
+      }
+    }
+  }
+
+  // Execute seed
+  console.log("🌱 Seeding data...");
+  const seedStatements = seed.split(";").filter(s => s.trim().length > 0);
+  for (const stmt of seedStatements) {
+    try {
+      await client.execute(stmt.trim() + ";");
+    } catch (err) {
+      if (!err.message.includes("UNIQUE constraint") && !err.message.includes("already exists")) {
+        console.error(`Error executing: ${stmt.substring(0, 50)}...`);
+        console.error(err.message);
+      }
+    }
+  }
+
+  // Verify
+  console.log("✅ Verifying...");
+  const productCount = await client.execute("SELECT COUNT(*) as count FROM products;");
+  const categoryCount = await client.execute("SELECT COUNT(*) as count FROM categories;");
+  
+  console.log(`📊 Categories: ${categoryCount.rows[0].count}`);
+  console.log(`📊 Products: ${productCount.rows[0].count}`);
+  console.log("✅ Database initialization complete!");
+  
+  // Show some sample products
+  const sample = await client.execute("SELECT id, name, price FROM products LIMIT 5;");
+  console.log("\n📋 Sample products:");
+  for (const row of sample.rows) {
+    console.log(`   #${row.id} ${row.name} - $${row.price}`);
+  }
+}
+
+main().catch(console.error);
