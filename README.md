@@ -17,7 +17,7 @@
 
 ## 📖 Overview
 
-**SPurno Animation Studio** is the official portfolio and marketplace hub for premium motion background videos, animated templates, stock footage, and design assets. Built as a static GitHub Pages site, it showcases over **2,000+ assets** available on leading stock platforms including Adobe Stock, Shutterstock, Pond5, and Freepik.
+**SPurno Animation Studio** is the official portfolio and marketplace hub for premium motion background videos, animated templates, stock footage, and design assets. Built as a static GitHub Pages site, it showcases over **4,000+ assets** available on leading stock platforms including Adobe Stock, Shutterstock, Pond5, and Freepik.
 
 Created by **Faruk Ahmed** — a Web Developer, Motion Graphics Designer, and Animation Creator based in Dhaka, Bangladesh.
 
