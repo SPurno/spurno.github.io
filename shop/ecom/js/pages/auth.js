@@ -50,11 +50,6 @@ const AuthPage = {
           <div class="auth-footer">
             Don't have an account? <a href="#/login?type=register">Create one</a>
           </div>
-          <div style="margin-top:24px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text-muted)">
-            <strong style="color:var(--text-secondary)">Demo Accounts:</strong><br>
-            👤 User: demo@example.com / password123<br>
-            🔐 Admin: admin@shopverse.com / admin123
-          </div>
         </div>
       </div>
     `;

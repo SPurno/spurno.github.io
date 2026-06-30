@@ -423,11 +423,11 @@ const DB = {
 
   // === Admin: Product Management ===
   async createProduct(data) {
-    const { name, slug, description, price, compare_price, image_url, category_id, stock, featured } = data;
+    const { name, slug, description, price, compare_price, image_url, category_id, stock, featured, media_type, video_url, preview_url, preview_description, file_size, duration } = data;
     const result = await this.execute(
-      `INSERT INTO products (name, slug, description, price, compare_price, image_url, category_id, stock, featured)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [name, slug, description, price, compare_price || null, image_url, category_id || null, stock || 0, featured ? 1 : 0]
+      `INSERT INTO products (name, slug, description, price, compare_price, image_url, category_id, stock, featured, media_type, video_url, preview_url, preview_description, file_size, duration)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [name, slug, description, price, compare_price || null, image_url, category_id || null, stock || 0, featured ? 1 : 0, media_type || 'physical', video_url || null, preview_url || null, preview_description || null, file_size || null, duration || null]
     );
     return result.lastInsertRowid;
   },
@@ -436,7 +436,7 @@ const DB = {
     const fields = [];
     const params = [];
     
-    const allowedFields = ['name', 'slug', 'description', 'price', 'compare_price', 'image_url', 'images', 'category_id', 'stock', 'featured', 'rating', 'reviews_count'];
+    const allowedFields = ['name', 'slug', 'description', 'price', 'compare_price', 'image_url', 'images', 'category_id', 'stock', 'featured', 'rating', 'reviews_count', 'media_type', 'video_url', 'preview_url', 'preview_description', 'file_size', 'duration'];
     
     for (const [key, value] of Object.entries(data)) {
       if (allowedFields.includes(key)) {
@@ -452,6 +452,33 @@ const DB = {
       `UPDATE products SET ${fields.join(', ')} WHERE id = ?`,
       params
     );
+  },
+
+  // === Video Products ===
+  async createVideoProduct(data) {
+    return this.createProduct({
+      ...data,
+      media_type: 'video',
+      category_id: data.category_id || 7
+    });
+  },
+
+  async getVideoProducts(filters = {}) {
+    let sql = "SELECT * FROM products WHERE media_type = 'video'";
+    const params = [];
+    if (filters.search) {
+      sql += ' AND (name LIKE ? OR description LIKE ?)';
+      params.push(`%${filters.search}%`, `%${filters.search}%`);
+    }
+    if (filters.featured) {
+      sql += ' AND featured = 1';
+    }
+    sql += ' ORDER BY created_at DESC';
+    if (filters.limit) {
+      sql += ' LIMIT ?';
+      params.push(filters.limit);
+    }
+    return this.query(sql, params);
   },
 
   async deleteProduct(id) {

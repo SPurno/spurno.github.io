@@ -348,6 +348,7 @@ const AdminPage = {
                 <th style="width:40px">ID</th>
                 <th style="width:300px">Product</th>
                 <th>Category</th>
+                <th>Type</th>
                 <th>Price</th>
                 <th>Stock</th>
                 <th>Rating</th>
@@ -357,7 +358,7 @@ const AdminPage = {
             </thead>
             <tbody>
               ${products.length === 0 ? 
-                '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">No products found</td></tr>' :
+                '<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text-muted)">No products found</td></tr>' :
                 products.map(p => `
                   <tr>
                     <td style="color:var(--text-muted);font-size:0.85rem">#${p.id}</td>
@@ -372,6 +373,7 @@ const AdminPage = {
                       </div>
                     </td>
                     <td><span style="font-size:0.85rem">${p.category_name || '—'}</span></td>
+                    <td><span style="font-size:0.75rem;padding:2px 8px;border-radius:var(--radius-full);background:${p.media_type === 'video' ? 'rgba(108,99,255,0.15)' : p.media_type === 'digital' ? 'rgba(0,230,118,0.15)' : 'var(--bg-input)'};color:${p.media_type === 'video' ? 'var(--accent-1)' : p.media_type === 'digital' ? 'var(--success)' : 'var(--text-muted)'}">${p.media_type === 'video' ? '🎬 Video' : p.media_type === 'digital' ? '📄 Digital' : '📦 Physical'}</span></td>
                     <td><span style="font-weight:600;color:var(--accent-1)">$${parseFloat(p.price).toFixed(2)}</span></td>
                     <td>
                       <span style="color:${p.stock > 0 ? 'var(--success)' : 'var(--error)'};font-weight:600">
@@ -421,6 +423,8 @@ const AdminPage = {
       `<option value="${c.id}" ${product && product.category_id === c.id ? 'selected' : ''}>${c.name}</option>`
     ).join('');
 
+    const defaultMediaType = product ? (product.media_type || 'physical') : 'physical';
+
     Components.showModal(isEdit ? 'Edit Product' : 'Add Product', `
       <form id="productForm" onsubmit="AdminPage.saveProduct(event, ${productId || 'null'})" style="display:flex;flex-direction:column;gap:14px">
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
@@ -432,6 +436,14 @@ const AdminPage = {
             <label>Slug</label>
             <input type="text" id="pf_slug" value="${isEdit ? product.slug : ''}" placeholder="auto-generated">
           </div>
+        </div>
+        <div class="form-group">
+          <label>Product Type</label>
+          <select id="pf_media_type" onchange="AdminPage.toggleMediaTypeFields()" style="padding:12px 16px">
+            <option value="physical" ${defaultMediaType === 'physical' ? 'selected' : ''}>📦 Physical Product</option>
+            <option value="digital" ${defaultMediaType === 'digital' ? 'selected' : ''}>📄 Digital Download</option>
+            <option value="video" ${defaultMediaType === 'video' ? 'selected' : ''}>🎬 Video Clip</option>
+          </select>
         </div>
         <div class="form-group">
           <label>Description</label>
@@ -446,7 +458,7 @@ const AdminPage = {
             <label>Compare Price ($)</label>
             <input type="number" id="pf_compare" step="0.01" min="0" value="${isEdit && product.compare_price ? product.compare_price : ''}">
           </div>
-          <div class="form-group">
+          <div class="form-group" id="pf_stock_group">
             <label>Stock</label>
             <input type="number" id="pf_stock" min="0" value="${isEdit ? product.stock : '0'}">
           </div>
@@ -460,10 +472,40 @@ const AdminPage = {
             </select>
           </div>
           <div class="form-group">
-            <label>Image URL</label>
+            <label>Image/Thumbnail URL</label>
             <input type="url" id="pf_image" value="${isEdit ? (product.image_url || '') : ''}" placeholder="https://...">
           </div>
         </div>
+
+        <!-- Video-specific fields -->
+        <div id="pf_video_fields" style="display:${defaultMediaType === 'video' ? 'flex' : 'none'};flex-direction:column;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);border:1px solid var(--border-light)">
+          <div style="font-weight:600;font-size:0.9rem;color:var(--accent-1);margin-bottom:4px"><i class="fas fa-video"></i> Video Details</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+              <label>Video File URL</label>
+              <input type="url" id="pf_video_url" value="${isEdit && product.video_url ? product.video_url : ''}" placeholder="https://.../video.mp4">
+            </div>
+            <div class="form-group">
+              <label>Preview Video URL</label>
+              <input type="url" id="pf_preview_url" value="${isEdit && product.preview_url ? product.preview_url : ''}" placeholder="https://.../preview.mp4">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Preview Description</label>
+            <textarea id="pf_preview_desc" rows="2" style="resize:vertical" placeholder="Describe what the preview shows...">${isEdit && product.preview_description ? product.preview_description : ''}</textarea>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+            <div class="form-group">
+              <label>File Size (GB)</label>
+              <input type="number" id="pf_file_size" step="0.1" min="0" value="${isEdit && product.file_size ? product.file_size : ''}" placeholder="e.g. 2.4">
+            </div>
+            <div class="form-group">
+              <label>Duration (seconds)</label>
+              <input type="number" id="pf_duration" step="1" min="0" value="${isEdit && product.duration ? product.duration : ''}" placeholder="e.g. 720">
+            </div>
+          </div>
+        </div>
+
         <div style="display:flex;align-items:center;gap:8px">
           <input type="checkbox" id="pf_featured" ${isEdit && product.featured ? 'checked' : ''} style="width:auto">
           <label for="pf_featured" style="margin:0">Featured product</label>
@@ -492,19 +534,43 @@ const AdminPage = {
     });
   },
 
+  toggleMediaTypeFields() {
+    const type = document.getElementById('pf_media_type').value;
+    const videoFields = document.getElementById('pf_video_fields');
+    const stockGroup = document.getElementById('pf_stock_group');
+    if (videoFields) {
+      videoFields.style.display = type === 'video' ? 'flex' : 'none';
+    }
+    if (stockGroup) {
+      stockGroup.style.display = type === 'physical' ? 'block' : 'none';
+    }
+  },
+
   async saveProduct(event, productId) {
     event.preventDefault();
+    const mediaType = document.getElementById('pf_media_type').value;
     const data = {
       name: document.getElementById('pf_name').value,
       slug: document.getElementById('pf_slug').value || document.getElementById('pf_name').value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''),
       description: document.getElementById('pf_description').value,
       price: parseFloat(document.getElementById('pf_price').value),
       compare_price: document.getElementById('pf_compare').value ? parseFloat(document.getElementById('pf_compare').value) : null,
-      stock: parseInt(document.getElementById('pf_stock').value) || 0,
+      stock: mediaType === 'physical' ? (parseInt(document.getElementById('pf_stock').value) || 0) : 999,
       category_id: document.getElementById('pf_category').value ? parseInt(document.getElementById('pf_category').value) : null,
       image_url: document.getElementById('pf_image').value || null,
-      featured: document.getElementById('pf_featured').checked ? 1 : 0
+      featured: document.getElementById('pf_featured').checked ? 1 : 0,
+      media_type: mediaType
     };
+
+    // Video-specific fields
+    if (mediaType === 'video') {
+      data.video_url = document.getElementById('pf_video_url').value || null;
+      data.preview_url = document.getElementById('pf_preview_url').value || null;
+      data.preview_description = document.getElementById('pf_preview_desc').value || null;
+      data.file_size = document.getElementById('pf_file_size').value ? parseFloat(document.getElementById('pf_file_size').value) : null;
+      data.duration = document.getElementById('pf_duration').value ? parseInt(document.getElementById('pf_duration').value) : null;
+      if (!data.category_id) data.category_id = 7; // Default to Videos category
+    }
 
     try {
       if (productId) {

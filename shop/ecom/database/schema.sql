@@ -26,6 +26,12 @@ CREATE TABLE IF NOT EXISTS products (
   rating REAL DEFAULT 0,
   reviews_count INTEGER DEFAULT 0,
   featured INTEGER DEFAULT 0,
+  media_type TEXT DEFAULT 'physical' CHECK(media_type IN ('physical','digital','video')),
+  video_url TEXT,
+  preview_url TEXT,
+  preview_description TEXT,
+  file_size REAL,
+  duration INTEGER,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE SET NULL
 );

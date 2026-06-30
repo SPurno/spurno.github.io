@@ -7,7 +7,8 @@ INSERT OR IGNORE INTO categories (id, name, slug, description, image_url) VALUES
 (3, 'Home & Living', 'home-living', 'Beautiful home decor and furniture', 'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400&q=80'),
 (4, 'Sports & Outdoors', 'sports-outdoors', 'Equipment for active lifestyle', 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80'),
 (5, 'Books & Media', 'books-media', 'Books, eBooks and media', 'https://images.unsplash.com/photo-1495446815901-a7297e633e8d?w=400&q=80'),
-(6, 'Beauty & Health', 'beauty-health', 'Skincare, makeup and wellness', 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80');
+(6, 'Beauty & Health', 'beauty-health', 'Skincare, makeup and wellness', 'https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&q=80'),
+(7, 'Videos', 'videos', 'Premium video clips and digital content', 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=400&q=80');
 
 -- Products
 INSERT OR IGNORE INTO products (id, name, slug, description, price, compare_price, image_url, images, category_id, stock, rating, reviews_count, featured) VALUES
@@ -33,7 +34,12 @@ INSERT OR IGNORE INTO products (id, name, slug, description, price, compare_pric
 
 (11, 'Bestselling Fiction Novel', 'fiction-novel', 'The gripping new thriller that everyone is talking about. A masterfully crafted story of mystery, suspense, and unexpected twists that will keep you turning pages all night.', 24.99, 29.99, 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80', '["https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80","https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80"]', 5, 200, 4.8, 312, 1),
 
-(12, 'Wireless Earbuds', 'wireless-earbuds', 'Compact true wireless earbuds with active noise cancellation, IPX5 waterproof rating, and 8-hour battery life. Comes with a wireless charging case.', 179.99, 199.99, 'https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=600&q=80', '["https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=600&q=80","https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&q=80"]', 1, 90, 4.6, 178, 0);
+(12, 'Wireless Earbuds', 'wireless-earbuds', 'Compact true wireless earbuds with active noise cancellation, IPX5 waterproof rating, and 8-hour battery life. Comes with a wireless charging case.', 179.99, 199.99, 'https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=600&q=80', '["https://images.unsplash.com/photo-1590658268037-6bf12f032f55?w=600&q=80","https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&q=80"]', 1, 90, 4.6, 178, 0),
+
+-- Video Products
+(13, 'Cinematic Nature Reel — 4K', 'cinematic-nature-reel', 'A stunning collection of cinematic nature footage captured in 4K resolution. Features breathtaking landscapes, wildlife encounters, and atmospheric time-lapses from around the world. Perfect for video editing, content creation, or personal enjoyment.', 29.99, 49.99, 'https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&q=80', '["https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&q=80","https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80"]', 7, 999, 4.9, 45, 1, 'video', 'https://example.com/videos/nature-reel-4k.mp4', 'https://example.com/previews/nature-reel-preview.mp4', 'Watch a 30-second preview of this stunning 4K nature collection. Full reel runs 12 minutes with 20 unique scenes.', 2.4, 720),
+
+(14, 'Urban Time-lapse Compilation', 'urban-timelapse', 'Mesmerizing time-lapse footage of cityscapes from New York, Tokyo, London, and Dubai. Captured over 6 months in stunning 4K HDR. Includes day-to-night transitions, traffic flows, and weather phenomena.', 24.99, 39.99, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80', '["https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80"]', 7, 999, 4.7, 32, 0, 'video', 'https://example.com/videos/urban-timelapse.mp4', 'https://example.com/previews/urban-timelapse-preview.mp4', 'Preview this 8-minute urban time-lapse journey across 4 major world cities in breathtaking 4K HDR.', 1.8, 480);
 
 -- Demo user (password: "password123" hashed)
 INSERT OR IGNORE INTO users (id, name, email, password, is_admin) VALUES

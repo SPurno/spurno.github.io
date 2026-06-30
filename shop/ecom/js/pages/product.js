@@ -25,13 +25,39 @@ const ProductPage = {
 
       const reviews = await DB.getProductReviews(product.id);
       const isInWishlist = await DB.isInWishlist(product.id);
+      const isVideo = product.media_type === 'video';
       const images = JSON.parse(product.images || '[]');
       const allImages = [product.image_url, ...images.filter(i => i !== product.image_url)];
       const hasDiscount = product.compare_price && product.compare_price > product.price;
 
+      const formatDuration = (seconds) => {
+        if (!seconds) return '';
+        const m = Math.floor(seconds / 60);
+        const s = seconds % 60;
+        return `${m}:${s.toString().padStart(2, '0')}`;
+      };
+
       content.innerHTML = `
         <div class="product-detail page-enter">
           <div class="product-images">
+            ${isVideo ? `
+            <div class="product-main-image" style="background:#000;border-radius:var(--radius-md);overflow:hidden;position:relative">
+              ${product.preview_url ? `
+              <video class="video-preview-player" controls preload="metadata" poster="${product.image_url}"
+                     style="width:100%;height:100%;object-fit:contain;max-height:500px;display:block">
+                <source src="${product.preview_url}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>` : `
+              <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;gap:16px;color:var(--text-muted)">
+                <i class="fas fa-film" style="font-size:4rem;opacity:0.3"></i>
+                <span>Preview video not available</span>
+              </div>`}
+              ${product.duration ? `
+              <div style="position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.8);color:#fff;padding:4px 10px;border-radius:var(--radius-sm);font-size:0.8rem">
+                <i class="fas fa-clock"></i> ${formatDuration(product.duration)}
+              </div>` : ''}
+            </div>
+            ` : `
             <div class="product-main-image" id="mainImage">
               <img src="${allImages[0] || product.image_url}" alt="${product.name}">
             </div>
@@ -43,11 +69,14 @@ const ProductPage = {
                   <img src="${img}" alt="${product.name}">
                 </div>
               `).join('')}
-            </div>` : ''}
+            </div>` : ''}`}
           </div>
           <div class="product-info">
-            <div class="product-card-category" style="margin-bottom:8px;font-size:0.85rem">
-              ${product.category_name || 'General'}
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+              <span class="product-card-category" style="font-size:0.85rem">
+                ${product.category_name || 'General'}
+              </span>
+              ${isVideo ? '<span style="font-size:0.75rem;padding:2px 8px;border-radius:var(--radius-full);background:rgba(108,99,255,0.15);color:var(--accent-1)">🎬 Video</span>' : ''}
             </div>
             <h1>${product.name}</h1>
             <div class="product-meta">
@@ -58,7 +87,7 @@ const ProductPage = {
               <span style="color:var(--text-muted)">|</span>
               <span style="color:${product.stock > 0 ? 'var(--success)' : 'var(--error)'}">
                 <i class="fas fa-${product.stock > 0 ? 'check-circle' : 'times-circle'}"></i>
-                ${product.stock > 0 ? 'In Stock' : 'Out of Stock'}
+                ${product.stock > 0 ? 'Available' : 'Unavailable'}
               </span>
             </div>
             <div class="product-price-detail">
@@ -68,8 +97,41 @@ const ProductPage = {
                 -${Math.round((1 - product.price / product.compare_price) * 100)}%</span>` : ''}
             </div>
             <p class="product-description">${product.description}</p>
+
+            ${isVideo && product.file_size ? `
+            <div style="display:flex;gap:16px;margin:16px 0;padding:12px 16px;background:var(--bg-input);border-radius:var(--radius-sm)">
+              <div style="text-align:center;flex:1">
+                <div style="font-size:1.2rem">🎬</div>
+                <div style="font-weight:600;font-size:0.9rem">${product.file_size}GB</div>
+                <div style="font-size:0.75rem;color:var(--text-muted)">File Size</div>
+              </div>
+              ${product.duration ? `
+              <div style="text-align:center;flex:1">
+                <div style="font-size:1.2rem">⏱️</div>
+                <div style="font-weight:600;font-size:0.9rem">${formatDuration(product.duration)}</div>
+                <div style="font-size:0.75rem;color:var(--text-muted)">Duration</div>
+              </div>` : ''}
+              <div style="text-align:center;flex:1">
+                <div style="font-size:1.2rem">📥</div>
+                <div style="font-weight:600;font-size:0.9rem">Instant</div>
+                <div style="font-size:0.75rem;color:var(--text-muted)">Download</div>
+              </div>
+            </div>` : ''}
+
+            ${isVideo && product.preview_description ? `
+            <div style="margin:16px 0;padding:16px;background:var(--bg-input);border-left:3px solid var(--accent-1);border-radius:var(--radius-sm)">
+              <div style="font-weight:600;font-size:0.85rem;margin-bottom:6px;color:var(--accent-1)">
+                <i class="fas fa-eye"></i> Preview
+              </div>
+              <p style="font-size:0.9rem;color:var(--text-secondary);margin:0">${product.preview_description}</p>
+            </div>` : ''}
             
             <div class="product-actions">
+              ${isVideo ? `
+              <button class="btn btn-primary btn-lg" onclick="ProductPage.addToCart()" style="flex:1">
+                <i class="fas fa-download"></i> Purchase & Download
+              </button>
+              ` : `
               <div class="quantity-selector">
                 <button onclick="ProductPage.changeQty(-1)">−</button>
                 <span id="productQty">1</span>
@@ -77,10 +139,10 @@ const ProductPage = {
               </div>
               <button class="btn btn-primary btn-lg" onclick="ProductPage.addToCart()" ${product.stock <= 0 ? 'disabled' : ''}>
                 <i class="fas fa-shopping-bag"></i> Add to Cart
-              </button>
+              </button>`}
               <button class="btn btn-secondary btn-icon btn-lg" onclick="App.toggleWishlistById(${product.id})" 
                       style="width:56px;height:56px;font-size:1.3rem" id="wishlistBtn">
-                <i class="fas fa-${isInWishlist ? 'heart' : 'heart'}" style="color:${isInWishlist ? 'var(--error)' : 'inherit'}"></i>
+                <i class="fas fa-heart" style="color:${isInWishlist ? 'var(--error)' : 'inherit'}"></i>
               </button>
             </div>
 
@@ -97,14 +159,15 @@ const ProductPage = {
               </div>
               <div class="product-info-item">
                 <strong>Availability</strong>
-                ${product.stock > 0 ? `${product.stock} in stock` : 'Out of stock'}
+                ${product.stock > 0 ? 'Digital download' : 'Unavailable'}
               </div>
               <div class="product-info-item">
-                <strong>Shipping</strong>
-                Free shipping available
+                <strong>Delivery</strong>
+                ${isVideo ? 'Instant download after purchase' : 'Free shipping available'}
               </div>
             </div>
 
+            ${!isVideo ? `
             <div style="display:flex;gap:16px;margin-top:24px">
               <i class="fas fa-truck" style="color:var(--accent-1)"></i>
               <div>
@@ -118,7 +181,21 @@ const ProductPage = {
                 <strong>Easy Returns</strong>
                 <div style="font-size:0.85rem;color:var(--text-muted)">30-day return policy</div>
               </div>
+            </div>` : `
+            <div style="display:flex;gap:16px;margin-top:24px">
+              <i class="fas fa-download" style="color:var(--accent-1)"></i>
+              <div>
+                <strong>Instant Download</strong>
+                <div style="font-size:0.85rem;color:var(--text-muted)">Access your video immediately after purchase</div>
+              </div>
             </div>
+            <div style="display:flex;gap:16px;margin-top:12px">
+              <i class="fas fa-shield-alt" style="color:var(--accent-1)"></i>
+              <div>
+                <strong>Secure Access</strong>
+                <div style="font-size:0.85rem;color:var(--text-muted)">High-quality 4K video with watermark protection</div>
+              </div>
+            </div>`}
           </div>
         </div>
 
