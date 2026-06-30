@@ -70,7 +70,7 @@ const AdminMedia = {
                 </div>
                 <div class="form-group">
                   <label>Upload Preset (unsigned)</label>
-                  <input type="text" id="cloudinaryUploadPreset" placeholder="e.g. shopverse_preset" required>
+                  <input type="text" id="cloudinaryUploadPreset" placeholder="e.g. animation_studio" value="animation_studio" required>
                 </div>
                 <button type="submit" class="btn btn-primary btn-block">
                   <i class="fas fa-check"></i> Save Configuration
