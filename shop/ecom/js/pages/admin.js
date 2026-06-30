@@ -44,6 +44,13 @@ const AdminPage = {
             <button class="admin-nav-item" data-tab="coupons" onclick="AdminPage.switchTab('coupons')">
               <i class="fas fa-tag"></i> Coupons
             </button>
+            <button class="admin-nav-item" data-tab="media" onclick="AdminPage.switchTab('media')">
+              <i class="fas fa-cloud-upload-alt"></i> Media
+            </button>
+            <hr class="admin-divider">
+            <button class="admin-nav-item" data-tab="settings" onclick="AdminPage.switchTab('settings')">
+              <i class="fas fa-cog"></i> Settings
+            </button>
             <hr class="admin-divider">
             <a href="#/" class="admin-nav-item" style="display:flex;align-items:center;gap:10px;padding:12px 16px;color:var(--text-muted);text-decoration:none;border-radius:var(--radius-sm);font-size:0.9rem;transition:var(--transition-normal)">
               <i class="fas fa-arrow-left"></i> Back to Store
@@ -84,6 +91,8 @@ const AdminPage = {
       case 'orders': this.loadOrders(); break;
       case 'users': this.loadUsers(); break;
       case 'coupons': this.loadCoupons(); break;
+      case 'media': AdminMedia.render(); break;
+      case 'settings': AdminSettings.render(); break;
     }
   },
 

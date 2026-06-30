@@ -554,6 +554,114 @@ const DB = {
   // === Admin: User Management ===
   async getAllUsers() {
     return this.query('SELECT id, name, email, phone, is_admin, created_at FROM users ORDER BY created_at DESC');
+  },
+
+  // === Media Library ===
+  async getMedia(filters = {}) {
+    let sql = 'SELECT * FROM media WHERE 1=1';
+    const params = [];
+    if (filters.media_type) {
+      sql += ' AND media_type = ?';
+      params.push(filters.media_type);
+    }
+    if (filters.search) {
+      sql += ' AND (original_name LIKE ? OR alt_text LIKE ?)';
+      params.push(`%${filters.search}%`, `%${filters.search}%`);
+    }
+    sql += ' ORDER BY created_at DESC';
+    if (filters.limit) {
+      sql += ' LIMIT ?';
+      params.push(filters.limit);
+    } else {
+      sql += ' LIMIT 100';
+    }
+    return this.query(sql, params);
+  },
+
+  async addMedia(mediaData) {
+    const { filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url, alt_text, uploaded_by } = mediaData;
+    const result = await this.execute(
+      `INSERT INTO media (filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url, alt_text, uploaded_by)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [filename, original_name, url, secure_url, public_id, media_type, format, size || null, width || null, height || null, duration || null, thumbnail_url || null, alt_text || null, uploaded_by || null]
+    );
+    return result.lastInsertRowid;
+  },
+
+  async deleteMedia(id) {
+    return this.execute('DELETE FROM media WHERE id = ?', [id]);
+  },
+
+  async getMediaById(id) {
+    const items = await this.query('SELECT * FROM media WHERE id = ?', [id]);
+    return items.length > 0 ? items[0] : null;
+  },
+
+  // === Admin Password Management ===
+  async getUserByEmail(email) {
+    const users = await this.query('SELECT * FROM users WHERE email = ?', [email]);
+    return users.length > 0 ? users[0] : null;
+  },
+
+  async getUserById(id) {
+    const users = await this.query('SELECT * FROM users WHERE id = ?', [id]);
+    return users.length > 0 ? users[0] : null;
+  },
+
+  async updateUserPassword(userId, newPasswordHash) {
+    return this.execute('UPDATE users SET password = ? WHERE id = ?', [newPasswordHash, userId]);
+  },
+
+  async storePasswordResetCode(email, code, expiresAt) {
+    // Invalidate old codes
+    await this.execute("UPDATE password_reset_codes SET used = 1 WHERE email = ? AND used = 0", [email]);
+    return this.execute(
+      'INSERT INTO password_reset_codes (email, code, expires_at) VALUES (?, ?, ?)',
+      [email, code, expiresAt]
+    );
+  },
+
+  async verifyResetCode(email, code) {
+    const codes = await this.query(
+      "SELECT * FROM password_reset_codes WHERE email = ? AND code = ? AND used = 0 AND expires_at > datetime('now')",
+      [email, code]
+    );
+    return codes.length > 0 ? codes[0] : null;
+  },
+
+  async markResetCodeUsed(id) {
+    return this.execute('UPDATE password_reset_codes SET used = 1 WHERE id = ?', [id]);
+  },
+
+  async setSecurityQuestion(userId, question, answerHash, recoveryEmail) {
+    const existing = await this.query('SELECT * FROM admin_security WHERE user_id = ?', [userId]);
+    if (existing.length > 0) {
+      return this.execute(
+        'UPDATE admin_security SET question = ?, answer_hash = ?, recovery_email = ?, updated_at = CURRENT_TIMESTAMP WHERE user_id = ?',
+        [question, answerHash, recoveryEmail || null, userId]
+      );
+    } else {
+      return this.execute(
+        'INSERT INTO admin_security (user_id, question, answer_hash, recovery_email) VALUES (?, ?, ?, ?)',
+        [userId, question, answerHash, recoveryEmail || null]
+      );
+    }
+  },
+
+  async getSecurityQuestion(email) {
+    const result = await this.query(
+      'SELECT s.question, s.recovery_email, u.email FROM admin_security s JOIN users u ON s.user_id = u.id WHERE u.email = ?',
+      [email]
+    );
+    return result.length > 0 ? result[0] : null;
+  },
+
+  async verifySecurityAnswer(email, answerHash) {
+    const result = await this.query(
+      'SELECT s.*, u.id as user_id FROM admin_security s JOIN users u ON s.user_id = u.id WHERE u.email = ? AND s.answer_hash = ?',
+      [email, answerHash]
+    );
+    return result.length > 0 ? result[0] : null;
   }
 };
 

@@ -22,6 +22,7 @@ const App = {
     Router.register('/contact', () => ContactPage.render());
     Router.register('/about', () => AboutPage.render());
     Router.register('/admin', () => AdminPage.render());
+    Router.register('/forgot-password', (p) => ForgotPasswordPage.render(p));
 
     // Setup UI
     this.setupNavigation();
@@ -31,6 +32,9 @@ const App = {
     // Update badges
     await this.updateCartBadge();
     await this.updateWishlistBadge();
+
+    // Initialize video players
+    VideoPlayer.init();
 
     // Start router
     Router.start();

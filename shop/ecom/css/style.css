@@ -2854,3 +2854,546 @@ input:focus, textarea:focus, select:focus {
     min-width: 200px;
   }
 }
+
+/* ============================================
+   Media Manager Styles
+   ============================================ */
+
+.media-manager {
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.media-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.media-filter-group {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+}
+
+.media-filter-btn {
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: var(--transition-fast);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.media-filter-btn:hover {
+  color: var(--text-primary);
+}
+
+.media-filter-btn.active {
+  background: var(--accent-gradient);
+  color: white;
+}
+
+/* Upload Dropzone */
+.media-upload-area {
+  margin-bottom: 24px;
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.media-upload-dropzone {
+  border: 2px dashed var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 48px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  background: var(--bg-input);
+}
+
+.media-upload-dropzone:hover,
+.media-upload-dropzone.dragover {
+  border-color: var(--accent-1);
+  background: rgba(108, 99, 255, 0.05);
+}
+
+.media-upload-dropzone.dragover {
+  border-style: solid;
+  box-shadow: 0 0 30px rgba(108, 99, 255, 0.15);
+}
+
+.media-upload-icon {
+  font-size: 3rem;
+  color: var(--accent-1);
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.media-upload-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.media-upload-item {
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.media-upload-item-info {
+  min-width: 200px;
+  flex: 1;
+}
+
+.media-upload-item-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.media-upload-item-size {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.media-upload-item-bar {
+  flex: 2;
+  height: 6px;
+  background: var(--bg-input);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.media-upload-item-fill {
+  height: 100%;
+  background: var(--accent-gradient);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.media-upload-item-status {
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Config Prompt */
+.media-config-prompt {
+  margin-bottom: 24px;
+}
+
+.media-config-card {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Media Grid */
+.media-grid-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.media-item {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: var(--transition-normal);
+}
+
+.media-item:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--border-color);
+}
+
+.media-item-preview {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: var(--bg-secondary);
+  position: relative;
+}
+
+.media-item-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition-slow);
+}
+
+.media-item:hover .media-item-preview img {
+  transform: scale(1.05);
+}
+
+.media-item-video-thumb {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.media-item-video-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media-item-video-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: rgba(108, 99, 255, 0.9);
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+}
+
+.media-item-info {
+  padding: 12px 14px;
+}
+
+.media-item-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 4px;
+}
+
+.media-item-meta {
+  display: flex;
+  gap: 8px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.media-item-actions {
+  display: flex;
+  gap: 4px;
+  padding: 0 14px 12px;
+}
+
+.media-action-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: var(--bg-input);
+  transition: var(--transition-fast);
+  cursor: pointer;
+  border: none;
+}
+
+.media-action-btn:hover {
+  background: rgba(108, 99, 255, 0.1);
+  color: var(--accent-1);
+}
+
+.media-action-btn.delete:hover {
+  background: rgba(255, 82, 82, 0.1);
+  color: var(--error);
+}
+
+.media-empty {
+  text-align: center;
+  padding: 60px 24px;
+}
+
+@media (max-width: 768px) {
+  .media-grid-items {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  .media-upload-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .media-upload-item-bar {
+    width: 100%;
+  }
+  .media-upload-item-status {
+    text-align: left;
+  }
+}
+
+/* ============================================
+   Admin Settings Styles
+   ============================================ */
+
+.admin-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 720px;
+  animation: fadeInUp 0.4s ease-out;
+}
+
+.settings-card {
+  overflow: hidden;
+}
+
+.settings-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.settings-card-header i {
+  font-size: 1.1rem;
+  color: var(--accent-1);
+}
+
+.settings-card-body {
+  padding: 24px;
+}
+
+.settings-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.settings-info-item {}
+
+.settings-info-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.settings-info-value {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .settings-info-grid {
+    grid-template-columns: 1fr;
+  }
+  .admin-settings {
+    max-width: 100%;
+  }
+}
+
+/* ============================================
+   SPurno Video Player Styles
+   ============================================ */
+
+.spurno-player {
+  position: relative;
+  background: #000;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.spurno-player .spurno-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.spurno-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  background: rgba(108, 99, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-normal);
+  z-index: 2;
+  box-shadow: 0 4px 24px rgba(108, 99, 255, 0.4);
+}
+
+.spurno-play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  background: var(--accent-1);
+}
+
+.spurno-play-btn svg {
+  margin-left: 3px;
+}
+
+/* Controls */
+.spurno-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);
+  padding: 40px 16px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.spurno-player:hover .spurno-controls,
+.spurno-player:focus .spurno-controls {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Progress bar */
+.spurno-progress {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  position: relative;
+  transition: height 0.15s ease;
+}
+
+.spurno-progress:hover {
+  height: 6px;
+}
+
+.spurno-progress-filled {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  border-radius: 2px;
+  transition: width 0.1s linear;
+  position: relative;
+}
+
+.spurno-progress-thumb {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-1);
+  opacity: 0;
+  transition: opacity 0.2s;
+  box-shadow: 0 0 8px rgba(108,99,255,0.5);
+}
+
+.spurno-progress:hover .spurno-progress-thumb {
+  opacity: 1;
+}
+
+/* Control buttons */
+.spurno-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.spurno-btn:hover {
+  background: rgba(255,255,255,0.1);
+}
+
+/* Watermark */
+.spurno-watermark {
+  font-family: 'Inter', sans-serif;
+  pointer-events: none;
+}
+
+.spurno-watermark-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Fullscreen */
+.spurno-player:-webkit-full-screen {
+  border-radius: 0;
+}
+
+.spurno-player:fullscreen {
+  border-radius: 0;
+}
+
+.spurno-player:-webkit-full-screen .spurno-controls {
+  padding: 60px 24px 20px;
+}
+
+.spurno-player:fullscreen .spurno-controls {
+  padding: 60px 24px 20px;
+}
+
+/* ============================================
+   Forgot Password Page Styles
+   ============================================ */
+
+.forgot-password-page {
+  min-height: calc(100vh - var(--nav-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+}
+
+/* ============================================
+   Video Player in Product Detail
+   ============================================ */
+
+.product-main-image .spurno-player {
+  border-radius: var(--radius-md) !important;
+}
+
+.product-main-image .spurno-player .spurno-video {
+  max-height: 500px;
+}
+
+.product-main-image .spurno-player:-webkit-full-screen .spurno-video {
+  max-height: 100vh;
+}
+
+.product-main-image .spurno-player:fullscreen .spurno-video {
+  max-height: 100vh;
+}

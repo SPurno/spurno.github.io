@@ -41,7 +41,7 @@ const AuthPage = {
               <label style="display:flex;align-items:center;gap:8px;cursor:pointer">
                 <input type="checkbox" checked> Remember me
               </label>
-              <a href="#" style="color:var(--accent-1)">Forgot password?</a>
+              <a href="#/forgot-password" style="color:var(--accent-1)">Forgot password?</a>
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg">
               <i class="fas fa-sign-in-alt"></i> Sign In
@@ -121,6 +121,7 @@ const AuthPage = {
         email: 'demo@example.com',
         is_admin: false
       }));
+      localStorage.setItem('shop_password', password);
       Components.toast('Welcome back, Demo User!', 'success');
       App.updateAuthUI();
       Router.navigate('#/');
@@ -133,6 +134,7 @@ const AuthPage = {
         email: 'admin@shopverse.com',
         is_admin: true
       }));
+      localStorage.setItem('shop_password', password);
       Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
       App.updateAuthUI();
       Router.navigate('#/admin');
@@ -157,8 +159,10 @@ const AuthPage = {
     localStorage.setItem('shop_user', JSON.stringify({
       id: Date.now(),
       name,
-      email
+      email,
+      is_admin: false
     }));
+    localStorage.setItem('shop_password', password);
     Components.toast(`Welcome, ${name}!`, 'success');
     App.updateAuthUI();
     Router.navigate('#/');

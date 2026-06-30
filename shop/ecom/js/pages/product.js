@@ -42,12 +42,12 @@ const ProductPage = {
           <div class="product-images">
             ${isVideo ? `
             <div class="product-main-image" style="background:#000;border-radius:var(--radius-md);overflow:hidden;position:relative">
-              ${product.preview_url ? `
-              <video class="video-preview-player" controls preload="metadata" poster="${product.image_url}"
-                     style="width:100%;height:100%;object-fit:contain;max-height:500px;display:block">
-                <source src="${product.preview_url}" type="video/mp4">
-                Your browser does not support the video tag.
-              </video>` : `
+              ${product.preview_url ? VideoPlayer.render({
+                src: product.preview_url,
+                poster: product.image_url,
+                height: '100%',
+                controls: true
+              }) : `
               <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:350px;gap:16px;color:var(--text-muted)">
                 <i class="fas fa-film" style="font-size:4rem;opacity:0.3"></i>
                 <span>Preview video not available</span>
@@ -236,6 +236,9 @@ const ProductPage = {
       console.error('Product page error:', error);
       content.innerHTML = Components.emptyState('😔', 'Failed to load product', error.message, 'Back to Shop', '#/shop');
     }
+
+    // Initialize video players if any
+    VideoPlayer.init();
   },
 
   currentQty: 1,

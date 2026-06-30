@@ -135,3 +135,45 @@ CREATE TABLE IF NOT EXISTS coupons (
   expires_at DATETIME,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Media library table
+CREATE TABLE IF NOT EXISTS media (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  filename TEXT NOT NULL,
+  original_name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  secure_url TEXT NOT NULL,
+  public_id TEXT NOT NULL,
+  media_type TEXT NOT NULL CHECK(media_type IN ('image','video','audio','document')),
+  format TEXT,
+  size INTEGER,
+  width INTEGER,
+  height INTEGER,
+  duration REAL,
+  thumbnail_url TEXT,
+  alt_text TEXT,
+  uploaded_by INTEGER,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (uploaded_by) REFERENCES users(id) ON DELETE SET NULL
+);
+
+-- Password reset codes table
+CREATE TABLE IF NOT EXISTS password_reset_codes (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL,
+  code TEXT NOT NULL,
+  expires_at DATETIME NOT NULL,
+  used INTEGER DEFAULT 0,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Security questions for password recovery
+CREATE TABLE IF NOT EXISTS admin_security (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  user_id INTEGER NOT NULL UNIQUE,
+  question TEXT NOT NULL,
+  answer_hash TEXT NOT NULL,
+  recovery_email TEXT,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
