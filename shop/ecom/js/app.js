@@ -6,6 +6,9 @@ const App = {
   async init() {
     console.log('🚀 ShopVerse initializing...');
 
+    // Initialize database client (must run after the Turso module script)
+    DB.init();
+
     // Register routes
     Router.register('/', (p) => HomePage.render(p));
     Router.register('/shop', (p) => ShopPage.render(p));

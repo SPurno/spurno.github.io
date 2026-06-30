@@ -530,5 +530,4 @@ const DB = {
   }
 };
 
-// Initialize
-DB.init();
+
