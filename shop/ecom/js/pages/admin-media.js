@@ -57,17 +57,21 @@ const AdminMedia = {
           <div class="media-config-card glass">
             <div style="text-align:center;padding:32px">
               <div style="font-size:3rem;margin-bottom:16px;opacity:0.5">☁️</div>
-              <h3 style="margin-bottom:8px">Cloudinary Upload — Almost Ready!</h3>
-              <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:4px">
-                Cloud name <strong style="color:var(--accent-1)">pzyegeqn</strong> is configured. 
-              </p>
+              <h3 style="margin-bottom:8px">Configure Cloudinary Upload</h3>
               <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px">
-                You need an <strong>unsigned upload preset</strong>. Create one in your 
-                <a href="https://cloudinary.com/console/settings/upload" target="_blank" style="color:var(--accent-1)">Cloudinary Dashboard → Settings → Upload</a>,
-                then enter the preset name below.
+                Enter your Cloudinary cloud name and an <strong>unsigned upload preset</strong>. 
+                Create a preset at 
+                <a href="https://cloudinary.com/console/settings/upload" target="_blank" style="color:var(--accent-1)">Cloudinary → Settings → Upload</a>.
               </p>
               <form onsubmit="AdminMedia.saveCloudinaryConfig(event)" style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
-                <input type="text" id="cloudinaryUploadPreset" placeholder="Upload preset name (e.g. shopverse_preset)" required>
+                <div class="form-group">
+                  <label>Cloud Name</label>
+                  <input type="text" id="cloudinaryCloudName" placeholder="e.g. mycloud" value="pzyegeqn" required>
+                </div>
+                <div class="form-group">
+                  <label>Upload Preset (unsigned)</label>
+                  <input type="text" id="cloudinaryUploadPreset" placeholder="e.g. shopverse_preset" required>
+                </div>
                 <button type="submit" class="btn btn-primary btn-block">
                   <i class="fas fa-check"></i> Save Configuration
                 </button>
@@ -93,28 +97,25 @@ const AdminMedia = {
   },
 
   checkCloudinaryConfig() {
-    // Check if Cloudinary is already fully configured
+    // Clear any stale auto-saved config to reset the form
     const config = localStorage.getItem('shop_cloudinary_config');
     if (config) {
       try {
         const parsed = JSON.parse(config);
+        // If config has both cloudName and uploadPreset, it's valid — hide the prompt
         if (parsed.cloudName && parsed.uploadPreset) {
           const prompt = document.getElementById('mediaConfigPrompt');
           const dropzone = document.getElementById('mediaDropzone');
           if (prompt) prompt.style.display = 'none';
           if (dropzone) dropzone.style.pointerEvents = 'all';
+          // Pre-fill the form fields with saved values
+          const cn = document.getElementById('cloudinaryCloudName');
+          const up = document.getElementById('cloudinaryUploadPreset');
+          if (cn) cn.value = parsed.cloudName;
+          if (up) up.value = parsed.uploadPreset;
           return;
         }
       } catch (e) {}
-    }
-
-    // Pre-fill cloud name only if no config exists at all
-    if (!config) {
-      localStorage.setItem('shop_cloudinary_config', JSON.stringify({ 
-        cloudName: 'pzyegeqn', 
-        apiKey: '799412167264845',
-        uploadPreset: '' 
-      }));
     }
 
     const prompt = document.getElementById('mediaConfigPrompt');
@@ -125,10 +126,11 @@ const AdminMedia = {
 
   saveCloudinaryConfig(event) {
     event.preventDefault();
+    const cloudName = document.getElementById('cloudinaryCloudName').value.trim();
     const uploadPreset = document.getElementById('cloudinaryUploadPreset').value.trim();
-    if (uploadPreset) {
+    if (cloudName && uploadPreset) {
       localStorage.setItem('shop_cloudinary_config', JSON.stringify({
-        cloudName: 'pzyegeqn',
+        cloudName,
         apiKey: '799412167264845',
         uploadPreset
       }));
