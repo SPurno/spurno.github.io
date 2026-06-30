@@ -13,9 +13,9 @@ const AdminPage = {
     
     // Admin access guard
     const user = App.getUser();
-    if (!user) {
+    if (!user || !user.is_admin) {
       content.innerHTML = Components.emptyState(
-        '🔒', 'Admin Access Required', 'Please sign in as an admin to access the dashboard.',
+        '🔒', 'Admin Access Required', 'Please sign in with an admin account to access the dashboard.',
         'Sign In', '#/login'
       );
       return;

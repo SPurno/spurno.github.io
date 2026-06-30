@@ -39,6 +39,10 @@ INSERT OR IGNORE INTO products (id, name, slug, description, price, compare_pric
 INSERT OR IGNORE INTO users (id, name, email, password, is_admin) VALUES
 (1, 'Demo User', 'demo@example.com', '$2b$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfAjkMBcGmFOkQfWXqF0YqYLzqMy', 0);
 
+-- Admin user (password: "admin123" hashed)
+INSERT OR IGNORE INTO users (id, name, email, password, is_admin) VALUES
+(2, 'Admin', 'admin@shopverse.com', '$2b$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfAjkMBcGmFOkQfWXqF0YqYLzqMy', 1);
+
 -- Sample reviews
 INSERT OR IGNORE INTO reviews (id, product_id, author_name, rating, comment) VALUES
 (1, 1, 'Alex M.', 5, 'Best headphones I have ever owned! The noise cancellation is incredible and the sound quality is top-notch.'),

@@ -51,9 +51,9 @@ const AuthPage = {
             Don't have an account? <a href="#/login?type=register">Create one</a>
           </div>
           <div style="margin-top:24px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);font-size:0.85rem;color:var(--text-muted)">
-            <strong style="color:var(--text-secondary)">Demo Account:</strong><br>
-            Email: demo@example.com<br>
-            Password: password123
+            <strong style="color:var(--text-secondary)">Demo Accounts:</strong><br>
+            👤 User: demo@example.com / password123<br>
+            🔐 Admin: admin@shopverse.com / admin123
           </div>
         </div>
       </div>
@@ -118,18 +118,31 @@ const AuthPage = {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
-    // For demo purposes, accept demo credentials
+    // Demo user credentials
     if (email === 'demo@example.com' && password === 'password123') {
       localStorage.setItem('shop_user', JSON.stringify({
         id: 1,
         name: 'Demo User',
-        email: 'demo@example.com'
+        email: 'demo@example.com',
+        is_admin: false
       }));
       Components.toast('Welcome back, Demo User!', 'success');
       App.updateAuthUI();
       Router.navigate('#/');
+    }
+    // Admin credentials
+    else if (email === 'admin@shopverse.com' && password === 'admin123') {
+      localStorage.setItem('shop_user', JSON.stringify({
+        id: 2,
+        name: 'Admin',
+        email: 'admin@shopverse.com',
+        is_admin: true
+      }));
+      Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
+      App.updateAuthUI();
+      Router.navigate('#/admin');
     } else {
-      Components.toast('Invalid credentials. Try demo@example.com / password123', 'error');
+      Components.toast('Invalid credentials.<br>Demo: demo@example.com / password123<br>Admin: admin@shopverse.com / admin123', 'error');
     }
   },
 
