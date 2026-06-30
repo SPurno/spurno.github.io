@@ -11,6 +11,10 @@ A modern, full-stack ecommerce website built with vanilla JavaScript and Turso (
 - **Dark & Light Themes** — System-aware theme with manual toggle
 - **Product Management** — Categories, search, filtering, sorting, reviews
 - **Order Processing** — Full checkout flow with order history
+- **Admin Dashboard** — Analytics, user/coupon management, order status tracking
+- **Media Library** — Upload images & videos via Cloudinary with drag-and-drop
+- **Video Products** — Custom watermarked video player with "© SPurno Animation Studio" overlay
+- **Password Recovery** — Security question-based forgot password flow with 3-step verification
 - **Responsive Design** — Mobile-first, works on all screen sizes
 
 ## 🛠️ Tech Stack
@@ -47,7 +51,12 @@ ecommerce-project/
 │       ├── profile.js      # User profile & orders
 │       ├── wishlist.js     # Saved items
 │       ├── contact.js      # Contact form
-│       └── about.js        # About page
+│       ├── about.js        # About page
+│       ├── admin.js        # Admin dashboard
+│       ├── admin-media.js  # Media library manager
+│       ├── admin-settings.js # Admin settings & password
+│       └── forgot-password.js # Password recovery
+│   └── video-player.js     # Custom watermarked video player
 ├── database/
 │   ├── schema.sql          # Database schema
 │   ├── seed.sql            # Sample data

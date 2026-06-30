@@ -57,14 +57,17 @@ const AdminMedia = {
           <div class="media-config-card glass">
             <div style="text-align:center;padding:32px">
               <div style="font-size:3rem;margin-bottom:16px;opacity:0.5">☁️</div>
-              <h3 style="margin-bottom:8px">Configure Cloudinary Upload</h3>
-              <p style="color:var(--text-muted);font-size:0.9rem;margin-bottom:20px">
-                To enable file uploads, enter your Cloudinary cloud name and upload preset below.
-                <br><a href="https://cloudinary.com/console" target="_blank" style="color:var(--accent-1)">Get Cloudinary credentials →</a>
+              <h3 style="margin-bottom:8px">Cloudinary Upload — Almost Ready!</h3>
+              <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:4px">
+                Cloud name <strong style="color:var(--accent-1)">pzyegeqn</strong> is configured. 
+              </p>
+              <p style="color:var(--text-muted);font-size:0.85rem;margin-bottom:20px">
+                You need an <strong>unsigned upload preset</strong>. Create one in your 
+                <a href="https://cloudinary.com/console/settings/upload" target="_blank" style="color:var(--accent-1)">Cloudinary Dashboard → Settings → Upload</a>,
+                then enter the preset name below.
               </p>
               <form onsubmit="AdminMedia.saveCloudinaryConfig(event)" style="max-width:400px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
-                <input type="text" id="cloudinaryCloudName" placeholder="Cloud name (e.g. mycloud)" required>
-                <input type="text" id="cloudinaryUploadPreset" placeholder="Upload preset name" required>
+                <input type="text" id="cloudinaryUploadPreset" placeholder="Upload preset name (e.g. shopverse_preset)" required>
                 <button type="submit" class="btn btn-primary btn-block">
                   <i class="fas fa-check"></i> Save Configuration
                 </button>
@@ -90,32 +93,60 @@ const AdminMedia = {
   },
 
   checkCloudinaryConfig() {
+    // Check if Cloudinary is already fully configured
     const config = localStorage.getItem('shop_cloudinary_config');
+    if (config) {
+      try {
+        const parsed = JSON.parse(config);
+        if (parsed.cloudName && parsed.uploadPreset) {
+          const prompt = document.getElementById('mediaConfigPrompt');
+          const dropzone = document.getElementById('mediaDropzone');
+          if (prompt) prompt.style.display = 'none';
+          if (dropzone) dropzone.style.pointerEvents = 'all';
+          return;
+        }
+      } catch (e) {}
+    }
+
+    // Pre-fill cloud name only if no config exists at all
+    if (!config) {
+      localStorage.setItem('shop_cloudinary_config', JSON.stringify({ 
+        cloudName: 'pzyegeqn', 
+        apiKey: '799412167264845',
+        uploadPreset: '' 
+      }));
+    }
+
     const prompt = document.getElementById('mediaConfigPrompt');
     const dropzone = document.getElementById('mediaDropzone');
-    if (!config) {
-      if (prompt) prompt.style.display = 'block';
-      if (dropzone) dropzone.style.pointerEvents = 'none';
-    } else {
-      if (prompt) prompt.style.display = 'none';
-      if (dropzone) dropzone.style.pointerEvents = 'all';
-    }
+    if (prompt) prompt.style.display = 'block';
+    if (dropzone) dropzone.style.pointerEvents = 'none';
   },
 
   saveCloudinaryConfig(event) {
     event.preventDefault();
-    const cloudName = document.getElementById('cloudinaryCloudName').value.trim();
     const uploadPreset = document.getElementById('cloudinaryUploadPreset').value.trim();
-    if (cloudName && uploadPreset) {
-      localStorage.setItem('shop_cloudinary_config', JSON.stringify({ cloudName, uploadPreset }));
-      Components.toast('Cloudinary configuration saved!', 'success');
+    if (uploadPreset) {
+      localStorage.setItem('shop_cloudinary_config', JSON.stringify({
+        cloudName: 'pzyegeqn',
+        apiKey: '799412167264845',
+        uploadPreset
+      }));
+      Components.toast('Cloudinary configuration saved! You can now upload files.', 'success');
       this.checkCloudinaryConfig();
     }
   },
 
   getCloudinaryConfig() {
     const config = localStorage.getItem('shop_cloudinary_config');
-    return config ? JSON.parse(config) : null;
+    if (!config) return null;
+    try {
+      const parsed = JSON.parse(config);
+      if (parsed.cloudName && parsed.uploadPreset) return parsed;
+      return null;
+    } catch (e) {
+      return null;
+    }
   },
 
   setupUploadHandlers() {
@@ -335,10 +366,13 @@ const AdminMedia = {
 
         updateProgress(5);
 
-        // Create form data for Cloudinary
+        // Create form data for Cloudinary unsigned upload
         const formData = new FormData();
         formData.append('file', file);
         formData.append('upload_preset', config.uploadPreset);
+        if (config.apiKey) {
+          formData.append('api_key', config.apiKey);
+        }
         if (isVideo) {
           formData.append('resource_type', 'video');
         }
