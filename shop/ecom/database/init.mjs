@@ -122,6 +122,65 @@ async function main() {
     console.error("  ⚠️ Could not fix category image:", err.message);
   }
 
+  // Migration: Remove old electronics/fashion products and categories
+  console.log("🔄 Removing old electronics/fashion products and categories...");
+  try {
+    // Delete old products from categories 1 (Electronics) and 2 (Fashion)
+    const oldCategoryIds = [1, 2];
+    // Product IDs from old seed that are NOT in the new seed
+    const oldProductIds = [5, 7, 10];
+    // Delete related records for all products being removed
+    const productIdsToDelete = [...oldProductIds];
+    // Get products in old categories
+    const catProducts = await client.execute("SELECT id FROM products WHERE category_id IN (1,2)");
+    for (const row of catProducts.rows) {
+      productIdsToDelete.push(row.id);
+    }
+    // Also get products that are in Sports (4) or Beauty (6) but not in the new seed
+    const remainingOldProducts = await client.execute("SELECT id FROM products WHERE category_id IN (4,6) AND id NOT IN (4,9,11,13,15,16,17,18,19,20,21,22,23,24,25)");
+    for (const row of remainingOldProducts.rows) {
+      if (!productIdsToDelete.includes(row.id)) {
+        productIdsToDelete.push(row.id);
+      }
+    }
+    
+    if (productIdsToDelete.length > 0) {
+      const idList = productIdsToDelete.join(',');
+      await client.execute(`DELETE FROM order_items WHERE product_id IN (${idList})`);
+      await client.execute(`DELETE FROM reviews WHERE product_id IN (${idList})`);
+      await client.execute(`DELETE FROM cart_items WHERE product_id IN (${idList})`);
+      await client.execute(`DELETE FROM wishlist_items WHERE product_id IN (${idList})`);
+      await client.execute(`DELETE FROM products WHERE id IN (${idList})`);
+      console.log(`  ✅ Removed ${productIdsToDelete.length} old products and related records`);
+    }
+    // Delete old categories (Electronics=1, Fashion=2)
+    await client.execute("DELETE FROM categories WHERE id IN (1,2)");
+    console.log("  ✅ Removed Electronics and Fashion categories");
+  } catch (err) {
+    console.error("  ⚠️ Could not remove old categories:", err.message);
+  }
+
+  // Migration: Rename category 7 from 'Videos' to 'Animation & Video'
+  try {
+    await client.execute("UPDATE categories SET name = 'Animation & Video', description = 'Premium animation clips, motion graphics, and video assets' WHERE id = 7");
+    console.log("  ✅ Renamed category #7 to 'Animation & Video'");
+  } catch (err) {
+    console.error("  ⚠️ Could not rename category #7:", err.message);
+  }
+
+  // Migration: Update existing product 11 (book) with new seed data since INSERT OR IGNORE won't update it
+  console.log("🔄 Updating existing product data from new seed...");
+  try {
+    // Update product 11 with the new name/description/price from seed
+    await client.execute("UPDATE products SET name = 'Creative Business Book', slug = 'creative-business-book', description = 'The ultimate guide to building a creative career. Learn the strategies, mindsets, and workflows used by top animators, designers, and content creators to turn passion into profit.', price = 24.99, compare_price = 29.99, image_url = 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80', images = '[\"https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=600&q=80\",\"https://images.unsplash.com/photo-1512820790803-83ca734da794?w=600&q=80\"]', stock = 200 WHERE id = 11");
+    // Also update product 4 and 9 to ensure they match seed data
+    await client.execute("UPDATE products SET images = '[\"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80\",\"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80\"]', slug = 'desk-lamp', compare_price = 119.99 WHERE id = 4");
+    await client.execute("UPDATE products SET images = '[\"https://images.unsplash.com/photo-1592078615290-033ee584e267?w=600&q=80\",\"https://images.unsplash.com/photo-1580480055273-228ff5388ef8?w=600&q=80\"]', slug = 'office-chair', compare_price = 749.99 WHERE id = 9");
+    console.log("  ✅ Updated existing product data (4, 9, 11) to match new seed");
+  } catch (err) {
+    console.error("  ⚠️ Could not update product data:", err.message);
+  }
+
   // Execute seed
   console.log("🌱 Seeding data...");
   const seedStatements = seed.split(";").filter(s => s.trim().length > 0);

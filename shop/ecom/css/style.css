@@ -8,39 +8,39 @@
 
 /* === CSS Variables & Themes === */
 :root {
-  /* Colors - Dark Theme (Default) - Forest Green */
-  --bg-primary: #0a1a0e;
-  --bg-secondary: #0f2315;
-  --bg-card: #162b1d;
-  --bg-glass: rgba(22, 43, 29, 0.6);
-  --bg-glass-hover: rgba(22, 43, 29, 0.8);
+  /* Colors - Dark Theme (Default) - Deep Navy */
+  --bg-primary: #0a1628;
+  --bg-secondary: #0f1a30;
+  --bg-card: #162240;
+  --bg-glass: rgba(22, 34, 64, 0.6);
+  --bg-glass-hover: rgba(22, 34, 64, 0.8);
   --bg-input: rgba(255, 255, 255, 0.06);
   
-  --text-primary: #f0fff0;
-  --text-secondary: #b0d0b8;
-  --text-muted: #6a8a72;
-  --text-inverse: #0a1a0e;
+  --text-primary: #f0f4ff;
+  --text-secondary: #b0c4e8;
+  --text-muted: #6a7fa0;
+  --text-inverse: #0a1628;
   
-  --accent-1: #2ecc71;
-  --accent-2: #1abc9c;
-  --accent-3: #27ae60;
-  --accent-gradient: linear-gradient(135deg, #2ecc71, #1abc9c);
-  --accent-gradient-2: linear-gradient(135deg, #2ecc71, #27ae60);
-  --forest-gradient: linear-gradient(135deg, #0d2818, #1a4a2e, #2ecc71);
+  --accent-1: #3b82f6;
+  --accent-2: #2563eb;
+  --accent-3: #1d4ed8;
+  --accent-gradient: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  --accent-gradient-2: linear-gradient(135deg, #3b82f6, #2563eb);
+  --navy-gradient: linear-gradient(135deg, #0a1628, #1e3a5f, #3b82f6);
   
-  --success: #2ecc71;
-  --warning: #f1c40f;
-  --error: #e74c3c;
-  --info: #3498db;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
   
-  --border-color: rgba(46, 204, 113, 0.15);
+  --border-color: rgba(59, 130, 246, 0.15);
   --border-light: rgba(255, 255, 255, 0.06);
   
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
-  --shadow-glow: 0 0 20px rgba(46, 204, 113, 0.3);
-  --shadow-glow-2: 0 0 40px rgba(46, 204, 113, 0.15);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.3);
+  --shadow-glow-2: 0 0 40px rgba(59, 130, 246, 0.15);
   
   --radius-sm: 8px;
   --radius-md: 12px;
@@ -60,27 +60,27 @@
   --max-width: 1280px;
 }
 
-/* Light Theme - Forest Green */
+/* Light Theme - Deep Navy */
 [data-theme="light"] {
-  --bg-primary: #f0faf2;
+  --bg-primary: #f0f4ff;
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
   --bg-glass: rgba(255, 255, 255, 0.7);
   --bg-glass-hover: rgba(255, 255, 255, 0.9);
   --bg-input: rgba(0, 0, 0, 0.04);
   
-  --text-primary: #0d2818;
-  --text-secondary: #2d5a3e;
-  --text-muted: #6a8a72;
+  --text-primary: #0a1628;
+  --text-secondary: #1e3a5f;
+  --text-muted: #6a7fa0;
   --text-inverse: #ffffff;
   
-  --border-color: rgba(46, 204, 113, 0.2);
+  --border-color: rgba(59, 130, 246, 0.2);
   --border-light: rgba(0, 0, 0, 0.08);
   
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
   --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
   --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
-  --shadow-glow: 0 0 20px rgba(46, 204, 113, 0.15);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
 }
 
 /* === Reset & Base === */
@@ -307,17 +307,17 @@ input:focus, textarea:focus, select:focus {
   background: rgba(10, 26, 14, 0.15);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(46, 204, 113, 0.08);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.08);
   z-index: 1000;
   transition: var(--transition-normal);
 }
 
 .navbar.scrolled {
-  background: rgba(15, 35, 21, 0.85);
+  background: rgba(15, 26, 48, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(46, 204, 113, 0.12);
+  border-bottom: 1px solid rgba(59, 130, 246, 0.12);
 }
 
 .nav-container {
@@ -347,8 +347,8 @@ input:focus, textarea:focus, select:focus {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { filter: drop-shadow(0 0 4px rgba(46, 204, 113, 0.3)); }
-  50% { filter: drop-shadow(0 0 12px rgba(46, 204, 113, 0.6)); }
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(59, 130, 246, 0.3)); }
+  50% { filter: drop-shadow(0 0 12px rgba(59, 130, 246, 0.6)); }
 }
 
 .brand-text {

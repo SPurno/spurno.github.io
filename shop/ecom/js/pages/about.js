@@ -9,7 +9,7 @@ const AboutPage = {
     content.innerHTML = `
       <div class="about-page page-enter">
         <div class="about-hero" style="text-align:center;padding:60px 24px;max-width:800px;margin:0 auto">
-          <div class="section-label" style="display:inline-block;padding:6px 16px;background:rgba(46,204,113,0.1);color:var(--accent-1);border-radius:var(--radius-full);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Our Story</div>
+          <div class="section-label" style="display:inline-block;padding:6px 16px;background:rgba(59,130,246,0.1);color:var(--accent-1);border-radius:var(--radius-full);font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:16px">Our Story</div>
           <h1 style="font-size:2.8rem;font-weight:800;font-family:var(--font-display);margin-bottom:16px">
             Where <span class="text-gradient">Creativity</span> Meets Motion
           </h1>

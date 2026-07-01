@@ -117,10 +117,10 @@ const CheckoutPage = {
                 <div style="flex:1">
                   <span style="font-weight:600">Payoneer</span>
                   <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px">
-                    Send payment to: <strong style="color:var(--accent-1);background:rgba(46,204,113,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">any_dj@live.com</strong>
+                    Send payment to: <strong style="color:var(--accent-1);background:rgba(59,130,246,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">any_dj@live.com</strong>
                   </div>
                 </div>
-                <span style="font-size:0.75rem;color:var(--text-muted)">Recommended</span>
+                
               </label>
               <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer">
                 <input type="radio" name="payment" value="skrill">
@@ -129,12 +129,13 @@ const CheckoutPage = {
                   <span style="font-weight:600">Skrill</span>
                   <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px">
                     Send payment to: <strong style="color:#942B8B;background:rgba(148,43,139,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">spurno@icloud.com</strong>
-                  </div>
+                    <span style="font-size:0.75rem;color:var(--text-muted)">Recommended</span>
+                    </div>
                 </div>
               </label>
             </div>
 
-            <div style="padding:16px;background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.15);border-radius:var(--radius-sm);margin-bottom:16px">
+            <div style="padding:16px;background:rgba(59,130,246,0.08);border:1px solid rgba(59,130,246,0.15);border-radius:var(--radius-sm);margin-bottom:16px">
               <div style="font-weight:600;font-size:0.85rem;margin-bottom:8px;color:var(--accent-1)">
                 <i class="fas fa-info-circle"></i> How to pay
               </div>

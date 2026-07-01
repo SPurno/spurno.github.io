@@ -6,6 +6,12 @@
       "sourceType": "github",
       "skillPath": "skills/anthropic-cybersecurity-skills/SKILL.md",
       "computedHash": "a4f89eb2109270df0db7989fb0fcb5fcd69dae96afcd9ad4963d6be0542981c0"
+    },
+    "frontend-design": {
+      "source": "anthropics/skills",
+      "sourceType": "github",
+      "skillPath": "skills/frontend-design/SKILL.md",
+      "computedHash": "93f53fd1c0352d3d7ec17b8f73d7351bf76f4821e55d123c9d2abc2c53ba48e4"
     }
   }
 }

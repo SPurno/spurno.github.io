@@ -706,6 +706,40 @@ const DB = {
       [email, answerHash]
     );
     return result.length > 0 ? result[0] : null;
+  },
+
+  // === Media Library ===
+  async getMedia(filters = {}) {
+    let sql = 'SELECT * FROM media WHERE 1=1';
+    const params = [];
+    if (filters.media_type) {
+      sql += ' AND media_type = ?';
+      params.push(filters.media_type);
+    }
+    if (filters.search) {
+      sql += ' AND (original_name LIKE ? OR filename LIKE ?)';
+      params.push(`%${filters.search}%`, `%${filters.search}%`);
+    }
+    sql += ' ORDER BY created_at DESC';
+    return this.query(sql, params);
+  },
+
+  async getMediaById(id) {
+    const media = await this.query('SELECT * FROM media WHERE id = ?', [id]);
+    return media.length > 0 ? media[0] : null;
+  },
+
+  async addMedia(data) {
+    const { filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url } = data;
+    const result = await this.execute(
+      'INSERT INTO media (filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+      [filename, original_name, url, secure_url, public_id, media_type, format || null, size || null, width || null, height || null, duration || null, thumbnail_url || null]
+    );
+    return result.lastInsertRowid;
+  },
+
+  async deleteMedia(id) {
+    return this.execute('DELETE FROM media WHERE id = ?', [id]);
   }
 };
 
