@@ -128,43 +128,42 @@ const CheckoutPage = {
 
           <div class="checkout-section glass">
             <h3><i class="fas fa-credit-card" style="color:var(--accent-1)"></i> Payment Method</h3>
+            <p style="color:var(--text-secondary);font-size:0.85rem;margin-bottom:16px">
+              Make your payment via <strong>Payoneer</strong> or <strong>Skrill</strong>, then enter the Transaction ID below to complete your order.
+            </p>
             <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px">
-              <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer">
-                <input type="radio" name="payment" value="credit_card" checked>
-                <i class="fas fa-credit-card" style="font-size:1.2rem;color:var(--accent-1)"></i>
-                <span>Credit Card</span>
-                <span style="margin-left:auto;display:flex;gap:8px;font-size:1.4rem;color:var(--text-muted)">
-                  <i class="fab fa-cc-visa"></i>
-                  <i class="fab fa-cc-mastercard"></i>
-                  <i class="fab fa-cc-amex"></i>
-                </span>
+              <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer;border:2px solid var(--accent-1)">
+                <input type="radio" name="payment" value="payoneer" checked>
+                <i class="fas fa-university" style="font-size:1.2rem;color:#FF6B35"></i>
+                <span style="font-weight:600">Payoneer</span>
+                <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted)">Recommended</span>
               </label>
               <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer">
-                <input type="radio" name="payment" value="paypal">
-                <i class="fab fa-paypal" style="font-size:1.2rem;color:#00457C"></i>
-                <span>PayPal</span>
-              </label>
-              <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer">
-                <input type="radio" name="payment" value="stripe">
-                <i class="fab fa-stripe" style="font-size:1.2rem;color:#635bff"></i>
-                <span>Stripe</span>
+                <input type="radio" name="payment" value="skrill">
+                <i class="fas fa-money-bill-wave" style="font-size:1.2rem;color:#942B8B"></i>
+                <span style="font-weight:600">Skrill</span>
               </label>
             </div>
-            <div id="creditCardFields">
-              <div class="checkout-grid">
-                <div class="form-group full-width">
-                  <label>Card Number</label>
-                  <input type="text" id="cardNumber" placeholder="4242 4242 4242 4242" maxlength="19">
-                </div>
-                <div class="form-group">
-                  <label>Expiry Date</label>
-                  <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5">
-                </div>
-                <div class="form-group">
-                  <label>CVC</label>
-                  <input type="text" id="cardCvc" placeholder="123" maxlength="4">
-                </div>
+
+            <!-- Payment Instructions -->
+            <div style="padding:16px;background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.15);border-radius:var(--radius-sm);margin-bottom:16px">
+              <div style="font-weight:600;font-size:0.85rem;margin-bottom:8px;color:var(--accent-1)">
+                <i class="fas fa-info-circle"></i> How to pay
               </div>
+              <ol style="font-size:0.82rem;color:var(--text-secondary);padding-left:16px;display:flex;flex-direction:column;gap:4px">
+                <li>Transfer the total amount via <strong>Payoneer</strong> or <strong>Skrill</strong> to our account.</li>
+                <li>After payment, copy the <strong>Transaction ID</strong> from your payment receipt.</li>
+                <li>Paste the Transaction ID below and submit your order.</li>
+                <li>Admin will verify the transaction and send your download link (for digital/video items).</li>
+              </ol>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-hashtag" style="color:var(--accent-1)"></i> Transaction ID</label>
+              <input type="text" id="transactionId" placeholder="Enter your Payoneer or Skrill Transaction ID" required>
+              <span style="font-size:0.75rem;color:var(--text-muted);margin-top:2px">
+                Enter the Transaction ID from your payment receipt. Your order will be verified by admin.
+              </span>
             </div>
           </div>
 
@@ -198,13 +197,7 @@ const CheckoutPage = {
         </form>
       `;
 
-      // Payment method toggle
-      document.querySelectorAll('input[name="payment"]').forEach(radio => {
-        radio.addEventListener('change', () => {
-          document.getElementById('creditCardFields').style.display = 
-            radio.value === 'credit_card' ? 'block' : 'none';
-        });
-      });
+      // Payment method toggle (no additional fields needed for Payoneer/Skrill)
     } catch (error) {
       console.error('Checkout error:', error);
       container.innerHTML = Components.emptyState('😔', 'Failed to load checkout', error.message);
@@ -233,6 +226,14 @@ const CheckoutPage = {
       const state = document.getElementById('shipState').value;
       const zip = document.getElementById('shipZip').value;
       const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+      const transactionId = document.getElementById('transactionId').value.trim();
+
+      if (!transactionId) {
+        Components.toast('Please enter your transaction ID', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Place Order — $${grandTotal.toFixed(2)}';
+        return;
+      }
 
       const subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
       const shipping = subtotal >= 50 ? 0 : 5.99;
@@ -248,6 +249,8 @@ const CheckoutPage = {
         tax,
         shipping_address: shippingAddress,
         payment_method: paymentMethod,
+        transaction_id: transactionId,
+        payment_provider: paymentMethod,
         items: cartItems.map(item => ({
           product_id: item.product_id,
           name: item.name,
@@ -257,16 +260,20 @@ const CheckoutPage = {
         }))
       });
 
-      Components.toast(`Order placed! Order #${orderId}`, 'success');
+      Components.toast(`Order #${orderId} submitted for verification!`, 'success');
       
       // Show success page
       const container = document.getElementById('checkoutContent');
       container.innerHTML = `
         <div style="text-align:center;padding:60px 24px" class="page-enter">
-          <div style="font-size:5rem;margin-bottom:24px">🎉</div>
-          <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Order Confirmed!</h2>
-          <p style="color:var(--text-muted);font-size:1.1rem;margin-bottom:8px">Thank you for your purchase!</p>
-          <p style="color:var(--text-secondary);margin-bottom:32px">Order #${orderId} has been placed successfully.</p>
+          <div style="font-size:5rem;margin-bottom:24px">📋</div>
+          <h2 style="font-size:2rem;font-weight:800;margin-bottom:12px">Order Submitted!</h2>
+          <p style="color:var(--text-muted);font-size:1.1rem;margin-bottom:8px">Order #${orderId} — awaiting verification</p>
+          <p style="color:var(--text-secondary);margin-bottom:32px">
+            Your payment of <strong>$${total.toFixed(2)}</strong> via <strong>${paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1)}</strong> is being reviewed.
+            <br>Transaction ID: <strong>${transactionId}</strong>
+            <br>You will receive the download link once admin approves the transaction.
+          </p>
           <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
             <a href="#/profile" class="btn btn-primary btn-lg">
               <i class="fas fa-user"></i> View Orders

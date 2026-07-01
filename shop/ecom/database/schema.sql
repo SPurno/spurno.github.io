@@ -73,6 +73,10 @@ CREATE TABLE IF NOT EXISTS orders (
   tax REAL DEFAULT 0,
   shipping_address TEXT,
   payment_method TEXT,
+  transaction_id TEXT,
+  payment_provider TEXT,
+  download_link TEXT,
+  transaction_approved INTEGER DEFAULT 0,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 );

@@ -149,14 +149,14 @@ const Components = {
   },
 
   // Modal
-  showModal(title, content) {
+  showModal(title, content, maxWidth) {
     const existing = document.querySelector('.modal-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
     overlay.className = 'modal-overlay';
     overlay.innerHTML = `
-      <div class="modal-content">
+      <div class="modal-content" style="${maxWidth ? `max-width:${maxWidth}` : ''}">
         <div class="modal-header">
           <h2>${title}</h2>
           <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">

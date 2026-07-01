@@ -259,13 +259,13 @@ const DB = {
 
   // === Orders ===
   async createOrder(orderData) {
-    const { total, subtotal, shipping, tax, shipping_address, payment_method, items } = orderData;
+    const { total, subtotal, shipping, tax, shipping_address, payment_method, transaction_id, payment_provider, items } = orderData;
     const sessionId = this.getSessionId();
 
     const result = await this.execute(
-      `INSERT INTO orders (session_id, total, subtotal, shipping, tax, shipping_address, payment_method, status) 
-       VALUES (?, ?, ?, ?, ?, ?, ?, 'confirmed')`,
-      [sessionId, total, subtotal, shipping || 0, tax || 0, shipping_address, payment_method]
+      `INSERT INTO orders (session_id, total, subtotal, shipping, tax, shipping_address, payment_method, transaction_id, payment_provider, status) 
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending')`,
+      [sessionId, total, subtotal, shipping || 0, tax || 0, shipping_address, payment_method, transaction_id || null, payment_provider || null]
     );
 
     const orderId = result.lastInsertRowid;
@@ -297,6 +297,33 @@ const DB = {
     return this.query(
       'SELECT * FROM order_items WHERE order_id = ?',
       [orderId]
+    );
+  },
+
+  async approveTransaction(orderId) {
+    return this.execute(
+      "UPDATE orders SET transaction_approved = 1, status = 'confirmed' WHERE id = ?",
+      [orderId]
+    );
+  },
+
+  async rejectTransaction(orderId) {
+    return this.execute(
+      "UPDATE orders SET status = 'cancelled' WHERE id = ?",
+      [orderId]
+    );
+  },
+
+  async setDownloadLink(orderId, downloadLink) {
+    return this.execute(
+      'UPDATE orders SET download_link = ?, status = ? WHERE id = ?',
+      [downloadLink, 'delivered', orderId]
+    );
+  },
+
+  async getPendingTransactions() {
+    return this.query(
+      "SELECT * FROM orders WHERE transaction_id IS NOT NULL AND transaction_approved = 0 AND status = 'pending' ORDER BY created_at DESC"
     );
   },
 

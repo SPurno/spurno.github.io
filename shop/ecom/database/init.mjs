@@ -27,6 +27,24 @@ async function main() {
     }
   }
 
+  // Migration: Add transaction columns to existing orders table
+  const orderMigrations = [
+    "ALTER TABLE orders ADD COLUMN transaction_id TEXT",
+    "ALTER TABLE orders ADD COLUMN payment_provider TEXT",
+    "ALTER TABLE orders ADD COLUMN download_link TEXT",
+    "ALTER TABLE orders ADD COLUMN transaction_approved INTEGER DEFAULT 0"
+  ];
+  for (const migration of orderMigrations) {
+    try {
+      await client.execute(migration);
+      console.log(`  ✅ Order migration: ${migration.substring(0, 50)}...`);
+    } catch (err) {
+      if (!err.message.includes('duplicate column') && !err.message.includes('already exists')) {
+        console.error(`  ⚠️ Order migration: ${migration.substring(0, 50)}... (might already exist)`);
+      }
+    }
+  }
+
   // Migration: Add media_type and video columns to existing products table
   console.log("🔄 Running migrations...");
   const migrations = [

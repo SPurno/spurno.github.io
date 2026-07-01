@@ -3441,3 +3441,67 @@ input:focus, textarea:focus, select:focus {
 .product-main-image .spurno-player:fullscreen .spurno-video {
   max-height: 100vh;
 }
+
+/* ============================================
+   Transaction / Payment Styles
+   ============================================ */
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition-normal);
+}
+
+.payment-option:hover {
+  border-color: var(--border-color);
+}
+
+.payment-option:has(input:checked) {
+  border-color: var(--accent-1);
+  background: rgba(108, 99, 255, 0.05);
+}
+
+.tx-id-display {
+  font-family: monospace;
+  font-size: 0.85rem;
+  background: var(--bg-input);
+  padding: 4px 10px;
+  border-radius: 4px;
+  word-break: break-all;
+}
+
+.tx-status-approve {
+  color: var(--success);
+}
+
+.tx-status-pending {
+  color: var(--warning);
+}
+
+.tx-instructions {
+  padding: 16px;
+  background: rgba(108, 99, 255, 0.06);
+  border: 1px solid rgba(108, 99, 255, 0.12);
+  border-radius: var(--radius-sm);
+}
+
+.tx-instructions ol {
+  padding-left: 16px;
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+@media (max-width: 480px) {
+  .tx-instructions ol {
+    font-size: 0.78rem;
+  }
+}

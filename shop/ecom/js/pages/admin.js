@@ -645,15 +645,17 @@ const AdminPage = {
             <i class="fas fa-search"></i>
             <input type="text" placeholder="Search orders..." onkeydown="if(event.key==='Enter')AdminPage.loadOrders()">
           </div>
-          <div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
             <select class="filter-select" onchange="AdminPage.loadOrders(this.value)" style="font-size:0.85rem">
               <option value="" ${statusFilter === '' ? 'selected' : ''}>All Status</option>
               <option value="pending" ${statusFilter === 'pending' ? 'selected' : ''}>Pending</option>
               <option value="confirmed" ${statusFilter === 'confirmed' ? 'selected' : ''}>Confirmed</option>
-              <option value="shipped" ${statusFilter === 'shipped' ? 'selected' : ''}>Shipped</option>
               <option value="delivered" ${statusFilter === 'delivered' ? 'selected' : ''}>Delivered</option>
               <option value="cancelled" ${statusFilter === 'cancelled' ? 'selected' : ''}>Cancelled</option>
             </select>
+            <button class="btn btn-sm btn-secondary" onclick="AdminPage.loadPendingTransactions()">
+              <i class="fas fa-clock"></i> Pending TX
+            </button>
           </div>
         </div>
         <div class="admin-table-container">
@@ -666,13 +668,14 @@ const AdminPage = {
                 <th>Items</th>
                 <th>Total</th>
                 <th>Payment</th>
+                <th>TX ID</th>
                 <th>Status</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
               ${orders.length === 0 ?
-                '<tr><td colspan="8" style="text-align:center;padding:40px;color:var(--text-muted)">No orders found</td></tr>' :
+                '<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text-muted)">No orders found</td></tr>' :
                 orders.map(o => `
                   <tr>
                     <td><span style="font-weight:700">#${o.id}</span></td>
@@ -681,19 +684,25 @@ const AdminPage = {
                     <td>${o.item_count}</td>
                     <td style="font-weight:600;color:var(--accent-1)">$${parseFloat(o.total).toFixed(2)}</td>
                     <td><span style="font-size:0.8rem;text-transform:capitalize">${o.payment_method || '—'}</span></td>
+                    <td>
+                      ${o.transaction_id ? `<span style="font-size:0.75rem;font-family:monospace;color:${o.transaction_approved ? 'var(--success)' : 'var(--warning)'}">${o.transaction_id.substring(0, 12)}...</span>` : '<span style="font-size:0.75rem;color:var(--text-muted)">—</span>'}
+                    </td>
                     <td>${this.statusBadge(o.status)}</td>
                     <td>
                       <div style="display:flex;gap:4px">
-                        <button class="admin-action-btn" onclick="AdminPage.viewOrder(${o.id})" title="View">
+                        <button class="admin-action-btn" onclick="AdminPage.viewOrder(${o.id})" title="View Order">
                           <i class="fas fa-eye"></i>
                         </button>
-                        <select class="admin-status-select" onchange="AdminPage.updateOrderStatus(${o.id}, this.value)" style="padding:4px 8px;font-size:0.75rem">
-                          <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending</option>
-                          <option value="confirmed" ${o.status === 'confirmed' ? 'selected' : ''}>Confirm</option>
-                          <option value="shipped" ${o.status === 'shipped' ? 'selected' : ''}>Ship</option>
-                          <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Deliver</option>
-                          <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancel</option>
-                        </select>
+                        ${o.transaction_id && !o.transaction_approved && o.status === 'pending' ? `
+                        <button class="admin-action-btn" style="color:var(--success)" onclick="AdminPage.approveTransaction(${o.id})" title="Approve Transaction">
+                          <i class="fas fa-check"></i>
+                        </button>
+                        ` : ''}
+                        ${o.status !== 'cancelled' && o.status !== 'delivered' ? `
+                        <button class="admin-action-btn delete" onclick="AdminPage.cancelOrder(${o.id})" title="Cancel Order">
+                          <i class="fas fa-times"></i>
+                        </button>
+                        ` : ''}
                       </div>
                     </td>
                   </tr>
@@ -708,7 +717,67 @@ const AdminPage = {
     }
   },
 
+  async loadPendingTransactions() {
+    const container = document.getElementById('adminContent');
+    try {
+      const orders = await DB.getPendingTransactions();
+      const title = document.getElementById('adminPageTitle');
+      if (title) title.textContent = 'Pending Transactions';
 
+      container.innerHTML = `
+        <div class="admin-toolbar">
+          <h3 style="font-size:1rem;font-weight:600">Transactions Awaiting Approval</h3>
+          <span style="color:var(--text-muted);font-size:0.85rem">${orders.length} pending</span>
+        </div>
+        ${orders.length === 0 ? `
+        <div style="text-align:center;padding:60px;color:var(--text-muted)">
+          <i class="fas fa-check-circle" style="font-size:3rem;color:var(--success);margin-bottom:16px;display:block"></i>
+          All caught up! No pending transactions.
+        </div>
+        ` : `
+        <div class="admin-table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Order #</th>
+                <th>Date</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Provider</th>
+                <th>Transaction ID</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${orders.map(o => `
+                <tr style="background:rgba(255,215,64,0.03)">
+                  <td><span style="font-weight:700">#${o.id}</span></td>
+                  <td><span style="font-size:0.85rem;color:var(--text-muted)">${new Date(o.created_at).toLocaleDateString()}</span></td>
+                  <td><span style="font-size:0.85rem">${o.shipping_address ? o.shipping_address.split(',')[0] : '—'}</span></td>
+                  <td style="font-weight:600;color:var(--accent-1)">$${parseFloat(o.total).toFixed(2)}</td>
+                  <td><span style="text-transform:capitalize;font-size:0.85rem">${o.payment_provider || o.payment_method || '—'}</span></td>
+                  <td><span style="font-family:monospace;font-size:0.8rem;background:var(--bg-input);padding:2px 8px;border-radius:4px">${o.transaction_id}</span></td>
+                  <td>
+                    <div style="display:flex;gap:6px">
+                      <button class="btn btn-sm btn-primary" onclick="AdminPage.approveTransaction(${o.id})">
+                        <i class="fas fa-check"></i> Approve
+                      </button>
+                      <button class="btn btn-sm btn-secondary" style="border-color:var(--error);color:var(--error)" onclick="AdminPage.rejectTransaction(${o.id})">
+                        <i class="fas fa-times"></i> Reject
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        </div>`}
+      `;
+    } catch (error) {
+      console.error('Pending transactions error:', error);
+      container.innerHTML = Components.emptyState('😔', 'Failed to load pending transactions', error.message);
+    }
+  },
 
   async viewOrder(orderId) {
     try {
@@ -717,14 +786,6 @@ const AdminPage = {
         Components.toast('Order not found', 'error');
         return;
       }
-
-      const statusColors = {
-        'pending': 'var(--warning)',
-        'confirmed': 'var(--info)',
-        'shipped': 'var(--accent-1)',
-        'delivered': 'var(--success)',
-        'cancelled': 'var(--error)'
-      };
 
       Components.showModal(`Order #${order.id}`, `
         <div style="display:flex;flex-direction:column;gap:16px">
@@ -742,10 +803,32 @@ const AdminPage = {
             <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px">Shipping Address</div>
             <div style="font-size:0.9rem">${order.shipping_address || 'No address'}</div>
           </div>
-          <div style="padding:12px;background:var(--bg-input);border-radius:var(--radius-sm)">
-            <div style="font-size:0.8rem;color:var(--text-muted);margin-bottom:4px">Payment Method</div>
-            <div style="font-size:0.9rem;text-transform:capitalize">${order.payment_method?.replace(/_/g, ' ') || 'N/A'}</div>
-          </div>
+          ${order.transaction_id ? `
+          <div style="padding:12px;background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.1);border-radius:var(--radius-sm)">
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;justify-content:space-between">
+                <span style="font-size:0.8rem;color:var(--text-muted)">Payment Provider</span>
+                <span style="font-weight:600;font-size:0.9rem;text-transform:capitalize">${order.payment_provider || order.payment_method}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="font-size:0.8rem;color:var(--text-muted)">Transaction ID</span>
+                <span style="font-family:monospace;font-weight:600;font-size:0.85rem">${order.transaction_id}</span>
+              </div>
+              <div style="display:flex;justify-content:space-between">
+                <span style="font-size:0.8rem;color:var(--text-muted)">Approved</span>
+                <span style="color:${order.transaction_approved ? 'var(--success)' : 'var(--warning)'}">
+                  ${order.transaction_approved ? '✅ Yes' : '⏳ Pending'}
+                </span>
+              </div>
+              ${order.download_link ? `
+              <div style="display:flex;justify-content:space-between">
+                <span style="font-size:0.8rem;color:var(--text-muted)">Download Link</span>
+                <a href="${order.download_link}" target="_blank" style="color:var(--accent-1);font-size:0.85rem">
+                  <i class="fas fa-external-link-alt"></i> Open
+                </a>
+              </div>` : ''}
+            </div>
+          </div>` : ''}
           <div>
             <div style="font-size:0.85rem;font-weight:600;margin-bottom:8px">Items (${order.items?.length || 0})</div>
             ${(order.items || []).map(item => `
@@ -774,10 +857,90 @@ const AdminPage = {
               <span>$${parseFloat(order.total).toFixed(2)}</span>
             </div>
           </div>
+          
+          ${order.transaction_id && !order.transaction_approved ? `
+          <div style="display:flex;gap:8px;padding-top:8px;border-top:1px solid var(--border-light)">
+            <button class="btn btn-primary btn-sm" style="flex:1" onclick="AdminPage.approveTransaction(${order.id});document.querySelector('.modal-overlay')?.remove()">
+              <i class="fas fa-check"></i> Approve Transaction
+            </button>
+            <button class="btn btn-sm btn-secondary" style="flex:1;border-color:var(--error);color:var(--error)" onclick="AdminPage.rejectTransaction(${order.id});document.querySelector('.modal-overlay')?.remove()">
+              <i class="fas fa-times"></i> Reject
+            </button>
+          </div>` : ''}
+          
+          ${order.transaction_approved && !order.download_link ? `
+          <div style="padding:12px;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.15);border-radius:var(--radius-sm)">
+            <label style="font-size:0.85rem;font-weight:600;margin-bottom:8px;display:block">
+              <i class="fas fa-link"></i> Send Download Link
+            </label>
+            <div style="display:flex;gap:8px">
+              <input type="url" id="dlLink_${order.id}" placeholder="https://.../file.zip" style="flex:1">
+              <button class="btn btn-primary btn-sm" onclick="AdminPage.sendDownloadLink(${order.id})">
+                <i class="fas fa-paper-plane"></i> Send
+              </button>
+            </div>
+          </div>` : ''}
+          
+          ${order.download_link ? `
+          <div style="padding:12px;background:rgba(0,230,118,0.06);border:1px solid rgba(0,230,118,0.15);border-radius:var(--radius-sm)">
+            <div style="font-size:0.85rem;font-weight:600;color:var(--success);margin-bottom:4px">
+              <i class="fas fa-check-circle"></i> Download Link Sent
+            </div>
+            <a href="${order.download_link}" target="_blank" style="color:var(--accent-1);font-size:0.85rem;word-break:break-all">
+              ${order.download_link}
+            </a>
+          </div>` : ''}
         </div>
-      `);
+      `, '600px');
     } catch (error) {
       Components.toast('Failed to load order details', 'error');
+    }
+  },
+
+  async approveTransaction(orderId) {
+    try {
+      await DB.approveTransaction(orderId);
+      Components.toast(`Transaction #${orderId} approved!`, 'success');
+      this.loadOrders();
+    } catch (error) {
+      Components.toast('Failed to approve transaction', 'error');
+    }
+  },
+
+  async rejectTransaction(orderId) {
+    try {
+      await DB.rejectTransaction(orderId);
+      Components.toast(`Transaction #${orderId} rejected`, 'info');
+      this.loadOrders();
+    } catch (error) {
+      Components.toast('Failed to reject transaction', 'error');
+    }
+  },
+
+  async sendDownloadLink(orderId) {
+    const linkInput = document.getElementById(`dlLink_${orderId}`);
+    if (!linkInput || !linkInput.value.trim()) {
+      Components.toast('Please enter a download URL', 'error');
+      return;
+    }
+    try {
+      await DB.setDownloadLink(orderId, linkInput.value.trim());
+      Components.toast(`Download link sent for Order #${orderId}!`, 'success');
+      document.querySelector('.modal-overlay')?.remove();
+      this.loadOrders();
+    } catch (error) {
+      Components.toast('Failed to send download link', 'error');
+    }
+  },
+
+  async cancelOrder(orderId) {
+    if (!confirm('Cancel this order?')) return;
+    try {
+      await DB.updateOrderStatus(orderId, 'cancelled');
+      Components.toast(`Order #${orderId} cancelled`, 'info');
+      this.loadOrders();
+    } catch (error) {
+      Components.toast('Failed to cancel order', 'error');
     }
   },
 
