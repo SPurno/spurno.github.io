@@ -41,13 +41,13 @@ INSERT OR IGNORE INTO products (id, name, slug, description, price, compare_pric
 
 (14, 'Urban Time-lapse Compilation', 'urban-timelapse', 'Mesmerizing time-lapse footage of cityscapes from New York, Tokyo, London, and Dubai. Captured over 6 months in stunning 4K HDR. Includes day-to-night transitions, traffic flows, and weather phenomena.', 24.99, 39.99, 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80', '["https://images.unsplash.com/photo-1519501025264-65ba15a82390?w=600&q=80","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=600&q=80"]', 7, 999, 4.7, 32, 0, 'video', 'https://example.com/videos/urban-timelapse.mp4', 'https://example.com/previews/urban-timelapse-preview.mp4', 'Preview this 8-minute urban time-lapse journey across 4 major world cities in breathtaking 4K HDR.', 1.8, 480);
 
--- Demo user (password: "password123" hashed)
+-- Demo user (password: "password123" — SHA-256 hashed)
 INSERT OR IGNORE INTO users (id, name, email, password, is_admin) VALUES
-(1, 'Demo User', 'demo@example.com', '$2b$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfAjkMBcGmFOkQfWXqF0YqYLzqMy', 0);
+(1, 'Demo User', 'demo@example.com', 'ef92b778bafe771e89245b89ecbc08a44a4e166c06659911881f383d4473e94f', 0);
 
--- Admin user (password: "admin123" hashed)
+-- Admin user (password: "admin123" — SHA-256 hashed)
 INSERT OR IGNORE INTO users (id, name, email, password, is_admin) VALUES
-(2, 'Admin', 'admin@shopverse.com', '$2b$10$8K1p/a0dL1LXMIgoEDFrwOfMQkfAjkMBcGmFOkQfWXqF0YqYLzqMy', 1);
+(2, 'Admin', 'admin@shopverse.com', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 1);
 
 -- Sample reviews
 INSERT OR IGNORE INTO reviews (id, product_id, author_name, rating, comment) VALUES

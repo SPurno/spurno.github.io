@@ -1,5 +1,6 @@
 import { createClient } from "@libsql/client";
 import { readFileSync } from "fs";
+import { createHash } from "crypto";
 
 const client = createClient({
   url: "libsql://ecommercelog-spurno.aws-us-east-1.turso.io",
@@ -64,6 +65,23 @@ async function main() {
         console.error(`  ⚠️ Migration: ${migration.substring(0, 50)}... (might already exist)`);
       }
     }
+  }
+
+  // Migration: Hash any existing plaintext passwords
+  console.log("🔄 Hashing existing plaintext passwords...");
+  try {
+    const existingUsers = await client.execute("SELECT id, password FROM users;");
+    for (const user of existingUsers.rows) {
+      const pw = user.password;
+      // If the password is NOT a 64-char hex string (not already SHA-256 hashed)
+      if (pw && !/^[0-9a-f]{64}$/i.test(pw)) {
+        const hash = createHash("sha256").update(pw).digest("hex");
+        await client.execute("UPDATE users SET password = ? WHERE id = ?", [hash, user.id]);
+        console.log(`  ✅ Hashed password for user #${user.id}`);
+      }
+    }
+  } catch (err) {
+    console.error("  ⚠️ Password migration error:", err.message);
   }
 
   // Execute seed

@@ -5,7 +5,8 @@
 const AuthPage = {
   render(params) {
     const content = document.getElementById('pageContent');
-    const type = params.query?.type || 'login';
+    // Show register form when path is /register OR query has type=register
+    const type = (params.path === '/register') ? 'register' : (params.query?.type || 'login');
 
     if (type === 'register') {
       this.renderRegister(content);
@@ -27,7 +28,7 @@ const AuthPage = {
               <label>Email</label>
               <div class="input-with-icon">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="loginEmail" placeholder="demo@example.com" required>
+                <input type="email" id="loginEmail" placeholder="your@email.com" required>
               </div>
             </div>
             <div class="form-group">
@@ -48,7 +49,7 @@ const AuthPage = {
             </button>
           </form>
           <div class="auth-footer">
-            Don't have an account? <a href="#/login?type=register">Create one</a>
+            Don't have an account? <a href="#/register">Create one</a>
           </div>
         </div>
       </div>
@@ -114,72 +115,29 @@ const AuthPage = {
     const password = document.getElementById('loginPassword').value;
 
     try {
-      // Check against hardcoded demo credentials first
-      if (email === 'demo@example.com' && password === 'password123') {
-        localStorage.setItem('shop_user', JSON.stringify({
-          id: 1,
-          name: 'Demo User',
-          email: 'demo@example.com',
-          is_admin: false
-        }));
-        localStorage.setItem('shop_password', password);
-        Components.toast('Welcome back, Demo User!', 'success');
-        App.updateAuthUI();
-        Router.navigate('#/');
-        return;
-      }
+      // Look up user in database
+      const user = await DB.getUserByEmail(email);
       
-      // Admin: first check hardcoded default, then check DB for changed password
-      if (email === 'admin@shopverse.com') {
-        if (password === 'admin123') {
-          // Default admin password
-          localStorage.setItem('shop_user', JSON.stringify({
-            id: 2,
-            name: 'Admin',
-            email: 'admin@shopverse.com',
-            is_admin: true
-          }));
-          localStorage.setItem('shop_password', password);
-          Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
-          App.updateAuthUI();
-          Router.navigate('#/admin');
-          return;
-        }
+      if (user) {
+        // Hash the entered password and compare with stored hash
+        const hashedPassword = await DB.hashPassword(password);
         
-        // Check if password was changed via DB
-        const user = await DB.getUserByEmail(email);
-        if (user && user.password === password) {
+        if (user.password === hashedPassword) {
+          // Successful login - store user session (never store raw password)
           localStorage.setItem('shop_user', JSON.stringify({
             id: user.id,
             name: user.name,
             email: user.email,
-            is_admin: true
+            is_admin: !!user.is_admin
           }));
-          localStorage.setItem('shop_password', password);
-          Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
+          Components.toast(`Welcome back, ${user.name}!`, 'success');
           App.updateAuthUI();
-          Router.navigate('#/admin');
+          Router.navigate(user.is_admin ? '#/admin' : '#/');
           return;
         }
       }
       
-      // For regular users, check against DB stored password
-      const user = await DB.getUserByEmail(email);
-      if (user && user.password === password) {
-        localStorage.setItem('shop_user', JSON.stringify({
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          is_admin: !!user.is_admin
-        }));
-        localStorage.setItem('shop_password', password);
-        Components.toast(`Welcome back, ${user.name}!`, 'success');
-        App.updateAuthUI();
-        Router.navigate(user.is_admin ? '#/admin' : '#/');
-        return;
-      }
-      
-      Components.toast('Invalid credentials.<br>Demo: demo@example.com / password123<br>Admin: admin@shopverse.com / admin123', 'error');
+      Components.toast('Invalid email or password', 'error');
     } catch (error) {
       console.error('Login error:', error);
       Components.toast('Login failed: ' + error.message, 'error');
@@ -206,17 +164,16 @@ const AuthPage = {
         return;
       }
 
-      // Insert user into the database
+      // Insert user into the database (password is hashed inside createUser)
       const userId = await DB.createUser(name, email, password);
 
-      // Also store in localStorage for the current session
+      // Store user session only (never store raw password)
       localStorage.setItem('shop_user', JSON.stringify({
         id: userId,
         name,
         email,
         is_admin: false
       }));
-      localStorage.setItem('shop_password', password);
       Components.toast(`Welcome, ${name}!`, 'success');
       App.updateAuthUI();
       Router.navigate('#/');

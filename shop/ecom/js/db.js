@@ -578,58 +578,28 @@ const DB = {
     return this.execute('UPDATE orders SET status = ? WHERE id = ?', [status, orderId]);
   },
 
+  // === Password Hashing ===
+  async hashPassword(password) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    return Array.from(new Uint8Array(hashBuffer))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+  },
+
   // === User Management ===
   async createUser(name, email, password) {
+    const hashedPassword = await this.hashPassword(password);
     const result = await this.execute(
       'INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, 0)',
-      [name, email, password]
+      [name, email, hashedPassword]
     );
     return result.lastInsertRowid;
   },
 
   async getAllUsers() {
     return this.query('SELECT id, name, email, phone, is_admin, created_at FROM users ORDER BY created_at DESC');
-  },
-
-  // === Media Library ===
-  async getMedia(filters = {}) {
-    let sql = 'SELECT * FROM media WHERE 1=1';
-    const params = [];
-    if (filters.media_type) {
-      sql += ' AND media_type = ?';
-      params.push(filters.media_type);
-    }
-    if (filters.search) {
-      sql += ' AND (original_name LIKE ? OR alt_text LIKE ?)';
-      params.push(`%${filters.search}%`, `%${filters.search}%`);
-    }
-    sql += ' ORDER BY created_at DESC';
-    if (filters.limit) {
-      sql += ' LIMIT ?';
-      params.push(filters.limit);
-    } else {
-      sql += ' LIMIT 100';
-    }
-    return this.query(sql, params);
-  },
-
-  async addMedia(mediaData) {
-    const { filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url, alt_text, uploaded_by } = mediaData;
-    const result = await this.execute(
-      `INSERT INTO media (filename, original_name, url, secure_url, public_id, media_type, format, size, width, height, duration, thumbnail_url, alt_text, uploaded_by)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [filename, original_name, url, secure_url, public_id, media_type, format, size || null, width || null, height || null, duration || null, thumbnail_url || null, alt_text || null, uploaded_by || null]
-    );
-    return result.lastInsertRowid;
-  },
-
-  async deleteMedia(id) {
-    return this.execute('DELETE FROM media WHERE id = ?', [id]);
-  },
-
-  async getMediaById(id) {
-    const items = await this.query('SELECT * FROM media WHERE id = ?', [id]);
-    return items.length > 0 ? items[0] : null;
   },
 
   // === Admin Password Management ===
@@ -643,8 +613,9 @@ const DB = {
     return users.length > 0 ? users[0] : null;
   },
 
-  async updateUserPassword(userId, newPasswordHash) {
-    return this.execute('UPDATE users SET password = ? WHERE id = ?', [newPasswordHash, userId]);
+  async updateUserPassword(userId, newPassword) {
+    const hashedPassword = await this.hashPassword(newPassword);
+    return this.execute('UPDATE users SET password = ? WHERE id = ?', [hashedPassword, userId]);
   },
 
   async storePasswordResetCode(email, code, expiresAt) {

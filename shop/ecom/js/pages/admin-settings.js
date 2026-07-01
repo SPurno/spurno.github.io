@@ -181,18 +181,19 @@ const AdminSettings = {
       return;
     }
 
-    // Verify current password against stored password in localStorage
-    const storedPassword = localStorage.getItem('shop_password');
-    if (storedPassword && storedPassword !== currentPw) {
-      Components.toast('Current password is incorrect', 'error');
-      return;
+    // Verify current password against stored hash in database
+    const userData = await DB.getUserByEmail(user.email);
+    if (userData) {
+      const hashedCurrent = await DB.hashPassword(currentPw);
+      if (userData.password !== hashedCurrent) {
+        Components.toast('Current password is incorrect', 'error');
+        return;
+      }
     }
 
     try {
-      // Update password in the database
+      // Update password in the database (hashed automatically)
       await DB.updateUserPassword(user.id, newPw);
-      // Also store in localStorage for auth comparison
-      localStorage.setItem('shop_password', newPw);
       Components.toast('Password changed successfully!', 'success');
       event.target.reset();
     } catch (error) {

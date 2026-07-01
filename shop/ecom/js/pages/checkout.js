@@ -135,13 +135,23 @@ const CheckoutPage = {
               <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer;border:2px solid var(--accent-1)">
                 <input type="radio" name="payment" value="payoneer" checked>
                 <i class="fas fa-university" style="font-size:1.2rem;color:#FF6B35"></i>
-                <span style="font-weight:600">Payoneer</span>
-                <span style="margin-left:auto;font-size:0.75rem;color:var(--text-muted)">Recommended</span>
+                <div style="flex:1">
+                  <span style="font-weight:600">Payoneer</span>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px">
+                    Send payment to: <strong style="color:var(--accent-1);background:rgba(108,99,255,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">any_dj@live.com</strong>
+                  </div>
+                </div>
+                <span style="font-size:0.75rem;color:var(--text-muted)">Recommended</span>
               </label>
               <label style="display:flex;align-items:center;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);cursor:pointer">
                 <input type="radio" name="payment" value="skrill">
                 <i class="fas fa-money-bill-wave" style="font-size:1.2rem;color:#942B8B"></i>
-                <span style="font-weight:600">Skrill</span>
+                <div style="flex:1">
+                  <span style="font-weight:600">Skrill</span>
+                  <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px">
+                    Send payment to: <strong style="color:#942B8B;background:rgba(148,43,139,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">spurno@icloud.com</strong>
+                  </div>
+                </div>
               </label>
             </div>
 
@@ -229,9 +239,9 @@ const CheckoutPage = {
       const transactionId = document.getElementById('transactionId').value.trim();
 
       if (!transactionId) {
-        Components.toast('Please enter your transaction ID', 'error');
+        Components.toast('Please enter your Transaction ID from your payment receipt', 'error');
         btn.disabled = false;
-        btn.innerHTML = '<i class="fas fa-lock"></i> Place Order — $${grandTotal.toFixed(2)}';
+        btn.innerHTML = '<i class="fas fa-lock"></i> Place Order';
         return;
       }
 

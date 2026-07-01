@@ -30,7 +30,7 @@ const ForgotPasswordPage = {
               <label>Email Address</label>
               <div class="input-with-icon">
                 <i class="fas fa-envelope"></i>
-                <input type="email" id="fp_email" placeholder="admin@shopverse.com" required>
+                <input type="email" id="fp_email" placeholder="your@email.com" required>
               </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block btn-lg">
@@ -125,14 +125,11 @@ const ForgotPasswordPage = {
           </div>
           <div style="padding:16px;background:rgba(255,215,64,0.1);color:var(--warning);border-radius:var(--radius-sm);margin-bottom:20px;font-size:0.85rem;text-align:center">
             <i class="fas fa-exclamation-triangle"></i> 
-            For security, contact support to reset your password, or try the demo credentials.
+            This account doesn't have a security question configured. Please contact support to reset your password.
           </div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <a href="#/login" class="btn btn-primary btn-block">
               <i class="fas fa-sign-in-alt"></i> Back to Sign In
-            </a>
-            <a href="#/login" class="btn btn-secondary btn-block">
-              Demo: admin@shopverse.com / admin123
             </a>
           </div>
         </div>
@@ -221,7 +218,7 @@ const ForgotPasswordPage = {
     content.innerHTML = `<div style="text-align:center;padding:60px"><div class="loader-spinner"></div><p style="color:var(--text-muted);margin-top:12px">Resetting password...</p></div>`;
 
     try {
-      // Update password
+      // Update password (hashed automatically)
       await DB.updateUserPassword(this.userId, newPw);
 
       // Show success
