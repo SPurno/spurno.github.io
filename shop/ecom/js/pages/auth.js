@@ -113,33 +113,76 @@ const AuthPage = {
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
 
-    // Demo user credentials
-    if (email === 'demo@example.com' && password === 'password123') {
-      localStorage.setItem('shop_user', JSON.stringify({
-        id: 1,
-        name: 'Demo User',
-        email: 'demo@example.com',
-        is_admin: false
-      }));
-      localStorage.setItem('shop_password', password);
-      Components.toast('Welcome back, Demo User!', 'success');
-      App.updateAuthUI();
-      Router.navigate('#/');
-    }
-    // Admin credentials
-    else if (email === 'admin@shopverse.com' && password === 'admin123') {
-      localStorage.setItem('shop_user', JSON.stringify({
-        id: 2,
-        name: 'Admin',
-        email: 'admin@shopverse.com',
-        is_admin: true
-      }));
-      localStorage.setItem('shop_password', password);
-      Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
-      App.updateAuthUI();
-      Router.navigate('#/admin');
-    } else {
+    try {
+      // Check against hardcoded demo credentials first
+      if (email === 'demo@example.com' && password === 'password123') {
+        localStorage.setItem('shop_user', JSON.stringify({
+          id: 1,
+          name: 'Demo User',
+          email: 'demo@example.com',
+          is_admin: false
+        }));
+        localStorage.setItem('shop_password', password);
+        Components.toast('Welcome back, Demo User!', 'success');
+        App.updateAuthUI();
+        Router.navigate('#/');
+        return;
+      }
+      
+      // Admin: first check hardcoded default, then check DB for changed password
+      if (email === 'admin@shopverse.com') {
+        if (password === 'admin123') {
+          // Default admin password
+          localStorage.setItem('shop_user', JSON.stringify({
+            id: 2,
+            name: 'Admin',
+            email: 'admin@shopverse.com',
+            is_admin: true
+          }));
+          localStorage.setItem('shop_password', password);
+          Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
+          App.updateAuthUI();
+          Router.navigate('#/admin');
+          return;
+        }
+        
+        // Check if password was changed via DB
+        const user = await DB.getUserByEmail(email);
+        if (user && user.password === password) {
+          localStorage.setItem('shop_user', JSON.stringify({
+            id: user.id,
+            name: user.name,
+            email: user.email,
+            is_admin: true
+          }));
+          localStorage.setItem('shop_password', password);
+          Components.toast('Welcome, Admin! Redirecting to dashboard...', 'success');
+          App.updateAuthUI();
+          Router.navigate('#/admin');
+          return;
+        }
+      }
+      
+      // For regular users, check against DB stored password
+      const user = await DB.getUserByEmail(email);
+      if (user && user.password === password) {
+        localStorage.setItem('shop_user', JSON.stringify({
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          is_admin: !!user.is_admin
+        }));
+        localStorage.setItem('shop_password', password);
+        Components.toast(`Welcome back, ${user.name}!`, 'success');
+        App.updateAuthUI();
+        Router.navigate(user.is_admin ? '#/admin' : '#/');
+        return;
+      }
+      
       Components.toast('Invalid credentials.<br>Demo: demo@example.com / password123<br>Admin: admin@shopverse.com / admin123', 'error');
+    } catch (error) {
+      console.error('Login error:', error);
+      Components.toast('Login failed: ' + error.message, 'error');
     }
   },
 
@@ -155,17 +198,32 @@ const AuthPage = {
       return;
     }
 
-    // Store user in localStorage for demo
-    localStorage.setItem('shop_user', JSON.stringify({
-      id: Date.now(),
-      name,
-      email,
-      is_admin: false
-    }));
-    localStorage.setItem('shop_password', password);
-    Components.toast(`Welcome, ${name}!`, 'success');
-    App.updateAuthUI();
-    Router.navigate('#/');
+    try {
+      // Check if email is already taken
+      const existing = await DB.getUserByEmail(email);
+      if (existing) {
+        Components.toast('An account with this email already exists', 'error');
+        return;
+      }
+
+      // Insert user into the database
+      const userId = await DB.createUser(name, email, password);
+
+      // Also store in localStorage for the current session
+      localStorage.setItem('shop_user', JSON.stringify({
+        id: userId,
+        name,
+        email,
+        is_admin: false
+      }));
+      localStorage.setItem('shop_password', password);
+      Components.toast(`Welcome, ${name}!`, 'success');
+      App.updateAuthUI();
+      Router.navigate('#/');
+    } catch (error) {
+      console.error('Registration error:', error);
+      Components.toast('Registration failed: ' + error.message, 'error');
+    }
   },
 
   logout() {

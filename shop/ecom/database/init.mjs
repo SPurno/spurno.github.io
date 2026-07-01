@@ -27,6 +27,27 @@ async function main() {
     }
   }
 
+  // Migration: Add media_type and video columns to existing products table
+  console.log("🔄 Running migrations...");
+  const migrations = [
+    "ALTER TABLE products ADD COLUMN media_type TEXT DEFAULT 'physical' CHECK(media_type IN ('physical','digital','video'))",
+    "ALTER TABLE products ADD COLUMN video_url TEXT",
+    "ALTER TABLE products ADD COLUMN preview_url TEXT",
+    "ALTER TABLE products ADD COLUMN preview_description TEXT",
+    "ALTER TABLE products ADD COLUMN file_size REAL",
+    "ALTER TABLE products ADD COLUMN duration INTEGER"
+  ];
+  for (const migration of migrations) {
+    try {
+      await client.execute(migration);
+      console.log(`  ✅ Migration: ${migration.substring(0, 50)}...`);
+    } catch (err) {
+      if (!err.message.includes('duplicate column') && !err.message.includes('already exists')) {
+        console.error(`  ⚠️ Migration: ${migration.substring(0, 50)}... (might already exist)`);
+      }
+    }
+  }
+
   // Execute seed
   console.log("🌱 Seeding data...");
   const seedStatements = seed.split(";").filter(s => s.trim().length > 0);

@@ -551,7 +551,15 @@ const DB = {
     return this.execute('UPDATE orders SET status = ? WHERE id = ?', [status, orderId]);
   },
 
-  // === Admin: User Management ===
+  // === User Management ===
+  async createUser(name, email, password) {
+    const result = await this.execute(
+      'INSERT INTO users (name, email, password, is_admin) VALUES (?, ?, ?, 0)',
+      [name, email, password]
+    );
+    return result.lastInsertRowid;
+  },
+
   async getAllUsers() {
     return this.query('SELECT id, name, email, phone, is_admin, created_at FROM users ORDER BY created_at DESC');
   },

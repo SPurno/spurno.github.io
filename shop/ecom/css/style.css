@@ -3209,6 +3209,50 @@ input:focus, textarea:focus, select:focus {
 }
 
 /* ============================================
+   Admin Product Form Responsive Styles
+   ============================================ */
+
+/* Form grid helpers for admin product form */
+.admin-form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.admin-form-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+}
+
+/* Increase modal width for product form */
+.modal-content:has(form.admin-product-form) {
+  max-width: 640px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+  .admin-form-grid-2,
+  .admin-form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  .modal-content:has(form.admin-product-form) {
+    max-width: 100%;
+    margin: 0 8px;
+    padding: 24px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content:has(form.admin-product-form) {
+    padding: 20px 16px;
+    border-radius: var(--radius-md);
+  }
+}
+
+/* ============================================
    SPurno Video Player Styles
    ============================================ */
 

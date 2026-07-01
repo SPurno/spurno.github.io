@@ -435,8 +435,8 @@ const AdminPage = {
     const defaultMediaType = product ? (product.media_type || 'physical') : 'physical';
 
     Components.showModal(isEdit ? 'Edit Product' : 'Add Product', `
-      <form id="productForm" onsubmit="AdminPage.saveProduct(event, ${productId || 'null'})" style="display:flex;flex-direction:column;gap:14px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <form id="productForm" onsubmit="AdminPage.saveProduct(event, ${productId || 'null'})" class="admin-product-form" style="display:flex;flex-direction:column;gap:14px">
+        <div class="admin-form-grid-2">
           <div class="form-group">
             <label>Product Name</label>
             <input type="text" id="pf_name" value="${isEdit ? product.name : ''}" required>
@@ -458,7 +458,7 @@ const AdminPage = {
           <label>Description</label>
           <textarea id="pf_description" rows="3" style="resize:vertical">${isEdit ? (product.description || '') : ''}</textarea>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px">
+        <div class="admin-form-grid-3">
           <div class="form-group">
             <label>Price ($)</label>
             <input type="number" id="pf_price" step="0.01" min="0" value="${isEdit ? product.price : ''}" required>
@@ -472,7 +472,7 @@ const AdminPage = {
             <input type="number" id="pf_stock" min="0" value="${isEdit ? product.stock : '0'}">
           </div>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div class="admin-form-grid-2">
           <div class="form-group">
             <label>Category</label>
             <select id="pf_category">
@@ -489,7 +489,7 @@ const AdminPage = {
         <!-- Video-specific fields -->
         <div id="pf_video_fields" style="display:${defaultMediaType === 'video' ? 'flex' : 'none'};flex-direction:column;gap:12px;padding:16px;background:var(--bg-input);border-radius:var(--radius-sm);border:1px solid var(--border-light)">
           <div style="font-weight:600;font-size:0.9rem;color:var(--accent-1);margin-bottom:4px"><i class="fas fa-video"></i> Video Details</div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="admin-form-grid-2">
             <div class="form-group">
               <label>Video File URL</label>
               <input type="url" id="pf_video_url" value="${isEdit && product.video_url ? product.video_url : ''}" placeholder="https://.../video.mp4">
@@ -503,7 +503,7 @@ const AdminPage = {
             <label>Preview Description</label>
             <textarea id="pf_preview_desc" rows="2" style="resize:vertical" placeholder="Describe what the preview shows...">${isEdit && product.preview_description ? product.preview_description : ''}</textarea>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div class="admin-form-grid-2">
             <div class="form-group">
               <label>File Size (GB)</label>
               <input type="number" id="pf_file_size" step="0.1" min="0" value="${isEdit && product.file_size ? product.file_size : ''}" placeholder="e.g. 2.4">
