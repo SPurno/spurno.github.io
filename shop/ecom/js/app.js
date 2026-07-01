@@ -21,6 +21,9 @@ const App = {
     Router.register('/wishlist', () => WishlistPage.render());
     Router.register('/contact', () => ContactPage.render());
     Router.register('/about', () => AboutPage.render());
+    Router.register('/privacy-policy', () => PrivacyPolicyPage.render());
+    Router.register('/refund-policy', () => RefundPolicyPage.render());
+    Router.register('/terms-of-use', () => TermsOfUsePage.render());
     Router.register('/admin', () => AdminPage.render());
     Router.register('/forgot-password', (p) => ForgotPasswordPage.render(p));
 
@@ -176,14 +179,10 @@ const App = {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Newsletter form
+    // Newsletter form submit (handles Enter key)
     document.getElementById('newsletterForm')?.addEventListener('submit', (e) => {
       e.preventDefault();
-      const email = e.target.querySelector('input').value;
-      if (email) {
-        this.subscribeNewsletter();
-        e.target.reset();
-      }
+      this.subscribeNewsletter(e);
     });
   },
 
@@ -512,8 +511,27 @@ const App = {
     return div.innerHTML;
   },
 
-  subscribeNewsletter() {
-    Components.toast('Subscribed! Welcome to the community 🎉', 'success');
+  async subscribeNewsletter(event) {
+    if (event) event.preventDefault();
+    
+    // Try footer form first, then hero form
+    const footerInput = document.getElementById('footerNewsletterEmail');
+    const heroInput = document.getElementById('newsletterEmail');
+    const email = footerInput?.value || heroInput?.value || '';
+    
+    if (!email || !email.includes('@')) {
+      Components.toast('Please enter a valid email address', 'error');
+      return;
+    }
+
+    try {
+      await DB.subscribeNewsletter(email);
+      Components.toast('🎉 Subscribed! Welcome to PixabAnimation community!', 'success');
+      if (footerInput) footerInput.value = '';
+      if (heroInput) heroInput.value = '';
+    } catch (error) {
+      Components.toast('Failed to subscribe. Please try again.', 'error');
+    }
   }
 };
 

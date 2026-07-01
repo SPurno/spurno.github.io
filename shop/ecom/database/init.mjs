@@ -84,6 +84,44 @@ async function main() {
     console.error("  ⚠️ Password migration error:", err.message);
   }
 
+  // Migration: Fix broken product thumbnail URLs
+  console.log("🔄 Fixing broken product thumbnail URLs...");
+  const imageFixes = [
+    { id: 2, old: "photo-1546868871-af0de0ae72b7", newUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80", images: '["https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&q=80","https://images.unsplash.com/photo-1579586337278-3befd40fd17a?w=600&q=80"]' },
+    { id: 4, old: "photo-1507473885765-e6ed057ab6bc", newUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80", images: '["https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80","https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?w=600&q=80"]' },
+    { id: 7, old: "photo-1570194065650-d99fb4b8ccb0", newUrl: "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80", images: '["https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=600&q=80","https://images.unsplash.com/photo-1556228720-195a672e8a03?w=600&q=80"]' },
+    { id: 12, old: "photo-1590658268037-6bf12f032f55", newUrl: "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&q=80", images: '["https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?w=600&q=80","https://images.unsplash.com/photo-1572569511254-d8f925fe2cbb?w=600&q=80"]' },
+    { id: 13, old: "photo-1536240478700-b869070f9279", newUrl: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80", images: '["https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=600&q=80","https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600&q=80"]' }
+  ];
+  for (const fix of imageFixes) {
+    try {
+      // Update image_url (direct column)
+      await client.execute("UPDATE products SET image_url = ? WHERE id = ? AND image_url LIKE ?", [fix.newUrl, fix.id, `%${fix.old}%`]);
+      // Update within the images JSON array via REPLACE (preserves other entries)
+      await client.execute(
+        `UPDATE products SET images = REPLACE(images, ? || '"', ? || '"') WHERE id = ? AND images LIKE ?`,
+        [fix.old, fix.newUrl, fix.id, `%${fix.old}%`]
+      );
+      // Recovery: if images column was corrupted (not a valid JSON array), restore it fully
+      await client.execute(
+        `UPDATE products SET images = ? WHERE id = ? AND (images NOT LIKE '[%' OR images IS NULL)`,
+        [fix.images, fix.id]
+      );
+      console.log(`  ✅ Fixed image for product #${fix.id}`);
+    } catch (err) {
+      if (!err.message.includes("no such column")) {
+        console.error(`  ⚠️ Could not fix image for product #${fix.id}: ${err.message}`);
+      }
+    }
+  }
+  // Fix category 7 image
+  try {
+    await client.execute("UPDATE categories SET image_url = ? WHERE id = 7 AND image_url LIKE ?", ["https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=400&q=80", "%photo-1536240478700-b869070f9279%"]);
+    console.log("  ✅ Fixed image for category #7 (Videos)");
+  } catch (err) {
+    console.error("  ⚠️ Could not fix category image:", err.message);
+  }
+
   // Execute seed
   console.log("🌱 Seeding data...");
   const seedStatements = seed.split(";").filter(s => s.trim().length > 0);

@@ -128,6 +128,15 @@ CREATE TABLE IF NOT EXISTS contact_messages (
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Newsletter subscribers table
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  email TEXT NOT NULL UNIQUE,
+  name TEXT,
+  active INTEGER DEFAULT 1,
+  subscribed_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
 -- Coupons table
 CREATE TABLE IF NOT EXISTS coupons (
   id INTEGER PRIMARY KEY AUTOINCREMENT,

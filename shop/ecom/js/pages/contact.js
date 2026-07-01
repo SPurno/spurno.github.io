@@ -1,5 +1,5 @@
 // ============================================
-// ShopVerse — Contact Page
+// PixabAnimation — Contact Page
 // ============================================
 
 const ContactPage = {
@@ -27,7 +27,7 @@ const ContactPage = {
               <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
               <div class="contact-info-text">
                 <h4>Email Us</h4>
-                <p>hello@shopverse.com<br>support@shopverse.com</p>
+                <p>hello@pixabanimation.com<br>support@pixabanimation.com</p>
               </div>
             </div>
             <div class="contact-info-card glass" style="padding:24px">

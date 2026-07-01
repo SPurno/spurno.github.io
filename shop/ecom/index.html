@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShopVerse — Premium Ecommerce Experience</title>
-  <meta name="description" content="Discover premium products at ShopVerse. Your destination for electronics, fashion, home decor, and more. Shop with confidence.">
-  <meta name="keywords" content="ecommerce, shop, online store, electronics, fashion, home decor">
-  <meta name="author" content="ShopVerse">
-  <meta property="og:title" content="ShopVerse — Premium Ecommerce Experience">
-  <meta property="og:description" content="Discover premium products at ShopVerse. Your destination for electronics, fashion, home decor, and more.">
+  <title>PixabAnimation — Premium Animation & Design Assets</title>
+  <meta name="description" content="Discover premium animation assets, video clips, motion graphics, and design resources at PixabAnimation. Your creative marketplace.">
+  <meta name="keywords" content="animation, video, motion graphics, design assets, stock video, premium downloads">
+  <meta name="author" content="PixabAnimation">
+  <meta property="og:title" content="PixabAnimation — Premium Animation & Design Assets">
+  <meta property="og:description" content="Discover premium animation assets, video clips, motion graphics, and design resources.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1200&q=80">
   <meta name="twitter:card" content="summary_large_image">
@@ -31,14 +31,16 @@
           <span></span><span></span><span></span>
         </button>
         <a href="#/" class="nav-brand">
-          <span class="brand-icon">✦</span>
-          <span class="brand-text">Shop<span class="text-gradient">Verse</span></span>
+          <span class="brand-icon">🎬</span>
+          <span class="brand-text">Pixab<span class="text-gradient">Animation</span></span>
         </a>
         <ul class="nav-links" id="navLinks">
           <li><a href="#/" class="nav-link active" data-nav><i class="fas fa-home"></i> Home</a></li>
           <li><a href="#/shop" class="nav-link" data-nav><i class="fas fa-store"></i> Shop</a></li>
           <li><a href="#/about" class="nav-link" data-nav><i class="fas fa-info-circle"></i> About</a></li>
           <li><a href="#/contact" class="nav-link" data-nav><i class="fas fa-envelope"></i> Contact</a></li>
+          <li><a href="#/privacy-policy" class="nav-link" data-nav><i class="fas fa-shield-alt"></i> Privacy</a></li>
+          <li><a href="#/refund-policy" class="nav-link" data-nav><i class="fas fa-undo"></i> Refund</a></li>
         </ul>
         <div class="nav-actions">
           <button class="nav-icon-btn" id="searchToggle" aria-label="Search">
@@ -86,8 +88,8 @@
         <div class="footer-grid">
           <div class="footer-brand">
             <span class="brand-icon">✦</span>
-            <span class="brand-text">Shop<span class="text-gradient">Verse</span></span>
-            <p>Your premium destination for curated products. Quality, style, and convenience — delivered.</p>
+            <span class="brand-text">Pixab<span class="text-gradient">Animation</span></span>
+            <p>Your premium destination for animation assets, video clips, motion graphics, and creative design resources.</p>
             <div class="social-links">
               <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
               <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -110,23 +112,23 @@
             <a href="#/shop?category=sports-outdoors">Sports</a>
           </div>
           <div class="footer-links">
-            <h4>Customer Service</h4>
-            <a href="#/contact">Help Center</a>
-            <a href="#/about">Shipping Info</a>
-            <a href="#/about">Returns</a>
-            <a href="#/contact">Support</a>
+            <h4>Policies</h4>
+            <a href="#/privacy-policy">Privacy Policy</a>
+            <a href="#/refund-policy">Refund Policy</a>
+            <a href="#/terms-of-use">Terms of Use</a>
+            <a href="#/about">About Us</a>
           </div>
           <div class="footer-newsletter">
             <h4>Stay Updated</h4>
             <p>Subscribe for exclusive deals and new arrivals.</p>
             <form class="newsletter-form" id="newsletterForm">
-              <input type="email" placeholder="Your email" required>
+              <input type="email" id="footerNewsletterEmail" placeholder="Your email" required>
               <button type="submit"><i class="fas fa-arrow-right"></i></button>
             </form>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 ShopVerse. All rights reserved. Crafted with ✨</p>
+          <p>&copy; 2026 PixabAnimation. All rights reserved. Crafted with ✨</p>
           <div class="payment-icons">
             <i class="fab fa-cc-visa"></i>
             <i class="fab fa-cc-mastercard"></i>
@@ -149,6 +151,7 @@
 
   <!-- Scripts -->
   <script src="js/credentials.js"></script>
+  <script src="js/country-data.js"></script>
   <script type="module">
     import { createClient } from "https://esm.sh/@libsql/client@0.14.0/web";
     
@@ -172,6 +175,9 @@
   <script src="js/pages/wishlist.js"></script>
   <script src="js/pages/contact.js"></script>
   <script src="js/pages/about.js"></script>
+  <script src="js/pages/privacy-policy.js"></script>
+  <script src="js/pages/refund-policy.js"></script>
+  <script src="js/pages/terms-of-use.js"></script>
   <script src="js/pages/admin.js"></script>
   <script src="js/pages/admin-media.js"></script>
   <script src="js/pages/admin-settings.js"></script>

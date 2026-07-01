@@ -1,5 +1,5 @@
 // ============================================
-// ShopVerse — Checkout Page
+// PixabAnimation — Checkout Page
 // ============================================
 
 const CheckoutPage = {
@@ -20,6 +20,27 @@ const CheckoutPage = {
     await this.loadCheckout();
   },
 
+  getCountryStatesHtml(countryCode) {
+    const states = Countries.getStates(countryCode);
+    if (states.length === 0) {
+      return `
+        <div class="form-group full-width">
+          <label>State / Province / Region</label>
+          <input type="text" id="shipState" placeholder="Enter your state, province, or region" class="state-input">
+        </div>
+      `;
+    }
+    return `
+      <div class="form-group full-width">
+        <label>State / Province</label>
+        <select id="shipState" required>
+          <option value="">Select ${Countries.getName(countryCode)} ${countryCode === 'GB' ? 'region' : 'state'}</option>
+          ${Countries.renderStateOptions(countryCode)}
+        </select>
+      </div>
+    `;
+  },
+
   async loadCheckout() {
     const container = document.getElementById('checkoutContent');
 
@@ -37,6 +58,8 @@ const CheckoutPage = {
       const shipping = subtotal >= 50 ? 0 : 5.99;
       const tax = subtotal * 0.08;
       const grandTotal = subtotal + shipping + tax;
+
+      const defaultCountry = 'US';
 
       container.innerHTML = `
         <form class="checkout-form" onsubmit="CheckoutPage.placeOrder(event)">
@@ -57,70 +80,26 @@ const CheckoutPage = {
               </div>
               <div class="form-group full-width">
                 <label>Address</label>
-                <input type="text" id="shipAddress" placeholder="123 Main Street" required>
+                <input type="text" id="shipAddress" placeholder="123 Main Street, Apt 4B" required>
+              </div>
+              <div class="form-group full-width">
+                <label>Country</label>
+                <div style="position:relative">
+                  <select id="shipCountry" onchange="CheckoutPage.onCountryChange()" required style="padding:12px 16px;appearance:auto;-webkit-appearance:auto">
+                    <option value="">🌍 Select your country</option>
+                    ${Countries.renderOptions(defaultCountry)}
+                  </select>
+                </div>
               </div>
               <div class="form-group">
                 <label>City</label>
                 <input type="text" id="shipCity" placeholder="New York" required>
               </div>
-              <div class="form-group">
-                <label>State</label>
-                <select id="shipState" style="padding:12px 16px" required>
-                  <option value="">Select State</option>
-                  <option value="AL">Alabama</option>
-                  <option value="AK">Alaska</option>
-                  <option value="AZ">Arizona</option>
-                  <option value="AR">Arkansas</option>
-                  <option value="CA">California</option>
-                  <option value="CO">Colorado</option>
-                  <option value="CT">Connecticut</option>
-                  <option value="DE">Delaware</option>
-                  <option value="FL">Florida</option>
-                  <option value="GA">Georgia</option>
-                  <option value="HI">Hawaii</option>
-                  <option value="ID">Idaho</option>
-                  <option value="IL">Illinois</option>
-                  <option value="IN">Indiana</option>
-                  <option value="IA">Iowa</option>
-                  <option value="KS">Kansas</option>
-                  <option value="KY">Kentucky</option>
-                  <option value="LA">Louisiana</option>
-                  <option value="ME">Maine</option>
-                  <option value="MD">Maryland</option>
-                  <option value="MA">Massachusetts</option>
-                  <option value="MI">Michigan</option>
-                  <option value="MN">Minnesota</option>
-                  <option value="MS">Mississippi</option>
-                  <option value="MO">Missouri</option>
-                  <option value="MT">Montana</option>
-                  <option value="NE">Nebraska</option>
-                  <option value="NV">Nevada</option>
-                  <option value="NH">New Hampshire</option>
-                  <option value="NJ">New Jersey</option>
-                  <option value="NM">New Mexico</option>
-                  <option value="NY">New York</option>
-                  <option value="NC">North Carolina</option>
-                  <option value="ND">North Dakota</option>
-                  <option value="OH">Ohio</option>
-                  <option value="OK">Oklahoma</option>
-                  <option value="OR">Oregon</option>
-                  <option value="PA">Pennsylvania</option>
-                  <option value="RI">Rhode Island</option>
-                  <option value="SC">South Carolina</option>
-                  <option value="SD">South Dakota</option>
-                  <option value="TN">Tennessee</option>
-                  <option value="TX">Texas</option>
-                  <option value="UT">Utah</option>
-                  <option value="VT">Vermont</option>
-                  <option value="VA">Virginia</option>
-                  <option value="WA">Washington</option>
-                  <option value="WV">West Virginia</option>
-                  <option value="WI">Wisconsin</option>
-                  <option value="WY">Wyoming</option>
-                </select>
+              <div class="form-group" id="stateFieldContainer">
+                ${this.getCountryStatesHtml(defaultCountry)}
               </div>
               <div class="form-group">
-                <label>ZIP Code</label>
+                <label>ZIP / Postal Code</label>
                 <input type="text" id="shipZip" placeholder="10001" required>
               </div>
             </div>
@@ -138,7 +117,7 @@ const CheckoutPage = {
                 <div style="flex:1">
                   <span style="font-weight:600">Payoneer</span>
                   <div style="font-size:0.8rem;color:var(--text-muted);margin-top:2px">
-                    Send payment to: <strong style="color:var(--accent-1);background:rgba(108,99,255,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">any_dj@live.com</strong>
+                    Send payment to: <strong style="color:var(--accent-1);background:rgba(46,204,113,0.12);padding:2px 8px;border-radius:4px;font-size:0.85rem">any_dj@live.com</strong>
                   </div>
                 </div>
                 <span style="font-size:0.75rem;color:var(--text-muted)">Recommended</span>
@@ -155,8 +134,7 @@ const CheckoutPage = {
               </label>
             </div>
 
-            <!-- Payment Instructions -->
-            <div style="padding:16px;background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.15);border-radius:var(--radius-sm);margin-bottom:16px">
+            <div style="padding:16px;background:rgba(46,204,113,0.08);border:1px solid rgba(46,204,113,0.15);border-radius:var(--radius-sm);margin-bottom:16px">
               <div style="font-weight:600;font-size:0.85rem;margin-bottom:8px;color:var(--accent-1)">
                 <i class="fas fa-info-circle"></i> How to pay
               </div>
@@ -206,11 +184,44 @@ const CheckoutPage = {
           </button>
         </form>
       `;
-
-      // Payment method toggle (no additional fields needed for Payoneer/Skrill)
     } catch (error) {
       console.error('Checkout error:', error);
       container.innerHTML = Components.emptyState('😔', 'Failed to load checkout', error.message);
+    }
+  },
+
+  onCountryChange() {
+    const countryCode = document.getElementById('shipCountry').value;
+    const stateContainer = document.getElementById('stateFieldContainer');
+    
+    if (!countryCode) {
+      stateContainer.innerHTML = `
+        <div class="form-group full-width">
+          <label>State / Province / Region</label>
+          <input type="text" id="shipState" placeholder="Enter your state, province, or region">
+        </div>
+      `;
+      return;
+    }
+
+    const states = Countries.getStates(countryCode);
+    if (states.length === 0) {
+      stateContainer.innerHTML = `
+        <div class="form-group full-width">
+          <label>State / Province / Region</label>
+          <input type="text" id="shipState" placeholder="Enter your state, province, or region" class="state-input">
+        </div>
+      `;
+    } else {
+      stateContainer.innerHTML = `
+        <div class="form-group full-width">
+          <label>State / Province</label>
+          <select id="shipState" required>
+            <option value="">Select ${Countries.getName(countryCode)} ${countryCode === 'GB' ? 'region' : 'state'}</option>
+            ${Countries.renderStateOptions(countryCode)}
+          </select>
+        </div>
+      `;
     }
   },
 
@@ -233,7 +244,11 @@ const CheckoutPage = {
       const email = document.getElementById('shipEmail').value;
       const address = document.getElementById('shipAddress').value;
       const city = document.getElementById('shipCity').value;
-      const state = document.getElementById('shipState').value;
+      const countryCode = document.getElementById('shipCountry').value;
+      const countryName = Countries.getName(countryCode) || countryCode;
+      const countryFlag = Countries.getFlag(countryCode) || '';
+      const stateEl = document.getElementById('shipState');
+      const state = stateEl ? stateEl.value || stateEl.placeholder || '' : '';
       const zip = document.getElementById('shipZip').value;
       const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
       const transactionId = document.getElementById('transactionId').value.trim();
@@ -245,12 +260,19 @@ const CheckoutPage = {
         return;
       }
 
+      if (!countryCode) {
+        Components.toast('Please select your country', 'error');
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-lock"></i> Place Order';
+        return;
+      }
+
       const subtotal = cartItems.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0);
       const shipping = subtotal >= 50 ? 0 : 5.99;
       const tax = subtotal * 0.08;
       const total = subtotal + shipping + tax;
 
-      const shippingAddress = `${name}, ${address}, ${city}, ${state} ${zip}`;
+      const shippingAddress = `${name}, ${address}, ${city}${state ? ', ' + state : ''}, ${countryFlag} ${countryName}, ${zip}`;
 
       const orderId = await DB.createOrder({
         total,
@@ -282,6 +304,7 @@ const CheckoutPage = {
           <p style="color:var(--text-secondary);margin-bottom:32px">
             Your payment of <strong>$${total.toFixed(2)}</strong> via <strong>${paymentMethod.charAt(0).toUpperCase() + paymentMethod.slice(1)}</strong> is being reviewed.
             <br>Transaction ID: <strong>${transactionId}</strong>
+            <br>Shipping to: ${countryFlag} ${countryName}${state ? ', ' + state : ''}
             <br>You will receive the download link once admin approves the transaction.
           </p>
           <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">

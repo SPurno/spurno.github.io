@@ -350,6 +350,31 @@ const DB = {
     );
   },
 
+  // === Newsletter ===
+  async subscribeNewsletter(email, name = null) {
+    try {
+      await this.execute(
+        'INSERT OR IGNORE INTO newsletter_subscribers (email, name, active) VALUES (?, ?, 1)',
+        [email, name]
+      );
+      return true;
+    } catch (error) {
+      console.error('Newsletter subscribe error:', error);
+      return false;
+    }
+  },
+
+  async unsubscribeNewsletter(email) {
+    return this.execute(
+      'UPDATE newsletter_subscribers SET active = 0 WHERE email = ?',
+      [email]
+    );
+  },
+
+  async getAllSubscribers() {
+    return this.query('SELECT * FROM newsletter_subscribers ORDER BY subscribed_at DESC');
+  },
+
   // === Search / Autocomplete ===
   async searchSuggestions(query, limit = 6) {
     if (!query || query.trim().length < 1) return [];
@@ -576,6 +601,19 @@ const DB = {
 
   async updateOrderStatus(orderId, status) {
     return this.execute('UPDATE orders SET status = ? WHERE id = ?', [status, orderId]);
+  },
+
+  async getDownloadableOrders() {
+    const sessionId = this.getSessionId();
+    const orders = await this.query(
+      "SELECT * FROM orders WHERE session_id = ? AND download_link IS NOT NULL AND download_link != '' ORDER BY created_at DESC",
+      [sessionId]
+    );
+    // Attach order items for each downloadable order
+    for (const order of orders) {
+      order.items = await this.query('SELECT * FROM order_items WHERE order_id = ?', [order.id]);
+    }
+    return orders;
   },
 
   // === Password Hashing ===
