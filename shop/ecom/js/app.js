@@ -187,23 +187,8 @@ const App = {
   },
 
   setupTheme() {
-    const themeToggle = document.getElementById('themeToggle');
-    const currentTheme = localStorage.getItem('shop_theme') || 'dark';
-    
-    document.documentElement.setAttribute('data-theme', currentTheme);
-    themeToggle.innerHTML = currentTheme === 'dark' 
-      ? '<i class="fas fa-moon"></i>' 
-      : '<i class="fas fa-sun"></i>';
-
-    themeToggle?.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme');
-      const next = current === 'dark' ? 'light' : 'dark';
-      document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('shop_theme', next);
-      themeToggle.innerHTML = next === 'dark' 
-        ? '<i class="fas fa-moon"></i>' 
-        : '<i class="fas fa-sun"></i>';
-    });
+    // Dark mode is enforced as the default and only theme
+    document.documentElement.setAttribute('data-theme', 'dark');
   },
 
   getUser() {
