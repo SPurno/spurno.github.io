@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SPurno Animation Studio — Premium Motion Graphics & Stock Footage</title>
+  <meta name="description" content="Premium motion background videos, animated templates, and stock footage used by creators worldwide. Over 4,000+ assets on Adobe Stock, Shutterstock, and Pond5.">
+  <meta name="keywords" content="motion background stock footage, motion graphics, animated background, After Effects template, SPurno Animation Studio">
+  <meta name="author" content="SPurno Animation Studio">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://spurno.github.io/">
+
+  <meta property="og:title" content="SPurno Animation Studio — Premium Motion Graphics & Stock Footage">
+  <meta property="og:description" content="Premium motion background videos, animated templates, and stock footage used by creators worldwide.">
+  <meta property="og:image" content="https://spurno.github.io/images/spurno-logo.png">
+  <meta property="og:url" content="https://spurno.github.io/">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SPurno Animation Studio — Premium Motion Graphics & Stock Footage">
+  <meta name="twitter:description" content="Premium motion background videos, animated templates, and stock footage used by creators worldwide.">
+  <meta name="twitter:image" content="https://spurno.github.io/images/spurno-logo.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SPurno Animation Studio",
+    "url": "https://spurno.github.io",
+    "logo": "https://spurno.github.io/images/spurno-logo.png",
+    "description": "Motion graphics and stock video animation studio from Bangladesh.",
+    "email": "spurno@icloud.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/spurno",
+      "https://facebook.com/iSPurno",
+      "https://x.com/iSPurno",
+      "https://github.com/SPurno"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dhanmondi 32",
+      "addressLocality": "Dhanmondi",
+      "addressCountry": "BD",
+      "addressRegion": "Dhaka Division",
+      "postalCode": "1207"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+880 1521211774",
+      "contactType": "Customer Support"
+    }
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="video" href="https://spurno.github.io/videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4" type="video/mp4">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="css/style.css" media="print" onload="this.media='all'">
+</head>
+<body>
+
+  <!-- Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Page Transition -->
+  <div class="page-transition" id="pageTransition"></div>
+
+  <!-- Custom Cursor -->
+  <div class="custom-cursor" id="customCursor"></div>
+  <div class="custom-cursor-dot" id="customCursorDot"></div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress-bar" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- Loading Screen -->
+  <div class="loading-screen" id="loadingScreen" aria-hidden="true">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading...</p>
+  </div>
+
+  <!-- Global Nav -->
+  <nav class="global-nav" id="globalNav" aria-label="Main navigation">
+    <div class="global-nav-inner">
+      <a href="index.html" class="nav-logo">
+        <img src="https://spurno.github.io/images/spurno-logo.png" alt="SPurno Animation Studio" width="140" height="40">
+        <span>SPurno</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#about" class="active">About</a>
+        <a href="#services">Services</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#videos">Videos</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#categories">Explore</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <div class="lang-selector" id="langSelector" tabindex="0" role="button" aria-label="Select language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span>EN</span>
+          <div class="lang-dropdown" id="langDropdown">
+            <a href="#" data-lang="en">English</a>
+            <a href="#" data-lang="es">Español</a>
+            <a href="#" data-lang="fr">Français</a>
+            <a href="#" data-lang="de">Deutsch</a>
+            <a href="#" data-lang="ja">日本語</a>
+          </div>
+        </div>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="nav-cta" rel="noopener">Shop Now</a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav" aria-hidden="true">
+    <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close navigation">&times;</button>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#videos">Videos</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#categories">Explore</a>
+    <a href="stock-portfolio.html">Stock Portfolio</a>
+    <a href="contact.html">Contact</a>
+    <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Shop Now</a>
+  </div>
+
+  <main id="main-content">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero tile--dark" id="home">
+    <canvas id="heroCanvas" class="hero-bg" aria-hidden="true"></canvas>
+    <div class="hero-content reveal">
+      <div class="hero-badge">
+        <span class="pulse"></span>
+        Trusted by 100+ countries worldwide
+      </div>
+      <h1 class="hero-display text-gradient-animated" data-typewriter="Premium Motion Graphics Studio">
+        Premium Motion<br>Graphics Studio
+      </h1>
+      <p class="lead">
+        Crafting high-quality HD &amp; 4K motion backgrounds, animated templates, and stock footage for creators worldwide.
+      </p>
+      <div class="btn-row" style="justify-content: flex-start;">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--primary btn--large" rel="noopener">
+          Browse Adobe Stock
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#portfolio" class="btn btn--secondary-on-dark btn--large">Explore Portfolio</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="hero-stat-value" data-count="4000">0</span>
+          <span class="hero-stat-label">Assets Available</span>
+        </div>
+        <div>
+          <span class="hero-stat-value">HD &amp; 4K</span>
+          <span class="hero-stat-label">Resolution Quality</span>
+        </div>
+        <div>
+          <span class="hero-stat-value" data-count="100">0</span>
+          <span class="hero-stat-label">Countries Served</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===== MARQUEE ===== -->
+  <section class="marquee-section tile--dark-2" aria-label="Platforms we are on">
+    <div class="marquee-track">
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(255,60,60,0.15); color: #ff3c3c;">A</span> Adobe Stock</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(0,180,255,0.15); color: #00b4ff;">S</span> Shutterstock</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(120,80,255,0.15); color: #7850ff;">P</span> Pond5</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(0,200,150,0.15); color: #00c896;">F</span> Freepik</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(255,165,0,0.15); color: #ffa500;">E</span> Envato</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(220,38,38,0.15); color: #dc2626;">Y</span> YAY Images</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(168,85,247,0.15); color: #a855f7;">D</span> Dreamstime</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(34,197,94,0.15); color: #22c55e;">V</span> Videvo</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(255,60,60,0.15); color: #ff3c3c;">A</span> Adobe Stock</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(0,180,255,0.15); color: #00b4ff;">S</span> Shutterstock</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(120,80,255,0.15); color: #7850ff;">P</span> Pond5</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(0,200,150,0.15); color: #00c896;">F</span> Freepik</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(255,165,0,0.15); color: #ffa500;">E</span> Envato</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(220,38,38,0.15); color: #dc2626;">Y</span> YAY Images</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(168,85,247,0.15); color: #a855f7;">D</span> Dreamstime</span>
+      <span class="marquee-item"><span class="marquee-icon" style="background: rgba(34,197,94,0.15); color: #22c55e;">V</span> Videvo</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="tile tile--parchment" id="about">
+    <div class="tile-content reveal">
+      <span class="section-label">About Us</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">High-Quality HD &amp; 4K<br>Motion Backgrounds</h2>
+      <p class="lead" style="color: var(--ink-muted-48);">SPurno Animation Studio creates premium motion background videos, animated templates, and stock footage for creators worldwide.</p>
+
+      <div class="feature-list stagger-children" style="margin-top: var(--sp-xxl);">
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">Background Animations & Stock Footage</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">News Background Animation</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">Cinematic Intro &amp; Outro Animations</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">After Effects Templates &amp; Custom Design</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">Infographic &amp; Data Visualisation</span>
+        </div>
+        <div class="feature-item">
+          <div class="feature-check">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <span class="feature-text">Device &amp; Product Mockup Templates</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS ===== -->
+  <section class="tile tile--light">
+    <div class="tile-content reveal">
+      <div class="stats-bar stagger-children">
+        <div class="stat-item">
+          <span class="stat-number" data-count="4000">0</span>
+          <span class="stat-label">Assets Available</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="4">0</span>
+          <span class="stat-label">Stock Platforms</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">HD &amp; 4K</span>
+          <span class="stat-label">Resolution</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" data-count="100">0</span>
+          <span class="stat-label">Countries Served</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="tile tile--dark" id="services">
+    <div class="tile-content reveal">
+      <span class="section-label" style="color: var(--primary-on-dark);">What We Do</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Our Services</h2>
+      <p class="lead" style="color: var(--body-muted);">From motion graphics to custom branding — we bring your ideas to life with stunning animation.</p>
+
+      <div class="dark-cards stagger-children">
+        <div class="dark-card">
+          <div class="card-shine"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+          <h3>Motion Graphics</h3>
+          <p>Premium motion background videos and animated templates for your creative projects.</p>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--ghost" rel="noopener">
+            Browse Templates
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="dark-card">
+          <div class="card-shine"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+          </div>
+          <h3>Advertising</h3>
+          <p>Eye-catching animated advertisements for products, services, and brand campaigns.</p>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--ghost" rel="noopener">
+            Explore
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="dark-card">
+          <div class="card-shine"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3>Infographics</h3>
+          <p>Engaging data visualisations and animated infographic templates for presentations.</p>
+          <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" class="btn btn--ghost" rel="noopener">
+            View Collection
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="dark-card">
+          <div class="card-shine"></div>
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/><path d="M9.5 14c.83 0 1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5S8 21.33 8 20.5v-5c0-.83.67-1.5 1.5-1.5z"/><path d="M3.5 14H5v1.5c0 .83-.67 1.5-1.5 1.5S2 16.33 2 15.5 2.67 14 3.5 14z"/><path d="M14 14.5c0-.83.67-1.5 1.5-1.5h5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5h-5c-.83 0-1.5-.67-1.5-1.5z"/><path d="M15.5 19H14v1.5c0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5-.67-1.5-1.5-1.5z"/><path d="M10 9.5C10 10.33 9.33 11 8.5 11h-5C2.67 11 2 10.33 2 9.5S2.67 8 3.5 8h5c.83 0 1.5.67 1.5 1.5z"/><path d="M8.5 5H9V3.5c0-.83-.67-1.5-1.5-1.5S6 2.67 6 3.5 6.67 5 7.5 5z"/></svg>
+          </div>
+          <h3>Title &amp; Broadcast</h3>
+          <p>Professional typography animations and broadcast design for media production.</p>
+          <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" class="btn btn--ghost" rel="noopener">
+            See More
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PORTFOLIO ===== -->
+  <section class="tile tile--light" id="portfolio">
+    <div class="tile-content reveal">
+      <span class="section-label">Our Portfolio</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Available on Leading Platforms</h2>
+      <p class="lead" style="color: var(--ink-muted-48);">Browse our collection of premium motion assets on the world's top stock marketplaces.</p>
+
+      <div class="portfolio-filters" role="tablist" aria-label="Filter portfolio">
+        <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-filter="motion" role="tab" aria-selected="false">Motion Graphics</button>
+        <button class="filter-btn" data-filter="ae" role="tab" aria-selected="false">After Effects</button>
+        <button class="filter-btn" data-filter="infographic" role="tab" aria-selected="false">Infographics</button>
+        <button class="filter-btn" data-filter="mockup" role="tab" aria-selected="false">Mockups</button>
+      </div>
+
+      <div class="portfolio-grid stagger-children" id="portfolioGrid">
+        <div class="portfolio-item" data-category="motion">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=340&fit=crop" alt="Abstract Motion Background" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Abstract Motion Backgrounds</h4>
+            <p>4K Loops &middot; Adobe Stock</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="ae">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=340&fit=crop" alt="Loading Bar Animation Template" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Loading Bar Animations</h4>
+            <p>After Effects &middot; Adobe Stock</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="infographic">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&h=340&fit=crop" alt="Animated Data Charts" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Animated Data Charts</h4>
+            <p>Infographics &middot; Shutterstock</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="mockup">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=340&fit=crop" alt="Device Mockup Templates" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Device Mockup Templates</h4>
+            <p>Templates &middot; Adobe Stock</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="motion">
+          <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?w=600&h=340&fit=crop" alt="Cinematic Intro Animations" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Cinematic Intros</h4>
+            <p>4K Footage &middot; Pond5</p>
+          </div>
+        </div>
+        <div class="portfolio-item" data-category="ae">
+          <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&h=340&fit=crop" alt="Typography Animation" loading="lazy">
+          <div class="portfolio-overlay">
+            <div class="play-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </div>
+            <h4>Typography Animations</h4>
+            <p>AE Templates &middot; Adobe Stock</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top: var(--sp-xxl);">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--primary btn--large" rel="noopener">View Full Portfolio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== VIDEOS ===== -->
+  <section class="tile tile--dark" id="videos">
+    <div class="tile-content reveal">
+      <span class="section-label" style="color: var(--primary-on-dark);">Video Showcase</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Browse Our Video Collection</h2>
+      <p class="lead" style="color: var(--body-muted);">Hover over any video to preview, click to play, or shop the full-resolution version on Adobe Stock.</p>
+
+      <!-- Video Filter Tabs -->
+      <div class="video-filters" role="tablist" aria-label="Filter videos">
+        <button class="filter-btn active" data-vfilter="all" role="tab" aria-selected="true">All</button>
+        <button class="filter-btn" data-vfilter="motion" role="tab" aria-selected="false">Motion</button>
+        <button class="filter-btn" data-vfilter="infographic" role="tab" aria-selected="false">Infographic</button>
+        <button class="filter-btn" data-vfilter="mockup" role="tab" aria-selected="false">Mockup</button>
+        <button class="filter-btn" data-vfilter="typography" role="tab" aria-selected="false">Typography</button>
+      </div>
+
+      <!-- Featured Main Video Player -->
+      <div class="featured-video" id="featuredVideo">
+        <div class="featured-video-wrapper">
+          <video id="mainPlayer" preload="metadata" playsinline>
+            <source src="https://spurno.github.io/videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4" type="video/mp4">
+          </video>
+          <div class="featured-video-overlay" id="mainPlayerOverlay">
+            <button class="featured-play-btn" id="mainPlayBtn" aria-label="Play featured video">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+            </button>
+            <div class="featured-video-info">
+              <span class="featured-badge">Featured</span>
+              <h3>SPurno Animation Studio — Official Promo</h3>
+              <p>4K Motion Graphics Reel</p>
+            </div>
+          </div>
+          <div class="featured-controls" id="mainControls">
+            <button class="ctrl-btn" id="mainPlayPauseBtn" aria-label="Play/Pause">
+              <svg class="icon-play" viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg>
+              <svg class="icon-pause" viewBox="0 0 24 24" fill="currentColor" style="display:none"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <div class="ctrl-progress" id="mainProgress">
+              <div class="ctrl-progress-bar">
+                <div class="ctrl-progress-fill" id="mainProgressFill"></div>
+              </div>
+            </div>
+            <span class="ctrl-time" id="mainTime">0:00</span>
+            <button class="ctrl-btn" id="mainMuteBtn" aria-label="Mute">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+            </button>
+            <button class="ctrl-btn" id="mainFullscreenBtn" aria-label="Fullscreen">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video Grid -->
+      <div class="video-grid stagger-children" id="videoGrid">
+        <div class="video-card" data-vcat="infographic">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/3d-infographic-video-template.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Infographic</span>
+                <span class="video-card-title">3D Infographic Template</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+
+        <div class="video-card" data-vcat="motion">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/animated-background-stock-video-for-premium-download-5.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Motion</span>
+                <span class="video-card-title">Animated Background</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+
+        <div class="video-card" data-vcat="motion">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/news-background-animation.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Motion</span>
+                <span class="video-card-title">News Background Animation</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+
+        <div class="video-card" data-vcat="mockup">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/iphone-mockup.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Mockup</span>
+                <span class="video-card-title">iPhone Mockup Template</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+
+        <div class="video-card" data-vcat="typography">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/typography-animation.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Typography</span>
+                <span class="video-card-title">Typography Animation</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+
+        <div class="video-card" data-vcat="infographic">
+          <div class="video-card-thumb">
+            <video preload="metadata" muted playsinline>
+              <source src="https://spurno.github.io/videos/infographics-video-demo.mp4" type="video/mp4">
+            </video>
+            <div class="video-card-overlay">
+              <div class="video-card-play"><svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6 3 20 12 6 21 6 3"/></svg></div>
+              <div class="video-card-info">
+                <span class="video-card-tag">Infographic</span>
+                <span class="video-card-title">Infographic Video Demo</span>
+              </div>
+            </div>
+          </div>
+          <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="video-card-cta" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            Shop Now
+          </a>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top: var(--sp-xxl);">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--primary btn--large" rel="noopener">
+          View Full Collection
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLATFORMS ===== -->
+  <section class="tile tile--parchment">
+    <div class="tile-content reveal">
+      <span class="section-label">Where to Find Us</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Available Everywhere</h2>
+      <p class="lead" style="color: var(--ink-muted-48);">Find our premium motion assets on the world's leading stock platforms.</p>
+
+      <div class="platform-grid stagger-children">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="platform-card" rel="noopener">
+          <div class="platform-icon" style="background: rgba(255, 60, 60, 0.1); color: #ff3c3c;">A</div>
+          <h4>Adobe Stock</h4>
+          <p>Premium motion graphics and stock footage</p>
+        </a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" class="platform-card" rel="noopener">
+          <div class="platform-icon" style="background: rgba(0, 180, 255, 0.1); color: #00b4ff;">S</div>
+          <h4>Shutterstock</h4>
+          <p>High-quality video assets and motion backgrounds</p>
+        </a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" class="platform-card" rel="noopener">
+          <div class="platform-icon" style="background: rgba(120, 80, 255, 0.1); color: #7850ff;">P</div>
+          <h4>Pond5</h4>
+          <p>Unique animation stock footage and templates</p>
+        </a>
+        <a href="https://www.freepik.com/author/pixellvector" target="_blank" class="platform-card" rel="noopener">
+          <div class="platform-icon" style="background: rgba(0, 200, 150, 0.1); color: #00c896;">F</div>
+          <h4>Freepik</h4>
+          <p>Motion design resources and vector animations</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="tile tile--light" id="testimonials">
+    <div class="tile-content reveal">
+      <span class="section-label">What Creators Say</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Trusted by Creators Worldwide</h2>
+      <p class="lead" style="color: var(--ink-muted-48);">See what video editors, designers, and content creators say about our motion assets.</p>
+
+      <div class="testimonials-grid stagger-children">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"The quality of SPurno's motion backgrounds is outstanding. I use them in every YouTube video and my audience always compliments the visuals."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div class="testimonial-name">Ahmed Khan</div>
+              <div class="testimonial-role">YouTube Content Creator</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"We've been using SPurno's broadcast templates for our news channel for over two years. Professional quality, always reliable."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: var(--accent);">SR</div>
+            <div>
+              <div class="testimonial-name">Sarah Rahman</div>
+              <div class="testimonial-role">Broadcast Producer</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <blockquote>"The After Effects templates are incredibly well-organised and easy to customise. Saved me hours on my last project."</blockquote>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" style="background: #7850ff;">MP</div>
+            <div>
+              <div class="testimonial-name">Michael Park</div>
+              <div class="testimonial-role">Motion Designer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CATEGORIES ===== -->
+  <section class="tile tile--dark-2" id="categories">
+    <div class="tile-content reveal">
+      <span class="section-label" style="color: var(--primary-on-dark);">Explore</span>
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Browse by Category</h2>
+      <p class="lead" style="color: var(--body-muted);">Discover our full range of animation templates, mockups, and design resources.</p>
+
+      <div class="category-grid stagger-children">
+        <div class="category-group">
+          <h3>Motion Graphics</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Motion Graphics Stock Video</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Motion Graphics Backgrounds</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Animated Backgrounds</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Background Animation Videos</a></li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>After Effects</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">After Effects Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Loading Bar Animations</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Progress Bar Animations</a></li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>Title &amp; Broadcast</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Typography Animation</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">News Background Animation</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Lower Thirds</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Broadcast Packages</a></li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>Mockups</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Device Mockup Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Laptop Mockup Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">iPhone Mockup Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Green Screen Mockups</a></li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>Infographics</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Infographic Animation</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">3D Infographic Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Animated Data Charts</a></li>
+          </ul>
+        </div>
+        <div class="category-group">
+          <h3>Presentations</h3>
+          <ul>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Presentation Slides</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">PowerPoint Templates</a></li>
+            <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Pitch Deck Templates</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA ===== -->
+  <section class="tile tile--light" id="contact">
+    <div class="tile-content reveal" style="max-width: 700px;">
+      <h2 class="display-lg" style="margin-bottom: var(--sp-md);">Ready to Create<br>Something Amazing?</h2>
+      <p class="lead" style="color: var(--ink-muted-48);">Browse our collection of over 4,000 premium motion assets or get in touch for custom animation work.</p>
+      <div class="btn-row">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn--primary btn--large" rel="noopener">Start Browsing</a>
+        <a href="contact.html" class="btn btn--secondary btn--large">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NEWSLETTER ===== -->
+  <section class="tile tile--dark">
+    <div class="tile-content reveal">
+      <div class="newsletter-box">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--primary-on-dark)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom: 16px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <h3>Stay in the Loop</h3>
+        <p>Get notified about new motion assets, templates, and exclusive offers.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent = 'Subscribed!'; this.querySelector('button').style.background = 'var(--accent)';">
+          <input type="email" placeholder="Enter your email" required aria-label="Email address for newsletter">
+          <button type="submit" class="btn btn--secondary-on-dark">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="brand-name">SPurno Animation Studio</span>
+        <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
+        <p style="margin-top: 8px;">Email: spurno@icloud.com</p>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="stock-portfolio.html">Portfolio</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <ul>
+          <li><a href="privacy-policy.html">Privacy Policy</a></li>
+          <li><a href="terms-of-use.html">Terms of Use</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Stock Sites</h4>
+        <ul>
+          <li><a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Adobe Stock</a></li>
+          <li><a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" rel="noopener">Shutterstock</a></li>
+          <li><a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" rel="noopener">Pond5</a></li>
+          <li><a href="https://www.freepik.com/author/pixellvector" target="_blank" rel="noopener">Freepik</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 SPurno Animation Studio. All rights reserved.</span>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/in/spurno" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://facebook.com/iSPurno" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://x.com/iSPurno" target="_blank" rel="noopener">X</a>
+        <a href="https://github.com/SPurno" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scroll to Top -->
+  <button class="scroll-top" id="scrollTopBtn" aria-label="Scroll to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg class="scroll-progress" viewBox="0 0 54 54"><circle cx="27" cy="27" r="24"/></svg>
+  </button>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Media lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close lightbox">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Previous">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="lightbox-nav next" id="lightboxNext" aria-label="Next">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+    <div class="lightbox-media" id="lightboxMedia"></div>
+    <div class="lightbox-caption" id="lightboxCaption"></div>
+  </div>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <button class="theme-btn" id="themeToggle" aria-label="Toggle dark mode">
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <button class="theme-btn" id="accentToggle" aria-label="Change accent color">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5"/></svg>
+    </button>
+    <div class="theme-panel" id="accentPanel">
+      <h4>Accent Color</h4>
+      <div class="theme-colors">
+        <button class="theme-color active" data-accent="default" style="background: #000;" aria-label="Default black"></button>
+        <button class="theme-color" data-accent="blue" style="background: #0066cc;" aria-label="Blue"></button>
+        <button class="theme-color" data-accent="purple" style="background: #7c3aed;" aria-label="Purple"></button>
+        <button class="theme-color" data-accent="green" style="background: #059669;" aria-label="Green"></button>
+        <button class="theme-color" data-accent="gold" style="background: #b8860b;" aria-label="Gold"></button>
+      </div>
+      <h4>Theme</h4>
+      <div class="theme-colors">
+        <button class="theme-color" data-theme-btn="light" style="background: #fff; border-color: #ccc;" aria-label="Light"></button>
+        <button class="theme-color" data-theme-btn="dark" style="background: #1a1a1a;" aria-label="Dark"></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cookie Banner -->
+  <div class="cookie-banner" id="cookieBanner" role="alert">
+    <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="privacy-policy.html" style="color: var(--primary-on-dark);">Learn more</a></p>
+    <div class="btn-row">
+      <button class="btn btn--ghost" onclick="document.getElementById('cookieBanner').classList.remove('active')" style="padding: 8px 16px; font-size: 14px;">Accept</button>
+      <button class="btn btn--secondary-on-dark" onclick="document.getElementById('cookieBanner').classList.remove('active')" style="padding: 8px 16px; font-size: 14px;">Decline</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+</body>
+</html>
