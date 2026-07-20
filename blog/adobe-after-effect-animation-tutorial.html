@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,24 +171,12 @@
       <p>Mastering After Effects opens doors to careers in animation, video production, broadcast design, and digital content creation. According to industry reports, motion graphics designers command competitive salaries and enjoy strong demand across multiple sectors. The software's versatile toolset supports everything from simple text animations to complex visual effects compositions, making it an indispensable tool for modern visual storytellers.</p>
       <p>The motion graphics market continues to expand as video content dominates digital marketing, social media, and corporate communications. Companies increasingly require animated content for brand storytelling, product demonstrations, and social media engagement. Learning After Effects positions creators to meet this growing demand with professional-quality output. The skills you develop — timing, composition, color theory, and visual storytelling — transfer across all animation disciplines.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="understanding-the-interface">Understanding the After Effects Interface</h2>
       <p>Before diving into animation techniques, it is essential to understand the After Effects interface and workspace organization. The default workspace includes several key panels that you will use throughout every project. The Project panel manages all imported assets including video clips, images, audio files, and compositions. The Composition panel displays your current composition and provides visual feedback for all animations and effects. The Timeline panel is where you arrange layers, set keyframes, and control animation timing.</p>
       <p>Customizing your workspace for efficient workflow is an important first step. After Effects allows you to save custom workspace layouts tailored to different tasks such as animation, compositing, color grading, or motion tracking. Investing time in workspace setup pays dividends in production efficiency by reducing the time spent searching for tools and panels during active production.</p>
       <p><strong>Key Interface Components</strong> include the Project Panel for organizing footage and assets, the Composition Panel for real-time preview and interaction, the Timeline Panel for layer order, keyframes, effects, and timing, the Effects and Presets Panel with hundreds of built-in effects, the Essential Graphics Panel for creating customizable controls for templates, and the Preview Panel for managing playback and RAM preview options.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="keyframe-animation-fundamentals">Keyframe Animation Fundamentals</h2>
       <p>Keyframes are the foundation of animation in After Effects. A keyframe records a property value at a specific point in time, and After Effects automatically interpolates values between keyframes to create smooth motion. Understanding the different interpolation methods is crucial for achieving professional animation quality. Linear interpolation creates constant speed movement, while Bezier interpolation allows for acceleration and deceleration that mimics natural motion.</p>
@@ -186,7 +187,6 @@
       <p>Shape layers are vector-based elements that offer infinite scalability and extensive animation possibilities. After Effects includes tools for creating rectangles, ellipses, polygons, and stars, as well as the Pen tool for custom paths. Shape layers support multiple fill and stroke options and can be animated using shape-specific properties like path points, roundness, and trim paths.</p>
       <p>One of the most powerful shape layer techniques is Trim Paths, which animates the drawing of a shape path. This is ideal for line animations, progress indicators, and reveal effects. Repeaters allow you to create complex geometric patterns by duplicating shapes with transformations applied to each copy. Combining shape layers with effects like Merge Paths, Offset Paths, and Pucker and Bloat creates sophisticated vector artwork directly within After Effects without external illustration software.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="text-animation">Text Animation Techniques</h2>
       <p>After Effects provides powerful text animation capabilities through the Text tool and dedicated text animators. Range-based text animators allow you to animate individual characters, words, or lines with properties like position, rotation, scale, and color. The Source Text property enables animated text changes for countdowns, typing effects, and dynamic content updates.</p>
@@ -266,7 +266,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -346,13 +345,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -477,10 +470,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -504,7 +497,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

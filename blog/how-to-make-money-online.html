@@ -65,6 +65,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -113,28 +126,15 @@
       <h2 id="why-animation-skills-are-valuable">Why Animation Skills Are Valuable in the Digital Economy</h2>
       <p>Animation and motion design skills are among the most valuable creative assets in the modern digital economy. Businesses of all sizes need animated content for marketing, training, product demonstrations, and brand building. The demand for video content continues to grow exponentially, with animated content consistently outperforming static alternatives in engagement metrics. This creates a sustained market for skilled animators who can deliver professional results.</p>
       <p>The key to maximizing income with animation skills is understanding the different monetization channels available and building multiple income streams. SPurno Animation Studio's experience demonstrates how creative professionals can build diversified revenue through freelance services, stock asset sales, digital product creation, and educational content. Each channel has different time requirements, earning potential, and scalability characteristics that should be balanced according to personal goals and circumstances.</p>
-      <div id="ad-slot-1-article"></div>
       <h2 id="freelance-services">Freelance Services on Platforms</h2>
       <p>Freelance platforms connect skilled animators with clients seeking specific services. Upwork, Fiverr, Toptal, and PeoplePerHour are among the largest platforms, each with different focuses and pricing models. Success on these platforms requires optimized profiles, competitive pricing during the startup phase, and consistent delivery of high-quality work to build positive reviews.</p>
       <p>For animation freelancers, the most in-demand services include motion graphics explainer videos, logo animations, social media video content, whiteboard animations, character animation, and 3D product visualization. Rates vary significantly based on complexity, with simple motion graphics projects starting at $200-500 and complex 3D animations commanding $2000-10000 or more. Building a strong profile with compelling portfolio samples and client testimonials is essential for commanding premium rates on these platforms.</p>
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
       <h2 id="selling-digital-products">Selling Digital Products and Stock Assets</h2>
       <p>Creating digital products is one of the most scalable online income strategies for animators. Once created, digital products can be sold repeatedly without additional production costs, creating passive income that continues earning long after the initial creation effort. Motion designers and animators can create After Effects templates, motion graphics backgrounds, stock footage, video preset packs, LUTs, and sound effects for sale on marketplaces.</p>
       <p>Major platforms for selling animation assets include Adobe Stock, Envato Elements, Creative Market, Pond5, Shutterstock, and VideoHive. Each platform has different submission requirements, royalty structures, and audience sizes. SPurno Animation Studio has successfully built a portfolio of over 4,000 stock assets generating ongoing passive income through multiple stock platforms. The key to success is creating high-quality, commercially useful assets that solve real problems for other creators and maintaining a consistent release schedule to build catalog depth.</p>
       <h2 id="content-creation">Content Creation and Monetization</h2>
       <p>Creating educational content about animation and motion design can generate income through multiple channels. YouTube tutorials, online courses, and blog content establish you as an authority in your field while creating additional revenue streams. YouTube monetization through advertising revenue, channel memberships, and sponsorship deals can provide significant income for channels with engaged audiences.</p>
       <p>Online course platforms like Udemy, Skillshare, and Coursera offer structured ways to package your knowledge into courses that sell passively. Topics in high demand include After Effects tutorials, motion design principles, 3D animation fundamentals, and specialized techniques like character rigging or visual effects compositing. The course creation process requires significant upfront investment but can generate substantial passive income over time as your course library grows.</p>
-      <div id="ad-slot-2-article"></div>
       <h2 id="building-multiple-income-streams">Building Multiple Income Streams</h2>
       <p>Long-term financial success in the animation industry comes from diversifying income sources rather than relying on any single channel. A well-balanced income portfolio might include:</p>
       <ul>
@@ -218,7 +218,6 @@
         <a href="https://www.linkedin.com/in/spurno" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </div>
-    <div id="ad-slot-3-article"></div>
     <div class="useful-links">
       <div class="label">Useful Links</div>
       <div class="grid">
@@ -291,13 +290,7 @@
         <div><div class="name">Pixeel</div><div class="role">Asset Curator</div></div>
       </div>
     </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
     <div class="related-grid">
@@ -417,10 +410,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -444,7 +437,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

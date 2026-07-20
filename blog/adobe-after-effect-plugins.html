@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Investing in quality plugins can reduce production time by 50 percent or more on specific tasks, making them cost-effective additions to any motion designer's toolkit. From particle effects and 3D rendering to color grading and workflow automation, plugins extend After Effects into territories that would otherwise require dedicated specialized software. The right plugin can transform a multi-hour manual process into a few clicks, freeing creative time for artistic decision-making rather than technical execution.</p>
       <p>The plugin market offers solutions at every price point, from free community-maintained tools to professional suites costing hundreds of dollars. Each category serves a distinct purpose in the production pipeline, and understanding which plugins deliver the best return on investment helps motion designers build efficient, cost-effective toolkits. The most successful motion designers typically maintain a curated collection of 10-15 essential plugins that cover their most frequent workflow requirements.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="plugin-categories">Essential Plugin Categories</h2>
       <p>After Effects plugins can be organized into distinct categories based on their function in the motion graphics pipeline. Understanding these categories helps designers identify gaps in their current toolkit and prioritize new plugin investments:</p>
@@ -171,17 +183,6 @@
         <li><strong>Audio Visualization and Response Tools</strong> — Generate audio-driven animations that react to music, voiceovers, and sound effects in real time for music videos and podcast content</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="animation-motion-tools">Animation &amp; Motion Tools</h2>
       <p>Animation-focused plugins provide tools that simplify complex animation tasks. These include tools for creating smooth overshoot effects, bounce animations, and elastic motion without manually adjusting multiple keyframes. Some plugins offer one-click animation presets that can be applied to text, shapes, and logos, while others provide sophisticated control over the animation curve editor with additional easing functions not available in the native toolset.</p>
@@ -192,7 +193,6 @@
       <p>Visual effects plugins transform After Effects into a powerful compositing and effects platform. Advanced particle systems can simulate realistic natural phenomena including fire, smoke, rain, snow, and explosions. Light simulation plugins create volumetric light beams, lens flares, and glow effects that add cinematic quality to compositions. Chromatic aberration, film grain, and lens distortion plugins replicate the characteristic look of different camera systems and film stocks.</p>
       <p>Particle systems like Trapcode Particular and Stardust are among the most popular VFX plugins for After Effects. These tools create complex particle simulations with thousands of individually controllable particles, each responding to physics forces like gravity, wind, and turbulence. Modern particle plugins support 3D particle systems, instancing, and audio reactivity, enabling everything from subtle background particle motion to explosive visual effects sequences.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="3d-tracking-tools">3D &amp; Motion Tracking Tools</h2>
       <p>3D plugins extend After Effects into the third dimension, allowing for 3D object import, extrusion of text and shapes, and 3D camera animation within the After Effects environment. These plugins often include advanced rendering engines that produce higher quality results than the native After Effects 3D renderer, with features like ambient occlusion, reflections, and global illumination that create photorealistic 3D graphics.</p>
@@ -273,7 +273,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -353,13 +352,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -484,10 +477,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -511,7 +504,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

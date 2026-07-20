@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>The SaaS and digital product markets have grown exponentially, with businesses competing for user attention across websites, social media, email marketing, and presentation decks. Laptop mockups provide a consistent, professional visual language that works across all these channels. They help clients and stakeholders visualize how websites and applications look in real-world usage, bridging the gap between design files and live deployment.</p>
       <p>First impressions in digital product marketing are formed within milliseconds. Research in visual cognition shows that products presented in realistic environmental contexts are processed faster and rated more favorably by viewers. A website screenshot displayed inside a polished laptop mockup with subtle ambient lighting and shadow effects creates an immediate impression of quality and professionalism that a flat screenshot cannot match. This translates directly to higher engagement rates, longer time-on-page, and improved conversion metrics.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-laptop-mockups">Types of Laptop Mockup Templates</h2>
       <p>Laptop mockup templates come in various formats and angles, each suited to different presentation needs:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>Each angle serves a distinct purpose. Three-quarter angle mockups are the most versatile for general marketing, while flat lay and lifestyle mockups excel in specific contexts like social media and brand storytelling.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-laptop"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Laptop Mockup Assets</h3>
-            <p>Browse 400+ laptop and device mockup templates for professional video production.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <p>Laptop mockup animations enhance a broad range of content types across the digital product lifecycle:</p>
@@ -202,7 +203,6 @@
       <p><strong>Lighting Consistency</strong> — Maintain consistent lighting direction across the device, shadows, and environment. Drop shadows should be soft and realistic, with consistent angle and intensity. Screen glow effects add realism by simulating light emission from the display onto surrounding surfaces.</p>
       <p><strong>Animation Subtlety</strong> — Motion should enhance, not distract. Gentle device rotation of 3-8 degrees, subtle screen parallax, and smooth zoom transitions create professional presentations. Animate with purpose — each movement should direct attention to content or reveal additional information.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>A systematic workflow ensures consistent quality across laptop mockup productions:</p>
@@ -299,7 +299,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -379,13 +378,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -513,10 +506,10 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 // TOC highlighting
@@ -541,7 +534,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

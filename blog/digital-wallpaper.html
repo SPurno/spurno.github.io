@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Digital wallpapers personalize devices and digital spaces, reflecting individual style and brand identity. Quality wallpapers enhance the visual experience of any digital environment while serving practical functions that extend beyond aesthetics. Well-designed wallpapers can reduce eye strain through appropriate color temperature and contrast, create visual consistency across multiple devices, and strengthen brand recognition in corporate settings where every touchpoint matters.</p>
       <p>The proliferation of multi-device ownership has fundamentally changed the wallpaper design landscape. Users now expect cohesive visual experiences across smartphones, tablets, laptops, desktops, smart displays, and even smartwatches. This convergence has created demand for design systems that scale across form factors while maintaining visual integrity. Designers who understand how to create wallpapers that work harmoniously across this ecosystem are increasingly valuable, offering both static and animated options that adapt to different display technologies and use contexts.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="design-categories">Design Categories</h2>
       <p>Digital wallpaper design encompasses several distinct categories, each suited to different contexts and user preferences:</p>
@@ -171,17 +183,6 @@
         <li><strong>Animated and Motion-Based Wallpapers</strong> — Dynamic backgrounds with subtle or dramatic motion that add dimension and life to device screens. Animated wallpapers have gained significant popularity as device capabilities and battery efficiency have improved.</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="technical-considerations">Technical Considerations for Wallpaper Design</h2>
       <p>Creating wallpapers that look exceptional on every screen requires careful attention to resolution, aspect ratio, color space, and display technology. Desktop wallpapers typically need resolutions up to 5120x2880 for 5K displays, while mobile wallpapers must accommodate various aspect ratios from 16:9 to 19.5:9 and beyond. Designing at higher resolutions ensures sharpness across all display sizes and provides cropping flexibility for different aspect ratios.</p>
@@ -193,7 +194,6 @@
       <p>When designing animated wallpapers, battery efficiency must be a primary consideration. Limit motion to low-frame-rate, lightweight animations that minimize GPU usage and power consumption. Video-based wallpapers require careful compression to balance visual quality with file size and playback performance. MP4 with H.264 encoding offers broad compatibility, while HEVC (H.265) provides better compression for high-resolution content on supported devices.</p>
       <p>Consider providing both static and animated versions of each wallpaper design so users can choose based on their device capabilities and performance preferences. This dual-format approach maximizes your audience reach while ensuring optimal user experience across different hardware configurations.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>A professional wallpaper production workflow ensures consistent quality across devices and platforms:</p>
@@ -282,7 +282,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -362,13 +361,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -493,10 +486,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -520,7 +513,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

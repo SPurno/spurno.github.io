@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>User experience research consistently demonstrates that animated progress bars significantly improve user satisfaction during waiting periods. Studies show that users perceive wait times as up to 33% shorter when engaging animated progress indicators are present compared to static loading screens. This perceived performance improvement translates directly to higher user retention, lower bounce rates, and improved application ratings.</p>
       <p>The psychological impact of progress feedback is well-documented. The Zeigarnik effect suggests that people experience psychological tension when tasks are interrupted, and progress indicators reduce this tension by providing continuous feedback about completion status. SPurno's progress bar animation templates are designed to maximize this psychological benefit while maintaining brand consistency across applications and platforms.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-progress-indicators">Types of Progress Indicators</h2>
       <p>Progress indicators fall into several distinct categories, each suited to different contexts and user expectations:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>Selecting the appropriate progress indicator type depends on the operation's predictability, duration, and the overall interface design language.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="design-principles">Design Principles for Progress Bar Animation</h2>
       <p>Effective progress bar animation follows established UX design principles that prioritize user experience:</p>
@@ -192,7 +193,6 @@
       <p><strong>Accessibility</strong> — Ensure sufficient color contrast between fill and track backgrounds. Provide text alternatives for screen readers. Avoid relying solely on color to communicate progress status.</p>
       <p><strong>Completion States</strong> — Always include a clear completion indication such as a checkmark animation, confirmation message, or smooth transition to the next state. Never leave users wondering whether the operation finished successfully.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="best-use-cases">Best Use Cases</h2>
       <p>Progress bar animations enhance user experience across a wide range of applications and contexts:</p>
@@ -302,7 +302,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -382,13 +381,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -513,10 +506,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -540,7 +533,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

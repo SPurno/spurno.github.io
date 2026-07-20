@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Device mockup animations are pre-built templates or custom compositions that display digital content — apps, websites, software interfaces — within realistic device frames. These range from static images with smart object layers to fully animated 3D mockups featuring screen reflections, device rotation, and environmental lighting. The core function of a device mockup is to provide visual context that helps viewers immediately understand how a digital product functions in real-world use, making abstract interfaces tangible and relatable.</p>
       <p>The impact of professional device mockups on perceived value is substantial. Research in visual marketing demonstrates that products presented in contextual device frames are perceived as more polished, credible, and valuable than flat screenshots. For app store submissions, device-framed screenshots directly influence download conversion rates, making mockup quality a measurable factor in marketing ROI. SPurno Animation Studio's mockup collection is designed to maximize this presentation advantage across every platform and use case.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-device-mockups">Types of Device Mockup Templates</h2>
       <p>Device mockup templates fall into several categories, each serving different presentation needs:</p>
@@ -171,17 +183,6 @@
         <li><strong>Animated 3D Mockups</strong> — Fully rigged 3D device models with realistic materials, dynamic lighting, and camera animation. These premium mockups create cinematic marketing content that commands attention and conveys superior production quality.</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <p>Device mockup animations enhance a wide range of marketing and presentation contexts. Understanding where each format excels maximizes return on investment:</p>
@@ -205,7 +206,6 @@
         <li><strong>Export at Target Specifications</strong> — Export at the resolution and format required by your distribution channel. App store screenshots have specific dimension requirements; social media benefits from optimized file sizes that balance quality with load times.</li>
       </ol>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="best-practices">Best Practices for Device Mockups</h2>
       <p>Creating effective device mockups requires attention to detail and adherence to established design principles:</p>
@@ -301,7 +301,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -381,13 +380,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -512,10 +505,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -539,7 +532,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

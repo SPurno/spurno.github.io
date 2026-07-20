@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Investors review hundreds of pitch decks annually, spending an average of just 2-3 minutes on initial review. In this competitive environment, visual design quality directly influences investor perception. A polished, professional pitch deck signals that the founding team pays attention to detail, understands their market, and can execute with excellence. Conversely, a poorly designed deck undermines credibility regardless of the quality of the underlying business concept.</p>
       <p>Motion graphics and animation take pitch decks to the next level by adding dynamic data reveals, smooth transitions between slides, and engaging visual narratives that maintain investor attention throughout the presentation. Animated pitch decks combine slide-based content with cinematic motion graphics, creating a self-playing presentation that maintains viewer engagement throughout the investor narrative. SPurno Animation Studio\'s pitch deck templates incorporate professional motion design that enhances storytelling without overwhelming the core content.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="essential-slides">Essential Slides for Investor Decks</h2>
       <p>A comprehensive pitch deck template should include these essential slides, each serving a specific purpose:</p>
@@ -189,7 +201,6 @@
         <tr><td>Slide 13</td><td>Funding Ask / Call to Action</td></tr>
       </table></div>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="after-effects-workflow">After Effects Workflow for Animated Pitch Decks</h2>
       <ol>
@@ -282,7 +293,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -362,13 +372,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -493,10 +497,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -520,7 +524,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

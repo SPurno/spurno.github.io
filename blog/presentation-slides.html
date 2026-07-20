@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Professional presentation slides do more than display information — they shape how audiences perceive and process your message. Studies in visual communication demonstrate that audiences retain up to 65% more information when it is presented with relevant visual aids compared to text-only delivery. Well-designed slides establish brand identity, guide viewer attention, create emotional resonance, and support information retention through visual hierarchy and purposeful design.</p>
       <p>SPurno's presentation slides themes are created by professional motion designers who understand both aesthetic principles and practical communication needs. Each theme includes carefully crafted master slides, editable layouts, and customizable color schemes adaptable to any brand identity. Themes support both widescreen (16:9) and standard (4:3) aspect ratios for compatibility with any presentation setup.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-slide-layouts">Types of Slide Layouts</h2>
       <p>Effective presentation decks use a variety of slide layouts to maintain audience engagement throughout the presentation:</p>
@@ -173,17 +185,6 @@
       </ul>
       <p>Using a diverse range of slide types throughout your deck maintains visual interest and supports different communication objectives at each stage of your presentation.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="visual-design-principles">Visual Design Principles</h2>
       <p>Professional presentation slides adhere to established visual design principles that enhance communication effectiveness:</p>
@@ -193,7 +194,6 @@
       <p><strong>Consistency</strong> — Uniform margins, alignment, spacing, and treatment of repeated elements create a polished, professional appearance. Use master slides to enforce consistency automatically.</p>
       <p><strong>White Space</strong> — Purposeful negative space improves readability and creates a premium feel. Avoid cluttered slides by limiting content to one main idea per slide.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="deck-creation-workflow">Deck Creation Workflow</h2>
       <p>A structured deck creation workflow ensures consistent quality across presentations:</p>
@@ -301,7 +301,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -381,13 +380,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -512,10 +505,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -539,7 +532,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

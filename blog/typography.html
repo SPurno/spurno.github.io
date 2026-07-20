@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -159,7 +172,6 @@
       <p>The power of typography animation lies in dual-channel processing — viewers both read and see text moving, engaging multiple sensory pathways simultaneously. This combination results in better comprehension and retention compared to static text. Research in multimedia learning demonstrates that animated text improves information recall by up to 30% when motion supports the message's meaning and pacing.</p>
       <p>Modern typography animation spans a broad spectrum of applications: from simple animated lower thirds identifying speakers on screen to complex narrative sequences where animated text serves as the primary visual element. SPurno Animation Studio's typography template library covers this entire range, providing pre-built solutions optimized for different platforms and content types.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="fundamental-principles">Fundamental Principles</h2>
       <p>Effective typography animation rests on principles that guide every creative decision:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>These principles apply universally across all typography animation contexts, from simple caption animations to complex narrative kinetic typography sequences.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Kinetic Typography Templates</h3>
-            <p>Explore professional typography animation templates and animated text assets for your next video project.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="essential-techniques">Essential Techniques</h2>
       <p>Master these core techniques to build a versatile typography animation skill set:</p>
@@ -204,7 +205,6 @@
       <p><strong>Variable Fonts</strong> — Modern font technology enabling continuous weight, width, and optical size animation. Create fluid typography effects previously impossible, with weight shifts that respond to audio or motion.</p>
       <p>When selecting fonts, always test legibility at the target resolution and animation speed. A font that looks perfect in a static mockup may become unreadable when animated on a mobile screen.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>Follow this systematic workflow for consistent, professional typography animation:</p>
@@ -304,7 +304,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -384,13 +383,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -515,10 +508,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -542,7 +535,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

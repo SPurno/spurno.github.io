@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>The core purpose of a loading bar is to set user expectations. When users see a progress indicator, they understand that the system is working and can estimate how long they need to wait. Research in human-computer interaction consistently shows that users perceive shorter wait times when they see a visual progress indicator, even if the actual wait time remains unchanged. This psychological principle — uncertainty creates anxiety, while progress information reduces it — makes loading bars a critical component of user experience design.</p>
       <p>Beyond mere functionality, loading bar animations offer a significant branding opportunity. Custom-designed loading screens with branded colors, logos, and animated elements create a memorable first impression. Companies like Apple, Google, and Microsoft invest heavily in their loading animations because they understand that these micro-interactions shape overall brand perception. For app developers and motion designers, investing in high-quality loading animations is an investment in user satisfaction and brand equity.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-progress-indicators">Types of Progress Indicators</h2>
       <p>Progress indicators fall into several distinct categories, each suited to different operational contexts and user expectations:</p>
@@ -187,7 +199,6 @@
         <tr><td>Accessibility</td><td>ARIA progressbar role with valuenow attributes</td></tr>
       </table></div>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="after-effects-workflow">After Effects Production Workflow</h2>
       <p>Adobe After Effects is the industry standard for creating professional loading bar animations. A systematic workflow ensures consistent quality across projects:</p>
@@ -278,7 +289,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -358,13 +368,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -489,10 +493,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -516,7 +520,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Video content dominates digital media consumption, with studies showing that viewers retain 95 percent of a message when consumed through video compared to 10 percent when reading text. This cognitive advantage makes video advertising the most effective medium for brand communication, driving higher recall rates, emotional engagement, and conversion metrics than static alternatives. The global digital video advertising market continues to grow, with brands allocating increasing portions of their marketing budgets to video content across social media, streaming platforms, and digital out-of-home displays.</p>
       <p>Animation and motion graphics offer unique advantages in video advertising. Unlike live-action production, animated ads can visualize abstract concepts, create fantastical brand worlds, and maintain consistent visual identity without the constraints of physical production. Motion graphics ads are particularly effective for explainer content, product demonstrations, and brand storytelling where visual metaphors and simplified representations enhance understanding and memorability.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="ad-types-formats">Types &amp; Formats of Video Advertisements</h2>
       <p>Video advertisements come in multiple formats, each suited to different platforms, objectives, and audience contexts. Understanding the strengths and limitations of each format helps advertisers select the right approach for their campaign goals:</p>
@@ -170,17 +182,6 @@
         <li><strong>Interactive and Shoppable Video Ads</strong> — Advanced advertising formats that incorporate clickable elements, product tags, and interactive features that enable viewers to engage directly with the content and make purchases within the video experience</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="brand-storytelling">Brand Storytelling Principles</h2>
       <p>Effective video advertisements transcend simple product promotion to tell compelling stories that resonate with target audiences. Brand storytelling in advertising follows established narrative principles adapted for the condensed format of commercial content. A successful ad narrative establishes a relatable protagonist, presents a conflict or challenge, introduces the brand as the solution, and concludes with a transformed state that demonstrates the value proposition.</p>
@@ -194,7 +195,6 @@
       <p><strong>Brand Consistency</strong> — All visual elements should align with brand guidelines including colors, typography, logo usage, and motion style. Consistent visual language across all advertising touchpoints strengthens brand recognition and recall. Create advertising-specific brand guidelines that address motion behaviour, transition styles, and animation principles.</p>
       <p><strong>Accessibility</strong> — Ensure ads are accessible to all viewers including those with visual or hearing impairments. Use sufficient color contrast, provide captioning for spoken content, avoid rapid flashing that could trigger seizures, and ensure text is readable on mobile screens. Accessible design expands audience reach and demonstrates brand responsibility.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow for Video Advertisements</h2>
       <p>A professional video advertisement production workflow ensures consistent quality and efficient delivery across multiple campaigns. The following stages represent best practices for motion graphics ad production:</p>
@@ -281,7 +281,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -361,13 +360,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -492,10 +485,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -519,7 +512,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

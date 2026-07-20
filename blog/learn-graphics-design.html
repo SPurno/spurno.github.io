@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Graphic design is an essential skill in today's visual world. From social media content to brand identities, design skills open doors to creative careers and enable effective visual communication. The demand for skilled graphic designers continues to grow across industries including advertising, technology, entertainment, publishing, and marketing. For animators specifically, design skills are not optional — they are the raw material from which all motion work is built.</p>
       <p>The beauty of learning graphic design online is the flexibility to progress at your own pace and focus on areas that align with your interests. Whether you aspire to become a brand designer, UI/UX designer, motion graphics artist, or art director, the foundational principles remain the same. SPurno Animation Studio's experience in motion design demonstrates how graphic design skills translate into professional opportunities in the animation and stock footage industries, where strong design fundamentals directly impact the quality and marketability of creative work.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="design-fundamentals">Design Fundamentals for Animation</h2>
       <p>Before touching any software, beginners should understand the core principles that underpin all visual design. These fundamentals apply equally to static graphics and motion design:</p>
@@ -171,17 +183,6 @@
       </ul>
       <p>Mastering these fundamentals before diving into software will save months of trial and error. Resources like "The Non-Designer's Design Book" by Robin Williams and online courses on platforms like Skillshare and Coursera provide structured introductions to each principle.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-paint-brush"></i></div>
-          <div class="blog-ad-text">
-            <h3>Design Resources for Beginners</h3>
-            <p>Access tutorials, templates, and assets to accelerate your graphic design and animation learning.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Resources <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="essential-tools">Essential Tools for Design and Animation</h2>
       <p>Professional graphic designers and animators use a combination of tools for different aspects of their work. Building proficiency in the right tools at the right time is critical for career development:</p>
@@ -202,7 +203,6 @@
       <p><strong>Timing and Spacing</strong> — Timing determines how long an animation takes; spacing determines how far an object moves during that time. Good timing creates rhythm and pacing that viewers subconsciously understand. Fast motion conveys energy and urgency; slow motion conveys calm and importance. Experiment with different timings to discover how speed affects emotional impact.</p>
       <p><strong>Layers and Pre-compositions</strong> — After Effects organizes visual elements as layers in a timeline. Understanding layer order, blending modes, and pre-composition (nesting compositions within compositions) is essential for building complex animations that remain organized and editable.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="learning-path">Recommended Learning Path</h2>
       <p>Following a structured learning path prevents overwhelm and ensures you build skills in the right order. Here is a recommended progression for animation beginners:</p>
@@ -300,7 +300,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -380,13 +379,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -514,10 +507,10 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 // TOC highlighting
@@ -542,7 +535,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

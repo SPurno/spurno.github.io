@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>The mobile app market is intensely competitive, with millions of apps vying for user attention across the App Store and Google Play. High-quality iPhone mockup templates help your app stand out in crowded marketplaces and marketing channels. Apple's App Store guidelines require preview videos that demonstrate app functionality in realistic contexts, making iPhone mockups an essential tool for app developers, marketers, and designers worldwide.</p>
       <p>Professional presentation directly correlates with perceived value. Studies in consumer psychology show that products presented in realistic, high-quality contexts are perceived as more valuable and trustworthy. An app screenshot displayed inside a polished iPhone mockup with subtle animation can increase conversion rates by 30-50% compared to the same screenshot presented flat, without context. This makes iPhone mockup animations a high-ROI investment for any mobile product launch.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-mockup-templates">Types of iPhone Mockup Templates</h2>
       <p>iPhone mockup templates come in several formats, each suited to different presentation contexts and production workflows:</p>
@@ -171,17 +183,6 @@
       </ul>
       <p>Each type serves specific presentation goals. Static mockups excel at quick production and multi-platform distribution, while animated templates are essential for video marketing and social media where motion captures attention.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-mobile-alt"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Mockup Assets</h3>
-            <p>Explore 500+ iPhone and device mockup templates for After Effects and video production.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <p>iPhone mockup animations enhance a wide range of content types across the marketing and development lifecycle:</p>
@@ -201,7 +202,6 @@
       <p><strong>Motion Subtlety</strong> — Animation should enhance the app presentation, not distract from it. Gentle device rotation of 5-10 degrees, subtle screen parallax effects, and slow ambient background motion create professional presentations. Avoid rapid or dramatic movements that make it difficult to view the app content.</p>
       <p><strong>Lighting and Shadows</strong> — Realistic lighting and shadow effects make device mockups feel tangible and grounded. Drop shadows create depth, while screen reflections add realism. Consistency in lighting direction across all mockup elements maintains visual coherence.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>A structured workflow ensures consistent quality when producing iPhone mockup animations:</p>
@@ -298,7 +298,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -378,13 +377,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -512,10 +505,10 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 // TOC highlighting
@@ -540,7 +533,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

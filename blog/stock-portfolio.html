@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -159,7 +172,6 @@
       <p>Assets are distributed across multiple stock platforms including Adobe Stock, Shutterstock, Pond5, and Freepik, giving creators flexibility in purchasing through their preferred marketplace. The portfolio spans six primary categories with new assets added weekly, including seasonal collections aligned with marketing calendars and industry trends. SPurno's contributor profiles collectively serve a global customer base of studios, broadcasters, agencies, and independent creators.</p>
       <p>Quality benchmarks include 4K resolution support, Rec. 709 color accuracy, seamless looping capability, and comprehensive metadata tagging for discoverability. Each asset is tested across Adobe After Effects, Premiere Pro, Final Cut Pro, and DaVinci Resolve to ensure cross-platform compatibility.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="asset-categories">Asset Categories</h2>
       <p>The portfolio is organized into six primary categories, each serving distinct creative needs:</p>
@@ -173,17 +185,6 @@
       </ul>
       <p>Each category maintains consistent technical baselines while offering stylistic variety to suit different brand aesthetics and production contexts.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Browse the Full Collection</h3>
-            <p>Explore 4000+ premium motion assets ready for your next project on Adobe Stock.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Shop Now <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="technical-specifications">Technical Specifications</h2>
 
@@ -213,7 +214,6 @@
         <tr><td>License Type</td><td>Royalty-free standard &amp; extended</td></tr>
       </table></div>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="licensing-usage">Licensing &amp; Usage</h2>
       <p>Understanding stock licensing is essential for proper asset utilization. SPurno assets are available under standard royalty-free licenses through each distribution platform, covering commercial use, broadcast applications, and digital distribution. Key licensing terms include:</p>
@@ -302,7 +302,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -382,13 +381,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -513,10 +506,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -540,7 +533,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

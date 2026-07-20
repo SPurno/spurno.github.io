@@ -87,6 +87,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -135,21 +148,9 @@
       <h2 id="why-green-screen-mockups-matter">Why Green Screen Mockup Templates Matter</h2>
       <p>Green screen technology enables creators to separate subjects from their background and place them in any environment, opening creative possibilities that were once only available to major production studios. Today, affordable green screen setups combined with professional mockup templates make Hollywood-quality compositing accessible to creators at every level.</p>
       <p>Viewers have become sophisticated critics of visual effects, and poor chroma key work immediately undermines credibility. Professional green screen mockup templates from SPurno Animation Studio are designed for compatibility with major compositing tools including Adobe After Effects, Premiere Pro, Final Cut Pro, and DaVinci Resolve, ensuring clean, natural-looking results across the entire production pipeline.</p>
-      <div id="ad-slot-1-article"></div>
       <h2 id="understanding-chroma-key">Understanding Chroma Key Technology</h2>
       <p>Chroma key compositing works by isolating a specific color range — typically green or blue — and making it transparent so another image or video can be placed behind the subject. Green is the most common choice because it is less likely to match skin tones or clothing colors, digital cameras capture green with greater sensitivity due to the Bayer filter pattern, and green screens require less light than blue screens for equivalent keying quality.</p>
       <p>Successful chroma keying depends on three critical factors: even lighting across the green screen surface, adequate distance between the subject and the screen to prevent color spill, and a camera that records sufficient color information for clean keying. Professional green screen mockup templates account for these variables and include guides for optimal setup.</p>
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <ul>
         <li><strong>Product Photography and E-Commerce Content</strong> — Showcase products against any background without physical studio setups, reducing production costs while enabling unlimited creative backgrounds.</li>
@@ -169,7 +170,6 @@
         <li><strong>Composite Background</strong> — Place your desired background behind the keyed subject. Adjust color matching and lighting direction for natural integration.</li>
         <li><strong>Preview and Export</strong> — Review at full resolution to identify keying artifacts before final export.</li>
       </ol>
-      <div id="ad-slot-2-article"></div>
       <h2 id="lighting-best-practices">Lighting Best Practices for Chroma Key</h2>
       <p>The quality of your chroma key result depends primarily on lighting quality. Use separate lights for the green screen background and the subject. Background lights should be diffused and positioned to create even illumination across the entire green surface. Subject lighting must match the lighting direction implied by the replacement background for realistic integration. The distance between subject and green screen — minimum 3 feet, ideally 6-10 feet — is critical for preventing green spill contamination.</p>
       <h2 id="technical-specifications">Technical Specifications</h2>
@@ -247,7 +247,6 @@
         <a href="https://www.linkedin.com/in/spurno" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
       </div>
     </div>
-    <div id="ad-slot-3-article"></div>
     <div class="useful-links">
       <div class="label">Useful Links</div>
       <div class="grid">
@@ -320,13 +319,7 @@
         <div><div class="name">Pixeel</div><div class="role">Asset Curator</div></div>
       </div>
     </div>
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
     <div class="related-grid">
@@ -446,10 +439,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -473,7 +466,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

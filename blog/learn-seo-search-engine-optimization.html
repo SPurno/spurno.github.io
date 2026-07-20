@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>The digital landscape is increasingly competitive, with millions of video assets and portfolio pages competing for attention. Effective SEO helps your content rank higher in search results, making it visible to users actively seeking animation services, motion graphics assets, or stock footage. For animators and creative studios, SEO bridges the gap between technical skill and market visibility — the best animation in the world has no impact if potential clients cannot find it.</p>
       <p>SPurno Animation Studio's online presence demonstrates how strategic SEO — including optimized content, structured data, and technical best practices — can build a global audience for creative work. By applying the same principles, independent animators and studios can reduce reliance on paid advertising platforms and build sustainable organic traffic that generates consistent client inquiries and asset sales.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="how-search-engines-discover-content">How Search Engines Discover Content</h2>
       <p>Search engines like Google, Bing, and DuckDuckGo use complex algorithms to discover, index, and rank web content. These algorithms consider hundreds of ranking factors including content relevance, page quality, user experience, backlink authority, and technical performance. Understanding how search engines evaluate content is the first step toward creating SEO-friendly pages that rank well and attract qualified traffic.</p>
@@ -177,7 +189,6 @@
       <p>Keyword research is the practice of identifying the search terms your target audience uses to find content like yours. For animators, this means understanding the language potential clients use when searching for motion design services, stock assets, or creative inspiration. Effective keyword research reveals content opportunities that align with user search intent and competitive viability.</p>
       <p>Start by brainstorming seed keywords related to your services — "motion graphics," "animation studio," "stock footage," "explainer video." Expand these using keyword research tools like Google Keyword Planner, SEMrush, or Ahrefs to discover related search terms with measurable volume. Analyze search intent behind each keyword: are users looking to buy, learn, or compare? Create content that matches the dominant intent for your target keywords. Long-tail keywords — specific three- to five-word phrases — often provide the best opportunity for ranking, as they face less competition and attract more qualified traffic.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="on-page-seo-strategies">On-Page SEO Strategies</h2>
       <p>On-page SEO involves optimizing individual web pages to rank higher and earn more relevant traffic. For animators, this applies to portfolio pages, blog articles, asset listings, and service pages. Each page should be optimized independently while contributing to the overall topical authority of your site.</p>
@@ -261,7 +272,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -341,13 +351,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -472,10 +476,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -499,7 +503,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

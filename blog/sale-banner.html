@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>In the competitive world of digital marketing, banner design directly impacts campaign performance. Research shows that animated banners achieve click-through rates up to 7x higher than static images, with the motion elements drawing viewer attention and maintaining engagement longer. Consistent banner design across campaigns also builds brand recognition, with studies demonstrating that repeated exposure to cohesive visual branding increases purchase intent by over 33%.</p>
       <p>SPurno's sale banner animation templates are engineered specifically for modern digital advertising demands. Each template comes in multiple standard ad sizes including leaderboard (728x90), medium rectangle (300x250), skyscraper (160x600), and mobile banner (320x100), ensuring campaign compatibility across any platform. Templates include countdown timers, price reveal animations, and call-to-action button effects that drive urgency and conversions.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-sale-banners">Types of Sale Banners</h2>
       <p>Sale banners serve different marketing objectives and appear across various platforms. Understanding the types helps select the right format for each campaign:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>Each banner type serves a specific marketing function, and the most effective campaigns use a mix of formats across the customer journey.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="animation-techniques">Animation Techniques for Sale Banners</h2>
       <p>Effective sale banner animation employs specific techniques to maximize impact while maintaining professional quality:</p>
@@ -195,7 +196,6 @@
       </ul>
       <p>Animation should always serve the marketing goal. Every motion element should draw attention to the offer, the CTA, or the value proposition without creating confusion or slowing comprehension.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="design-best-practices">Design Best Practices</h2>
       <p>Professional sale banner design follows established best practices that maximize marketing effectiveness:</p>
@@ -303,7 +303,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -383,13 +382,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -514,10 +507,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -541,7 +534,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

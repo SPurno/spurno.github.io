@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -159,7 +172,6 @@
       <p>In video content, typography serves multiple functions: establishing brand identity through consistent typeface selection, guiding viewer attention through hierarchical motion, conveying tone through font personality, and ensuring accessibility through size and contrast choices. SPurno Animation Studio's typography design approach integrates all these considerations into a unified system that works across formats and platforms.</p>
       <p>Modern video typography extends beyond simple title overlays. Applications include dynamic lower thirds for speaker identification, animated quote cards for social media, branded intro sequences with custom lettering, call-to-action overlays, end cards with subscription prompts, and full kinetic typography narratives. Each application demands specific design considerations tailored to its context and audience.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="design-principles">Design Principles</h2>
       <p>Effective typography design for video rests on five foundational principles that guide every creative decision:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>These principles apply across all typography design contexts, from simple captioning to complex kinetic typography sequences. Adhering to them ensures consistent quality regardless of project scope.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Typography Templates</h3>
-            <p>Browse professional kinetic typography templates and text animation assets for your next video project.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="font-selection">Font Selection for Video</h2>
       <p>Choosing the right typeface for video requires balancing aesthetic appeal with functional readability in motion. Different font categories serve different purposes:</p>
@@ -207,7 +208,6 @@
       </ul>
       <p>The key to professional results is appropriate easing — keyframe interpolation should use ease-in and ease-out curves rather than linear interpolation, creating natural, organic motion that feels polished rather than mechanical.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>Follow this systematic workflow for consistent typography design results across projects:</p>
@@ -308,7 +308,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -388,13 +387,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -519,10 +512,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -546,7 +539,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Infographic animation is the art of bringing static data visualizations to life through motion graphics techniques. It uses sequential reveals, animated charts, morphing icons, and kinetic typography to guide viewers through information in a structured, easy-to-follow manner. Unlike static infographics that present all information at once, animated versions introduce elements progressively, giving the audience time to absorb each data point before moving to the next.</p>
       <p>The effectiveness of infographic animation is backed by cognitive science. The brain processes visual information 60,000 times faster than text, and adding motion creates additional neural pathways for memory encoding. Studies show viewers retain up to 65% more information when it is presented through animated visual formats compared to static text alone. This makes infographic animation one of the most effective tools for communication in the attention economy, where capturing and holding viewer attention is increasingly challenging.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-infographic-animation">Types of Infographic Animation</h2>
       <p>Different communication goals require different animation approaches. Understanding these categories helps creators select the right style for their content:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>Each type serves a specific communication purpose. Statistical animations excel at data-heavy presentations, while process animations are ideal for educational content and explainer videos. The best infographic animations often combine multiple types within a single piece to tell a complete data story.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-chart-line"></i></div>
-          <div class="blog-ad-text">
-            <h3>Animated Infographic Assets</h3>
-            <p>Explore 2000+ infographic animation templates, animated charts, and data visualization tools.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="key-benefits">Key Benefits of Infographic Animation</h2>
       <p>Investing in infographic animation delivers measurable returns across multiple dimensions of content performance. The combination of motion, structure, and visual design creates content that outperforms static alternatives in nearly every metric:</p>
@@ -201,7 +202,6 @@
       <p><strong>Motion Pacing</strong> — Animate at a pace that allows viewers to absorb each element. A common mistake is animating too quickly, which leaves audiences confused. Allow 2-4 seconds per data point with smooth ease-in and ease-out transitions.</p>
       <p><strong>Data Integrity</strong> — Never distort or misrepresent data through animation. Charts must accurately reflect underlying numbers, and motion should clarify rather than confuse. Misleading visualizations damage credibility and trust.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>A professional infographic animation workflow ensures consistent quality across projects and platforms:</p>
@@ -298,7 +298,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -378,13 +377,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -512,10 +505,10 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 // TOC highlighting
@@ -540,7 +533,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

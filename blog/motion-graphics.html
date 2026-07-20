@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Motion graphics stock video refers to pre-animated visual assets that designers and video editors can license and use in their projects. Unlike traditional stock footage that captures real-world footage, motion graphics stock video consists of animated elements — geometric shapes, flowing particles, kinetic typography, data visualizations, abstract backgrounds, and branded transitions. These assets are created using professional animation software like Adobe After Effects, Cinema 4D, and Blender, then rendered in standard video formats for easy integration into any production workflow.</p>
       <p>The advantage of using stock motion graphics over custom animation is significant cost and time savings. A professionally designed animated background that might take days to create from scratch can be licensed and deployed in minutes. For content creators, this means focusing energy on storytelling, editing, and client communication rather than building every visual element from the ground up. SPurno Animation Studio\'s collection on Adobe Stock, Shutterstock, and Pond5 represents thousands of hours of professional motion design work available for immediate use.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-assets">Types of Motion Graphics Stock Video Assets</h2>
       <p>Understanding the different categories of motion graphics stock video helps creators select the right assets for their specific needs:</p>
@@ -185,7 +197,6 @@
         <tr><td>Best For</td><td>Most projects / Premium, brand-critical use</td></tr>
       </table></div>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-best-practices">Production Best Practices</h2>
       <p>Follow these best practices to integrate motion graphics stock video into your projects efficiently:</p>
@@ -268,7 +279,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -348,13 +358,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -479,10 +483,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -506,7 +510,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

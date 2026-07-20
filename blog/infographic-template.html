@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Time is the most valuable resource in content production. Building an animated infographic from scratch in After Effects can take days or even weeks for complex visualizations. Infographic templates collapse that timeline to hours, delivering professional results with a fraction of the effort. Research shows that content with relevant data visualizations receives up to 94% more views than text-only alternatives, and animated infographics extend that engagement further by guiding viewers through data narratives step by step.</p>
       <p>Beyond speed, templates enforce consistency. A well-designed template embodies best practices in visual hierarchy, color theory, and motion design that have been refined through professional use. By starting from a proven framework, creators avoid common pitfalls like overcrowded layouts, poorly timed animations, or inconsistent styling. The result is content that looks polished and intentional, regardless of the creator's experience level.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="template-categories">Infographic Template Categories</h2>
       <p>Professional infographic templates fall into several distinct categories, each optimized for different data types and presentation contexts:</p>
@@ -172,17 +184,6 @@
       </ul>
       <p>Each category serves specific content goals. Statistical charts excel at quarterly reports and research presentations, while process flowcharts are ideal for explainer videos and onboarding content. The most versatile template libraries offer multiple categories so creators can mix and match assets across projects.</p>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-chart-bar"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Infographic Assets</h3>
-            <p>Browse 2000+ professional infographic templates, animated charts, and data visualization assets.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <p>Infographic templates are versatile tools that enhance content across multiple channels and formats. Understanding where each template type excels helps creators maximize their investment:</p>
@@ -202,7 +203,6 @@
       <p><strong>Typography Selection</strong> — Choose no more than two font families: one for headers and one for body text. Sans-serif fonts like Helvetica, Montserrat, or Open Sans perform best for on-screen infographics, maintaining legibility at small sizes and across varied backgrounds.</p>
       <p><strong>Motion Pacing</strong> — Animated data reveals should give viewers time to absorb each element before introducing the next. A general guideline is 2-3 seconds per data point, with transitions lasting 300-500 milliseconds. Consistent pacing creates rhythm that viewers subconsciously anticipate and trust.</p>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="production-workflow">Production Workflow</h2>
       <p>A structured production workflow ensures consistent quality when working with infographic templates:</p>
@@ -300,7 +300,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -380,13 +379,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -514,10 +507,10 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 // TOC highlighting
@@ -542,7 +535,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

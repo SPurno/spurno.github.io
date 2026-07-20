@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>Stock video footage with animated backgrounds provides content creators with production-ready assets that would otherwise take hours to create. The global stock video market continues to expand as demand for high-quality video content grows across every industry sector. Animated background stock footage eliminates the need for complex motion graphics production from scratch. Instead of spending days designing, animating, and rendering background elements, creators can select from thousands of pre-produced options that are ready to drop into their timeline.</p>
       <p>Professional stock footage libraries like Adobe Stock, Shutterstock, and Pond5 have transformed how video professionals access animated backgrounds. These platforms offer curated collections that meet strict quality standards, ensuring consistent resolution, frame rates, and color spaces. SPurno Animation Studio contributes premium animated background stock footage to these marketplaces, providing creators with unique, high-quality assets that stand out from generic options. This efficiency gain is particularly valuable for freelance video editors, small production teams, and marketing departments working under tight deadlines with limited resources.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="types-of-backgrounds">Types of Animated Background Stock Footage</h2>
       <p>Understanding the different categories of animated background footage helps creators select the right asset for their specific project needs. Each type serves a distinct purpose and creates a different emotional response in viewers:</p>
@@ -170,17 +182,6 @@
         <li><strong>Gradient and Fluid Motion Backgrounds</strong> — Smooth color transitions and fluid gradient movements that add atmospheric depth. Perfect for mood setting, background ambience, and content where subtle visual interest is needed without distraction</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="best-uses-applications">Best Uses &amp; Applications</h2>
       <p>Animated background stock footage enhances a wide range of content types across different platforms. Selecting the right background style for each use case maximizes visual impact and audience engagement:</p>
@@ -203,7 +204,6 @@
         <li><strong>Preview and Export</strong> — Preview the composite at full resolution before final export to verify that motion doesn't create visual distractions or readability issues. Test on target screens to ensure the background performs as expected</li>
       </ol>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="licensing">Licensing &amp; Usage Rights</h2>
       <p>Understanding stock footage licensing is essential for legal compliance. Most animated background stock footage is available under royalty-free licenses, which allow unlimited use in commercial projects after purchase. However, there are important distinctions between standard and extended licenses that affect usage scope. Standard royalty-free licenses typically cover most common use cases including web videos, social media, presentations, and broadcast content. Extended licenses may be required for merchandise production, template resale, or use in projects with very large audiences.</p>
@@ -283,7 +283,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -363,13 +362,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -494,10 +487,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -521,7 +514,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>

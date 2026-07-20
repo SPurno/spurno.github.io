@@ -103,6 +103,19 @@
       <li><a href="../account.html" class="nav-link nav-action-mobile" id="navProfile"><i class="fas fa-user"></i> Account</a></li>
     </ul>
     <div class="nav-actions">
+            <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
       <a href="../register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
       <a href="../login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
       <a href="../account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
@@ -158,7 +171,6 @@
       <p>The global animation market has experienced significant growth in recent years, driven by increasing demand for video content across digital platforms, broadcast media, and corporate communications. Professional animation studios offer several distinct advantages over hiring individual freelancers, including consistent quality standards, reliable project management, and the ability to scale resources based on project requirements. Studios maintain quality control processes, backup resources for unexpected situations, and established workflows that ensure timely delivery.</p>
       <p>Bangladesh has emerged as a competitive destination for animation services, offering a unique combination of creative talent, technical expertise, and cost-effective pricing. When selecting an animation studio, consider factors such as portfolio quality, industry experience, communication capabilities, and production workflow. A professional studio should demonstrate proficiency across multiple animation styles, provide clear project timelines, and maintain transparent communication throughout the production process.</p>
 
-      <div id="ad-slot-1-article"></div>
 
       <h2 id="services-offered">Services Offered by Professional Animation Studios</h2>
       <p>Full-service animation studios provide a comprehensive range of motion graphics and visual effects services. Understanding these service categories helps clients identify the right support for their specific project needs:</p>
@@ -171,17 +183,6 @@
         <li><strong>3D Animation and Cinematic Visual Effects</strong> — Advanced 3D rendering, particle systems, and cinematic effects for high-impact productions that require dimensional depth and realistic simulation</li>
       </ul>
 
-      <div class="blog-ad-container"><div class="blog-ad-inner">
-        <span class="blog-ad-label">Ad</span>
-        <div class="blog-ad-content">
-          <div class="blog-ad-icon"><i class="fas fa-cube"></i></div>
-          <div class="blog-ad-text">
-            <h3>Premium Motion Graphics Assets</h3>
-            <p>Browse 4000+ professional 4K motion backgrounds, animated templates, and stock footage.</p>
-            <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" class="blog-ad-cta" target="_blank" rel="noopener">Browse Collection <i class="fas fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div></div>
 
       <h2 id="production-pipeline">Production Pipeline Overview</h2>
       <p>A structured production pipeline ensures consistent quality and efficient delivery across all animation projects. Understanding each phase helps clients prepare and collaborate effectively with their chosen studio:</p>
@@ -198,7 +199,6 @@
         <li><strong>Final Delivery</strong> — Receive final deliverables in your preferred format and resolution, including source project files upon request. Multiple format versions are provided for different distribution channels</li>
       </ol>
 
-      <div id="ad-slot-2-article"></div>
 
       <h2 id="quality-assurance">Quality Assurance and Delivery Standards</h2>
       <p>Professional animation studios maintain rigorous quality control processes to ensure consistent output across all projects. Quality assurance typically includes technical checks for frame rate accuracy, resolution compliance, color space consistency, and audio synchronization. Creative reviews evaluate animation smoothness, timing appropriateness, and brand alignment with the project brief.</p>
@@ -279,7 +279,6 @@
       </div>
     </div>
 
-    <div id="ad-slot-3-article"></div>
 
     <div class="useful-links">
       <div class="label">Useful Links</div>
@@ -359,13 +358,7 @@
       </div>
     </div>
 
-    <div class="sidebar-section">
-      <div class="sidebar-title">Sponsored</div>
-      <div id="ad-slot-1"></div>
-      <div id="ad-slot-2" style="margin-top:12px"></div>
-      <div id="ad-slot-3" style="margin-top:12px"></div>
-    </div>
-  </aside>
+</aside>
 
   <div class="related-articles">
     <h2 class="related-articles-title">Related Articles</h2>
@@ -490,10 +483,10 @@ window.addEventListener('scroll', function() {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
 });
 document.addEventListener('click', function(e) {
-  var toggle = e.target.closest('#navToggle');
-  if (toggle) { toggle.classList.toggle('active'); document.getElementById('navLinks').classList.toggle('open'); return; }
   if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
     document.getElementById('navLinks').classList.remove('open');
+    document.getElementById('navToggle').classList.remove('active');
+    document.body.style.overflow = '';
   }
 });
 (function() {
@@ -517,7 +510,6 @@ document.addEventListener('click', function(e) {
 </script>
 <script src="../js/i18n.js"></script>
 <script src="../js/site-ads.js"></script>
-<script src="../js/blog-ads.js"></script>
 <script src="../js/popup-ads.js"></script>
 </body>
 </html>
