@@ -24,6 +24,7 @@ import {
   handleAdminGetOrders, handleAdminUpdateOrder, handleAdminDeleteOrder,
   handleAdminGetMessages, handleAdminDeleteMessage,
   handleAdminReplyMessage, handleAdminGetUsers, handleAdminComposeMessage,
+  handleAdminUpdateUser,
 } from './admin.js';
 
 export default {
@@ -98,6 +99,7 @@ export default {
 
     // ── Admin Users Routes ──────────────────────────────
     if (path === '/api/admin/users' && method === 'GET') return handleAdminGetUsers(request, env);
+    if (path === '/api/admin/users' && method === 'PUT') return handleAdminUpdateUser(request, env);
 
     // 404 for unknown routes
     return new Response(

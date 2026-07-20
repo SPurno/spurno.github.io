@@ -254,6 +254,42 @@
   </div>
 </div>
 
+<!-- Edit User Modal -->
+<div class="modal-overlay" id="editUserModal">
+  <div class="modal-content">
+    <button class="modal-close" id="editUserModalClose">&times;</button>
+    <h2><i class="fas fa-user-pen" style="color:var(--primary);margin-right:8px;"></i> Edit User</h2>
+    <div class="admin-alert" id="editUserModalAlert"></div>
+    <form id="editUserForm">
+      <input type="hidden" id="editUserId">
+      <div class="auth-field">
+        <label>Email</label>
+        <div id="editUserEmail" style="font-size:14px;color:var(--body-muted);padding:8px 0;"></div>
+      </div>
+      <div class="auth-field">
+        <label for="editUserName">Full Name</label>
+        <input type="text" id="editUserName" class="form-control" placeholder="User's full name">
+      </div>
+      <div class="auth-field">
+        <label for="editUserPhone">Phone</label>
+        <input type="text" id="editUserPhone" class="form-control" placeholder="+1 (555) 123-4567">
+      </div>
+      <div class="auth-field">
+        <label for="editUserAvatar">Avatar URL</label>
+        <input type="url" id="editUserAvatar" class="form-control" placeholder="https://example.com/avatar.jpg">
+      </div>
+      <div style="margin-bottom:16px;display:flex;align-items:center;gap:12px;">
+        <img id="editUserAvatarPreview" style="width:48px;height:48px;border-radius:50%;object-fit:cover;display:none;border:2px solid var(--primary);" alt="Avatar preview">
+        <span id="editUserAvatarLetter" style="display:inline-flex;width:48px;height:48px;border-radius:50%;background:var(--primary);color:#fff;font-size:1.4rem;font-weight:700;align-items:center;justify-content:center;border:2px solid var(--primary);"></span>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secondary" id="editUserCancelBtn"><i class="fas fa-times"></i> Cancel</button>
+        <button type="submit" class="btn btn-primary" id="editUserSaveBtn"><i class="fas fa-save"></i> Save User</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- Compose Message Modal -->
 <div class="modal-overlay" id="composeModal">
   <div class="modal-content">
@@ -757,18 +793,24 @@
       }
       adminUsersList.innerHTML = '<div style="display:flex;flex-direction:column;gap:12px;">' + users.map(function(u) {
         var created = new Date(u.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+        var initial = (u.name || u.email || 'U').charAt(0).toUpperCase();
+        var avatarHtml = u.avatar_url ? '<img src="' + u.avatar_url.replace(/"/g,'&quot;') + '" style="width:28px;height:28px;border-radius:50%;object-fit:cover;vertical-align:middle;">' : '<span style="display:inline-flex;width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;font-size:12px;font-weight:700;align-items:center;justify-content:center;vertical-align:middle;">' + initial + '</span>';
+        var phoneHtml = u.phone ? '<span style="font-size:12px;color:var(--body-muted);"><i class="fas fa-phone"></i> ' + u.phone + '</span>' : '';
         return '<div class="admin-card">' +
           '<div class="admin-card-top">' +
             '<div class="admin-card-left">' +
-              '<span class="admin-card-user"><i class="fas fa-user" style="margin-right:4px;color:var(--body-muted);"></i>' + (u.name || u.email.split('@')[0]) + '</span>' +
+              avatarHtml +
+              '<span class="admin-card-user">' + (u.name || u.email.split('@')[0]) + '</span>' +
               '<span class="admin-card-id">#' + u.id + '</span>' +
             '</div>' +
             '<span class="admin-card-date">Joined ' + created + '</span>' +
           '</div>' +
           '<div class="admin-card-type"><i class="fas fa-envelope" style="margin-right:6px;color:var(--body-muted);"></i>' + u.email + '</div>' +
+          (phoneHtml ? '<div class="admin-card-meta">' + phoneHtml + '</div>' : '') +
           '<div class="admin-card-footer">' +
             '<span></span>' +
             '<div class="admin-card-actions">' +
+              '<button class="btn btn-sm btn-secondary admin-edit-user-btn" data-id="' + u.id + '" data-name="' + (u.name || '').replace(/"/g, '&quot;') + '" data-email="' + u.email + '" data-phone="' + (u.phone || '').replace(/"/g, '&quot;') + '" data-avatar="' + (u.avatar_url || '').replace(/"/g, '&quot;') + '"><i class="fas fa-pen"></i> Edit</button>' +
               '<button class="btn btn-sm btn-secondary admin-compose-btn" data-user-id="' + u.id + '" data-user-name="' + (u.name || u.email.split('@')[0]).replace(/"/g, '&quot;') + '" data-user-email="' + u.email + '"><i class="fas fa-paper-plane"></i> Send Message</button>' +
             '</div>' +
           '</div>' +
@@ -778,6 +820,11 @@
       document.querySelectorAll('.admin-compose-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
           openComposeModal(btn.dataset.userId, btn.dataset.userName, btn.dataset.userEmail);
+        });
+      });
+      document.querySelectorAll('.admin-edit-user-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          openEditUserModal(btn.dataset.id, btn.dataset.name, btn.dataset.email, btn.dataset.phone, btn.dataset.avatar);
         });
       });
     } catch (e) {
@@ -847,6 +894,87 @@
     }
     composeSendBtn.disabled = false;
     composeSendBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+  });
+
+  // ── Edit User Modal ──
+  var editUserModal = document.getElementById('editUserModal');
+  var editUserModalClose = document.getElementById('editUserModalClose');
+  var editUserCancelBtn = document.getElementById('editUserCancelBtn');
+  var editUserForm = document.getElementById('editUserForm');
+  var editUserId = document.getElementById('editUserId');
+  var editUserEmail = document.getElementById('editUserEmail');
+  var editUserName = document.getElementById('editUserName');
+  var editUserPhone = document.getElementById('editUserPhone');
+  var editUserAvatar = document.getElementById('editUserAvatar');
+  var editUserAvatarPreview = document.getElementById('editUserAvatarPreview');
+  var editUserAvatarLetter = document.getElementById('editUserAvatarLetter');
+  var editUserSaveBtn = document.getElementById('editUserSaveBtn');
+  var editUserModalAlert = document.getElementById('editUserModalAlert');
+
+  function openEditUserModal(id, name, email, phone, avatar) {
+    editUserId.value = id;
+    editUserEmail.textContent = email;
+    editUserName.value = name || '';
+    editUserPhone.value = phone || '';
+    editUserAvatar.value = avatar || '';
+    editUserModalAlert.className = 'admin-alert';
+    editUserModalAlert.textContent = '';
+    updateEditAvatarPreview(name || email || 'U', avatar || '');
+    editUserModal.classList.add('show');
+  }
+
+  function updateEditAvatarPreview(name, avatarUrl) {
+    var initial = (name || 'U').charAt(0).toUpperCase();
+    if (avatarUrl) {
+      editUserAvatarPreview.style.display = 'inline-block';
+      editUserAvatarLetter.style.display = 'none';
+      editUserAvatarPreview.src = avatarUrl;
+    } else {
+      editUserAvatarPreview.style.display = 'none';
+      editUserAvatarLetter.style.display = 'inline-flex';
+      editUserAvatarLetter.textContent = initial;
+    }
+  }
+
+  editUserAvatar.addEventListener('input', function() {
+    updateEditAvatarPreview(editUserName.value || editUserEmail.textContent || 'U', this.value.trim());
+  });
+
+  editUserName.addEventListener('input', function() {
+    if (!editUserAvatar.value.trim()) {
+      updateEditAvatarPreview(this.value || editUserEmail.textContent || 'U', '');
+    }
+  });
+
+  function closeEditUserModal() { editUserModal.classList.remove('show'); }
+  editUserModalClose.addEventListener('click', closeEditUserModal);
+  editUserCancelBtn.addEventListener('click', closeEditUserModal);
+  editUserModal.addEventListener('click', function(e) { if (e.target === editUserModal) closeEditUserModal(); });
+
+  editUserForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    editUserSaveBtn.disabled = true;
+    editUserSaveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+    try {
+      var result = await adminFetch('/admin/users', {
+        method: 'PUT',
+        body: JSON.stringify({
+          id: parseInt(editUserId.value, 10),
+          name: editUserName.value.trim() || null,
+          phone: editUserPhone.value.trim() || null,
+          avatar_url: editUserAvatar.value.trim() || null,
+        }),
+      });
+      editUserModalAlert.textContent = result.message || 'User updated!';
+      editUserModalAlert.className = 'admin-alert show success';
+      setTimeout(closeEditUserModal, 1000);
+      loadAdminUsers();
+    } catch (e) {
+      editUserModalAlert.textContent = e.message || 'Failed to update user';
+      editUserModalAlert.className = 'admin-alert show error';
+    }
+    editUserSaveBtn.disabled = false;
+    editUserSaveBtn.innerHTML = '<i class="fas fa-save"></i> Save User';
   });
 
   // ── Auto-login ──

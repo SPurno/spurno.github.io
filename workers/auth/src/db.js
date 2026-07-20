@@ -123,6 +123,9 @@ export async function ensureSchema(env) {
   try { await db.execute(`ALTER TABLE contact_messages ADD COLUMN admin_reply TEXT DEFAULT ''`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
   try { await db.execute(`ALTER TABLE contact_messages ADD COLUMN admin_replied_at TEXT DEFAULT NULL`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
 
+  try { await db.execute(`ALTER TABLE users ADD COLUMN phone TEXT DEFAULT ''`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
+  try { await db.execute(`ALTER TABLE users ADD COLUMN avatar_url TEXT DEFAULT ''`); } catch (e) { if (!e?.message?.includes('duplicate column')) throw e; }
+
   return true;
 }
 
@@ -140,7 +143,7 @@ export async function findUserByEmail(env, email) {
 export async function findUserById(env, id) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: 'SELECT id, email, name, created_at FROM users WHERE id = ?',
+    sql: 'SELECT id, email, name, phone, avatar_url, created_at FROM users WHERE id = ?',
     args: [id],
   });
   return result.rows[0] || null;
@@ -181,11 +184,11 @@ export async function createUser(env, { email, name, passwordHash }) {
   throw new Error('Failed to generate unique user ID after 5 attempts');
 }
 
-export async function updateUser(env, id, { name }) {
+export async function updateUser(env, id, { name, phone, avatar_url }) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: "UPDATE users SET name = ?, updated_at = datetime('now') WHERE id = ? RETURNING id, email, name, created_at",
-    args: [name, id],
+    sql: "UPDATE users SET name = COALESCE(?, name), phone = COALESCE(?, phone), avatar_url = COALESCE(?, avatar_url), updated_at = datetime('now') WHERE id = ? RETURNING id, email, name, phone, avatar_url, created_at",
+    args: [name || null, phone !== undefined ? phone : null, avatar_url !== undefined ? avatar_url : null, id],
   });
   return result.rows[0] || null;
 }
@@ -485,10 +488,31 @@ export async function createAdminMessage(env, userId, data) {
 export async function getAllUsers(env) {
   const db = getDb(env);
   const result = await db.execute({
-    sql: 'SELECT id, email, name, created_at FROM users ORDER BY created_at DESC',
+    sql: 'SELECT id, email, name, phone, avatar_url, created_at FROM users ORDER BY created_at DESC',
     args: [],
   });
   return result.rows;
+}
+
+export async function adminUpdateUser(env, userId, data) {
+  const db = getDb(env);
+  const sets = [];
+  const args = [];
+  if (data.name !== undefined) { sets.push('name = ?'); args.push(data.name); }
+  if (data.phone !== undefined) { sets.push('phone = ?'); args.push(data.phone); }
+  if (data.avatar_url !== undefined) { sets.push('avatar_url = ?'); args.push(data.avatar_url); }
+  if (!sets.length) return null;
+  args.push(userId);
+  const result = await db.execute({
+    sql: 'UPDATE users SET ' + sets.join(', ') + ' WHERE id = ?',
+    args: args,
+  });
+  if (result.rowsAffected === 0) return null;
+  const user = await db.execute({
+    sql: 'SELECT id, email, name, phone, avatar_url, created_at FROM users WHERE id = ?',
+    args: [userId],
+  });
+  return user.rows[0] || null;
 }
 
 export async function getMessageById(env, messageId) {

@@ -12,6 +12,36 @@
   <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1PFQJV83HK');</script>
+  <style>
+    .account-tabs { display:flex; gap:8px; margin-bottom:24px; flex-wrap:wrap; border-bottom:1px solid #d2d2d7; padding-bottom:16px; }
+    .account-tab { padding:8px 18px; border-radius:var(--radius-pill); font-size:14px; font-weight:500; background:#e8e8ed; color:var(--ink); cursor:pointer; transition:all 0.2s; border:none; font-family:var(--font); }
+    .account-tab:hover { background:#d2d2d7; }
+    .account-tab.active { background:var(--primary); color:#fff; }
+    .account-panel { display:none; }
+    .account-panel.active { display:block; }
+    .avatar-wrap { text-align:center; margin-bottom:20px; }
+    .avatar-preview { width:96px; height:96px; border-radius:50%; object-fit:cover; border:3px solid var(--primary); margin-bottom:8px; }
+    .avatar-letter { width:96px; height:96px; border-radius:50%; background:var(--primary); color:#fff; font-size:2.5rem; font-weight:700; display:inline-flex; align-items:center; justify-content:center; border:3px solid var(--primary); margin-bottom:8px; }
+    .avatar-field { display:flex; gap:12px; align-items:center; }
+    .account-submit { margin-top:8px; }
+    .order-card { background:#fff; border:1px solid #d2d2d7; border-radius:var(--radius-lg); padding:16px 20px; margin-bottom:12px; }
+    .order-top { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+    .order-num { font-size:12px; font-weight:600; color:var(--primary); font-family:monospace; }
+    .order-type { font-size:14px; color:var(--ink); padding:8px 0 4px; font-weight:500; }
+    .order-desc { font-size:13px; color:var(--text-secondary); line-height:1.5; }
+    .order-meta { font-size:12px; color:var(--body-muted); display:flex; gap:12px; flex-wrap:wrap; margin-top:6px; }
+    .order-footer { display:flex; align-items:center; justify-content:space-between; margin-top:10px; padding-top:10px; border-top:1px solid #f0f0f2; flex-wrap:wrap; gap:8px; }
+    .order-date { font-size:11px; color:var(--body-muted); }
+    .msg-card { background:#fff; border:1px solid #d2d2d7; border-radius:var(--radius-md); padding:16px 20px; margin-bottom:12px; }
+    .msg-subject { font-size:14px; font-weight:600; color:var(--ink); }
+    .msg-text { font-size:13px; color:var(--text-secondary); line-height:1.5; margin-top:6px; }
+    .msg-reply { margin-top:8px; padding:10px 14px; background:#f0fdf4; border-radius:var(--radius-md); border-left:3px solid #30d158; font-size:13px; line-height:1.5; color:var(--text-secondary); }
+    .msg-reply strong { color:#30d158; font-size:12px; }
+    .msg-date { font-size:11px; color:var(--body-muted); }
+    .account-success { color:#2ecc71; font-size:13px; margin-top:8px; display:none; }
+    .account-error { color:#ff3b30; font-size:13px; margin-top:8px; display:none; }
+    @media (max-width:600px) { .account-tabs { gap:6px; } .account-tab { font-size:13px; padding:6px 14px; } }
+  </style>
 </head>
 <body>
 
@@ -46,19 +76,88 @@
 
 <main>
   <section class="auth-section">
-    <div class="auth-card account-card">
+    <div class="auth-card account-card" style="max-width:600px;">
       <div class="auth-header">
-        <div class="account-avatar" id="avatarLetter">S</div>
+        <div class="account-avatar" id="avatarLetter" style="display:inline-flex;">S</div>
+        <img id="avatarImg" class="avatar-preview" style="display:none;" alt="Avatar">
         <h1>My Account</h1>
         <p id="accountEmail">Welcome back!</p>
       </div>
-      <div class="account-details" id="accountDetails">
-        <div class="account-row"><span class="account-label">Name</span><span class="account-value" id="dispName">—</span></div>
-        <div class="account-row"><span class="account-label">Email</span><span class="account-value" id="dispEmail">—</span></div>
-        <div class="account-row"><span class="account-label">Member Since</span><span class="account-value" id="dispMember">—</span></div>
+
+      <div class="account-tabs" id="accountTabs">
+        <button class="account-tab active" data-tab="profile"><i class="fas fa-user"></i> Profile</button>
+        <button class="account-tab" data-tab="security"><i class="fas fa-shield-alt"></i> Security</button>
+        <button class="account-tab" data-tab="orders"><i class="fas fa-clipboard-list"></i> Orders</button>
+        <button class="account-tab" data-tab="messages"><i class="fas fa-envelope"></i> Messages</button>
       </div>
-      <div class="account-actions">
-        <button class="btn btn-secondary" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
+
+      <!-- Profile Panel -->
+      <div class="account-panel active" id="panelProfile">
+        <div class="avatar-wrap">
+          <div class="avatar-letter" id="previewLetter">S</div>
+          <img id="previewImg" class="avatar-preview" style="display:none;" alt="Avatar preview">
+        </div>
+        <form id="profileForm">
+          <div class="auth-field">
+            <label for="profName">Full Name</label>
+            <input type="text" id="profName" placeholder="Your name" required>
+            <span class="auth-error" id="profNameErr"></span>
+          </div>
+          <div class="auth-field">
+            <label for="profEmail">Email</label>
+            <input type="email" id="profEmail" placeholder="you@example.com" readonly style="background:#f5f5f7;cursor:not-allowed;">
+          </div>
+          <div class="auth-field">
+            <label for="profPhone">Phone Number</label>
+            <input type="tel" id="profPhone" placeholder="+1 (555) 123-4567">
+            <span class="auth-error" id="profPhoneErr"></span>
+          </div>
+          <div class="auth-field">
+            <label for="profAvatar">Avatar URL</label>
+            <input type="url" id="profAvatar" placeholder="https://example.com/avatar.jpg">
+          </div>
+          <div class="account-success" id="profileSuccess"></div>
+          <div class="account-error" id="profileError"></div>
+          <button type="submit" class="btn btn-primary auth-submit account-submit" id="profileSaveBtn"><i class="fas fa-save"></i> Save Changes</button>
+        </form>
+      </div>
+
+      <!-- Security Panel -->
+      <div class="account-panel" id="panelSecurity">
+        <form id="passwordForm">
+          <div class="auth-field">
+            <label for="currentPass">Current Password</label>
+            <input type="password" id="currentPass" placeholder="Enter current password" required autocomplete="current-password">
+            <span class="auth-error" id="currentPassErr"></span>
+          </div>
+          <div class="auth-field">
+            <label for="newPass">New Password</label>
+            <input type="password" id="newPass" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
+            <span class="auth-error" id="newPassErr"></span>
+          </div>
+          <div class="auth-field">
+            <label for="confirmPass">Confirm New Password</label>
+            <input type="password" id="confirmPass" placeholder="Repeat new password" required autocomplete="new-password">
+            <span class="auth-error" id="confirmPassErr"></span>
+          </div>
+          <div class="account-success" id="passwordSuccess"></div>
+          <div class="account-error" id="passwordError"></div>
+          <button type="submit" class="btn btn-primary auth-submit account-submit" id="passwordSaveBtn"><i class="fas fa-key"></i> Update Password</button>
+        </form>
+      </div>
+
+      <!-- Orders Panel -->
+      <div class="account-panel" id="panelOrders">
+        <div id="ordersList"><p style="color:var(--body-muted);font-size:14px;">Loading orders...</p></div>
+      </div>
+
+      <!-- Messages Panel -->
+      <div class="account-panel" id="panelMessages">
+        <div id="messagesList"><p style="color:var(--body-muted);font-size:14px;">Loading messages...</p></div>
+      </div>
+
+      <div style="margin-top:24px;padding-top:16px;border-top:1px solid #d2d2d7;">
+        <button class="btn btn-secondary" id="logoutBtn" style="width:100%;"><i class="fas fa-sign-out-alt"></i> Sign Out</button>
       </div>
     </div>
   </section>
@@ -127,41 +226,258 @@
 <script src="../js/auth-client.js"></script>
 <script src="js/main.js" defer></script>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+(function() {
+  var API_BASE = 'https://spurno-auth.ispurno.workers.dev/api';
+
   if (typeof AuthClient === 'undefined' || !AuthClient.isAuthenticated()) {
     window.location.href = 'login.html';
     return;
   }
 
-  (async function() {
-    try {
-      var meData = await AuthClient.getMe();
-      var user = meData.user || {};
-      var name = user.name || 'User';
-      var email = user.email || '—';
+  var userData = null;
 
-      document.getElementById('dispName').textContent = name;
-      document.getElementById('dispEmail').textContent = email;
-      document.getElementById('accountEmail').textContent = 'Welcome, ' + name + '!';
-      document.getElementById('avatarLetter').textContent = name.charAt(0).toUpperCase();
+  var avatarLetter = document.getElementById('avatarLetter');
+  var avatarImg = document.getElementById('avatarImg');
+  var accountEmail = document.getElementById('accountEmail');
+  var previewLetter = document.getElementById('previewLetter');
+  var previewImg = document.getElementById('previewImg');
 
-      if (user.created_at) {
-        var d = new Date(user.created_at + 'Z');
-        document.getElementById('dispMember').textContent = d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-      }
-    } catch (e) {
-      document.getElementById('dispName').textContent = 'User';
-      document.getElementById('accountEmail').textContent = 'Welcome back!';
+  var profName = document.getElementById('profName');
+  var profEmail = document.getElementById('profEmail');
+  var profPhone = document.getElementById('profPhone');
+  var profAvatar = document.getElementById('profAvatar');
+  var profileSuccess = document.getElementById('profileSuccess');
+  var profileError = document.getElementById('profileError');
+  var profileSaveBtn = document.getElementById('profileSaveBtn');
+
+  var currentPass = document.getElementById('currentPass');
+  var newPass = document.getElementById('newPass');
+  var confirmPass = document.getElementById('confirmPass');
+  var passwordSuccess = document.getElementById('passwordSuccess');
+  var passwordError = document.getElementById('passwordError');
+  var passwordSaveBtn = document.getElementById('passwordSaveBtn');
+
+  function updateAvatarDisplay(name, avatarUrl) {
+    var initial = (name || 'U').charAt(0).toUpperCase();
+    if (avatarUrl) {
+      avatarLetter.style.display = 'none';
+      avatarImg.style.display = 'inline-block';
+      avatarImg.src = avatarUrl;
+      previewLetter.style.display = 'none';
+      previewImg.style.display = 'block';
+      previewImg.src = avatarUrl;
+    } else {
+      avatarLetter.style.display = 'inline-flex';
+      avatarImg.style.display = 'none';
+      avatarLetter.textContent = initial;
+      previewLetter.style.display = 'flex';
+      previewImg.style.display = 'none';
+      previewLetter.textContent = initial;
     }
-  })();
+  }
+
+  profAvatar.addEventListener('input', function() {
+    var url = this.value.trim();
+    if (url) {
+      previewLetter.style.display = 'none';
+      previewImg.style.display = 'block';
+      previewImg.src = url;
+    } else {
+      previewLetter.style.display = 'flex';
+      previewImg.style.display = 'none';
+    }
+  });
+
+  async function loadUser() {
+    try {
+      var data = await AuthClient.getMe();
+      userData = data.user || {};
+      var name = userData.name || 'User';
+      var email = userData.email || '—';
+      var phone = userData.phone || '';
+      var avatarUrl = userData.avatar_url || '';
+
+      profName.value = name;
+      profEmail.value = email;
+      profPhone.value = phone;
+      profAvatar.value = avatarUrl;
+      accountEmail.textContent = 'Welcome, ' + name + '!';
+      updateAvatarDisplay(name, avatarUrl);
+    } catch (e) {
+      accountEmail.textContent = 'Welcome back!';
+    }
+  }
+
+  function showSuccess(el, msg) {
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 4000);
+  }
+
+  function showError(el, msg) {
+    el.textContent = msg;
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 4000);
+  }
+
+  // Profile form
+  document.getElementById('profileForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    profileSuccess.style.display = 'none';
+    profileError.style.display = 'none';
+    document.getElementById('profNameErr').textContent = '';
+
+    var name = profName.value.trim();
+    if (!name) { document.getElementById('profNameErr').textContent = 'Name is required.'; return; }
+
+    var phone = profPhone.value.trim();
+    var avatarUrl = profAvatar.value.trim();
+
+    profileSaveBtn.disabled = true;
+    profileSaveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+
+    try {
+      var result = await AuthClient.updateAccount({ name: name, phone: phone || undefined, avatar_url: avatarUrl || undefined });
+      var u = result.user;
+      accountEmail.textContent = 'Welcome, ' + u.name + '!';
+      updateAvatarDisplay(u.name, u.avatar_url);
+      showSuccess(profileSuccess, 'Profile updated successfully!');
+    } catch (err) {
+      showError(profileError, err.message || 'Failed to update profile.');
+    }
+
+    profileSaveBtn.disabled = false;
+    profileSaveBtn.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+  });
+
+  // Password form
+  document.getElementById('passwordForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    passwordSuccess.style.display = 'none';
+    passwordError.style.display = 'none';
+    document.getElementById('currentPassErr').textContent = '';
+    document.getElementById('newPassErr').textContent = '';
+    document.getElementById('confirmPassErr').textContent = '';
+
+    var current = currentPass.value;
+    var np = newPass.value;
+    var confirm = confirmPass.value;
+    var valid = true;
+
+    if (!current) { document.getElementById('currentPassErr').textContent = 'Current password is required.'; valid = false; }
+    if (np.length < 6) { document.getElementById('newPassErr').textContent = 'At least 6 characters.'; valid = false; }
+    if (np !== confirm) { document.getElementById('confirmPassErr').textContent = 'Passwords do not match.'; valid = false; }
+    if (!valid) return;
+
+    passwordSaveBtn.disabled = true;
+    passwordSaveBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Updating...';
+
+    try {
+      await AuthClient.updateAccount({ current_password: current, new_password: np });
+      showSuccess(passwordSuccess, 'Password updated successfully!');
+      currentPass.value = '';
+      newPass.value = '';
+      confirmPass.value = '';
+    } catch (err) {
+      showError(passwordError, err.message || 'Failed to update password.');
+    }
+
+    passwordSaveBtn.disabled = false;
+    passwordSaveBtn.innerHTML = '<i class="fas fa-key"></i> Update Password';
+  });
+
+  // Orders
+  async function loadOrders() {
+    var list = document.getElementById('ordersList');
+    try {
+      var res = await fetch(API_BASE + '/orders', {
+        headers: { 'Authorization': 'Bearer ' + (function(){ try { return localStorage.getItem('spurno_token'); } catch(e){ return ''; } })() },
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      var orders = data.orders || [];
+      if (!orders.length) {
+        list.innerHTML = '<p style="color:var(--body-muted);font-size:14px;">No orders yet.</p>';
+        return;
+      }
+      var statusLabels = { pending:'Pending', quoted:'Quoted', accepted:'Accepted', in_progress:'In Progress', completed:'Completed', cancelled:'Cancelled' };
+      list.innerHTML = orders.map(function(o) {
+        var created = new Date(o.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
+        return '<div class="order-card">' +
+          '<div class="order-top">' +
+            '<span class="order-num">#' + (o.order_number || o.id) + '</span>' +
+            '<span class="status-pill status-' + o.status + '">' + (statusLabels[o.status] || o.status) + '</span>' +
+          '</div>' +
+          '<div class="order-type">' + (o.animation_type ? o.animation_type.replace(/-/g,' ').replace(/\b\w/g,function(c){return c.toUpperCase();}) : 'Animation') + (o.duration_seconds ? ' &middot; ' + o.duration_seconds + 's' : '') + '</div>' +
+          '<div class="order-desc">' + (o.description && o.description.length > 200 ? o.description.slice(0,200) + '...' : o.description || '') + '</div>' +
+          '<div class="order-meta">' +
+            (o.budget_range ? '<span><i class="fas fa-tag"></i> ' + o.budget_range + '</span>' : '') +
+            (o.deadline ? '<span><i class="fas fa-calendar"></i> Due: ' + o.deadline + '</span>' : '') +
+          '</div>' +
+          '<div class="order-footer">' +
+            '<span class="order-date"><i class="far fa-clock"></i> ' + created + '</span>' +
+            (o.admin_response ? '<span style="font-size:11px;padding:2px 10px;border-radius:20px;background:rgba(48,209,88,0.1);color:#30d158;font-weight:600;"><i class="fas fa-check-circle"></i> Admin replied</span>' : '') +
+            (o.quoted_price ? '<span style="font-size:13px;font-weight:600;color:var(--primary);"><i class="fas fa-dollar-sign"></i> ' + o.quoted_price + '</span>' : '') +
+          '</div>' +
+        '</div>';
+      }).join('');
+    } catch(e) {
+      list.innerHTML = '<p style="color:#ff3b30;font-size:14px;">Failed to load orders: ' + e.message + '</p>';
+    }
+  }
+
+  // Messages
+  async function loadMessages() {
+    var list = document.getElementById('messagesList');
+    try {
+      var res = await fetch(API_BASE + '/messages', {
+        headers: { 'Authorization': 'Bearer ' + (function(){ try { return localStorage.getItem('spurno_token'); } catch(e){ return ''; } })() },
+      });
+      var data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed');
+      var messages = data.messages || [];
+      if (!messages.length) {
+        list.innerHTML = '<p style="color:var(--body-muted);font-size:14px;">No messages yet.</p>';
+        return;
+      }
+      list.innerHTML = messages.map(function(m) {
+        var created = new Date(m.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric', hour:'2-digit', minute:'2-digit' });
+        var hasReply = m.admin_reply && m.admin_reply.trim();
+        return '<div class="msg-card">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">' +
+            '<span class="msg-subject">' + (m.subject || '(No subject)') + '</span>' +
+            '<span class="msg-date">' + created + '</span>' +
+          '</div>' +
+          '<div class="msg-text">' + m.message + '</div>' +
+          (hasReply ? '<div class="msg-reply"><strong><i class="fas fa-check-circle"></i> Admin Reply:</strong> ' + m.admin_reply + '</div>' : '') +
+        '</div>';
+      }).join('');
+    } catch(e) {
+      list.innerHTML = '<p style="color:#ff3b30;font-size:14px;">Failed to load messages: ' + e.message + '</p>';
+    }
+  }
+
+  // Tab switching
+  document.querySelectorAll('.account-tab').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.account-tab').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.account-panel').forEach(function(p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      var tab = btn.dataset.tab;
+      document.getElementById('panel' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+      if (tab === 'orders') loadOrders();
+      if (tab === 'messages') loadMessages();
+    });
+  });
 
   document.getElementById('logoutBtn').addEventListener('click', function() {
     AuthClient.logout();
     window.location.href = 'index.html';
   });
-});
-</script>
 
+  loadUser();
+})();
+</script>
     <script src="../js/site-ads.js"></script>
 </body>
 </html>

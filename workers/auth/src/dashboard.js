@@ -213,12 +213,12 @@ export async function handleUpdateAccount(request, env) {
   const headers = corsHeaders();
 
   try {
-    const { name, current_password, new_password } = await request.json();
+    const { name, phone, avatar_url, current_password, new_password } = await request.json();
     const userId = auth.payload.sub;
 
-    // Update name
-    if (name !== undefined) {
-      const user = await updateUser(env, userId, { name });
+    // Update profile fields
+    if (name !== undefined || phone !== undefined || avatar_url !== undefined) {
+      const user = await updateUser(env, userId, { name, phone, avatar_url });
       if (!user) {
         return new Response(JSON.stringify({ error: 'User not found' }), { status: 404, headers });
       }
@@ -251,7 +251,7 @@ export async function handleUpdateAccount(request, env) {
 
     return new Response(JSON.stringify({
       message: 'Account updated successfully',
-      user: updated ? { id: updated.id, email: updated.email, name: updated.name, created_at: updated.created_at } : null,
+      user: updated ? { id: updated.id, email: updated.email, name: updated.name, phone: updated.phone, avatar_url: updated.avatar_url, created_at: updated.created_at } : null,
     }), { status: 200, headers });
   } catch (error) {
     console.error('Update account error:', error);

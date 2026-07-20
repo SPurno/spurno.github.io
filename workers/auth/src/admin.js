@@ -1,7 +1,7 @@
 /**
  * Admin handlers — All orders management with API key authentication
  */
-import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats, updateMessageReply, getAllUsers, getMessageById, createAdminMessage } from './db.js';
+import { getAllOrders, getOrderById, updateOrder, getOrderStats, adminDeleteOrder, getAllMessages, deleteMessage, getMessageStats, updateMessageReply, getAllUsers, getMessageById, createAdminMessage, adminUpdateUser } from './db.js';
 import { ensureSchema } from './db.js';
 
 function corsHeaders() {
@@ -261,6 +261,47 @@ export async function handleAdminGetUsers(request, env) {
   } catch (error) {
     console.error('Admin get users error:', error);
     return new Response(JSON.stringify({ error: 'Failed to load users' }), { status: 500, headers });
+  }
+}
+
+// ── Admin Update User ─────────────────────────────────
+
+/**
+ * PUT /api/admin/users — Update a user's name, phone, avatar_url
+ * Body: { id, name?, phone?, avatar_url? }
+ */
+export async function handleAdminUpdateUser(request, env) {
+  const auth = authenticateAdmin(request, env);
+  if (auth.error) return auth.error;
+
+  const headers = corsHeaders();
+
+  try {
+    await ensureSchema(env);
+    const { id, name, phone, avatar_url } = await request.json();
+
+    if (!id) {
+      return new Response(JSON.stringify({ error: 'User ID is required' }), { status: 400, headers });
+    }
+
+    const data = {};
+    if (name !== undefined) data.name = name;
+    if (phone !== undefined) data.phone = phone;
+    if (avatar_url !== undefined) data.avatar_url = avatar_url;
+
+    if (!Object.keys(data).length) {
+      return new Response(JSON.stringify({ error: 'No fields to update' }), { status: 400, headers });
+    }
+
+    const user = await adminUpdateUser(env, id, data);
+    if (!user) {
+      return new Response(JSON.stringify({ error: 'User not found' }), { status: 404, headers });
+    }
+
+    return new Response(JSON.stringify({ message: 'User updated successfully', user }), { status: 200, headers });
+  } catch (error) {
+    console.error('Admin update user error:', error);
+    return new Response(JSON.stringify({ error: 'Failed to update user' }), { status: 500, headers });
   }
 }
 

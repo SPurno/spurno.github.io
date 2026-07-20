@@ -59,6 +59,13 @@ var AuthClient = (function() {
       return await apiFetch('/me');
     },
 
+    updateAccount: async function(data) {
+      return await apiFetch('/account', {
+        method: 'PUT',
+        body: data,
+      });
+    },
+
     logout: function() {
       clearToken();
     },
