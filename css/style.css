@@ -1598,6 +1598,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .auth-alt a { color: var(--primary); font-weight: 500; }
 .auth-alt a:hover { text-decoration: underline; }
 
+.auth-forgot {
+  text-align: right;
+  margin: -12px 0 16px;
+  font-size: 13px;
+}
+
+.auth-forgot a {
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.auth-forgot a:hover {
+  text-decoration: underline;
+}
+
+.auth-success {
+  display: block;
+  font-size: 13px;
+  color: #2ecc71;
+  margin-bottom: 16px;
+  text-align: center;
+  padding: 10px 14px;
+  background: rgba(46,204,113,0.08);
+  border-radius: var(--radius-md);
+}
+
+.auth-success[style*="display:none"],
+.auth-success[style*="display: none"] {
+  display: none !important;
+}
+
+.auth-alert {
+  display: block;
+  font-size: 13px;
+  margin-bottom: 16px;
+  text-align: center;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+}
+
+.auth-alert.error {
+  color: #ff3b30;
+  background: rgba(255,59,48,0.08);
+}
+
+.auth-alert.success {
+  color: #2ecc71;
+  background: rgba(46,204,113,0.08);
+}
+
 /* Account card */
 .account-card { max-width: 480px; }
 

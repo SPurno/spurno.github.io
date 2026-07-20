@@ -63,6 +63,13 @@ var AuthClient = (function() {
       clearToken();
     },
 
+    forgotPassword: async function(email) {
+      return await apiFetch('/forgot-password', {
+        method: 'POST',
+        body: { email: email },
+      });
+    },
+
     resetPassword: async function(token, password) {
       return await apiFetch('/reset-password', {
         method: 'POST',
