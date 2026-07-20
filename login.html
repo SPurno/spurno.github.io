@@ -1,138 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Sign In | SPurno Animation Studio</title>
-    <meta name="description" content="Sign in to your SPurno Animation Studio account.">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://spurno.github.io/login">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="stylesheet" href="assets/css/login.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign In — SPurno Animation Studio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1PFQJV83HK');</script>
 </head>
 <body>
-    <div class="auth-container">
-        <a href="index.html" class="auth-logo">
-            <img src="images/spurno-logo.png" alt="SPurno Animation Studio" width="3893" height="1099" loading="lazy" title="SPurno Animation Studio - Sign In">
-            <span>SPurno</span>
-        </a>
 
-        <div class="auth-card">
-            <h1 class="auth-title">Welcome <span>Back</span></h1>
-            <p class="auth-subtitle">Sign in to your SPurno account.</p>
+<div id="loading-screen">
+  <div class="loader-spinner-wrap"><div class="loader-spinner-inner"></div></div>
+  <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-svg-logo">
+</div>
 
-            <!-- Alerts -->
-            <div class="alert" id="alertMessage" role="alert"></div>
-
-            <form id="loginForm" novalidate>
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                    <div class="field-error" id="emailError">Please enter a valid email address.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="Enter your password" required autocomplete="current-password">
-                    <div class="field-error" id="passwordError">Please enter your password.</div>
-                    <div style="text-align:right;margin-top:6px;">
-                        <a href="forgot-password.html" class="forgot-link" aria-label="Reset your password">Forgot Password?</a>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    <span class="btn-text">Sign In</span>
-                    <span class="spinner"></span>
-                </button>
-            </form>
-
-            <div class="auth-footer">
-                Don't have an account? <a href="register.html">Create one</a>
-            </div>
-        </div>
-
-        <div class="auth-footer" style="margin-top: 20px;">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="index.html#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Blog</a></li>
+      <li><a href="contact-us.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li class="nav-divider-mobile"><hr></li>
+      <li><a href="login.html" class="nav-link nav-action-mobile"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+      <li><a href="register.html" class="nav-link nav-action-mobile"><i class="fas fa-user-plus"></i> Register</a></li>
+      <li><a href="account.html" class="nav-link nav-action-mobile" id="navProfile" style="display:none;"><i class="fas fa-user"></i> Account</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
+      <a href="account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
     </div>
+  </div>
+</nav>
 
-    <script src="js/auth-client.js"></script>
-    <script>
-        (function() {
-            const form = document.getElementById('loginForm');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const submitBtn = document.getElementById('submitBtn');
-            const alertEl = document.getElementById('alertMessage');
-            const emailError = document.getElementById('emailError');
-            const passwordError = document.getElementById('passwordError');
+<main>
+  <section class="auth-section">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="images/spurno-logo.png" alt="SPurno" class="auth-logo">
+        <h1>Sign In</h1>
+        <p>Welcome back. Sign in to your account.</p>
+      </div>
+      <form id="loginForm" novalidate>
+        <div class="auth-field">
+          <label for="loginEmail">Email</label>
+          <input type="email" id="loginEmail" placeholder="you@example.com" required autocomplete="email">
+          <span class="auth-error" id="emailError"></span>
+        </div>
+        <div class="auth-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" placeholder="Your password" required autocomplete="current-password" minlength="6">
+          <span class="auth-error" id="passwordError"></span>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit">Sign In <i class="fas fa-arrow-right"></i></button>
+      </form>
+      <div class="auth-alt">
+        Don&rsquo;t have an account? <a href="register.html">Register here</a>.
+      </div>
+    </div>
+  </section>
+</main>
 
-            // If already logged in, redirect
-            if (AuthClient.isAuthenticated()) {
-                window.location.href = '/';
-                return;
-            }
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy">
+          <span class="footer-brand-name">SPurno Animation Studio</span>
+        </div>
+        <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/spurno" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com/iSPurno" target="_blank" aria-label="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/iSPurno" target="_blank" aria-label="X" rel="noopener"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/SPurno" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="blog/stock-portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="blog/motion-graphics.html">Motion Graphics</a>
+        <a href="blog/infographic.html">Infographics</a>
+        <a href="blog/motion-graphics-background.html">Backgrounds</a>
+        <a href="watch/laptop-product-promotion-advertising-template.html">Mockups</a>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stock Sites</h4>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Adobe Stock</a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" rel="noopener">Shutterstock</a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" rel="noopener">Pond5</a>
+        <a href="https://www.freepik.com/author/pixellvector" target="_blank" rel="noopener">Freepik</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="terms-of-use.html">Terms</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="contact-us.html">Support</a>
+      </div>
+      <p>&copy; 2026 SPurno Animation Studio. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
-            function showAlert(message, type) {
-                alertEl.textContent = message;
-                alertEl.className = 'alert ' + type;
-            }
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
-            function setLoading(loading) {
-                submitBtn.disabled = loading;
-                submitBtn.classList.toggle('loading', loading);
-            }
+<script src="../js/auth-client.js"></script>
+<script src="js/main.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof AuthClient !== 'undefined' && AuthClient.isAuthenticated()) {
+    window.location.href = 'account.html';
+    return;
+  }
 
-            function clearErrors() {
-                [emailInput, passwordInput].forEach(el => el.classList.remove('error'));
-                [emailError, passwordError].forEach(el => el.classList.remove('visible'));
-            }
+  var form = document.getElementById('loginForm');
+  var emailInput = document.getElementById('loginEmail');
+  var passInput = document.getElementById('loginPassword');
+  var emailErr = document.getElementById('emailError');
+  var passErr = document.getElementById('passwordError');
+  var submitBtn = form.querySelector('.auth-submit');
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                clearErrors();
-                showAlert('', '');
-                let valid = true;
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    emailErr.textContent = '';
+    passErr.textContent = '';
+    var valid = true;
 
-                const email = emailInput.value.trim();
-                const password = passwordInput.value;
+    var email = emailInput.value.trim();
+    if (!email) { emailErr.textContent = 'Email is required.'; valid = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailErr.textContent = 'Enter a valid email address.'; valid = false; }
 
-                // Validate email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    emailInput.classList.add('error');
-                    emailError.classList.add('visible');
-                    valid = false;
-                }
+    var password = passInput.value;
+    if (!password) { passErr.textContent = 'Password is required.'; valid = false; }
+    else if (password.length < 6) { passErr.textContent = 'Password must be at least 6 characters.'; valid = false; }
 
-                // Validate password
-                if (!password) {
-                    passwordInput.classList.add('error');
-                    passwordError.classList.add('visible');
-                    valid = false;
-                }
+    if (!valid) return;
 
-                if (!valid) return;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Signing in...';
 
-                setLoading(true);
+    try {
+      await AuthClient.login(email, password);
+      window.location.href = 'index.html';
+    } catch (error) {
+      passErr.textContent = error.message || 'Invalid email or password.';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Sign In <i class="fas fa-arrow-right"></i>';
+    }
+  });
+});
+</script>
 
-                try {
-                    await AuthClient.login(email, password);
-                    showAlert('Login successful! Redirecting...', 'success');
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 1200);
-                } catch (error) {
-                    showAlert(error.message || 'Login failed. Please try again.', 'error');
-                    setLoading(false);
-                }
-            });
-        })();
-    </script>
+    <script src="../js/site-ads.js"></script>
 </body>
 </html>

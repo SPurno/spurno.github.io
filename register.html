@@ -1,189 +1,202 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Create Account | SPurno Animation Studio</title>
-    <meta name="description" content="Create your SPurno Animation Studio account to save favorites and access exclusive content.">
-    <meta name="robots" content="noindex, nofollow">
-    <link rel="canonical" href="https://spurno.github.io/register">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" onload="this.rel='stylesheet'">
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"></noscript>
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-    <link rel="stylesheet" href="assets/css/register.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register — SPurno Animation Studio</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-1PFQJV83HK');</script>
 </head>
 <body>
-    <div class="auth-container">
-        <a href="index.html" class="auth-logo">
-            <img src="images/spurno-logo.png" alt="SPurno Animation Studio" width="3893" height="1099" loading="lazy" title="SPurno Animation Studio - Create Account">
-            <span>SPurno</span>
-        </a>
 
-        <div class="auth-card">
-            <h1 class="auth-title">Create <span>Account</span></h1>
-            <p class="auth-subtitle">Join SPurno to save favorites and access exclusive content.</p>
+<div id="loading-screen">
+  <div class="loader-spinner-wrap"><div class="loader-spinner-inner"></div></div>
+  <img src="images/spurno-logo.png" alt="SPurno Animation Studio" class="loader-svg-logo">
+</div>
 
-            <!-- Alerts -->
-            <div class="alert" id="alertMessage" role="alert"></div>
-
-            <form id="registerForm" novalidate>
-                <div class="form-group">
-                    <label for="name">Full Name (optional)</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name">
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" placeholder="you@example.com" required autocomplete="email">
-                    <div class="field-error" id="emailError">Please enter a valid email address.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password" placeholder="At least 6 characters" required minlength="6" autocomplete="new-password">
-                    <div class="password-strength" id="passwordStrength">
-                        <div class="bar" data-index="0"></div>
-                        <div class="bar" data-index="1"></div>
-                        <div class="bar" data-index="2"></div>
-                        <div class="bar" data-index="3"></div>
-                    </div>
-                    <div class="field-error" id="passwordError">Password must be at least 6 characters.</div>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm Password</label>
-                    <input type="password" id="confirmPassword" placeholder="Re-enter your password" required autocomplete="new-password">
-                    <div class="field-error" id="confirmError">Passwords do not match.</div>
-                </div>
-
-                <button type="submit" class="btn-submit" id="submitBtn">
-                    <span class="btn-text">Create Account</span>
-                    <span class="spinner"></span>
-                </button>
-            </form>
-
-            <div class="auth-footer">
-                Already have an account? <a href="login.html">Sign In</a>
-            </div>
-        </div>
-
-        <div class="auth-footer" style="margin-top: 20px;">
-            <a href="index.html" class="back-link">← Back to Home</a>
-        </div>
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="index.html#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Blog</a></li>
+      <li><a href="contact-us.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li class="nav-divider-mobile"><hr></li>
+      <li><a href="login.html" class="nav-link nav-action-mobile"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+      <li><a href="register.html" class="nav-link nav-action-mobile"><i class="fas fa-user-plus"></i> Register</a></li>
+      <li><a href="account.html" class="nav-link nav-action-mobile" id="navProfile" style="display:none;"><i class="fas fa-user"></i> Account</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
+      <a href="login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
+      <a href="account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
     </div>
+  </div>
+</nav>
 
-    <script src="js/auth-client.js"></script>
-    <script>
-        (function() {
-            const form = document.getElementById('registerForm');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const confirmInput = document.getElementById('confirmPassword');
-            const nameInput = document.getElementById('name');
-            const submitBtn = document.getElementById('submitBtn');
-            const alertEl = document.getElementById('alertMessage');
-            const emailError = document.getElementById('emailError');
-            const passwordError = document.getElementById('passwordError');
-            const confirmError = document.getElementById('confirmError');
-            const strengthBars = document.querySelectorAll('#passwordStrength .bar');
+<main>
+  <section class="auth-section">
+    <div class="auth-card">
+      <div class="auth-header">
+        <img src="images/spurno-logo.png" alt="SPurno" class="auth-logo">
+        <h1>Create Account</h1>
+        <p>Join SPurno Animation Studio.</p>
+      </div>
+      <form id="registerForm" novalidate>
+        <div class="auth-field">
+          <label for="regName">Full Name</label>
+          <input type="text" id="regName" placeholder="Your name" required autocomplete="name">
+          <span class="auth-error" id="nameError"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regEmail">Email</label>
+          <input type="email" id="regEmail" placeholder="you@example.com" required autocomplete="email">
+          <span class="auth-error" id="regEmailError"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regPassword">Password</label>
+          <input type="password" id="regPassword" placeholder="At least 6 characters" required autocomplete="new-password" minlength="6">
+          <span class="auth-error" id="regPassError"></span>
+        </div>
+        <div class="auth-field">
+          <label for="regConfirm">Confirm Password</label>
+          <input type="password" id="regConfirm" placeholder="Repeat your password" required autocomplete="new-password">
+          <span class="auth-error" id="regConfirmError"></span>
+        </div>
+        <button type="submit" class="btn btn-primary auth-submit">Create Account <i class="fas fa-arrow-right"></i></button>
+      </form>
+      <div class="auth-alt">
+        Already have an account? <a href="login.html">Sign in</a>.
+      </div>
+    </div>
+  </section>
+</main>
 
-            // If already logged in, redirect
-            if (AuthClient.isAuthenticated()) {
-                window.location.href = '/';
-                return;
-            }
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy">
+          <span class="footer-brand-name">SPurno Animation Studio</span>
+        </div>
+        <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/spurno" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com/iSPurno" target="_blank" aria-label="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/iSPurno" target="_blank" aria-label="X" rel="noopener"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/SPurno" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="blog/stock-portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="blog/motion-graphics.html">Motion Graphics</a>
+        <a href="blog/infographic.html">Infographics</a>
+        <a href="blog/motion-graphics-background.html">Backgrounds</a>
+        <a href="watch/laptop-product-promotion-advertising-template.html">Mockups</a>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stock Sites</h4>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Adobe Stock</a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" rel="noopener">Shutterstock</a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" rel="noopener">Pond5</a>
+        <a href="https://www.freepik.com/author/pixellvector" target="_blank" rel="noopener">Freepik</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="terms-of-use.html">Terms</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="contact-us.html">Support</a>
+      </div>
+      <p>&copy; 2026 SPurno Animation Studio. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
 
-            // Password strength indicator
-            passwordInput.addEventListener('input', function() {
-                const val = this.value;
-                let score = 0;
-                if (val.length >= 6) score++;
-                if (val.length >= 10) score++;
-                if (/[A-Z]/.test(val) && /[a-z]/.test(val)) score++;
-                if (/\d/.test(val) || /[^A-Za-z0-9]/.test(val)) score++;
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
 
-                strengthBars.forEach((bar, i) => {
-                    bar.classList.toggle('active', i < score);
-                    bar.className = 'bar' + (i < score ? ' active' : '') + (score <= 1 ? ' weak' : score <= 2 ? ' medium' : ' strong');
-                });
-            });
+<script src="../js/auth-client.js"></script>
+<script src="js/main.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var form = document.getElementById('registerForm');
+  var nameInput = document.getElementById('regName');
+  var emailInput = document.getElementById('regEmail');
+  var passInput = document.getElementById('regPassword');
+  var confirmInput = document.getElementById('regConfirm');
+  var nameErr = document.getElementById('nameError');
+  var emailErr = document.getElementById('regEmailError');
+  var passErr = document.getElementById('regPassError');
+  var confirmErr = document.getElementById('regConfirmError');
+  var submitBtn = form.querySelector('.auth-submit');
 
-            // Real-time confirm password check
-            confirmInput.addEventListener('input', function() {
-                if (this.value && this.value !== passwordInput.value) {
-                    confirmError.classList.add('visible');
-                } else {
-                    confirmError.classList.remove('visible');
-                }
-            });
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    nameErr.textContent = '';
+    emailErr.textContent = '';
+    passErr.textContent = '';
+    confirmErr.textContent = '';
+    var valid = true;
 
-            function showAlert(message, type) {
-                alertEl.textContent = message;
-                alertEl.className = 'alert ' + type;
-            }
+    var name = nameInput.value.trim();
+    if (!name) { nameErr.textContent = 'Name is required.'; valid = false; }
 
-            function setLoading(loading) {
-                submitBtn.disabled = loading;
-                submitBtn.classList.toggle('loading', loading);
-            }
+    var email = emailInput.value.trim();
+    if (!email) { emailErr.textContent = 'Email is required.'; valid = false; }
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { emailErr.textContent = 'Enter a valid email address.'; valid = false; }
 
-            function clearErrors() {
-                [emailInput, passwordInput, confirmInput].forEach(el => el.classList.remove('error'));
-                [emailError, passwordError, confirmError].forEach(el => el.classList.remove('visible'));
-            }
+    var password = passInput.value;
+    if (!password) { passErr.textContent = 'Password is required.'; valid = false; }
+    else if (password.length < 6) { passErr.textContent = 'At least 6 characters.'; valid = false; }
 
-            form.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                clearErrors();
-                showAlert('', '');
-                let valid = true;
+    var confirm = confirmInput.value;
+    if (!confirm) { confirmErr.textContent = 'Please confirm your password.'; valid = false; }
+    else if (password !== confirm) { confirmErr.textContent = 'Passwords do not match.'; valid = false; }
 
-                const email = emailInput.value.trim();
-                const password = passwordInput.value;
-                const confirm = confirmInput.value;
-                const name = nameInput.value.trim();
+    if (!valid) return;
 
-                // Validate email
-                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    emailInput.classList.add('error');
-                    emailError.classList.add('visible');
-                    valid = false;
-                }
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Creating account...';
 
-                // Validate password
-                if (password.length < 6) {
-                    passwordInput.classList.add('error');
-                    passwordError.classList.add('visible');
-                    valid = false;
-                }
+    try {
+      await AuthClient.register(email, password, name || undefined);
+      window.location.href = 'index.html';
+    } catch (error) {
+      emailErr.textContent = error.message || 'Registration failed. Please try again.';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = 'Create Account <i class="fas fa-arrow-right"></i>';
+    }
+  });
+});
+</script>
 
-                // Validate confirmation
-                if (password !== confirm) {
-                    confirmInput.classList.add('error');
-                    confirmError.classList.add('visible');
-                    valid = false;
-                }
-
-                if (!valid) return;
-
-                setLoading(true);
-
-                try {
-                    await AuthClient.register(email, password, name || undefined);
-                    showAlert('Account created successfully! Redirecting...', 'success');
-                    setTimeout(() => {
-                        window.location.href = '/';
-                    }, 1200);
-                } catch (error) {
-                    showAlert(error.message || 'Registration failed. Please try again.', 'error');
-                    setLoading(false);
-                }
-            });
-        })();
-    </script>
+    <script src="../js/site-ads.js"></script>
 </body>
 </html>

@@ -1,1 +1,522 @@
-!function(){var t=[{id:"spurno-promo",title:"SPurno Animation Studio Promo",cat:"motion",file:"SPurno-Animation-Studio-Promo-Video-Animation.mp4",thumb:"images/spurno-promo-new-video-animation.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/spurno-animation-studio-promo-video-animation.html",itemId:"watch-spurno-animation-studio-promo-video-animation"},{id:"bg-5",title:"Animated Background Stock Video 5",cat:"motion",file:"red-motion-animated-background.mp4",thumb:"images/motion-red.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/animated-background-stock-video-premium-download-5.html",itemId:"watch-animated-background-stock-video-premium-download-5"},{id:"bg-6",title:"Animated Background Stock Video 6",cat:"motion",file:"animated-background-stock-video-for-premium-download-6.mp4",thumb:"images/Animated-Background-Stock-Video-Footage-for-Premium-Download-7.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/animated-background-stock-video-premium-download-6.html",itemId:"watch-animated-background-stock-video-premium-download-6"},{id:"3d-infographic-1",title:"3D Infographic Video Template",cat:"infographic",file:"3d-infographic-video-template.mp4",thumb:"images/infographics-template-thumb.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/3d-infographic-video-template.html",itemId:"watch-3d-infographic-video-template"},{id:"3d-infographic-2",title:"3D Infographic Video Template 2",cat:"infographic",file:"3d-infographic-video-template2.mp4",thumb:"images/infographics-template-thumb2.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/3d-infographic-video-template-2.html",itemId:"watch-3d-infographic-video-template-2"},{id:"infographic-demo",title:"Infographics Video Demo",cat:"infographic",file:"infographics-video-demo.mp4",thumb:"images/3d-infographic-hexagon-animated-screen.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/infographics-video-demo.html",itemId:"watch-infographics-video-demo"},{id:"laptop-mockup",title:"Laptop Product Promo Template",cat:"mockup",file:"Laptop-product-promotion-advertising-template.mp4",thumb:"images/device-mockup.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/laptop-product-promotion-advertising-template.html",itemId:"watch-laptop-product-promotion-advertising-template"},{id:"iphone-mockup",title:"iPhone Mockup Animation",cat:"mockup",file:"iphone-mockup.mp4",thumb:"images/iphone-mockup.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"index.html",itemId:"watch-iphone-mockup-animation"},{id:"loading-bar",title:"Loading Bar 100% Animation",cat:"motion",file:"loading-bar-100-percent.mp4",thumb:"images/loading-bar.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"blog/loading-bar-animation.html",itemId:"watch-loading-bar-animation"},{id:"news-bg",title:"News Background Animation",cat:"motion",file:"news-background-animation.mp4",thumb:"images/news-background-animation.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/news-background-animation.html",itemId:"watch-news-background-animation"},{id:"news-bg-studio",title:"News Background Animation Studio",cat:"motion",file:"news-background-animation-studio.mp4",thumb:"images/news-background-world-globe-studio.png",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"blog/news-background-animation.html",itemId:"watch-news-background-animation-studio"},{id:"typography",title:"Typography Animation Video",cat:"typography",file:"typography-animation.mp4",thumb:"images/typography-animation.jpg",shop:"https://stock.adobe.com/contributor/211977281/SPurnoAnimation",watch:"watch/typography-animation.html",itemId:"watch-typography-animation"}],e=document.getElementById("videoGallery");if(e){window.togglePlay=function(t){var e=document.querySelector('.video-card[data-id="'+t+'"]');if(e){var o=e.querySelector("video");if(o)if(e.classList.contains("playing"))o.pause(),e.classList.remove("playing");else{for(var i=document.querySelectorAll(".video-card.playing"),a=0;a<i.length;a++){var n=i[a].querySelector("video");n&&(n.pause(),n.currentTime=0),i[a].classList.remove("playing")}o.muted=!1,o.play().catch(function(){}),e.classList.add("playing"),o.addEventListener("timeupdate",function(){var t=e.querySelector(".ctrl-time");if(t){var i=Math.floor(o.currentTime/60),a=Math.floor(o.currentTime%60);t.textContent=i+":"+(a<10?"0":"")+a}}),o.addEventListener("ended",function(){e.classList.remove("playing")},{once:!0})}}},window.setVolume=function(t,e){var o=document.querySelector('.video-card[data-id="'+t+'"]');if(o){var i=o.querySelector("video");i&&(i.volume=parseFloat(e))}};for(var o=document.querySelectorAll("#galleryFilter button"),i=0;i<o.length;i++)(function(t){t.addEventListener("click",function(){for(var e=document.querySelectorAll(".video-card.playing"),i=0;i<e.length;i++){var n=e[i].querySelector("video");n&&(n.pause(),n.currentTime=0),e[i].classList.remove("playing")}for(var r=0;r<o.length;r++)o[r].classList.remove("active"),o[r].setAttribute("aria-pressed","false");t.classList.add("active"),t.setAttribute("aria-pressed","true"),a(t.getAttribute("data-filter"))})})(o[i]);a("all")}function a(o){for(var i="all"===o?t:t.filter(function(t){return t.cat===o}),a="",n=0;n<i.length;n++){var r=i[n];a+='<div class="video-card" data-id="'+r.id+'" data-cat="'+r.cat+'" data-item-id="'+(r.itemId||r.id)+'" data-watch="'+r.watch+'">',a+='  <div class="video-watermark"><img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy" title="SPurno Animation Studio - Video Gallery Watermark"><span>SPurno</span></div>',a+='  <video preload="metadata" muted loop playsinline poster="'+r.thumb+'"><source src="videos/'+r.file+'" type="video/mp4"></video>',a+='  <div class="video-card-overlay"><div class="video-title">'+r.title+'</div><div class="video-subtitle">'+r.cat.charAt(0).toUpperCase()+r.cat.slice(1)+" Graphics</div></div>",a+='  <div class="video-card-actions">',a+='    <button class="preview-btn" onclick="event.stopPropagation(); togglePlay(\''+r.id+'\')" title="Preview">▶</button>',a+='    <button class="fav-btn" onclick="event.stopPropagation(); toggleGalleryFav(\''+(r.itemId||r.id)+'\', this)" title="Save to favorites">',a+='      <svg class="fav-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>',a+="    </button>",a+='    <a href="'+r.shop+'" target="_blank" class="shop-btn" onclick="event.stopPropagation();">🛒 Shop Now</a>',a+="  </div>",a+='  <div class="video-card-controls">',a+='    <button class="ctrl-play" onclick="event.stopPropagation(); togglePlay(\''+r.id+"')\">⏸</button>",a+='    <div class="ctrl-vol"><span class="ctrl-vol-icon">🔊</span><input type="range" min="0" max="1" step="0.05" value="0.5" oninput="event.stopPropagation(); setVolume(\''+r.id+'\', this.value)" ontouchstart="event.stopPropagation()"></div>',a+='    <span class="ctrl-time">0:00</span>',a+='    <button class="ctrl-fullscreen" onclick="event.stopPropagation(); openFullscreen(\''+r.id+'\')" title="Fullscreen">⛶</button>',a+="  </div>",a+="</div>"}e.innerHTML=a;for(var d=e.querySelectorAll(".video-card"),s=0;s<d.length;s++)(function(t){t.addEventListener("click",function(e){if(!e.target.closest(".video-card-actions")&&!e.target.closest(".video-card-controls")){var o=t.getAttribute("data-id");togglePlay(o)}})})(d[s]);"function"==typeof initGalleryFavorites&&initGalleryFavorites()}}(),window.showGalleryToast=function(t,e){var o=document.querySelector(".gallery-toast");o&&o.remove();var i=document.createElement("div");i.className="gallery-toast gallery-toast--"+(e||"success"),i.textContent=t,document.body.appendChild(i),requestAnimationFrame(function(){i.classList.add("gallery-toast--visible")}),setTimeout(function(){i.classList.remove("gallery-toast--visible"),setTimeout(function(){i.remove()},300)},3e3)},window.toggleGalleryFav=function(t,e){if("undefined"!=typeof AuthClient&&AuthClient.isAuthenticated())if(e.classList.add("fav-btn--loading"),e.disabled=!0,e.classList.contains("fav-btn--active"))AuthClient.removeFavorite(t).then(function(){e.classList.remove("fav-btn--active"),e.title="Save to favorites",showGalleryToast("Removed from favorites")}).catch(function(t){showGalleryToast(t.message||"Failed to remove","error")}).finally(function(){e.classList.remove("fav-btn--loading"),e.disabled=!1});else{var o=e.closest(".video-card"),i=o&&(o.querySelector(".video-title")||{}).textContent||"",a=o&&o.getAttribute("data-watch")||"";AuthClient.addFavorite({item_id:t,item_type:"video",title:i,url:a}).then(function(){e.classList.add("fav-btn--active"),e.title="Remove from favorites",showGalleryToast("Saved to favorites!")}).catch(function(t){showGalleryToast(t.message||"Failed to save","error")}).finally(function(){e.classList.remove("fav-btn--loading"),e.disabled=!1})}else showGalleryToast("Please sign in to save favorites","error")},window.initGalleryFavorites=function(){"undefined"!=typeof AuthClient&&AuthClient.isAuthenticated()&&document.querySelectorAll(".video-card[data-item-id]").forEach(function(t){var e=t.getAttribute("data-item-id");e&&AuthClient.isFavorite(e).then(function(e){if(e.favorited){var o=t.querySelector(".fav-btn");o&&(o.classList.add("fav-btn--active"),o.title="Remove from favorites")}}).catch(function(){})})};var fsOverlay=document.getElementById("fsOverlay"),fsVideo=document.getElementById("fsVideo"),fsPlay=document.getElementById("fsPlay"),fsClose=document.getElementById("fsClose"),fsVolume=document.getElementById("fsVolume"),fsTime=document.getElementById("fsTime"),fsTitle=document.getElementById("fsTitle"),fsShop=document.getElementById("fsShop"),fsTimeHandler=null,fsEndedHandler=null;function closeFullscreen(){fsVideo.pause(),fsVideo.src="",fsOverlay.classList.remove("active"),document.body.style.overflow="",fsTimeHandler&&(fsVideo.removeEventListener("timeupdate",fsTimeHandler),fsTimeHandler=null),fsEndedHandler&&(fsVideo.removeEventListener("ended",fsEndedHandler),fsEndedHandler=null)}window.openFullscreen=function(t){var e=document.querySelector('.video-card[data-id="'+t+'"]');if(e){var o=e.querySelector("video source"),i=e.querySelector(".video-title"),a=e.querySelector(".shop-btn");if(o&&i&&a){for(var n=o.getAttribute("src"),r=i.textContent,d=a.getAttribute("href"),s=document.querySelectorAll(".video-card.playing"),l=0;l<s.length;l++){var c=s[l].querySelector("video");c&&(c.pause(),c.currentTime=0),s[l].classList.remove("playing")}fsTimeHandler&&fsVideo.removeEventListener("timeupdate",fsTimeHandler),fsEndedHandler&&fsVideo.removeEventListener("ended",fsEndedHandler),fsVideo.src=n,fsTitle.textContent=r,fsShop.href=d,fsVideo.volume=parseFloat(fsVolume.value),fsVideo.play().catch(function(){}),fsPlay.textContent="⏸",fsTime.textContent="0:00",fsOverlay.classList.add("active"),document.body.style.overflow="hidden",fsTimeHandler=function(){var t=Math.floor(fsVideo.currentTime/60),e=Math.floor(fsVideo.currentTime%60);fsTime.textContent=t+":"+(e<10?"0":"")+e},fsVideo.addEventListener("timeupdate",fsTimeHandler),fsEndedHandler=function(){fsPlay.textContent="▶"},fsVideo.addEventListener("ended",fsEndedHandler)}}},fsPlay.addEventListener("click",function(){fsVideo.paused?(fsVideo.play(),fsPlay.textContent="⏸"):(fsVideo.pause(),fsPlay.textContent="▶")}),fsClose.addEventListener("click",closeFullscreen),fsOverlay.addEventListener("click",function(t){t.target===fsOverlay&&closeFullscreen()}),fsVolume.addEventListener("input",function(){fsVideo.volume=parseFloat(this.value)}),document.addEventListener("keydown",function(t){"Escape"===t.key&&fsOverlay.classList.contains("active")&&closeFullscreen()});
+/**
+ * SPurno Animation Studio - V2 Video Gallery & Player
+ * Handles video gallery rendering, category filters, fullscreen overlay, and hover preview
+ */
+
+(function () {
+    'use strict';
+
+    /* ======================================================
+       VIDEO GALLERY DATA
+    ====================================================== */
+    const videos = [
+        {
+            id: 1,
+            title: '3D Infographic Vector Art, Icons & Graphics',
+            slug: '3d-infographic-vector-art-icons-and-graphics',
+            src: 'videos/3d-infographic-vector-art-icons-and-graphics.mp4',
+            thumbnail: 'images/3d-infographic-vector-art-icon.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=3d+infographic+vector+art',
+            duration: '0:27',
+            description: 'Premium 3D infographic vector art, icons, and graphics with animated data visualizations.'
+        },
+        {
+            id: 2,
+            title: '3D Infographic Video Template',
+            slug: '3d-infographic-video-template',
+            src: 'videos/3d-infographic-video-template.mp4',
+            thumbnail: 'images/3d-infographic-circle-animated-screen.jpg',
+            category: 'infographic',
+            categoryLabel: 'Infographic',
+            adobeStock: 'https://stock.adobe.com/search?k=3d+infographic+video+template',
+            duration: '0:30',
+            description: 'Animated 3D infographic template with circle charts and data visualization elements.'
+        },
+        {
+            id: 3,
+            title: '3D Infographic Video Template 2',
+            slug: '3d-infographic-video-template-2',
+            src: 'videos/3d-infographic-video-template2.mp4',
+            thumbnail: 'images/3d-infographic-hexagon-animated-screen.jpg',
+            category: 'infographic',
+            categoryLabel: 'Infographic',
+            adobeStock: 'https://stock.adobe.com/search?k=3d+infographic+hexagon',
+            duration: '0:25',
+            description: 'Hexagonal 3D infographic video template with depth-enhanced charts and motion graphics.'
+        },
+        {
+            id: 4,
+            title: 'Animated Background Stock Video - Vol. 5',
+            slug: 'animated-background-stock-video-premium-download-5',
+            src: 'videos/animated-background-stock-video-for-premium-download-5.mp4',
+            thumbnail: 'images/Animated-Background-Stock-Video-Footage-for-Premium-Download-5.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=animated+background+stock+video',
+            duration: '0:20',
+            description: 'Premium animated background stock video footage with seamless motion loops.'
+        },
+        {
+            id: 5,
+            title: 'Animated Background Stock Video - Vol. 6',
+            slug: 'animated-background-stock-video-premium-download-6',
+            src: 'videos/animated-background-stock-video-for-premium-download-6.mp4',
+            thumbnail: 'images/Animated-Background-Stock-Video-Footage-for-Premium-Download.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=animated+background+loop',
+            duration: '0:22',
+            description: 'Dynamic animated background stock video with abstract motion graphics elements.'
+        },
+        {
+            id: 6,
+            title: 'Infographics Video Demo',
+            slug: 'infographics-video-demo',
+            src: 'videos/infographics-video-demo.mp4',
+            thumbnail: 'images/infographics-spurno-animation-studio.jpg',
+            category: 'infographic',
+            categoryLabel: 'Infographic',
+            adobeStock: 'https://stock.adobe.com/search?k=infographics+video+demo',
+            duration: '0:35',
+            description: 'Animated infographic video demo showcasing data visualization templates and slide designs.'
+        },
+        {
+            id: 7,
+            title: 'iPhone Mockup',
+            slug: 'iphone-mockup',
+            src: 'videos/iphone-mockup.mp4',
+            thumbnail: 'images/iphone-mockup.jpg',
+            category: 'mockup',
+            categoryLabel: 'Mockup',
+            adobeStock: 'https://stock.adobe.com/search?k=iphone+mockup+video',
+            duration: '0:15',
+            description: 'Realistic iPhone mockup video template with animated screen replacement and 3D depth.'
+        },
+        {
+            id: 8,
+            title: 'Laptop Product Promotion Template',
+            slug: 'laptop-product-promotion-advertising-template',
+            src: 'videos/Laptop-product-promotion-advertising-template.mp4',
+            thumbnail: 'images/corporate-presentation-background.jpg',
+            category: 'mockup',
+            categoryLabel: 'Mockup',
+            adobeStock: 'https://stock.adobe.com/search?k=laptop+product+promotion+template',
+            duration: '0:30',
+            description: 'Laptop product promotion and advertising template with animated screen showcase.'
+        },
+        {
+            id: 9,
+            title: 'Loading Bar Animation',
+            slug: 'loading-bar-animation',
+            src: 'videos/loading-bar-100-percent.mp4',
+            thumbnail: 'images/loading-bar.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=loading+bar+animation',
+            duration: '0:10',
+            description: 'Smooth loading bar animation with 100% progress indicator for UI motion design.'
+        },
+        {
+            id: 10,
+            title: 'News Background Animation',
+            slug: 'news-background-animation',
+            src: 'videos/news-background-animation.mp4',
+            thumbnail: 'images/news-background-animation.jpg',
+            category: 'typography',
+            categoryLabel: 'Typography',
+            adobeStock: 'https://stock.adobe.com/search?k=news+background+animation',
+            duration: '0:20',
+            description: 'Professional news background animation for broadcast and digital media production.'
+        },
+        {
+            id: 11,
+            title: 'News Background Animation Studio',
+            slug: 'news-background-animation-studio',
+            src: 'videos/news-background-animation-studio.mp4',
+            thumbnail: 'images/news-background-world-globe-studio.png',
+            category: 'typography',
+            categoryLabel: 'Typography',
+            adobeStock: 'https://stock.adobe.com/search?k=news+studio+background',
+            duration: '0:18',
+            description: 'News studio background animation with world globe and broadcast-quality motion graphics.'
+        },
+        {
+            id: 12,
+            title: 'Red Motion Animated Background',
+            slug: 'red-motion-animated-background',
+            src: 'videos/red-motion-animated-background.mp4',
+            thumbnail: 'images/motion-red.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=red+motion+animated+background',
+            duration: '0:25',
+            description: 'Vibrant red motion animated background with dynamic particle effects and abstract shapes.'
+        },
+        {
+            id: 13,
+            title: 'Sale Banner - Shop Now',
+            slug: 'sale-banner-shop-now',
+            src: 'videos/sale-banner-shop-now-typography.mp4',
+            thumbnail: 'images/sale-banner-typography.jpg',
+            category: 'typography',
+            categoryLabel: 'Typography',
+            adobeStock: 'https://stock.adobe.com/search?k=sale+banner+typography',
+            duration: '0:12',
+            description: 'Animated sale banner with bold typography and Shop Now call-to-action motion graphics.'
+        },
+        {
+            id: 14,
+            title: 'SPurno Animation Studio Promo',
+            slug: 'spurno-animation-studio-promo-video-animation',
+            src: 'videos/SPurno-Animation-Studio-Promo-Video-Animation.mp4',
+            thumbnail: 'images/spurno-promo-new-video-animation.jpg',
+            category: 'motion',
+            categoryLabel: 'Motion',
+            adobeStock: 'https://stock.adobe.com/search?k=animation+studio+promo',
+            duration: '0:30',
+            description: 'SPurno Animation Studio promotional video showcasing motion graphics and stock footage.'
+        },
+        {
+            id: 15,
+            title: 'Typography Animation',
+            slug: 'typography-animation',
+            src: 'videos/typography-animation.mp4',
+            thumbnail: 'images/typography-animation.jpg',
+            category: 'typography',
+            categoryLabel: 'Typography',
+            adobeStock: 'https://stock.adobe.com/search?k=typography+animation',
+            duration: '0:22',
+            description: 'Kinetic typography animation with dynamic text reveals and animated letterforms.'
+        }
+    ];
+
+    const categoryLabels = {
+        all: 'All',
+        motion: 'Motion',
+        infographic: 'Infographic',
+        mockup: 'Mockup',
+        typography: 'Typography'
+    };
+
+
+    /* ======================================================
+       RENDER VIDEO CARDS
+    ====================================================== */
+    function renderVideoCards(filteredVideos) {
+        const gallery = document.getElementById('videoGallery');
+        if (!gallery) return;
+
+        gallery.innerHTML = '';
+
+        filteredVideos.forEach(video => {
+            const card = document.createElement('div');
+            card.className = 'video-card reveal-up';
+            card.setAttribute('data-category', video.category);
+
+            card.innerHTML = `
+                <div class="video-card-inner">
+                    <div class="video-card-thumb">
+                        <img src="${video.thumbnail}" alt="${video.title}" loading="lazy">
+                        <div class="video-card-overlay">
+                            <button class="video-play-btn" aria-label="Play ${video.title}" data-video-id="${video.id}">
+                                <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                                    <circle cx="24" cy="24" r="23" stroke="white" stroke-width="2" opacity="0.9"/>
+                                    <polygon points="20,15 36,24 20,33" fill="white"/>
+                                </svg>
+                            </button>
+                            <span class="video-duration">${video.duration}</span>
+                        </div>
+                        <div class="video-hover-preview" data-src="${video.src}">
+                            <video muted loop preload="none" playsinline></video>
+                        </div>
+                    </div>
+                    <div class="video-card-info">
+                        <span class="video-card-category">${video.categoryLabel}</span>
+                        <h3 class="video-card-title">${video.title}</h3>
+                        <p class="video-card-desc">${video.description}</p>
+                        <div class="video-card-actions">
+                            <a href="watch/${video.slug}.html" class="video-card-link">Watch Now</a>
+                            <a href="${video.adobeStock}" class="video-card-stock-link" target="_blank" rel="noopener noreferrer">Adobe Stock</a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            gallery.appendChild(card);
+        });
+
+        /* Re-attach reveal observers for new cards */
+        initRevealObserver();
+    }
+
+
+    /* ======================================================
+       CATEGORY FILTER BUTTONS
+    ====================================================== */
+    function initCategoryFilters() {
+        const filterContainer = document.getElementById('galleryFilter');
+        if (!filterContainer) return;
+
+        const buttons = filterContainer.querySelectorAll('button');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const cat = btn.getAttribute('data-filter');
+                const filtered = cat === 'all'
+                    ? videos
+                    : videos.filter(v => v.category === cat);
+
+                renderVideoCards(filtered);
+            });
+        });
+    }
+
+
+    /* ======================================================
+       FULLSCREEN VIDEO OVERLAY
+    ====================================================== */
+    function createVideoOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'video-overlay';
+        overlay.id = 'video-overlay';
+
+        overlay.innerHTML = `
+            <div class="video-overlay-content">
+                <div class="video-overlay-header">
+                    <h3 class="video-overlay-title"></h3>
+                    <button class="video-overlay-close" aria-label="Close video">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+                <div class="video-overlay-player">
+                    <video id="overlay-video" controls preload="metadata" playsinline></video>
+                </div>
+                <div class="video-overlay-controls">
+                    <div class="video-overlay-info">
+                        <span class="video-overlay-category"></span>
+                        <span class="video-overlay-time"></span>
+                    </div>
+                    <div class="video-overlay-actions">
+                        <a href="#" class="video-overlay-watch-link" target="_blank" rel="noopener">Watch Page</a>
+                        <a href="#" class="video-overlay-stock-link" target="_blank" rel="noopener noreferrer">Adobe Stock</a>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        const closeBtn = overlay.querySelector('.video-overlay-close');
+        const videoEl = overlay.querySelector('#overlay-video');
+
+        closeBtn.addEventListener('click', () => {
+            closeVideoOverlay();
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                closeVideoOverlay();
+            }
+        });
+
+        videoEl.addEventListener('timeupdate', () => {
+            const timeDisplay = overlay.querySelector('.video-overlay-time');
+            if (timeDisplay && videoEl.duration) {
+                const current = formatTime(videoEl.currentTime);
+                const total = formatTime(videoEl.duration);
+                timeDisplay.textContent = `${current} / ${total}`;
+            }
+        });
+    }
+
+    function openVideoOverlay(videoId) {
+        const video = videos.find(v => v.id === videoId);
+        if (!video) return;
+
+        const overlay = document.getElementById('video-overlay');
+        const videoEl = overlay.querySelector('#overlay-video');
+        const titleEl = overlay.querySelector('.video-overlay-title');
+        const categoryEl = overlay.querySelector('.video-overlay-category');
+        const watchLink = overlay.querySelector('.video-overlay-watch-link');
+        const stockLink = overlay.querySelector('.video-overlay-stock-link');
+
+        titleEl.textContent = video.title;
+        categoryEl.textContent = video.categoryLabel;
+        videoEl.src = video.src;
+        watchLink.href = `watch/${video.slug}.html`;
+        stockLink.href = video.adobeStock;
+
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+
+        videoEl.play().catch(() => {});
+    }
+
+    function closeVideoOverlay() {
+        const overlay = document.getElementById('video-overlay');
+        const videoEl = overlay.querySelector('#overlay-video');
+
+        videoEl.pause();
+        videoEl.src = '';
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs.toString().padStart(2, '0')}`;
+    }
+
+
+    /* ======================================================
+       HOVER PREVIEW FUNCTIONALITY
+    ====================================================== */
+    function initHoverPreview() {
+        const gallery = document.getElementById('videoGallery');
+        if (!gallery) return;
+
+        let hoverTimeout = null;
+
+        gallery.addEventListener('mouseenter', (e) => {
+            const previewContainer = e.target.closest('.video-hover-preview');
+            if (!previewContainer) return;
+
+            clearTimeout(hoverTimeout);
+
+            hoverTimeout = setTimeout(() => {
+                const videoEl = previewContainer.querySelector('video');
+                const src = previewContainer.getAttribute('data-src');
+
+                if (videoEl && src && !videoEl.src) {
+                    videoEl.src = src;
+                    videoEl.load();
+                }
+
+                if (videoEl) {
+                    videoEl.play().catch(() => {});
+                    previewContainer.classList.add('playing');
+                }
+            }, 400);
+        }, true);
+
+        gallery.addEventListener('mouseleave', (e) => {
+            const previewContainer = e.target.closest('.video-hover-preview');
+            if (!previewContainer) return;
+
+            clearTimeout(hoverTimeout);
+
+            const videoEl = previewContainer.querySelector('video');
+            if (videoEl) {
+                videoEl.pause();
+                videoEl.currentTime = 0;
+                previewContainer.classList.remove('playing');
+            }
+        }, true);
+    }
+
+
+    /* ======================================================
+       REVEAL OBSERVER FOR DYNAMICALLY ADDED CARDS
+    ====================================================== */
+    function initRevealObserver() {
+        const elements = document.querySelectorAll('.reveal-up:not(.revealed)');
+        if (!('IntersectionObserver' in window) || !elements.length) {
+            elements.forEach(el => el.classList.add('revealed'));
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('revealed');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+        );
+
+        elements.forEach(el => observer.observe(el));
+    }
+
+
+    /* ======================================================
+       PLAY BUTTON CLICK HANDLERS
+    ====================================================== */
+    function initPlayButtons() {
+        document.addEventListener('click', (e) => {
+            const playBtn = e.target.closest('.video-play-btn');
+            if (playBtn) {
+                const videoId = parseInt(playBtn.getAttribute('data-video-id'), 10);
+                openVideoOverlay(videoId);
+            }
+        });
+    }
+
+
+    /* ======================================================
+       KEYBOARD SHORTCUTS
+    ====================================================== */
+    function initKeyboardShortcuts() {
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeVideoOverlay();
+            }
+
+            const overlay = document.getElementById('video-overlay');
+            if (overlay && overlay.classList.contains('active')) {
+                const videoEl = overlay.querySelector('#overlay-video');
+                if (e.key === ' ' || e.key === 'k') {
+                    e.preventDefault();
+                    if (videoEl.paused) {
+                        videoEl.play();
+                    } else {
+                        videoEl.pause();
+                    }
+                }
+                if (e.key === 'ArrowLeft') {
+                    videoEl.currentTime = Math.max(0, videoEl.currentTime - 5);
+                }
+                if (e.key === 'ArrowRight') {
+                    videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 5);
+                }
+                if (e.key === 'f') {
+                    if (videoEl.requestFullscreen) {
+                        videoEl.requestFullscreen();
+                    }
+                }
+            }
+        });
+    }
+
+
+    /* ======================================================
+       INITIALIZATION
+    ====================================================== */
+    function init() {
+        createVideoOverlay();
+        initCategoryFilters();
+        renderVideoCards(videos);
+        initHoverPreview();
+        initPlayButtons();
+        initKeyboardShortcuts();
+    }
+
+    /* Run when DOM is ready */
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();
