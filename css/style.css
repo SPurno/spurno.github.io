@@ -1722,6 +1722,52 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-wrap: wrap;
 }
 
+/* ── Homepage Marketplace CTA ── */
+.marketplace-cta {
+  padding: 80px 24px;
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  text-align: center;
+  color: #fff;
+}
+.marketplace-cta .marketplace-cta-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.marketplace-cta .section-title {
+  color: #fff;
+  margin-bottom: 12px;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+.marketplace-cta p {
+  font-size: 1.05rem;
+  opacity: .85;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+.marketplace-cta .btn-group {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.marketplace-cta .btn-primary {
+  background: #fff;
+  color: #6c5ce7;
+}
+.marketplace-cta .btn-primary:hover {
+  background: #f0f0ff;
+}
+.marketplace-cta .btn-secondary {
+  background: rgba(255,255,255,.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.3);
+}
+.marketplace-cta .btn-secondary:hover {
+  background: rgba(255,255,255,.25);
+}
+
 /* === Footer — Apple-style === */
 .footer {
   background: #f5f5f7;
@@ -1737,7 +1783,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 .footer-grid {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1fr 1.4fr;
+  grid-template-columns: 1.8fr 1fr 1fr 1fr 1fr 1.2fr;
   gap: 32px;
   padding-bottom: 48px;
 }

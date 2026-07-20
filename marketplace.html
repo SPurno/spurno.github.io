@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PixabAnimation Marketplace | SPurno Animation Studio</title>
+  <meta name="description" content="Browse 4000+ premium motion graphics assets, After Effects plugins, background animations, and creative tools on the PixabAnimation marketplace.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://spurno.github.io/marketplace">
+  <meta property="og:title" content="PixabAnimation Marketplace | SPurno Animation Studio">
+  <meta property="og:description" content="Browse 4000+ premium motion graphics assets on the PixabAnimation marketplace.">
+  <meta property="og:image" content="https://spurno.github.io/images/spurno-logo.png">
+  <meta property="og:url" content="https://spurno.github.io/marketplace">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="PixabAnimation Marketplace | SPurno Animation Studio">
+  <meta name="twitter:description" content="Browse 4000+ premium motion graphics assets on the PixabAnimation marketplace.">
+  <meta name="twitter:image" content="https://spurno.github.io/images/spurno-logo.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .marketplace-hero {
+      padding: 48px 24px 32px;
+      text-align: center;
+      background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+      color: #fff;
+    }
+    .marketplace-hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+    .marketplace-hero p {
+      font-size: 1rem;
+      opacity: .85;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .marketplace-hero .badge {
+      display: inline-block;
+      padding: 4px 16px;
+      background: rgba(255,255,255,.15);
+      border-radius: 20px;
+      font-size: .78rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      letter-spacing: .05em;
+    }
+    .marketplace-embed-wrap {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 24px 60px;
+    }
+    .marketplace-embed {
+      width: 100%;
+      height: calc(100vh - 200px);
+      min-height: 500px;
+      border: 1px solid #d2d2d7;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,.06);
+    }
+    .marketplace-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .marketplace-direct-link {
+      text-align: center;
+      padding: 32px 24px 48px;
+      background: var(--bg-secondary);
+      border-top: 1px solid #d2d2d7;
+    }
+    .marketplace-direct-link p {
+      font-size: .9rem;
+      color: var(--body-muted);
+      margin-bottom: 12px;
+    }
+    @media(max-width:768px) {
+      .marketplace-hero h1 { font-size: 1.5rem }
+      .marketplace-embed { height: calc(100vh - 250px); min-height: 400px }
+      .marketplace-embed-wrap { padding: 0 12px 40px }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="index.html#about" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="index.html#portfolio" class="nav-link"><i class="fas fa-briefcase"></i> Portfolio</a></li>
+      <li><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Blog</a></li>
+      <li><a href="marketplace.html" class="nav-link active"><i class="fas fa-store"></i> Marketplace</a></li>
+      <li><a href="contact-us.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li class="nav-divider-mobile"><hr></li>
+      <li><a href="login.html" class="nav-link nav-action-mobile" id="navLogin"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+      <li><a href="register.html" class="nav-link nav-action-mobile"><i class="fas fa-user-plus"></i> Register</a></li>
+      <li><a href="account.html" class="nav-link nav-action-mobile" id="navProfile" style="display:none;"><i class="fas fa-user"></i> Account</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
+      <a href="register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
+      <a href="login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
+      <a href="account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
+    </div>
+  </div>
+</nav>
+
+<div class="marketplace-hero">
+  <div class="badge"><i class="fas fa-store"></i> PixabAnimation</div>
+  <h1>Premium Motion Graphics &amp; Animation Assets</h1>
+  <p>Browse 4,000+ professional motion backgrounds, After Effects plugins, infographic templates, and creative tools — all in one marketplace.</p>
+</div>
+
+<div class="marketplace-embed-wrap">
+  <div class="marketplace-embed">
+    <iframe src="https://pixabanimation.github.io/#/shop" title="PixabAnimation Marketplace" loading="lazy" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+  </div>
+</div>
+
+<div class="marketplace-direct-link">
+  <p>Can't see the marketplace? Open it directly in a new tab.</p>
+  <a href="https://pixabanimation.github.io/#/shop" target="_blank" rel="noopener" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> Open Marketplace</a>
+</div>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="images/spurno-logo.png" alt="SPurno Animation Studio" loading="lazy">
+          <span class="footer-brand-name">SPurno Animation Studio</span>
+        </div>
+        <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/spurno" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com/iSPurno" target="_blank" aria-label="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/iSPurno" target="_blank" aria-label="X" rel="noopener"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/SPurno" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="blog/stock-portfolio.html">Portfolio</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="blog/motion-graphics.html">Motion Graphics</a>
+        <a href="blog/infographic.html">Infographics</a>
+        <a href="blog/motion-graphics-background.html">Backgrounds</a>
+        <a href="watch/laptop-product-promotion-advertising-template.html">Mockups</a>
+      </div>
+      <div class="footer-col">
+        <h4>Marketplace</h4>
+        <a href="https://pixabanimation.github.io/#/shop" target="_blank" rel="noopener">Browse Assets</a>
+        <a href="https://pixabanimation.github.io/#/shop?category=videos" target="_blank" rel="noopener">Videos</a>
+        <a href="https://pixabanimation.github.io/#/shop?category=adobe-after-effect-plugins" target="_blank" rel="noopener">AE Plugins</a>
+        <a href="https://pixabanimation.github.io/#/shop?category=background-animation" target="_blank" rel="noopener">Backgrounds</a>
+        <a href="https://pixabanimation.github.io/blog/" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stock Sites</h4>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Adobe Stock</a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" rel="noopener">Shutterstock</a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" rel="noopener">Pond5</a>
+        <a href="https://www.freepik.com/author/pixellvector" target="_blank" rel="noopener">Freepik</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="terms-of-use.html">Terms</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="contact-us.html">Support</a>
+      </div>
+      <p>&copy; 2026 SPurno Animation Studio &amp; PixabAnimation. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="js/auth-client.js"></script>
+<script src="js/main.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const token = typeof AuthClient !== 'undefined' && AuthClient.isAuthenticated();
+  if (token) {
+    const els = ['loginBtn','navLogin'];
+    const hides = ['profileBtn','navProfile'];
+    els.forEach(function(id) { var e = document.getElementById(id); if(e) e.style.display = 'none'; });
+    hides.forEach(function(id) { var e = document.getElementById(id); if(e) e.style.display = 'flex'; });
+    var regBtn = document.querySelector('.nav-actions a[href="register.html"]');
+    if (regBtn) regBtn.style.display = 'none';
+  }
+});
+</script>
+<script src="js/i18n.js"></script>
+</body>
+</html>
