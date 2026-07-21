@@ -3,14 +3,18 @@
   if (!content) return;
 
   var AD_CLIENT = 'ca-pub-9371167470298440';
-  var AD_SLOT = '6814031410';
+  var AD_SLOTS = ['8914674393', '6391429399', '9087255784', '6814031410'];
+
+  function randomSlot() {
+    return AD_SLOTS[Math.floor(Math.random() * AD_SLOTS.length)];
+  }
 
   function createAdElement() {
     var ins = document.createElement('ins');
     ins.className = 'adsbygoogle';
     ins.style.cssText = 'display:block; width:100%;';
     ins.setAttribute('data-ad-client', AD_CLIENT);
-    ins.setAttribute('data-ad-slot', AD_SLOT);
+    ins.setAttribute('data-ad-slot', randomSlot());
     ins.setAttribute('data-ad-format', 'auto');
     ins.setAttribute('data-full-width-responsive', 'true');
     return ins;
@@ -18,12 +22,6 @@
 
   function pushAd() {
     try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
-  }
-
-  function getIndex(el) {
-    var i = 0;
-    while (el) { i++; el = el.previousElementSibling; }
-    return i;
   }
 
   // ── Insert up to 4 inline ads in .blog-content ──
@@ -36,7 +34,7 @@
     for (var i = 0; i < children.length; i++) {
       var tag = children[i].tagName;
       if ((tag === 'H2' || tag === 'H3' || tag === 'P') && !children[i].closest('.ad-inline')) {
-        candidates.push({ el: children[i], idx: getIndex(children[i]) });
+        candidates.push(children[i]);
       }
     }
 
@@ -46,7 +44,7 @@
       var wrapper = document.createElement('div');
       wrapper.className = 'ad-inline';
       wrapper.appendChild(createAdElement());
-      content.insertBefore(wrapper, candidates[p].el);
+      content.insertBefore(wrapper, candidates[p]);
       pushAd();
       inserted++;
     }
