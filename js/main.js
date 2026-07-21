@@ -159,4 +159,16 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // ── Video protection: prevent download, right-click, IDM ──
+  document.querySelectorAll('video').forEach(function(video) {
+    video.setAttribute('controlsList', 'nodownload');
+    video.setAttribute('disablePictureInPicture', '');
+    video.addEventListener('contextmenu', function(e) {
+      e.preventDefault();
+    });
+  });
+  document.querySelectorAll('source[data-src]').forEach(function(source) {
+    source.setAttribute('src', source.getAttribute('data-src'));
+  });
+
 });
