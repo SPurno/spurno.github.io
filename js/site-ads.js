@@ -9,14 +9,19 @@
     return AD_SLOTS[Math.floor(Math.random() * AD_SLOTS.length)];
   }
 
-  function createAdElement() {
+  function createAdElement(isSidebar) {
     var ins = document.createElement('ins');
     ins.className = 'adsbygoogle';
-    ins.style.cssText = 'display:block; width:100%;';
+    ins.style.cssText = 'display:block; text-align:center;';
     ins.setAttribute('data-ad-client', AD_CLIENT);
     ins.setAttribute('data-ad-slot', randomSlot());
-    ins.setAttribute('data-ad-format', 'auto');
-    ins.setAttribute('data-full-width-responsive', 'true');
+    if (isSidebar) {
+      ins.setAttribute('data-ad-format', 'auto');
+      ins.setAttribute('data-full-width-responsive', 'true');
+    } else {
+      ins.setAttribute('data-ad-format', 'fluid');
+      ins.setAttribute('data-ad-layout', 'in-article');
+    }
     return ins;
   }
 
@@ -43,7 +48,7 @@
     for (var p = step; p < candidates.length && inserted < neededArticleAds; p += step) {
       var wrapper = document.createElement('div');
       wrapper.className = 'ad-inline';
-      wrapper.appendChild(createAdElement());
+      wrapper.appendChild(createAdElement(false));
       content.insertBefore(wrapper, candidates[p]);
       pushAd();
       inserted++;
@@ -63,7 +68,7 @@
         for (var a = 0; a < neededSidebarAds; a++) {
           var section = document.createElement('div');
           section.className = 'sidebar-section sidebar-ad-section';
-          section.appendChild(createAdElement());
+          section.appendChild(createAdElement(true));
           ref.parentNode.insertBefore(section, ref.nextSibling);
           pushAd();
           ref = section;
