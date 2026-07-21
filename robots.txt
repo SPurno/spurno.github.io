@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /theme-dev/
+Allow: /
 
 Sitemap: https://spurno.github.io/sitemap.xml
