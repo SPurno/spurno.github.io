@@ -1,6 +1,6 @@
 (function() {
-  var article = document.querySelector('.blog-article');
-  if (!article) return;
+  var content = document.querySelector('article .blog-content');
+  if (!content) return;
 
   var AD_CLIENT = 'ca-pub-9371167470298440';
   var AD_SLOT = '6814031410';
@@ -26,12 +26,13 @@
     return i;
   }
 
-  var existingArticleAds = article.querySelectorAll('.ad-inline').length;
-  var neededArticleAds = Math.max(0, 6 - existingArticleAds);
+  // ── Insert up to 4 inline ads in .blog-content ──
+  var existingArticleAds = content.querySelectorAll('.ad-inline').length;
+  var neededArticleAds = Math.max(0, 4 - existingArticleAds);
 
   if (neededArticleAds > 0) {
     var candidates = [];
-    var children = article.children;
+    var children = content.children;
     for (var i = 0; i < children.length; i++) {
       var tag = children[i].tagName;
       if ((tag === 'H2' || tag === 'H3' || tag === 'P') && !children[i].closest('.ad-inline')) {
@@ -45,29 +46,29 @@
       var wrapper = document.createElement('div');
       wrapper.className = 'ad-inline';
       wrapper.appendChild(createAdElement());
-      article.insertBefore(wrapper, candidates[p].el);
+      content.insertBefore(wrapper, candidates[p].el);
       pushAd();
       inserted++;
     }
   }
 
-  var sidebar = document.querySelector('.blog-sidebar');
+  // ── Insert up to 2 sidebar ads in aside.sidebar ──
+  var sidebar = document.querySelector('aside.sidebar');
   if (sidebar) {
-    var existingSidebarAds = sidebar.querySelectorAll('.sidebar-card .adsbygoogle').length;
+    var existingSidebarAds = sidebar.querySelectorAll('.sidebar-section .adsbygoogle').length;
     var neededSidebarAds = Math.max(0, 2 - existingSidebarAds);
 
     if (neededSidebarAds > 0) {
-      var sidebarCards = sidebar.querySelectorAll('.sidebar-card');
-      var ref = sidebarCards[sidebarCards.length - 1];
-      if (!ref) ref = sidebar.querySelector('.sidebar-newsletter');
+      var sidebarSections = sidebar.querySelectorAll('.sidebar-section');
+      var ref = sidebarSections[sidebarSections.length - 1];
       if (ref) {
         for (var a = 0; a < neededSidebarAds; a++) {
-          var card = document.createElement('div');
-          card.className = 'sidebar-card';
-          card.appendChild(createAdElement());
-          ref.parentNode.insertBefore(card, ref.nextSibling);
+          var section = document.createElement('div');
+          section.className = 'sidebar-section sidebar-ad-section';
+          section.appendChild(createAdElement());
+          ref.parentNode.insertBefore(section, ref.nextSibling);
           pushAd();
-          ref = card;
+          ref = section;
         }
       }
     }

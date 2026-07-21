@@ -3154,10 +3154,9 @@ body { top: 0px !important; }
 
 /* Trust Strip */
 .trust-strip {
-  display: flex;
-  justify-content: flex-start;
-  gap: 32px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 32px;
   margin-top: 32px;
   padding-top: 24px;
   border-top: 1px solid var(--hairline);
