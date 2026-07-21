@@ -166,9 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
     video.addEventListener('contextmenu', function(e) {
       e.preventDefault();
     });
-  });
-  document.querySelectorAll('source[data-src]').forEach(function(source) {
-    source.setAttribute('src', source.getAttribute('data-src'));
+    var source = video.querySelector('source[data-src]');
+    if (source) {
+      video.src = source.getAttribute('data-src');
+      source.remove();
+    }
+    video.load();
   });
 
 });
