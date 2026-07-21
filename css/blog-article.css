@@ -464,7 +464,7 @@
 .useful-links a:hover { background: rgba(0,113,227,.08) }
 
 /* ── Sidebar ── */
-.sidebar { position: sticky; top: 72px }
+
 .sidebar-section {
   margin-bottom: 32px;
   padding: 20px;
@@ -908,6 +908,7 @@
   margin-bottom: 32px;
 }
 .blog-footer-brand { display: flex; flex-direction: column; gap: 12px }
+.blog-footer-brand img { height: 40px; width: auto; max-width: none; filter: brightness(0) invert(1); }
 .blog-footer-brand .name {
   font-weight: 700;
   font-size: 1rem;
@@ -980,6 +981,11 @@
 @media(max-width:1024px) {
   .blog-wrapper { grid-template-columns: 1fr 260px; gap: 40px }
 }
+.sidebar {
+  position: sticky;
+  top: 88px;
+}
+
 @media(max-width:768px) {
   .blog-wrapper { grid-template-columns: 1fr; padding: 16px }
   .sidebar { display: none }

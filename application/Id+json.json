@@ -6,7 +6,7 @@
       "name": "SPurno Animation Studio",
       "url": "https://spurno.github.io",
       "image": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/bio.jpg",
-      "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png",
+      "logo": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.svg",
       "description": "Motion graphics and stock video animation studio from Bangladesh.",
       "email": "spurno@icloud.com",
       "sameAs": [
@@ -49,7 +49,7 @@
         "name": "SPurno Animation Studio",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.png"
+          "url": "https://raw.githubusercontent.com/SPurno/spurno.github.io/refs/heads/main/images/spurno-logo.svg"
         }
       },
       "regionsAllowed": ["US", "NL"]

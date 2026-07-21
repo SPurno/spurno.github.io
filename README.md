@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://spurno.github.io/images/spurno-logo.png" alt="SPurno Animation Studio Logo" width="140" style="border-radius: 16px;" />
+  <img src="https://spurno.github.io/images/spurno-logo.svg" alt="SPurno Animation Studio Logo" width="140" style="border-radius: 16px;" />
   <br/>
   <h1 align="center" style="margin: 0;">SPurno Animation Studio</h1>
   <p align="center">
