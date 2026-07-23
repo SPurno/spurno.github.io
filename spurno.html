@@ -28,6 +28,7 @@
     <meta name="google-adsense-account" content="ca-pub-9371167470298440">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <style>
       :root {
         --author-accent: #0071e3;
@@ -36,6 +37,17 @@
         --author-glass: rgba(255,255,255,0.65);
         --author-glass-border: rgba(255,255,255,0.5);
         --author-glass-strong: rgba(255,255,255,0.85);
+      }
+
+      /* ── Birds ── */
+      .sp-bird-container {
+        position: absolute; inset: 0;
+        z-index: 0; pointer-events: none;
+        overflow: hidden;
+      }
+      .sp-bird {
+        position: absolute;
+        will-change: transform;
       }
 
       /* ── Decorative Orbs ── */
@@ -533,6 +545,7 @@
     <div class="sp-orb sp-orb-1"></div>
     <div class="sp-orb sp-orb-2"></div>
     <div class="sp-orb sp-orb-3"></div>
+    <div class="sp-bird-container" id="birdContainer"></div>
     <div class="sp-hero-inner">
       <div class="sp-avatar-wrap">
         <div class="sp-avatar-ring"></div>
@@ -980,6 +993,137 @@ document.addEventListener('DOMContentLoaded', function() {
       navLinks.classList.toggle('active');
       navToggle.classList.toggle('active');
     });
+  }
+
+  // ── Flying Birds (GSAP) ──
+  if (typeof gsap !== 'undefined') {
+    (function() {
+      var birdNs = 'http://www.w3.org/2000/svg';
+      var container = document.getElementById('birdContainer');
+      var hero = document.querySelector('.sp-hero');
+      if (!container || !hero) return;
+
+      function makeBird(size, color, flapSpeed) {
+        var s = document.createElementNS(birdNs, 'svg');
+        s.setAttribute('class', 'sp-bird');
+        s.style.width = size + 'px';
+        s.style.height = (size * 0.6) + 'px';
+        var vb = size * 0.08;
+        s.setAttribute('viewBox', '0 0 ' + size + ' ' + (size * 0.6));
+
+        var body = document.createElementNS(birdNs, 'ellipse');
+        body.setAttribute('cx', size * 0.45);
+        body.setAttribute('cy', size * 0.42);
+        body.setAttribute('rx', size * 0.28);
+        body.setAttribute('ry', size * 0.1);
+        body.setAttribute('fill', color);
+
+        var head = document.createElementNS(birdNs, 'circle');
+        head.setAttribute('cx', size * 0.2);
+        head.setAttribute('cy', size * 0.33);
+        head.setAttribute('r', size * 0.08);
+        head.setAttribute('fill', color);
+
+        var beak = document.createElementNS(birdNs, 'polygon');
+        beak.setAttribute('points',
+          (size * 0.12) + ',' + (size * 0.32) + ' ' +
+          (size * 0.04) + ',' + (size * 0.37) + ' ' +
+          (size * 0.13) + ',' + (size * 0.37)
+        );
+        beak.setAttribute('fill', color);
+
+        var tail = document.createElementNS(birdNs, 'polygon');
+        tail.setAttribute('points',
+          (size * 0.72) + ',' + (size * 0.35) + ' ' +
+          (size * 0.92) + ',' + (size * 0.28) + ' ' +
+          (size * 0.94) + ',' + (size * 0.42) + ' ' +
+          (size * 0.75) + ',' + (size * 0.4)
+        );
+        tail.setAttribute('fill', color);
+
+        var wing = document.createElementNS(birdNs, 'path');
+        wing.setAttribute('class', 'bird-wing');
+        wing.setAttribute('d',
+          'M' + (size * 0.35) + ',' + (size * 0.38) +
+          ' C' + (size * 0.3) + ',' + (size * 0.1) +
+          ' ' + (size * 0.55) + ',' + (size * 0.02) +
+          ' ' + (size * 0.78) + ',' + (size * 0.08) +
+          ' C' + (size * 0.7) + ',' + (size * 0.15) +
+          ' ' + (size * 0.55) + ',' + (size * 0.22) +
+          ' ' + (size * 0.4) + ',' + (size * 0.32) + 'Z'
+        );
+        wing.setAttribute('fill', color);
+        wing.setAttribute('style', 'transform-origin:' + (size * 0.4) + 'px ' + (size * 0.38) + 'px');
+
+        s.appendChild(body);
+        s.appendChild(head);
+        s.appendChild(beak);
+        s.appendChild(tail);
+        s.appendChild(wing);
+        return s;
+      }
+
+      var birds = [];
+      var configs = [
+        { size: 41, color: 'rgba(46,204,113,0.35)', flap: 0.08, yPos: 0.18 },
+        { size: 33, color: 'rgba(39,174,96,0.30)', flap: 0.12, yPos: 0.40 },
+        { size: 27, color: 'rgba(88,214,141,0.28)', flap: 0.15, yPos: 0.65 },
+        { size: 37, color: 'rgba(30,150,90,0.32)', flap: 0.1, yPos: 0.12 },
+        { size: 29, color: 'rgba(72,201,130,0.30)', flap: 0.14, yPos: 0.52 },
+        { size: 23, color: 'rgba(56,185,120,0.26)', flap: 0.18, yPos: 0.75 },
+        { size: 31, color: 'rgba(100,220,150,0.32)', flap: 0.11, yPos: 0.28 },
+      ];
+
+      configs.forEach(function(cfg) {
+        var bird = makeBird(cfg.size, cfg.color, cfg.flap);
+        var heroH = hero.offsetHeight || 600;
+        var heroW = hero.offsetWidth || window.innerWidth;
+        var topPx = heroH * cfg.yPos;
+        var dur = 14 + Math.random() * 8;
+        var startDelay = Math.random() * 10;
+
+        bird.style.top = topPx + 'px';
+        container.appendChild(bird);
+
+        gsap.set(bird, { x: heroW + cfg.size, scaleX: 1 });
+
+        gsap.to(bird, {
+          x: -cfg.size * 2,
+          duration: dur,
+          delay: startDelay,
+          ease: 'none',
+          repeat: -1,
+          onRepeat: function() {
+            gsap.set(bird, { x: heroW + cfg.size });
+          }
+        });
+
+        var bobAmplitude = 12 + Math.random() * 18;
+        var bobPeriod = 1.8 + Math.random() * 1.5;
+        gsap.to(bird, {
+          y: bobAmplitude,
+          duration: bobPeriod,
+          delay: startDelay,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
+
+        var wingEl = bird.querySelector('.bird-wing');
+        if (wingEl) {
+          gsap.to(wingEl, {
+            rotation: -25,
+            duration: cfg.flap,
+            ease: 'sine.inOut',
+            yoyo: true,
+            repeat: -1,
+            delay: startDelay + Math.random() * 0.5
+          });
+        }
+
+        birds.push(bird);
+      });
+    })();
   }
 })();
 </script>
