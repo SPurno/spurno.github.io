@@ -55,11 +55,11 @@
     }
   }
 
-  // ── Insert up to 2 sidebar ads in aside.sidebar ──
+  // ── Insert 1 sidebar ad in aside.sidebar ──
   var sidebar = document.querySelector('aside.sidebar');
   if (sidebar) {
     var existingSidebarAds = sidebar.querySelectorAll('.sidebar-section .adsbygoogle').length;
-    var neededSidebarAds = Math.max(0, 2 - existingSidebarAds);
+    var neededSidebarAds = Math.max(0, 1 - existingSidebarAds);
 
     if (neededSidebarAds > 0) {
       var sidebarSections = sidebar.querySelectorAll('.sidebar-section');
