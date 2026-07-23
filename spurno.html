@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SPurno (Faruk Ahmed) — Motion Designer &amp; Web Developer</title>
+    <meta name="description" content="SPurno (Faruk Ahmed) is a Motion Design Expert, Web Developer, and founder of SPurno Animation Studio. 7+ years creating motion graphics, After Effects templates, and web solutions.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://spurno.github.io/spurno">
+    <meta property="og:title" content="SPurno (Faruk Ahmed) — Motion Designer &amp; Web Developer">
+    <meta property="og:description" content="Motion Design Expert, Web Developer &amp; founder of SPurno Animation Studio. 7+ years experience in motion graphics, After Effects, web development, and digital solutions.">
+    <meta property="og:image" content="https://spurno.github.io/images/spurno-cover-art.jpg">
+    <meta property="og:url" content="https://spurno.github.io/spurno">
+    <meta property="og:type" content="profile">
+    <meta property="og:site_name" content="SPurno Animation Studio">
+    <meta property="og:locale" content="en_US">
+    <meta property="profile:first_name" content="Faruk">
+    <meta property="profile:last_name" content="Ahmed">
+    <meta property="profile:username" content="SPurno">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SPurno (Faruk Ahmed) — Motion Designer &amp; Web Developer">
+    <meta name="twitter:description" content="Motion Design Expert, Web Developer &amp; founder of SPurno Animation Studio.">
+    <meta name="twitter:image" content="https://spurno.github.io/images/spurno-cover-art.jpg">
+    <meta name="twitter:site" content="@iSpurno">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    <meta name="google-adsense-account" content="ca-pub-9371167470298440">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+      :root {
+        --author-accent: #0071e3;
+        --author-accent-light: rgba(0,113,227,0.08);
+        --author-gradient: linear-gradient(135deg, #0071e3, #5ac8fa);
+        --author-glass: rgba(255,255,255,0.65);
+        --author-glass-border: rgba(255,255,255,0.5);
+        --author-glass-strong: rgba(255,255,255,0.85);
+      }
+
+      /* ── Decorative Orbs ── */
+      .sp-orb {
+        position: absolute; border-radius: 50%; pointer-events: none;
+        filter: blur(60px); opacity: 0.4;
+      }
+      .sp-orb-1 {
+        top: -100px; right: -80px; width: 400px; height: 400px;
+        background: rgba(0,113,227,0.15);
+        animation: orbFloat 12s ease-in-out infinite;
+      }
+      .sp-orb-2 {
+        bottom: -60px; left: -120px; width: 350px; height: 350px;
+        background: rgba(90,200,250,0.12);
+        animation: orbFloat 16s ease-in-out infinite reverse;
+      }
+      .sp-orb-3 {
+        top: 40%; left: 10%; width: 200px; height: 200px;
+        background: rgba(0,113,227,0.08);
+        animation: orbFloat 20s ease-in-out infinite;
+      }
+      @keyframes orbFloat {
+        0%,100% { transform: translate(0,0) scale(1); }
+        33% { transform: translate(20px,-30px) scale(1.05); }
+        66% { transform: translate(-15px,20px) scale(0.95); }
+      }
+
+      /* ── Scroll Reveal ── */
+      .reveal {
+        opacity: 0; transform: translateY(30px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+      }
+      .reveal.revealed { opacity: 1; transform: translateY(0); }
+      .reveal-delay-1 { transition-delay: 0.1s; }
+      .reveal-delay-2 { transition-delay: 0.2s; }
+      .reveal-delay-3 { transition-delay: 0.3s; }
+      .reveal-delay-4 { transition-delay: 0.4s; }
+
+      /* ── Hero ── */
+      .sp-hero {
+        position: relative;
+        padding: 120px 24px 90px;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(0,113,227,0.05) 0%, transparent 100%);
+        overflow: hidden;
+      }
+      .sp-hero-inner {
+        position: relative; z-index: 1;
+        max-width: 720px; margin: 0 auto;
+      }
+      .sp-avatar-wrap {
+        position: relative; display: inline-block; margin-bottom: 28px;
+      }
+      .sp-avatar-wrap img {
+        width: 150px; height: 150px;
+        border-radius: 50%; object-fit: cover;
+        border: 4px solid var(--author-glass-border);
+        box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+        position: relative; z-index: 1;
+      }
+      .sp-avatar-ring {
+        position: absolute; inset: -8px;
+        border-radius: 50%;
+        background: conic-gradient(from 0deg, #0071e3, #5ac8fa, #0071e3, #5ac8fa, #0071e3);
+        z-index: 0;
+        animation: spin-ring 4s linear infinite;
+        mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
+        -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #fff calc(100% - 3px));
+      }
+      @keyframes spin-ring {
+        to { transform: rotate(360deg); }
+      }
+      .sp-avatar-badge {
+        position: absolute; bottom: 4px; right: 4px; z-index: 2;
+        width: 36px; height: 36px;
+        background: var(--author-gradient);
+        border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: #fff; font-size: 0.8rem;
+        border: 3px solid var(--author-glass-border);
+        box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      }
+      .sp-hero h1 {
+        font-size: 2.6rem; font-weight: 800;
+        background: var(--author-gradient);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.03em; margin-bottom: 4px;
+      }
+      .sp-hero .full-name {
+        font-size: 1rem; color: var(--text-muted); margin-bottom: 10px;
+      }
+      .sp-hero .role-tag {
+        display: inline-flex; align-items: center; gap: 6px;
+        background: var(--author-glass);
+        backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+        border: 1px solid var(--author-glass-border);
+        color: var(--author-accent); font-size: 0.82rem; font-weight: 600;
+        padding: 6px 18px; border-radius: 20px; margin-bottom: 18px;
+      }
+      .sp-hero .bio-line {
+        max-width: 560px; margin: 0 auto 22px;
+        font-size: 0.95rem; color: var(--text-secondary); line-height: 1.7;
+      }
+      .sp-hero-actions {
+        display: flex; justify-content: center; gap: 10px;
+        flex-wrap: wrap; margin-bottom: 26px;
+      }
+      .sp-hero-actions .btn { padding: 10px 24px; font-size: 14px; }
+      .sp-social-row {
+        display: flex; justify-content: center; gap: 8px; flex-wrap: wrap;
+      }
+      .sp-social-row a {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: var(--author-glass-strong);
+        backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+        border: 1px solid var(--author-glass-border);
+        display: inline-flex; align-items: center; justify-content: center;
+        color: var(--author-accent); text-decoration: none; font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .sp-social-row a:hover {
+        background: var(--author-accent); color: #fff;
+        transform: translateY(-4px) scale(1.08);
+        box-shadow: 0 6px 20px rgba(0,113,227,0.25);
+      }
+
+      /* ── Stats ── */
+      .sp-stats-wrap {
+        padding: 0 24px;
+        transform: translateY(-30px);
+        position: relative; z-index: 2;
+      }
+      .sp-stats {
+        display: flex; justify-content: center; gap: 4px;
+        padding: 28px 32px;
+        max-width: 820px; margin: 0 auto;
+        flex-wrap: wrap;
+        background: var(--author-glass-strong);
+        backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+        border: 1px solid var(--author-glass-border);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+      }
+      .sp-stat {
+        text-align: center; padding: 0 28px;
+        position: relative;
+      }
+      .sp-stat + .sp-stat::before {
+        content: ''; position: absolute; left: 0; top: 10%; height: 80%;
+        width: 1px; background: var(--hairline);
+      }
+      .sp-stat .num {
+        font-size: 1.8rem; font-weight: 800;
+        background: var(--author-gradient);
+        -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        background-clip: text;
+        letter-spacing: -0.02em;
+      }
+      .sp-stat .lbl {
+        font-size: 0.75rem; color: var(--text-muted); margin-top: 2px;
+        white-space: nowrap;
+      }
+
+      /* ── Sections ── */
+      .sp-section {
+        max-width: 880px; margin: 0 auto; padding: 70px 24px;
+      }
+      .sp-section-alt {
+        background: var(--bg-secondary);
+        position: relative;
+      }
+      .sp-section-label {
+        display: inline-flex; align-items: center; gap: 6px;
+        font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.12em; color: var(--author-accent); margin-bottom: 10px;
+      }
+      .sp-section-label i { font-size: 0.6rem; }
+      .sp-section h2 {
+        font-size: 1.7rem; font-weight: 700; color: var(--ink);
+        margin-bottom: 10px; letter-spacing: -0.02em;
+      }
+      .sp-section > .sub {
+        font-size: 0.92rem; color: var(--text-secondary);
+        margin-bottom: 40px; line-height: 1.6;
+      }
+
+      /* ── Glass Card ── */
+      .sp-glass {
+        background: var(--author-glass-strong);
+        backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+        border: 1px solid var(--author-glass-border);
+        border-radius: var(--radius-lg);
+        box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+        transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .sp-glass:hover {
+        box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        transform: translateY(-2px);
+      }
+
+      /* ── About grid ── */
+      .sp-about-grid {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+      }
+      .sp-about-grid p {
+        font-size: 0.9rem; color: var(--text-secondary); line-height: 1.85;
+      }
+      .sp-about-text p + p { margin-top: 16px; }
+      .sp-info-card {
+        padding: 24px;
+      }
+      .sp-info-card h3 {
+        font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.08em; color: var(--ink);
+        margin-bottom: 16px; padding-bottom: 10px;
+        border-bottom: 2px solid var(--author-accent);
+      }
+      .sp-info-item {
+        display: flex; align-items: center; gap: 10px;
+        padding: 9px 0; font-size: 0.85rem; color: var(--text-secondary);
+        border-bottom: 1px solid rgba(0,0,0,0.04);
+      }
+      .sp-info-item:last-child { border-bottom: none; }
+      .sp-info-item i {
+        width: 18px; color: var(--author-accent);
+        text-align: center; font-size: 0.8rem;
+      }
+      .sp-info-item a { color: var(--author-accent); text-decoration: none; }
+      .sp-info-item a:hover { text-decoration: underline; }
+
+      /* ── Timeline ── */
+      .sp-timeline { position: relative; padding-left: 32px; }
+      .sp-timeline::before {
+        content: ''; position: absolute; left: 10px;
+        top: 12px; bottom: 8px;
+        width: 2px;
+        background: linear-gradient(180deg, var(--author-accent), var(--hairline) 60%);
+      }
+      .sp-timeline-item {
+        position: relative; margin-bottom: 28px;
+        padding: 20px 24px;
+      }
+      .sp-timeline-item:last-child { margin-bottom: 0; }
+      .sp-timeline-dot {
+        position: absolute; left: -24px; top: 26px;
+        width: 14px; height: 14px; border-radius: 50%;
+        background: var(--author-accent);
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 2px var(--author-accent);
+      }
+      .sp-timeline-item .period {
+        font-size: 0.72rem; font-weight: 700;
+        color: var(--author-accent); text-transform: uppercase;
+        letter-spacing: 0.04em; margin-bottom: 3px;
+      }
+      .sp-timeline-item h3 {
+        font-size: 1rem; font-weight: 700; color: var(--ink); margin-bottom: 2px;
+      }
+      .sp-timeline-item .company {
+        font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+      }
+      .sp-timeline-item p {
+        font-size: 0.84rem; color: var(--text-secondary); line-height: 1.6;
+      }
+
+      /* ── Skills ── */
+      .sp-skills-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+        gap: 20px;
+      }
+      .sp-skill-group {
+        padding: 22px;
+      }
+      .sp-skill-group .sg-icon {
+        width: 38px; height: 38px; border-radius: 12px;
+        background: var(--author-accent-light);
+        display: flex; align-items: center; justify-content: center;
+        color: var(--author-accent); font-size: 0.85rem; margin-bottom: 14px;
+      }
+      .sp-skill-group h4 {
+        font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 10px;
+      }
+      .sp-skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+      .sp-skill-tags span {
+        font-size: 0.7rem; color: var(--text-secondary);
+        background: var(--author-accent-light);
+        padding: 4px 10px; border-radius: 12px; font-weight: 500;
+      }
+
+      /* ── Languages ── */
+      .sp-lang-list { display: flex; gap: 20px; flex-wrap: wrap; }
+      .sp-lang-item {
+        display: flex; align-items: center; gap: 12px;
+        padding: 16px 22px;
+      }
+      .sp-lang-item i { font-size: 1.2rem; color: var(--author-accent); }
+      .sp-lang-item .lang-name { font-weight: 600; font-size: 0.88rem; color: var(--ink); }
+      .sp-lang-item .lang-level { font-size: 0.75rem; color: var(--text-muted); }
+
+      /* ── Shop CTA ── */
+      .sp-shop-cta {
+        background: linear-gradient(135deg, #0071e3, #5ac8fa, #0071e3);
+        background-size: 200% 200%;
+        animation: ctaGradient 6s ease-in-out infinite;
+        border-radius: 20px; padding: 52px 32px; text-align: center;
+        color: #fff; position: relative; overflow: hidden;
+      }
+      @keyframes ctaGradient {
+        0%,100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+      }
+      .sp-shop-cta::before {
+        content: ''; position: absolute; top: -50%; left: -50%;
+        width: 200%; height: 200%;
+        background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.12) 0%, transparent 50%);
+        pointer-events: none;
+      }
+      .sp-shop-cta h2 { font-size: 1.6rem; font-weight: 700; margin-bottom: 10px; color: #fff; }
+      .sp-shop-cta p {
+        font-size: 0.92rem; opacity: 0.9; margin-bottom: 22px;
+        max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6;
+      }
+      .sp-shop-cta .btn-white {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: rgba(255,255,255,0.95);
+        backdrop-filter: var(--glass); -webkit-backdrop-filter: var(--glass);
+        color: var(--author-accent); padding: 12px 28px;
+        border-radius: 50px; font-weight: 600; font-size: 15px;
+        text-decoration: none; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      }
+      .sp-shop-cta .btn-white:hover {
+        transform: translateY(-3px) scale(1.02);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.2);
+      }
+
+      /* ── Posts ── */
+      .sp-posts-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 18px;
+      }
+      .sp-post-card {
+        padding: 22px; text-decoration: none; display: flex; flex-direction: column;
+      }
+      .sp-post-card .cat {
+        font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+        letter-spacing: 0.08em; color: var(--author-accent); margin-bottom: 8px;
+      }
+      .sp-post-card .title {
+        font-size: 0.88rem; font-weight: 600; color: var(--ink);
+        line-height: 1.4; margin-bottom: auto;
+      }
+      .sp-post-card .date {
+        font-size: 0.73rem; color: var(--text-muted); margin-top: 12px;
+      }
+
+      /* ── Contact ── */
+      .sp-contact-wrap {
+        display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+      }
+      .sp-contact-info h3 {
+        font-size: 1.1rem; font-weight: 700; color: var(--ink); margin-bottom: 12px;
+      }
+      .sp-contact-info p {
+        font-size: 0.88rem; color: var(--text-secondary);
+        line-height: 1.7; margin-bottom: 20px;
+      }
+      .sp-contact-info .ci-item {
+        display: flex; align-items: center; gap: 12px;
+        margin-bottom: 14px; font-size: 0.85rem; color: var(--text-secondary);
+      }
+      .sp-contact-info .ci-item i {
+        width: 20px; color: var(--author-accent); font-size: 0.9rem;
+      }
+      .sp-contact-info .ci-item a { color: var(--author-accent); text-decoration: none; }
+      .sp-contact-info .ci-item a:hover { text-decoration: underline; }
+      .sp-form { padding: 28px; }
+      .sp-form .form-group { margin-bottom: 16px; }
+      .sp-form label {
+        display: block; font-size: 0.78rem; font-weight: 600;
+        color: var(--ink); margin-bottom: 5px;
+      }
+      .sp-form input,
+      .sp-form textarea {
+        width: 100%; padding: 11px 14px;
+        border: 1px solid rgba(0,0,0,0.08);
+        border-radius: 12px; font-size: 0.85rem; font-family: inherit;
+        color: var(--ink);
+        background: var(--bg-glass);
+        backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+        transition: all 0.25s; box-sizing: border-box;
+      }
+      .sp-form input:focus,
+      .sp-form textarea:focus {
+        outline: none;
+        border-color: var(--author-accent);
+        box-shadow: 0 0 0 4px var(--author-accent-light);
+      }
+      .sp-form textarea { min-height: 100px; resize: vertical; }
+      .sp-form .btn { width: 100%; padding: 12px; font-size: 15px; }
+
+      /* ── Education ── */
+      .sp-edu-grid {
+        display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 18px;
+      }
+      .sp-edu-card { padding: 22px; }
+      .sp-edu-card .degree {
+        font-size: 0.88rem; font-weight: 700; color: var(--ink); margin-bottom: 4px;
+      }
+      .sp-edu-card .school {
+        font-size: 0.8rem; color: var(--text-muted); margin-bottom: 4px;
+      }
+      .sp-edu-card .year {
+        font-size: 0.73rem; color: var(--author-accent); font-weight: 600;
+      }
+
+      /* ── Stock CTA ── */
+      .sp-stock-cta { text-align: center; padding: 24px 0 8px; }
+
+      /* ── Responsive ── */
+      @media(max-width:768px) {
+        .sp-hero { padding: 70px 20px 60px; }
+        .sp-hero h1 { font-size: 1.8rem; }
+        .sp-avatar-wrap img { width: 120px; height: 120px; }
+        .sp-stats-wrap { transform: translateY(-20px); }
+        .sp-stats { padding: 20px; gap: 0; }
+        .sp-stat { padding: 10px 16px; }
+        .sp-stat + .sp-stat::before { top: 20%; height: 60%; }
+        .sp-stat .num { font-size: 1.4rem; }
+        .sp-stat .lbl { white-space: normal; }
+        .sp-about-grid { grid-template-columns: 1fr; }
+        .sp-contact-wrap { grid-template-columns: 1fr; }
+        .sp-section { padding: 50px 20px; }
+        .sp-section h2 { font-size: 1.3rem; }
+      }
+    </style>
+</head>
+<body>
+
+<div id="loading-screen">
+  <div class="loader-spinner-wrap"><div class="loader-spinner-inner"></div></div>
+  <img src="images/spurno-logo.svg" alt="SPurno Animation Studio" class="loader-svg-logo">
+</div>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="nav-brand"><img src="images/spurno-logo.svg" alt="SPurno Animation Studio"></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Home</a></li>
+      <li><a href="about-us.html" class="nav-link"><i class="fas fa-info-circle"></i> About</a></li>
+      <li><a href="services.html" class="nav-link"><i class="fas fa-cogs"></i> Services</a></li>
+      <li><a href="blog.html" class="nav-link"><i class="fas fa-newspaper"></i> Blog</a></li>
+      <li><a href="https://pixabanimation.github.io/#/shop" class="nav-link" target="_blank" rel="noopener"><i class="fas fa-store"></i> Marketplace</a></li>
+      <li><a href="contact-us.html" class="nav-link"><i class="fas fa-envelope"></i> Contact</a></li>
+      <li class="nav-divider-mobile"><hr></li>
+      <li><a href="login.html" class="nav-link nav-action-mobile" id="navLogin"><i class="fas fa-sign-in-alt"></i> Sign In</a></li>
+      <li><a href="register.html" class="nav-link nav-action-mobile"><i class="fas fa-user-plus"></i> Register</a></li>
+      <li><a href="account.html" class="nav-link nav-action-mobile" id="navProfile" style="display:none;"><i class="fas fa-user"></i> Account</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="language-selector">
+        <button class="lang-btn" aria-label="Select language">EN</button>
+        <div class="lang-dropdown">
+          <a href="#" class="lang-option" data-language="en">English</a>
+          <a href="#" class="lang-option" data-language="es">Espa&ntilde;ol</a>
+          <a href="#" class="lang-option" data-language="fr">Fran&ccedil;ais</a>
+          <a href="#" class="lang-option" data-language="de">Deutsch</a>
+          <a href="#" class="lang-option" data-language="pt">Portugu&ecirc;s</a>
+          <a href="#" class="lang-option" data-language="ja">日本語</a>
+          <a href="#" class="lang-option" data-language="zh-CN">简体中文</a>
+          <a href="#" class="lang-option" data-language="bn">বাংলা</a>
+        </div>
+      </div>
+      <a href="register.html" class="btn btn-sm btn-secondary" style="margin-right:6px;">Register</a>
+      <a href="login.html" class="btn btn-sm btn-primary" id="loginBtn">Sign In</a>
+      <a href="account.html" class="btn btn-sm btn-primary" id="profileBtn" style="display:none;">Account</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+  <div class="breadcrumb-bar">
+    <a href="index.html">Home</a><span class="sep">/</span>
+    <span class="current">SPurno</span>
+  </div>
+
+  <!-- ═══ HERO ═══ -->
+  <section class="sp-hero">
+    <div class="sp-orb sp-orb-1"></div>
+    <div class="sp-orb sp-orb-2"></div>
+    <div class="sp-orb sp-orb-3"></div>
+    <div class="sp-hero-inner">
+      <div class="sp-avatar-wrap">
+        <div class="sp-avatar-ring"></div>
+        <img src="images/spurno-cover-art.jpg" alt="SPurno — Faruk Ahmed" loading="eager">
+        <div class="sp-avatar-badge"><i class="fas fa-check"></i></div>
+      </div>
+      <h1>SPurno</h1>
+      <div class="full-name">Faruk Ahmed</div>
+      <div class="role-tag"><i class="fas fa-bolt"></i> Motion Design Expert &amp; Web Developer</div>
+      <p class="bio-line">Multimedia &amp; Graphics professional with 7+ years of experience. Founder of SPurno Animation Studio with 4000+ stock assets distributed globally. Passionate about motion graphics, web development, and digital content creation.</p>
+      <div class="sp-hero-actions">
+        <a href="https://pixabanimation.github.io/#/shop" class="btn btn-primary" target="_blank" rel="noopener"><i class="fas fa-store"></i> Shop PixabAnimation</a>
+        <a href="#contact" class="btn btn-secondary"><i class="fas fa-envelope"></i> Contact Me</a>
+      </div>
+      <div class="sp-social-row">
+        <a href="https://github.com/SPurno" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/spurno" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://facebook.com/iSPurno" aria-label="Facebook" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://x.com/iSPurno" aria-label="X" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://instagram.com/iispurno" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" aria-label="Adobe Stock" target="_blank" rel="noopener"><i class="fas fa-shopping-bag"></i></a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" aria-label="Shutterstock" target="_blank" rel="noopener"><i class="fas fa-camera"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ STATS ═══ -->
+  <div class="sp-stats-wrap">
+    <div class="sp-stats">
+      <div class="sp-stat"><div class="num" data-count="7+">0</div><div class="lbl">Years Experience</div></div>
+      <div class="sp-stat"><div class="num" data-count="4000">0</div><div class="lbl">Stock Assets</div></div>
+      <div class="sp-stat"><div class="num" data-count="34+">0</div><div class="lbl">Blog Articles</div></div>
+      <div class="sp-stat"><div class="num" data-count="4">0</div><div class="lbl">Marketplaces</div></div>
+      <div class="sp-stat"><div class="num" data-count="23">0</div><div class="lbl">GitHub Repos</div></div>
+      </div>
+    </div>
+
+  <!-- ═══ ABOUT ═══ -->
+  <section class="sp-section reveal">
+    <div class="sp-section-label"><i class="fas fa-user"></i> About</div>
+    <h2>Passionate about motion &amp; code</h2>
+    <p class="sub">I am a Multimedia &amp; Graphics professional with 7+ years of cross-industry experience working in architectural firms, e-commerce, and software development. I founded SPurno Animation Studio to create premium motion assets for creators worldwide.</p>
+    <div class="sp-about-grid">
+      <div class="sp-about-text">
+        <p>My work spans motion graphics, infographic animation, product mockups, presentation templates, and advertising visuals — all designed to help creators and brands publish polished content faster. Every asset is built with clean composition, clear movement, and broad usability in mind.</p>
+        <p>Beyond stock content, I offer custom animation services and web development solutions, delivering broadcast-quality motion graphics that meet international production standards. I specialize in Adobe After Effects and have experience in web development, Android development, and digital marketing.</p>
+      </div>
+      <div class="sp-info-card sp-glass">
+        <h3>Quick Info</h3>
+        <div class="sp-info-item"><i class="fas fa-user"></i> Faruk Ahmed (SPurno)</div>
+        <div class="sp-info-item"><i class="fas fa-map-marker-alt"></i> Dhanmondi 32, Dhaka 1205, Bangladesh</div>
+        <div class="sp-info-item"><i class="fas fa-phone"></i> <a href="tel:+8801521211774">+8801521211774</a></div>
+        <div class="sp-info-item"><i class="fas fa-envelope"></i> <a href="mailto:spurno@icloud.com">spurno@icloud.com</a></div>
+        <div class="sp-info-item"><i class="fas fa-globe"></i> <a href="https://spurno.github.io" target="_blank">spurno.github.io</a></div>
+        <div class="sp-info-item"><i class="fas fa-graduation-cap"></i> B.Sc. in CSE, Daffodil International University</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ WORK EXPERIENCE ═══ -->
+  <div class="sp-section-alt">
+    <section class="sp-section reveal">
+      <div class="sp-section-label"><i class="fas fa-briefcase"></i> Experience</div>
+      <h2>Work History</h2>
+      <p class="sub">Professional experience in web development, design, and digital marketing across multiple industries.</p>
+      <div class="sp-timeline">
+        <div class="sp-timeline-item sp-glass reveal reveal-delay-1">
+          <div class="sp-timeline-dot"></div>
+          <div class="period">2022 — 2024</div>
+          <h3>Web Developer &amp; Digital Marketer</h3>
+          <div class="company">Studio Dhola Ltd. — Dhanmondi, Dhaka</div>
+          <p>Developed custom websites and software solutions. Led digital marketing campaigns and lead generation strategies. Provided manpower solutions for client projects.</p>
+        </div>
+        <div class="sp-timeline-item sp-glass reveal reveal-delay-2">
+          <div class="sp-timeline-dot"></div>
+          <div class="period">2022 — 2023</div>
+          <h3>Web Developer &amp; Designer</h3>
+          <div class="company">Onward Developers Limited — Mirpur, Dhaka</div>
+          <p>Designed advertising materials and managed digital marketing campaigns. Provided sales support and optimized client engagement strategies.</p>
+        </div>
+        <div class="sp-timeline-item sp-glass reveal reveal-delay-3">
+          <div class="sp-timeline-dot"></div>
+          <div class="period">2019 — 2020</div>
+          <h3>Software &amp; E-Commerce Developer</h3>
+          <div class="company">Asia Collection Ltd. — New Market, Dhaka</div>
+          <p>Built custom Point-of-Sale (POS) systems. Managed end-to-end e-commerce platform operations including inventory, orders, and customer management.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ SKILLS ═══ -->
+  <section class="sp-section reveal">
+    <div class="sp-section-label"><i class="fas fa-code"></i> Skills</div>
+    <h2>Technical Expertise</h2>
+    <p class="sub">A versatile skill set spanning design, development, and digital marketing.</p>
+    <div class="sp-skills-grid">
+      <div class="sp-skill-group sp-glass reveal reveal-delay-1">
+        <div class="sg-icon"><i class="fas fa-paint-brush"></i></div>
+        <h4>Design &amp; Animation</h4>
+        <div class="sp-skill-tags">
+          <span>Adobe After Effects</span>
+          <span>Motion Graphics</span>
+          <span>Infographic Design</span>
+          <span>Typography</span>
+          <span>Product Mockups</span>
+          <span>Visual Effects</span>
+          <span>Illustration</span>
+        </div>
+      </div>
+      <div class="sp-skill-group sp-glass reveal reveal-delay-2">
+        <div class="sg-icon"><i class="fas fa-globe"></i></div>
+        <h4>Web Development</h4>
+        <div class="sp-skill-tags">
+          <span>HTML/CSS</span>
+          <span>JavaScript</span>
+          <span>WebGL</span>
+          <span>Web Animation</span>
+          <span>E-Commerce</span>
+          <span>POS Systems</span>
+        </div>
+      </div>
+      <div class="sp-skill-group sp-glass reveal reveal-delay-3">
+        <div class="sg-icon"><i class="fas fa-mobile-alt"></i></div>
+        <h4>Mobile &amp; Tools</h4>
+        <div class="sp-skill-tags">
+          <span>Android Development</span>
+          <span>GitHub</span>
+          <span>VS Code</span>
+          <span>Retrofit</span>
+          <span>Volley</span>
+          <span>Socket.IO</span>
+        </div>
+      </div>
+      <div class="sp-skill-group sp-glass reveal reveal-delay-4">
+        <div class="sg-icon"><i class="fas fa-chart-line"></i></div>
+        <h4>Marketing &amp; SEO</h4>
+        <div class="sp-skill-tags">
+          <span>SEO</span>
+          <span>Digital Advertising</span>
+          <span>Lead Generation</span>
+          <span>Content Strategy</span>
+          <span>Social Media</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ EDUCATION & LANGUAGES ═══ -->
+  <div class="sp-section-alt">
+    <section class="sp-section reveal">
+      <div class="sp-section-label"><i class="fas fa-graduation-cap"></i> Education</div>
+      <h2>Academic Background</h2>
+      <p class="sub">Computer Science education and higher secondary qualifications.</p>
+      <div class="sp-edu-grid" style="margin-bottom:40px">
+        <div class="sp-edu-card sp-glass reveal reveal-delay-1">
+          <div class="degree">B.Sc. in Computer Science &amp; Engineering</div>
+          <div class="school">Daffodil International University</div>
+          <div class="year">2014 — 2018</div>
+        </div>
+        <div class="sp-edu-card sp-glass reveal reveal-delay-2">
+          <div class="degree">Higher Secondary School Certificate</div>
+          <div class="school">Nowabganj Govt. College</div>
+          <div class="year">2010 — 2012</div>
+        </div>
+        <div class="sp-edu-card sp-glass reveal reveal-delay-3">
+          <div class="degree">Secondary School Certificate</div>
+          <div class="school">Nabarun Bidup Niketan</div>
+          <div class="year">2010</div>
+        </div>
+      </div>
+      <div class="sp-section-label"><i class="fas fa-language"></i> Languages</div>
+      <h2 style="margin-bottom:20px">Languages I Speak</h2>
+      <div class="sp-lang-list">
+        <div class="sp-lang-item sp-glass reveal reveal-delay-1">
+          <i class="fas fa-flag"></i>
+          <div>
+            <div class="lang-name">Bangla</div>
+            <div class="lang-level">Native</div>
+          </div>
+        </div>
+        <div class="sp-lang-item sp-glass reveal reveal-delay-2">
+          <i class="fas fa-flag"></i>
+          <div>
+            <div class="lang-name">English</div>
+            <div class="lang-level">Professional Proficiency</div>
+          </div>
+        </div>
+        <div class="sp-lang-item sp-glass reveal reveal-delay-3">
+          <i class="fas fa-flag"></i>
+          <div>
+            <div class="lang-name">Hindi</div>
+            <div class="lang-level">Conversational</div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ SHOP CTA ═══ -->
+  <section class="sp-section reveal">
+    <div class="sp-shop-cta">
+      <h2>Explore PixabAnimation Marketplace</h2>
+      <p>Browse 4000+ premium motion graphics assets, After Effects templates, animated backgrounds, and stock video footage. Professional assets for creators worldwide.</p>
+      <a href="https://pixabanimation.github.io/#/shop" target="_blank" rel="noopener" class="btn-white"><i class="fas fa-store"></i> Visit Shop</a>
+    </div>
+  </section>
+
+  <!-- ═══ BLOG POSTS ═══ -->
+  <div class="sp-section-alt">
+    <section class="sp-section reveal">
+      <div class="sp-section-label"><i class="fas fa-newspaper"></i> Blog</div>
+      <h2>Latest Articles</h2>
+      <p class="sub">Motion graphics guides, After Effects tutorials, and design insights.</p>
+      <div class="sp-posts-grid">
+        <a href="blog/motion-graphics.html" class="sp-post-card sp-glass reveal reveal-delay-1">
+          <div class="cat">Motion Graphics</div>
+          <div class="title">Motion Graphics: The Ultimate Guide to Stock Video</div>
+          <div class="date">Feb 8, 2024</div>
+        </a>
+        <a href="blog/adobe-after-effect-animation-tutorial.html" class="sp-post-card sp-glass reveal reveal-delay-2">
+          <div class="cat">After Effects</div>
+          <div class="title">Adobe After Effects Animation Tutorial: Complete Guide</div>
+          <div class="date">Jan 25, 2024</div>
+        </a>
+        <a href="blog/infographic.html" class="sp-post-card sp-glass reveal reveal-delay-3">
+          <div class="cat">Infographic</div>
+          <div class="title">Infographic Animation: Complete Guide</div>
+          <div class="date">Feb 12, 2024</div>
+        </a>
+        <a href="blog/background-animation.html" class="sp-post-card sp-glass reveal reveal-delay-4">
+          <div class="cat">Animation</div>
+          <div class="title">Background Animation: Complete Guide</div>
+          <div class="date">Mar 5, 2024</div>
+        </a>
+        <a href="blog/typography.html" class="sp-post-card sp-glass reveal reveal-delay-1">
+          <div class="cat">Typography</div>
+          <div class="title">Typography Animation: Kinetic Type Guide</div>
+          <div class="date">Jan 28, 2024</div>
+        </a>
+        <a href="blog/adobe-after-effect-plugins.html" class="sp-post-card sp-glass reveal reveal-delay-2">
+          <div class="cat">After Effects</div>
+          <div class="title">Adobe After Effects Plugins: Essential Tools</div>
+          <div class="date">Jan 20, 2024</div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ═══ CONTACT ═══ -->
+  <section class="sp-section reveal" id="contact">
+    <div class="sp-section-label"><i class="fas fa-envelope"></i> Contact</div>
+    <h2>Get in Touch</h2>
+    <p class="sub">Have a project, collaboration idea, or just want to say hello? Fill out the form and I'll get back to you.</p>
+    <div class="sp-contact-wrap">
+      <div class="sp-contact-info">
+        <h3>Let's work together</h3>
+        <p>I'm always open to new opportunities and collaborations. Whether you need custom motion graphics, web development, or have a project in mind — reach out and let's create something great.</p>
+        <div class="ci-item"><i class="fas fa-map-marker-alt"></i> Dhanmondi 32, Dhaka 1205, Bangladesh</div>
+        <div class="ci-item"><i class="fas fa-phone"></i> <a href="tel:+8801521211774">+8801521211774</a></div>
+        <div class="ci-item"><i class="fas fa-envelope"></i> <a href="mailto:spurno@icloud.com">spurno@icloud.com</a></div>
+        <div class="ci-item"><i class="fas fa-store"></i> <a href="https://pixabanimation.github.io/#/shop" target="_blank">PixabAnimation Marketplace</a></div>
+        <div class="ci-item"><i class="fab fa-github"></i> <a href="https://github.com/SPurno" target="_blank">github.com/SPurno</a></div>
+      </div>
+      <form class="sp-form sp-glass" action="https://formspree.io/f/mjkykggk" method="POST">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="John Doe" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="john@example.com" required>
+        </div>
+        <div class="form-group">
+          <label for="subject">Subject</label>
+          <input type="text" id="subject" name="subject" placeholder="Project Inquiry">
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ═══ CTA ═══ -->
+  <div class="sp-section-alt">
+    <section class="sp-section reveal" style="text-align:center">
+      <h2 style="margin-bottom:12px">Browse My Stock Portfolio</h2>
+      <p style="max-width:480px;margin:0 auto 24px;font-size:0.9rem;color:var(--text-secondary);line-height:1.6">Over 4,000 premium motion assets available on Adobe Stock, Shutterstock, Pond5, and Freepik.</p>
+      <div class="btn-group">
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" class="btn btn-primary" rel="noopener"><i class="fas fa-shopping-cart"></i> Adobe Stock</a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" class="btn btn-secondary" rel="noopener"><i class="fas fa-camera"></i> Shutterstock</a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" class="btn btn-secondary" rel="noopener">Pond5</a>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-content">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-top">
+          <img src="images/spurno-logo.svg" alt="SPurno Animation Studio" loading="lazy">
+        </div>
+        <p>Premium motion background videos, animated templates, and stock footage used by creators worldwide. Based in Dhaka, Bangladesh.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/spurno" target="_blank" aria-label="LinkedIn" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://facebook.com/iSPurno" target="_blank" aria-label="Facebook" rel="noopener"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://x.com/iSPurno" target="_blank" aria-label="X" rel="noopener"><i class="fab fa-twitter"></i></a>
+          <a href="https://github.com/SPurno" target="_blank" aria-label="GitHub" rel="noopener"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="about-us.html">About Us</a>
+        <a href="contact-us.html">Contact</a>
+        <a href="services.html">Services</a>
+        <a href="index.html">Home</a>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <a href="blog/motion-graphics.html">Motion Graphics</a>
+        <a href="blog/infographic.html">Infographics</a>
+        <a href="blog/motion-graphics-background.html">Backgrounds</a>
+      </div>
+      <div class="footer-col">
+        <h4>Marketplace</h4>
+        <a href="https://pixabanimation.github.io/#/shop" target="_blank" rel="noopener">Browse Assets</a>
+        <a href="https://pixabanimation.github.io/#/shop?category=videos" target="_blank" rel="noopener">Videos</a>
+        <a href="https://pixabanimation.github.io/#/shop?category=adobe-after-effect-plugins" target="_blank" rel="noopener">AE Plugins</a>
+        <a href="https://pixabanimation.github.io/blog/" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Policies</h4>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-of-use.html">Terms of Use</a>
+      </div>
+      <div class="footer-col">
+        <h4>Stock Sites</h4>
+        <a href="https://stock.adobe.com/contributor/211977281/SPurnoAnimation" target="_blank" rel="noopener">Adobe Stock</a>
+        <a href="https://www.shutterstock.com/g/SPurnoAnimation" target="_blank" rel="noopener">Shutterstock</a>
+        <a href="https://www.pond5.com/artist/spurnoanimation" target="_blank" rel="noopener">Pond5</a>
+        <a href="https://www.freepik.com/author/pixellvector" target="_blank" rel="noopener">Freepik</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-links">
+        <a href="privacy-policy.html">Privacy</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="terms-of-use.html">Terms</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="contact-us.html">Support</a>
+        <span class="footer-bottom-sep">·</span>
+        <a href="spurno.html">Author</a>
+      </div>
+      <p>&copy; 2026 SPurno Animation Studio &amp; PixabAnimation. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-1PFQJV83HK"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag() { dataLayer.push(arguments); }
+gtag('js', new Date());
+gtag('config', 'G-1PFQJV83HK');
+</script>
+<script src="js/main.js" defer></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var token = typeof localStorage !== 'undefined' && localStorage.getItem('spurno_token');
+  if (token) {
+    var els = ['loginBtn','navLogin'];
+    var hides = ['profileBtn','navProfile'];
+    els.forEach(function(id) { var e = document.getElementById(id); if(e) e.style.display = 'none'; });
+    hides.forEach(function(id) { var e = document.getElementById(id); if(e) e.style.display = 'flex'; });
+    var regBtn = document.querySelector('.nav-actions a[href$="register.html"]');
+    if (regBtn) regBtn.style.display = 'none';
+  }
+});
+</script>
+<script src="js/i18n.js"></script>
+<script src="js/plexus-footer.js" defer></script>
+<script>
+(function() {
+  'use strict';
+
+  // ── Scroll Reveal ──
+  var revealObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.add('revealed');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(function(el) {
+    revealObserver.observe(el);
+  });
+
+  // ── Counter Animation ──
+  var counted = false;
+  var counterObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting && !counted) {
+        counted = true;
+        var nums = e.target.querySelectorAll('.num[data-count]');
+        nums.forEach(function(el) {
+          var raw = el.getAttribute('data-count');
+          var target = parseInt(raw, 10);
+          var suffix = ((raw.indexOf('+') >= 0) || target >= 1000) ? '+' : '';
+          var current = 0;
+          var step = Math.max(1, Math.floor(target / 40));
+          var timer = setInterval(function() {
+            current += step;
+            if (current >= target) {
+              current = target;
+              clearInterval(timer);
+            }
+            el.textContent = current + suffix;
+          }, 30);
+        });
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  var statsEl = document.querySelector('.sp-stats');
+  if (statsEl) counterObserver.observe(statsEl);
+
+  // ── Smooth Nav on Mobile ──
+  var navToggle = document.getElementById('navToggle');
+  var navLinks = document.getElementById('navLinks');
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('active');
+      navToggle.classList.toggle('active');
+    });
+  }
+})();
+</script>
+</body>
+</html>
