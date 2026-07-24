@@ -167,60 +167,96 @@
   display: block;
 }
 
-/* ── Spec Tables ── */
+/* ── Premium Spec Tables ── */
 .spec-table-wrap {
   overflow-x: auto;
-  margin: 32px 0;
-  border-radius: var(--radius-lg);
-  border: 1px solid #d2d2d7;
+  margin: 36px 0;
+  border-radius: 16px;
+  border: 1px solid #e8e8ed;
   background: var(--bg-primary);
+  box-shadow: 0 1px 4px rgba(0,0,0,.02), 0 4px 16px rgba(0,0,0,.04);
+  transition: box-shadow .3s;
+}
+.spec-table-wrap:hover {
+  box-shadow: 0 1px 4px rgba(0,0,0,.02), 0 8px 32px rgba(0,0,0,.08);
 }
 .spec-table {
   width: 100%;
-  border-collapse: collapse;
-  font-size: .9rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: .88rem;
+  line-height: 1.6;
 }
-.spec-table thead th {
-  background: linear-gradient(135deg, #1d1d1f, #424245);
+.spec-table tr:first-child th,
+.spec-table tr.spec-section-row th,
+.spec-table tr.spec-section-row td {
+  background: linear-gradient(135deg, #1d1d1f, #2d2d2f);
   color: #fff;
-  padding: 14px 20px;
+  padding: 14px 22px;
   text-align: left;
-  font-weight: 700;
-  font-size: .82rem;
-  letter-spacing: .04em;
+  font-weight: 600;
+  font-size: .75rem;
+  letter-spacing: .06em;
   text-transform: uppercase;
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
-.spec-table tbody tr td {
-  padding: 10px 20px;
+.spec-table tr:not(.spec-section-row) td {
+  padding: 11px 22px;
   border-bottom: 1px solid #f0f0f2;
   vertical-align: top;
   line-height: 1.6;
+  transition: background .15s;
 }
-.spec-table tbody tr:last-child td { border-bottom: none; padding-bottom: 16px }
-.spec-table tbody tr:first-child td { padding-top: 16px }
-.spec-table tbody tr td:first-child {
+.spec-table tr:not(.spec-section-row):last-child td {
+  border-bottom: none;
+  padding-bottom: 18px;
+}
+.spec-table tr:not(.spec-section-row):first-child td {
+  padding-top: 18px;
+}
+.spec-table tr:not(.spec-section-row) td:first-child {
   font-weight: 600;
   color: var(--ink);
   white-space: nowrap;
   width: 30%;
   min-width: 140px;
 }
-.spec-table tbody tr td:last-child { color: var(--text-secondary) }
-.spec-table tbody tr:nth-child(even) { background: var(--bg-secondary) }
-.spec-section-row td {
-  background: linear-gradient(135deg, var(--primary), #2997ff) !important;
-  color: #fff !important;
-  font-weight: 700 !important;
-  font-size: .78rem !important;
-  letter-spacing: .05em;
-  text-transform: uppercase;
-  padding: 10px 20px !important;
-  border-bottom: 2px solid rgba(255,255,255,.1) !important;
+.spec-table tr:not(.spec-section-row) td:last-child {
+  color: var(--text-secondary);
 }
-.spec-section-row td:first-child,
-.spec-section-row td:last-child { color: #fff !important }
+.spec-table tr:not(.spec-section-row):nth-child(even) {
+  background: #fafafc;
+}
+.spec-table tr:not(.spec-section-row):hover td {
+  background: rgba(0,113,227,.03);
+}
+.spec-table tr:not(.spec-section-row) td:first-child::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 14px;
+  background: var(--primary);
+  border-radius: 1px;
+  margin-left: 10px;
+  vertical-align: middle;
+  opacity: .2;
+}
+.spec-table tr.spec-section-row th,
+.spec-table tr.spec-section-row td {
+  letter-spacing: .08em;
+  font-weight: 700;
+}
+.spec-table tr.spec-section-row:not(:first-child) th,
+.spec-table tr.spec-section-row:not(:first-child) td {
+  border-top: 1px solid rgba(255,255,255,.1);
+}
 @media(max-width:600px) {
-  .spec-table tbody tr td:first-child { white-space: normal; width: 40% }
+  .spec-table-wrap { border-radius: 12px; margin: 28px 0; }
+  .spec-table tr:not(.spec-section-row) td:first-child { white-space: normal; width: 40%; min-width: 100px }
+  .spec-table tr:not(.spec-section-row) td { padding: 10px 14px; font-size: .84rem }
+  .spec-table tr.spec-section-row th,
+  .spec-table tr.spec-section-row td { padding: 12px 14px; font-size: .7rem }
+  .spec-table tr:not(.spec-section-row) td:first-child::after { display: none }
 }
 
 /* ── Pros & Cons ── */
