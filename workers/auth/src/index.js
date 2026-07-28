@@ -26,6 +26,7 @@ import {
   handleAdminReplyMessage, handleAdminGetUsers, handleAdminComposeMessage,
   handleAdminUpdateUser,
 } from './admin.js';
+import { handleGetProducts } from './products.js';
 
 export default {
   async fetch(request, env, ctx) {
@@ -100,6 +101,9 @@ export default {
     // ── Admin Users Routes ──────────────────────────────
     if (path === '/api/admin/users' && method === 'GET') return handleAdminGetUsers(request, env);
     if (path === '/api/admin/users' && method === 'PUT') return handleAdminUpdateUser(request, env);
+
+    // ── Products Routes ──────────────────────────────────
+    if (path === '/api/products' && method === 'GET') return handleGetProducts(request, env);
 
     // 404 for unknown routes
     return new Response(
