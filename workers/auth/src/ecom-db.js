@@ -16,11 +16,11 @@ export async function getAllProducts(env) {
   const db = getEcomDb(env);
   const result = await db.execute(`
     SELECT p.id, p.name, p.slug, p.price, p.compare_price, p.image_url,
-           p.stock, p.rating, p.reviews_count, p.featured, p.preview_description,
+           p.stock, p.rating, p.reviews_count, p.featured, p.preview_description, p.created_at,
            c.name AS category_name, c.slug AS category_slug
     FROM products p
     LEFT JOIN categories c ON p.category_id = c.id
-    ORDER BY p.id
+    ORDER BY p.created_at DESC
   `);
   return result.rows;
 }

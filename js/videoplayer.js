@@ -64,13 +64,13 @@
                             <span class="stars">${'★'.repeat(starsFull)}${'☆'.repeat(starsEmpty)}</span>
                             <span class="rating-count">(${product.reviews_count})</span>
                         </div>
-                        <p class="shop-product-card-desc">${product.description}</p>
+                        <p class="shop-product-card-desc">${product.preview_description || product.description || ''}</p>
                         <div class="shop-product-card-price">
                             <span class="current-price">$${product.price.toFixed(2)}</span>
                             ${hasDiscount ? `<span class="compare-price">$${product.compare_price.toFixed(2)}</span>` : ''}
                         </div>
                         <a href="${productUrl}" target="_blank" rel="noopener" class="shop-product-card-btn">
-                            View on PixabAnimation <i class="fas fa-arrow-right"></i>
+                            Buy Now <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
                 </div>
