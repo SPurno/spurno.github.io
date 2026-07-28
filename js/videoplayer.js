@@ -70,7 +70,8 @@
                             ${hasDiscount ? `<span class="compare-price">$${product.compare_price.toFixed(2)}</span>` : ''}
                         </div>
                         <a href="${productUrl}" target="_blank" rel="noopener" class="shop-product-card-btn">
-                            Buy Now <i class="fas fa-arrow-right"></i>
+                            <span>Buy Now</span>
+                            <span class="btn-icon-wrap"><i class="fas fa-arrow-right"></i></span>
                         </a>
                     </div>
                 </div>
