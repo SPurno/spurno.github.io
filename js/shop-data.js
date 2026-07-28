@@ -37,14 +37,6 @@
           "@type": "Brand",
           "name": "SPurno Animation Studio"
         },
-        "hasMerchantReturnPolicy": {
-          "@type": "MerchantReturnPolicy",
-          "applicableCountry": "US",
-          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-          "merchantReturnDays": 14,
-          "returnMethod": "https://schema.org/ReturnByMail",
-          "returnFees": "https://schema.org.FreeReturn"
-        },
         "offers": {
           "@type": "Offer",
           "price": p.price,
@@ -53,6 +45,14 @@
           "url": "https://pixabanimation.github.io/#/product/" + p.slug,
           "priceValidUntil": validUntil,
           "validFrom": validFrom,
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "US",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 14,
+            "returnMethod": "https://schema.org/ReturnByMail",
+            "returnFees": "https://schema.org/FreeReturn"
+          },
           "shippingDetails": {
             "@type": "OfferShippingDetails",
             "shippingRate": {
