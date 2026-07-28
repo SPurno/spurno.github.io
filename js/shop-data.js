@@ -21,6 +21,9 @@
 
   function injectProductStructuredData(products) {
     if (!products || !products.length) return;
+    var today = new Date();
+    var validFrom = today.toISOString().split('T')[0];
+    var validUntil = new Date(today.setFullYear(today.getFullYear() + 1)).toISOString().split('T')[0];
     var items = products.map(function (p) {
       var product = {
         "@type": "Product",
@@ -29,13 +32,54 @@
         "description": p.preview_description || p.name + " — " + p.category_name,
         "image": p.image_url,
         "category": p.category_name,
+        "url": "https://pixabanimation.github.io/#/product/" + p.slug,
+        "brand": {
+          "@type": "Brand",
+          "name": "SPurno Animation Studio"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnMethod": "https://schema.org.ReturnByMail",
+          "returnFees": "https://schema.org.FreeReturn"
+        },
         "offers": {
           "@type": "Offer",
           "price": p.price,
           "priceCurrency": "USD",
           "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
           "url": "https://pixabanimation.github.io/#/product/" + p.slug,
-          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+          "priceValidUntil": validUntil,
+          "validFrom": validFrom,
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": {
+              "@type": "MonetaryAmount",
+              "value": 0,
+              "currency": "USD"
+            },
+            "shippingDestination": {
+              "@type": "DefinedRegion",
+              "addressCountry": "US"
+            },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              },
+              "transitTime": {
+                "@type": "QuantitativeValue",
+                "minValue": 0,
+                "maxValue": 1,
+                "unitCode": "DAY"
+              }
+            }
+          }
         }
       };
 
