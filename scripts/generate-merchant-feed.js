@@ -33,6 +33,10 @@ function buildFeed(products) {
     const category = p.category_name || 'Motion Graphics';
     const description = p.preview_description || `${p.name} — ${category}`;
 
+    const gpc = category === 'Adobe After Effect Plugins' || category === 'Adobe After Effects Templates'
+      ? 'Software > Computer Software > Multimedia & Design Software > Animation Editing Software'
+      : 'Media > DVDs & Videos > Film & Television Digital Downloads';
+
     return `    <item>
       <g:id>${escapeXML(id)}</g:id>
       <g:title>${escapeXML(p.name)}</g:title>
@@ -43,10 +47,50 @@ function buildFeed(products) {
       <g:availability>${availability}</g:availability>
       <g:condition>new</g:condition>
       <g:brand>SPurno Animation Studio</g:brand>
-      <g:google_product_category>Media &gt; Video &gt; Motion Graphics</g:google_product_category>
+      <g:google_product_category>${gpc}</g:google_product_category>
       <g:product_type>${escapeXML(category)}</g:product_type>
       <g:shipping>
         <g:country>US</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>GB</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>DE</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>CA</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>AU</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>FR</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>JP</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>BR</g:country>
+        <g:service>Digital Delivery</g:service>
+        <g:price>0.00 USD</g:price>
+      </g:shipping>
+      <g:shipping>
+        <g:country>IN</g:country>
         <g:service>Digital Delivery</g:service>
         <g:price>0.00 USD</g:price>
       </g:shipping>
