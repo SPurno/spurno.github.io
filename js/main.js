@@ -38,21 +38,44 @@ document.addEventListener('DOMContentLoaded', function() {
   // ---- Mobile Hamburger ----
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
+  const navOverlay = document.getElementById('navOverlay');
+
+  function openNav() {
+    navToggle.classList.add('active');
+    navLinks.classList.add('open');
+    if (navOverlay) navOverlay.classList.add('visible');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeNav() {
+    navToggle.classList.remove('active');
+    navLinks.classList.remove('open');
+    if (navOverlay) navOverlay.classList.remove('visible');
+    document.body.style.overflow = '';
+  }
+
   if (navToggle && navLinks) {
     navToggle.addEventListener('click', function() {
-      navToggle.classList.toggle('active');
-      navLinks.classList.toggle('open');
-      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+      if (navLinks.classList.contains('open')) {
+        closeNav();
+      } else {
+        openNav();
+      }
     });
 
     // Close nav on link click (mobile)
     navLinks.querySelectorAll('a').forEach(function(link) {
       link.addEventListener('click', function() {
-        navToggle.classList.remove('active');
-        navLinks.classList.remove('open');
-        document.body.style.overflow = '';
+        closeNav();
       });
     });
+
+    // Close nav on overlay click
+    if (navOverlay) {
+      navOverlay.addEventListener('click', function() {
+        closeNav();
+      });
+    }
   }
 
   // ---- Language Selector ----

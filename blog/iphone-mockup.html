@@ -91,6 +91,7 @@
     <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
+    <div class="nav-overlay" id="navOverlay"></div>
     <a href="../index.html" class="nav-brand">
       <img src="../images/spurno-logo.svg" alt="SPurno Animation Studio">
     </a>
@@ -535,10 +536,11 @@ window.addEventListener('scroll', function() {
 });
 // Mobile nav
 document.addEventListener('click', function(e) {
-  if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle')) {
-    document.getElementById('navLinks').classList.remove('open');
-    document.getElementById('navToggle').classList.remove('active');
-    document.body.style.overflow = '';
+  if (!e.target.closest('.nav-links') && !e.target.closest('#navToggle') && !e.target.closest('.nav-overlay')) {
+        document.getElementById('navLinks').classList.remove('open');
+        document.getElementById('navToggle').classList.remove('active');
+        var no = document.getElementById('navOverlay'); if (no) no.classList.remove('visible');
+        document.body.style.overflow = '';
   }
 });
 // TOC highlighting
