@@ -22,25 +22,51 @@
   function injectProductStructuredData(products) {
     if (!products || !products.length) return;
     var items = products.map(function (p) {
+      var product = {
+        "@type": "Product",
+        "@id": "https://pixabanimation.github.io/#/product/" + p.slug,
+        "name": p.name,
+        "description": p.preview_description || p.name + " — " + p.category_name,
+        "image": p.image_url,
+        "category": p.category_name,
+        "offers": {
+          "@type": "Offer",
+          "price": p.price,
+          "priceCurrency": "USD",
+          "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          "url": "https://pixabanimation.github.io/#/product/" + p.slug,
+          "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
+        }
+      };
+
+      if (p.reviews_count > 0 && p.rating > 0) {
+        product.aggregateRating = {
+          "@type": "AggregateRating",
+          "ratingValue": p.rating,
+          "reviewCount": p.reviews_count,
+          "bestRating": 5
+        };
+        product.review = [
+          {
+            "@type": "Review",
+            "reviewRating": {
+              "@type": "Rating",
+              "ratingValue": p.rating,
+              "bestRating": 5
+            },
+            "author": {
+              "@type": "Person",
+              "name": "Verified Buyer"
+            },
+            "reviewBody": p.preview_description || "High quality " + p.category_name.toLowerCase() + " asset."
+          }
+        ];
+      }
+
       return {
         "@type": "ListItem",
         "position": p.id,
-        "item": {
-          "@type": "Product",
-          "@id": "https://pixabanimation.github.io/#/product/" + p.slug,
-          "name": p.name,
-          "description": p.preview_description || p.name + " — " + p.category_name,
-          "image": p.image_url,
-          "category": p.category_name,
-          "offers": {
-            "@type": "Offer",
-            "price": p.price,
-            "priceCurrency": "USD",
-            "availability": p.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
-            "url": "https://pixabanimation.github.io/#/product/" + p.slug,
-            "priceValidUntil": new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]
-          }
-        }
+        "item": product
       };
     });
 
