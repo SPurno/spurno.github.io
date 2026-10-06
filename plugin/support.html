@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support — Preflight Auditor</title>
+  <meta name="description" content="Support for Preflight Auditor, a UXP panel for Adobe Photoshop: requirements, troubleshooting, what the panel deliberately does not check, and how to get in touch.">
+  <meta name="author" content="SPurno Animation Studio">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://spurno.github.io/plugin/support">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Preflight Auditor">
+  <meta property="og:title" content="Support — Preflight Auditor">
+  <meta property="og:description" content="Requirements, troubleshooting and contact for Preflight Auditor, a UXP panel for Adobe Photoshop.">
+  <meta property="og:url" content="https://spurno.github.io/plugin/support">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Support — Preflight Auditor">
+  <meta name="twitter:description" content="Requirements, troubleshooting and contact for Preflight Auditor, a UXP panel for Adobe Photoshop.">
+
+  <link rel="icon" href="../favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="preflight.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Support — Preflight Auditor","description":"Requirements, troubleshooting and contact for Preflight Auditor, a UXP panel for Adobe Photoshop.","url":"https://spurno.github.io/plugin/support","isPartOf":{"@type":"WebSite","name":"SPurno Animation Studio","url":"https://spurno.github.io"}}</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+      </span>
+      <span>
+        <span class="brand-name">Preflight Auditor</span>
+        <span class="brand-sub">Documentation</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Preflight Auditor pages">
+      <a href="docs.html">Docs</a>
+      <a href="support.html" aria-current="page">Support</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-and-conditions.html">Terms</a>
+    </nav>
+    <span class="version">v1.0.0</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <p class="eyebrow">Preflight Auditor · Help</p>
+    <h1>Support</h1>
+    <p class="lede">Start with the requirements, then the common answers below. If the answer is not here, write to the address at the bottom of this page.</p>
+    <ul class="meta-strip">
+      <li>Plugin <b>Preflight Auditor</b></li>
+      <li>Version <b>1.0.0</b></li>
+      <li>Runs <b>Inside Photoshop</b></li>
+    </ul>
+  </section>
+
+  <div class="shell">
+
+    <aside class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#requirements">Requirements</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+        <li><a href="#scope">What is out of scope</a></li>
+        <li><a href="#writing">Before you write</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ol>
+
+      <details class="toc-mobile">
+        <summary>On this page</summary>
+        <ol>
+          <li><a href="#requirements">Requirements</a></li>
+          <li><a href="#troubleshooting">Troubleshooting</a></li>
+          <li><a href="#scope">What is out of scope</a></li>
+          <li><a href="#writing">Before you write</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </details>
+    </aside>
+
+    <article class="prose">
+
+      <section id="requirements" class="reveal">
+        <h2>Requirements</h2>
+        <p>Confirm these before troubleshooting anything else:</p>
+        <ul class="checklist">
+          <li><b>Adobe Photoshop 24.2 or later.</b> Older versions cannot read a text layer&rsquo;s point size.</li>
+          <li><b>A document open in Photoshop.</b> The panel audits the document you currently have open, and nothing else.</li>
+          <li><b>UXP Developer Tool</b>, only if you are running the plugin from source for local development.</li>
+        </ul>
+        <div class="callout is-plain">
+          <p class="callout-title">Nothing to configure</p>
+          <p>There is no network access, no companion app and no native code. The plugin needs no sign-in, no licence key and no permissions beyond the document in front of you.</p>
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="reveal">
+        <h2>Troubleshooting</h2>
+
+        <div class="faq">
+          <details>
+            <summary>The panel reports that it could not read text metrics</summary>
+            <div class="answer">
+              <p>Reading a text layer&rsquo;s point size requires <code>Layer.textItem.characterStyle</code>, which arrived in Photoshop 24.1&ndash;24.2. That is why 24.2 is the floor for this plugin.</p>
+              <p>On a build where those metrics are unavailable, the panel states plainly that text metrics could not be read rather than reporting a number it never measured. Update Photoshop to 24.2 or later and run the audit again.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>A check produced no output. Is it broken?</summary>
+            <div class="answer">
+              <p>No. A check that finds nothing produces no output at all. The report never pads itself with praise for correct work, so silence on a line means the document met that threshold.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>The findings do not match my printer&rsquo;s requirements</summary>
+            <div class="answer">
+              <p>Findings are measured against the active delivery profile, not against a specific print shop. Your printer&rsquo;s actual requirements are outside what this plugin inspects.</p>
+              <p>Every threshold is overridable in Settings, and the settings dialog warns when a value no longer matches the active profile, so a custom threshold is always visible rather than silently in effect. Proof before approving a run.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Where are my settings and reports kept?</summary>
+            <div class="answer">
+              <p><strong>Settings</strong> are saved as a JSON file in the plugin&rsquo;s own data folder inside the Creative Cloud application data directory. They are never sent anywhere and never read by another plugin.</p>
+              <p><strong>Reports</strong> are written only when you press <strong>Export report</strong> and choose a location. Nothing is written anywhere else.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Does the plugin change my document?</summary>
+            <div class="answer">
+              <p>No. Every check is read-only. The plugin never edits, moves, renames or deletes a layer, and never saves over your file.</p>
+            </div>
+          </details>
+
+          <details>
+            <summary>Can it upload or share my file?</summary>
+            <div class="answer">
+              <p>No. The manifest requests no network permission, so the plugin is technically incapable of transmitting data. There is no telemetry, no analytics, no crash reporting, no account and no advertising.</p>
+              <p>The full detail sits in the <a class="print-url" href="privacy-policy.html">Privacy Policy</a>.</p>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section id="scope" class="reveal">
+        <h2>What is out of scope</h2>
+        <p>Several questions have the same answer: the plugin only reports what can be measured from the document itself. The same wording appears in the About dialog and in every exported report.</p>
+        <div class="callout">
+          <p class="callout-title">Not inspected</p>
+          <ul>
+            <li>Colour separations</li>
+            <li>Trapping, overprint and total ink coverage</li>
+            <li>Fonts used by rasterised or outlined text</li>
+            <li>Anything outside the document itself</li>
+            <li>Your printer&rsquo;s actual requirements</li>
+          </ul>
+        </div>
+        <div class="statement">
+          <p><strong>A clean report is not a guarantee of correct output.</strong> Always proof before approving a run.</p>
+        </div>
+        <p>The complete list of what the panel does measure is in the <a class="print-url" href="docs.html#checks">documentation</a>.</p>
+      </section>
+
+      <section id="writing" class="reveal">
+        <h2>Before you write</h2>
+        <p>Include these and the first reply can answer the question instead of asking for details:</p>
+        <ul class="checklist">
+          <li><b>Plugin version,</b> shown in the About dialog. The installed version always matches the policy version listed there.</li>
+          <li><b>Photoshop version</b> you are running, including the full 24.x or 25.x number.</li>
+          <li><b>Active delivery profile</b> and any threshold you overrode in Settings.</li>
+          <li><b>The finding text exactly as the report shows it,</b> with the measurement and threshold it quotes.</li>
+        </ul>
+        <div class="callout is-plain">
+          <p class="callout-title">Layer names travel with reports</p>
+          <p>An exported report contains findings, document metadata and layer names from the document you audited. Redact those first if they are sensitive.</p>
+        </div>
+      </section>
+
+      <section id="contact" class="reveal">
+        <h2>Contact</h2>
+        <!-- Replace support@example.com with the real support address before submitting to the Marketplace. -->
+        <div class="contact">
+          <div>
+            <h3>Write to support</h3>
+            <p>Marketplace review requires a working support channel, so a monitored address is listed here.</p>
+          </div>
+          <a class="mail" href="mailto:support@example.com">support@example.com</a>
+        </div>
+      </section>
+
+    </article>
+  </div>
+
+  <nav class="related" aria-label="Related pages">
+    <div class="related-grid">
+      <a href="docs.html">
+        <span class="label">Manual</span>
+        <span class="name">Documentation</span>
+        <span class="hint">Checks, profiles and requirements</span>
+      </a>
+      <a href="privacy-policy.html">
+        <span class="label">Data</span>
+        <span class="name">Privacy Policy</span>
+        <span class="hint">What the plugin reads and writes</span>
+      </a>
+      <a href="terms-and-conditions.html">
+        <span class="label">Legal</span>
+        <span class="name">Terms of Service</span>
+        <span class="hint">Licence, warranty and liability</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+          </svg>
+        </span>
+        Preflight Auditor
+      </div>
+      <p class="footer-note">A read-only audit panel for Adobe Photoshop. Every check runs inside your copy of Photoshop; nothing is collected, transmitted or modified. Not affiliated with, endorsed by, or sponsored by Adobe.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plugin</h4>
+      <a href="docs.html">Documentation</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms of Service</a>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <a href="../index.html">SPurno Animation Studio</a>
+      <a href="../contact-us.html">Contact</a>
+      <a href="../privacy-policy.html">Site privacy policy</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>&copy; 2026 SPurno Animation Studio</span>
+    <span>Adobe and Adobe Photoshop are trademarks of Adobe Inc.</span>
+  </div>
+</footer>
+
+<script src="preflight.js" defer></script>
+</body>
+</html>

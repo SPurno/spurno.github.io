@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preflight Auditor — Documentation</title>
+  <meta name="description" content="Preflight Auditor is a UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems: resolution, colour mode, type size, broken links, bleed, artboards and structural debris.">
+  <meta name="author" content="SPurno Animation Studio">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://spurno.github.io/plugin/docs">
+
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Preflight Auditor">
+  <meta property="og:title" content="Preflight Auditor — Documentation">
+  <meta property="og:description" content="A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.">
+  <meta property="og:url" content="https://spurno.github.io/plugin/docs">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Preflight Auditor — Documentation">
+  <meta name="twitter:description" content="A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.">
+
+  <link rel="icon" href="../favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="preflight.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Preflight Auditor","description":"A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.","applicationCategory":"MultimediaApplication","operatingSystem":"Adobe Photoshop 24.2 or later","softwareVersion":"1.0.0","url":"https://spurno.github.io/plugin/docs","author":{"@type":"Organization","name":"SPurno Animation Studio","url":"https://spurno.github.io"}}</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+      </span>
+      <span>
+        <span class="brand-name">Preflight Auditor</span>
+        <span class="brand-sub">Documentation</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Preflight Auditor pages">
+      <a href="docs.html" aria-current="page">Docs</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-and-conditions.html">Terms</a>
+    </nav>
+    <span class="version">v1.0.0</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Adobe Photoshop · UXP panel</p>
+        <h1>Preflight Auditor</h1>
+        <p class="lede">A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.</p>
+      </div>
+
+      <div class="plate reveal">
+        <div class="plate-title">
+          <span>Spec plate</span>
+          <span>Read-only</span>
+        </div>
+        <dl>
+          <div class="row"><dt>Version</dt><dd>1.0.0</dd></div>
+          <div class="row"><dt>Requires</dt><dd>Photoshop 24.2+</dd></div>
+          <div class="row"><dt>Network access</dt><dd><span class="dot"></span>None</dd></div>
+          <div class="row"><dt>Document changes</dt><dd>None</dd></div>
+          <div class="row"><dt>Output</dt><dd>Export report</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="ticks" aria-hidden="true"></div>
+
+    <ul class="stats">
+      <li><b>16</b> checks in one pass</li>
+      <li><b>6</b> delivery profiles</li>
+      <li><b>0</b> network requests</li>
+    </ul>
+
+    <p class="lede deck">It answers one question: <strong>will this file cause a problem for whoever receives it?</strong> It checks effective image resolution, colour mode, type size, broken file links, blend modes that break in CMYK, bleed, artboards, hidden content and structural debris, then exports a report you can send with the file.</p>
+  </section>
+
+  <div class="shell">
+
+    <aside class="toc" aria-label="On this page">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#checks">What it checks</a></li>
+        <li><a href="#limits">What it does not check</a></li>
+        <li><a href="#profiles">Delivery targets</a></li>
+        <li><a href="#requirements">Requirements</a></li>
+      </ol>
+
+      <details class="toc-mobile">
+        <summary>On this page</summary>
+        <ol>
+          <li><a href="#checks">What it checks</a></li>
+          <li><a href="#limits">What it does not check</a></li>
+          <li><a href="#profiles">Delivery targets</a></li>
+          <li><a href="#requirements">Requirements</a></li>
+        </ol>
+      </details>
+    </aside>
+
+    <article class="prose">
+
+      <section id="checks" class="reveal">
+        <h2>What it checks</h2>
+        <div class="table-wrap">
+          <table>
+            <caption>16 checks · run in a single pass</caption>
+            <thead>
+              <tr>
+                <th scope="col">Check</th>
+                <th scope="col">What it catches</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row"><span class="num">01</span>Image resolution</th>
+                <td>Placed art below the target DPI, measured from the source file rather than guessed</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">02</span>Upscaled images</th>
+                <td>A source enlarged past 1:1, which prints soft no matter how it is sharpened</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">03</span>Broken file links</th>
+                <td>Placed assets Photoshop cannot find, which fail on the printer&rsquo;s machine</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">04</span>Small text</th>
+                <td>Type below a legible point size for the delivery medium</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">05</span>Missing fonts</th>
+                <td>Faces not installed, which reflow every line on someone else&rsquo;s computer</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">06</span>Color mode</th>
+                <td>RGB artwork headed for an offset press</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">07</span>CMYK-incompatible blend modes</th>
+                <td>Screen, Overlay and friends, which resolve differently once flattened</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">08</span>Bit depth</th>
+                <td>16-bit files that are slow to open, and indexed or bitmap colour</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">09</span>Canvas size</th>
+                <td>Canvases past the edge or megapixel ceiling of the target</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">10</span>Bleed</th>
+                <td>Print work with no bleed allowance marked</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">11</span>Guides on the trim line</th>
+                <td>Ambiguous trim, which usually means no bleed</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">12</span>Artboards</th>
+                <td>Artboards off the canvas, and content clipped by the artboard frame</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">13</span>Empty layers</th>
+                <td>Layers and groups with nothing in them</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">14</span>Hidden layers</th>
+                <td>Content switched off, including accidental alternates</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">15</span>Layer names</th>
+                <td>Default names, duplicates and stacked &ldquo;copy&rdquo; suffixes</td>
+              </tr>
+              <tr>
+                <th scope="row"><span class="num">16</span>Layer count</th>
+                <td>Files heavy enough to be a delivery problem</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Every finding carries a measurement, a threshold, and a concrete next step. A check that finds nothing produces no output at all: the report never pads itself with praise for correct work.</p>
+      </section>
+
+      <section id="limits" class="reveal">
+        <h2>What it does not check</h2>
+        <div class="callout is-plain">
+          <p class="callout-title">Stated in the About dialog and every report</p>
+          <p>Being explicit about this matters, and the same wording appears in the About dialog and every exported report:</p>
+          <ul>
+            <li>Colour separations</li>
+            <li>Trapping, overprint and total ink coverage</li>
+            <li>Fonts used by rasterised or outlined text</li>
+            <li>Anything outside the document itself</li>
+            <li>Your printer&rsquo;s actual requirements</li>
+          </ul>
+        </div>
+        <div class="statement">
+          <p><strong>Always proof before approving a run.</strong></p>
+        </div>
+      </section>
+
+      <section id="profiles" class="reveal">
+        <h2>Delivery targets</h2>
+        <p>A profile sets every threshold at once. Switching profiles is the main thing the plugin does.</p>
+
+        <div class="tiles">
+          <div class="tile">
+            <h3>Print — offset</h3>
+            <p class="tile-value">300<span>dpi</span></p>
+            <p class="tile-meta">Min type 6 pt</p>
+            <div class="chips"><span class="chip">CMYK</span><span class="chip">Bleed</span></div>
+          </div>
+          <div class="tile">
+            <h3>Print — large format</h3>
+            <p class="tile-value">150<span>dpi</span></p>
+            <p class="tile-meta">Min type 12 pt</p>
+            <div class="chips"><span class="chip">CMYK</span><span class="chip">Bleed</span></div>
+          </div>
+          <div class="tile">
+            <h3>Print — photo</h3>
+            <p class="tile-value">240<span>dpi</span></p>
+            <p class="tile-meta">Min type 8 pt</p>
+            <div class="chips"><span class="chip">CMYK</span></div>
+          </div>
+          <div class="tile">
+            <h3>Web</h3>
+            <p class="tile-value">72<span>dpi</span></p>
+            <p class="tile-meta">Min type 10 pt</p>
+            <div class="chips"><span class="chip is-none">RGB</span></div>
+          </div>
+          <div class="tile">
+            <h3>Social media</h3>
+            <p class="tile-value">72<span>dpi</span></p>
+            <p class="tile-meta">Min type 12 pt</p>
+            <div class="chips"><span class="chip is-none">RGB</span></div>
+          </div>
+          <div class="tile">
+            <h3>Ad-hoc / retouching handoff</h3>
+            <p class="tile-value">—</p>
+            <p class="tile-meta">DPI and type not enforced</p>
+            <div class="chips"><span class="chip is-none">No requirements</span></div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <p class="callout-title">Every threshold is overridable</p>
+          <p>The settings dialog warns when a value no longer matches the active profile, so a custom threshold is always visible rather than silently in effect.</p>
+        </div>
+      </section>
+
+      <section id="requirements" class="reveal">
+        <h2>Requirements</h2>
+        <ul class="checklist">
+          <li><b>Adobe Photoshop 24.2</b> or later</li>
+          <li><b>UXP Developer Tool</b> for local development</li>
+          <li><b>No network access, no companion app, no native code</b></li>
+        </ul>
+
+        <div class="callout">
+          <p class="callout-title">Why the floor is 24.2</p>
+          <p>Version 24.2 is the floor because reading a text layer&rsquo;s point size requires <code>Layer.textItem.characterStyle</code>, which arrived in 24.1&ndash;24.2. Rather than claim to check type size while quietly checking nothing, the panel states plainly when text metrics could not be read.</p>
+        </div>
+      </section>
+
+    </article>
+  </div>
+
+  <nav class="related" aria-label="Related pages">
+    <div class="related-grid">
+      <a href="support.html">
+        <span class="label">Help</span>
+        <span class="name">Support</span>
+        <span class="hint">Troubleshooting, limits and contact</span>
+      </a>
+      <a href="privacy-policy.html">
+        <span class="label">Data</span>
+        <span class="name">Privacy Policy</span>
+        <span class="hint">What the plugin reads and writes</span>
+      </a>
+      <a href="terms-and-conditions.html">
+        <span class="label">Legal</span>
+        <span class="name">Terms of Service</span>
+        <span class="hint">Licence, warranty and liability</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+          </svg>
+        </span>
+        Preflight Auditor
+      </div>
+      <p class="footer-note">A read-only audit panel for Adobe Photoshop. Every check runs inside your copy of Photoshop; nothing is collected, transmitted or modified. Not affiliated with, endorsed by, or sponsored by Adobe.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plugin</h4>
+      <a href="docs.html">Documentation</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms of Service</a>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <a href="../index.html">SPurno Animation Studio</a>
+      <a href="../contact-us.html">Contact</a>
+      <a href="../privacy-policy.html">Site privacy policy</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>&copy; 2026 SPurno Animation Studio</span>
+    <span>Adobe and Adobe Photoshop are trademarks of Adobe Inc.</span>
+  </div>
+</footer>
+
+<script src="preflight.js" defer></script>
+</body>
+</html>

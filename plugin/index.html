@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preflight Auditor — A preflight panel for Adobe Photoshop</title>
+  <meta name="description" content="Preflight Auditor is a UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems, then exports a report you can send with the file. Sixteen checks, six delivery profiles, no network access.">
+  <meta name="author" content="SPurno Animation Studio">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://spurno.github.io/plugin/">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Preflight Auditor">
+  <meta property="og:title" content="Preflight Auditor — A preflight panel for Adobe Photoshop">
+  <meta property="og:description" content="Audits an open Photoshop document for measurable print and delivery problems, then exports a report you can send with the file.">
+  <meta property="og:url" content="https://spurno.github.io/plugin/">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Preflight Auditor — A preflight panel for Adobe Photoshop">
+  <meta name="twitter:description" content="Sixteen checks, six delivery profiles, no network access.">
+
+  <link rel="icon" href="../favicon/favicon-32x32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="../favicon/apple-touch-icon.png">
+  <link rel="stylesheet" href="preflight.css">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Preflight Auditor","description":"A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.","applicationCategory":"MultimediaApplication","operatingSystem":"Adobe Photoshop 24.2 or later","softwareVersion":"1.0.0","url":"https://spurno.github.io/plugin/","author":{"@type":"Organization","name":"SPurno Animation Studio","url":"https://spurno.github.io"}}</script>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="index.html" aria-current="page">
+      <span class="brand-mark" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+          <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+        </svg>
+      </span>
+      <span>
+        <span class="brand-name">Preflight Auditor</span>
+        <span class="brand-sub">Documentation</span>
+      </span>
+    </a>
+    <nav class="topnav" aria-label="Preflight Auditor pages">
+      <a href="docs.html">Docs</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy</a>
+      <a href="terms-and-conditions.html">Terms</a>
+    </nav>
+    <span class="version">v1.0.0</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Adobe Photoshop · UXP panel</p>
+        <h1>Preflight Auditor</h1>
+        <p class="lede">A UXP panel for Adobe Photoshop that audits an open document for measurable print and delivery problems before you send it out.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="docs.html">Read the documentation</a>
+          <a class="btn btn-ghost" href="support.html">Get support</a>
+        </div>
+      </div>
+
+      <div class="plate reveal">
+        <div class="plate-title">
+          <span>Spec plate</span>
+          <span>Read-only</span>
+        </div>
+        <dl>
+          <div class="row"><dt>Version</dt><dd>1.0.0</dd></div>
+          <div class="row"><dt>Requires</dt><dd>Photoshop 24.2+</dd></div>
+          <div class="row"><dt>Network access</dt><dd><span class="dot"></span>None</dd></div>
+          <div class="row"><dt>Document changes</dt><dd>None</dd></div>
+          <div class="row"><dt>Output</dt><dd>Export report</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="ticks" aria-hidden="true"></div>
+
+    <ul class="stats">
+      <li><b>16</b> checks in one pass</li>
+      <li><b>6</b> delivery profiles</li>
+      <li><b>0</b> network requests</li>
+    </ul>
+  </section>
+
+  <article class="prose hub">
+
+    <section id="checks" class="reveal">
+      <h2>What it checks</h2>
+      <p>Effective image resolution, colour mode, type size, broken file links, blend modes that break in CMYK, bleed, artboards, hidden content and structural debris. Every finding carries a measurement, a threshold and a concrete next step.</p>
+      <ul class="tag-wall">
+        <li><a href="docs.html#checks"><span class="idx">01</span>Image resolution</a></li>
+        <li><a href="docs.html#checks"><span class="idx">02</span>Upscaled images</a></li>
+        <li><a href="docs.html#checks"><span class="idx">03</span>Broken file links</a></li>
+        <li><a href="docs.html#checks"><span class="idx">04</span>Small text</a></li>
+        <li><a href="docs.html#checks"><span class="idx">05</span>Missing fonts</a></li>
+        <li><a href="docs.html#checks"><span class="idx">06</span>Color mode</a></li>
+        <li><a href="docs.html#checks"><span class="idx">07</span>CMYK blend modes</a></li>
+        <li><a href="docs.html#checks"><span class="idx">08</span>Bit depth</a></li>
+        <li><a href="docs.html#checks"><span class="idx">09</span>Canvas size</a></li>
+        <li><a href="docs.html#checks"><span class="idx">10</span>Bleed</a></li>
+        <li><a href="docs.html#checks"><span class="idx">11</span>Guides on trim</a></li>
+        <li><a href="docs.html#checks"><span class="idx">12</span>Artboards</a></li>
+        <li><a href="docs.html#checks"><span class="idx">13</span>Empty layers</a></li>
+        <li><a href="docs.html#checks"><span class="idx">14</span>Hidden layers</a></li>
+        <li><a href="docs.html#checks"><span class="idx">15</span>Layer names</a></li>
+        <li><a href="docs.html#checks"><span class="idx">16</span>Layer count</a></li>
+      </ul>
+      <p>A check that finds nothing produces no output at all. The report never pads itself with praise for correct work.</p>
+      <a class="more" href="docs.html#checks">See what each check catches</a>
+    </section>
+
+    <section id="profiles" class="reveal">
+      <h2>Delivery targets</h2>
+      <p>A profile sets every threshold at once, and switching profiles is the main thing the plugin does. Every value is overridable in Settings.</p>
+
+      <div class="tiles">
+        <div class="tile">
+          <h3>Print — offset</h3>
+          <p class="tile-value">300<span>dpi</span></p>
+          <p class="tile-meta">Min type 6 pt</p>
+          <div class="chips"><span class="chip">CMYK</span><span class="chip">Bleed</span></div>
+        </div>
+        <div class="tile">
+          <h3>Print — large format</h3>
+          <p class="tile-value">150<span>dpi</span></p>
+          <p class="tile-meta">Min type 12 pt</p>
+          <div class="chips"><span class="chip">CMYK</span><span class="chip">Bleed</span></div>
+        </div>
+        <div class="tile">
+          <h3>Print — photo</h3>
+          <p class="tile-value">240<span>dpi</span></p>
+          <p class="tile-meta">Min type 8 pt</p>
+          <div class="chips"><span class="chip">CMYK</span></div>
+        </div>
+        <div class="tile">
+          <h3>Web</h3>
+          <p class="tile-value">72<span>dpi</span></p>
+          <p class="tile-meta">Min type 10 pt</p>
+          <div class="chips"><span class="chip is-none">RGB</span></div>
+        </div>
+        <div class="tile">
+          <h3>Social media</h3>
+          <p class="tile-value">72<span>dpi</span></p>
+          <p class="tile-meta">Min type 12 pt</p>
+          <div class="chips"><span class="chip is-none">RGB</span></div>
+        </div>
+        <div class="tile">
+          <h3>Ad-hoc / retouching handoff</h3>
+          <p class="tile-value">—</p>
+          <p class="tile-meta">DPI and type not enforced</p>
+          <div class="chips"><span class="chip is-none">No requirements</span></div>
+        </div>
+      </div>
+
+      <a class="more" href="docs.html#profiles">Compare the six profiles</a>
+    </section>
+
+    <section id="behaviour" class="reveal">
+      <h2>How it behaves</h2>
+      <p>The panel runs entirely inside your copy of Photoshop. It reads the open document, reports what it can measure, and waits for you to export a report.</p>
+
+      <dl class="facts">
+        <div><dt>Document access</dt><dd>Read-only</dd></div>
+        <div><dt>Network requests</dt><dd>None</dd></div>
+        <div><dt>Settings</dt><dd>Local JSON file</dd></div>
+        <div><dt>Reports</dt><dd>Only where you save</dd></div>
+      </dl>
+
+      <div class="statement">
+        <p>The panel reports only what can be measured from a document. <strong>Always proof before approving a run.</strong></p>
+      </div>
+
+      <a class="more" href="docs.html#limits">Read what it does not check</a>
+    </section>
+
+  </article>
+
+  <nav class="related" aria-label="All pages">
+    <div class="related-grid">
+      <a href="docs.html">
+        <span class="label">Manual</span>
+        <span class="name">Documentation</span>
+        <span class="hint">All sixteen checks, profiles and requirements</span>
+      </a>
+      <a href="support.html">
+        <span class="label">Help</span>
+        <span class="name">Support</span>
+        <span class="hint">Troubleshooting, limits and contact</span>
+      </a>
+      <a href="privacy-policy.html">
+        <span class="label">Data</span>
+        <span class="name">Privacy Policy</span>
+        <span class="hint">What the plugin reads and writes</span>
+      </a>
+      <a href="terms-and-conditions.html">
+        <span class="label">Legal</span>
+        <span class="name">Terms of Service</span>
+        <span class="hint">Licence, warranty and liability</span>
+      </a>
+    </div>
+  </nav>
+
+</main>
+
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div>
+      <div class="footer-brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.5v3.2M8 11.3v3.2M1.5 8h3.2M11.3 8h3.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+            <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+          </svg>
+        </span>
+        Preflight Auditor
+      </div>
+      <p class="footer-note">A read-only audit panel for Adobe Photoshop. Every check runs inside your copy of Photoshop; nothing is collected, transmitted or modified. Not affiliated with, endorsed by, or sponsored by Adobe.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Plugin</h4>
+      <a href="docs.html">Documentation</a>
+      <a href="support.html">Support</a>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="terms-and-conditions.html">Terms of Service</a>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <a href="../index.html">SPurno Animation Studio</a>
+      <a href="../contact-us.html">Contact</a>
+      <a href="../privacy-policy.html">Site privacy policy</a>
+    </div>
+  </div>
+  <div class="footer-base">
+    <span>&copy; 2026 SPurno Animation Studio</span>
+    <span>Adobe and Adobe Photoshop are trademarks of Adobe Inc.</span>
+  </div>
+</footer>
+
+<script src="preflight.js" defer></script>
+</body>
+</html>
